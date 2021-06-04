@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".client.ClientProjectsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:padding="@dimen/padding_5dp">
+        <!--        android:theme="@style/Theme.TheContractor.AppBarOverlay">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_background">
+            <EditText
+                android:drawableStart="@drawable/ic_search"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:textColorHint="@color/gray"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@color/light_gray"
+                android:hint="Search by mobile no. or project name"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <!--    <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.TheContractor.PopupOverlay" />
+    -->
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_project_list" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

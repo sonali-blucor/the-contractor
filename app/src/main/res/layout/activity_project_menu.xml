@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/margin_5dp"
+            android:layout_marginLeft="@dimen/margin_5dp"
+            android:layout_marginEnd="@dimen/margin_5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_add_project_menu"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/padding_5dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickToAddProject"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                        <TextView
+                            android:id="@+id/tv_add_project_menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_title"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:textStyle="bold"
+                            android:text="Add Project" />
+
+                        <ImageView
+                            android:id="@+id/img_add_project_menu"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/margin_24dp"
+                            android:src="@drawable/ic_add_project" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_view_project_menu"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/padding_5dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClickToProjects"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_view_project_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Projects" />
+
+                    <ImageView
+                        android:id="@+id/img_view_project_menu"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_view_project_s" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_completed_project_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp"
+                    android:onClick="onClickToCompletedProject"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_completed_project_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Completed Projects" />
+
+                    <ImageView
+                        android:id="@+id/img_completed_project_menu"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_completed_project" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_activity_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp"
+                    android:onClick="onClickToActivityManagement"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_activity_management"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Activity Management" />
+
+                    <ImageView
+                        android:id="@+id/img_activity_management"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_completed_project" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_sub_contractor_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp"
+                    android:onClick="onClickToSubContractorManagement"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_sub_contractor_management"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Sub Conractor Management" />
+
+                    <ImageView
+                        android:id="@+id/img_sub_contractor_management"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_completed_project" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_material_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp"
+                    android:onClick="onClickToMaterialManagement"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_material_management"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Material Management" />
+
+                    <ImageView
+                        android:id="@+id/img_material_management"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_material" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_download_reportd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp"
+                    android:onClick="onClickToDownloadAndReport"
+                    android:layout_margin="@dimen/margin_5dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_download_reportd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_title"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_marginStart="@dimen/margin_8dp"
+                        android:textStyle="bold"
+                        android:text="Download And Report" />
+
+                    <ImageView
+                        android:id="@+id/img_download_reportd"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="@dimen/margin_24dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/ic_download" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

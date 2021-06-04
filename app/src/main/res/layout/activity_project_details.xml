@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".project.ProjectDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/llh_call"
+            android:onClick="onClickToCall"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/padding_5dp"
+            android:background="@color/yellow"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_call"
+                android:drawableLeft="@drawable/ic_call"
+                android:text="Call To Client"
+                android:gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:textSize="@dimen/label_text_size"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/llh_bottom"
+            android:layout_below="@+id/llh_call"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_id"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="PAJ0123"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project ID"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_name"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Project 1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project Name"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_type"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Building"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project Type"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_contract_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_contract_type"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Full Time"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_contract_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Contract Type"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_client_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_client_name"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Sanju Rao"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_client_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Client Name"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_client_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_client_mobile"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="+91 8776879387"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_client_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Client Mobile Number"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@id/tv_t_client_sms"
+                        android:background="@drawable/table_content_cell_bg">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_5dp">
+
+                            <TextView
+                                android:id="@+id/tv_client_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_t_client_id"
+                                android:background="@drawable/edit_box_background"
+                                android:padding="@dimen/padding_5dp"
+                                android:text="sanjurao"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/label_text_size" />
+
+                            <TextView
+                                android:id="@+id/tv_t_client_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_5dp"
+                                android:layout_marginLeft="@dimen/margin_5dp"
+                                android:layout_marginBottom="-5dp"
+                                android:background="@color/white"
+                                android:text="Client ID"
+                                android:textColor="@color/yellow"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_5dp">
+
+                            <TextView
+                                android:id="@+id/tv_client_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_t_client_password"
+                                android:background="@drawable/edit_box_background"
+                                android:padding="@dimen/padding_5dp"
+                                android:text="sanju123"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/label_text_size" />
+
+                            <TextView
+                                android:id="@+id/tv_t_client_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_5dp"
+                                android:layout_marginLeft="@dimen/margin_5dp"
+                                android:layout_marginBottom="-5dp"
+                                android:background="@color/white"
+                                android:text="Client Password"
+                                android:textColor="@color/yellow"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_t_client_sms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:background="@color/yellow"
+                        android:layout_marginBottom="-5dp"
+                        android:padding="@dimen/padding_5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Client SMS"
+                        android:onClick="onClickToClientSMS"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/label_text_size"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_location"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Pune"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project Location"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_start_end_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_start_end_date"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="12/04/2021 to 20/04/2021"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_start_end_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project Start and End Date"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_duration"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="8 Days"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Project Duration"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/llh_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llh_activity"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_add_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/yellow"
+                    android:onClick="onClickToAddActivity"
+                    android:text="Add Activity"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_edit_activity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/yellow"
+                    android:onClick="onClickToEditActivity"
+                    android:text="Activitys"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llh_material"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_add_material"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/yellow"
+                    android:onClick="onClickToAddMaterial"
+                    android:text="Add Material"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_edit_material"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/yellow"
+                    android:onClick="onClickToEditMaterial"
+                    android:text="Materials"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
