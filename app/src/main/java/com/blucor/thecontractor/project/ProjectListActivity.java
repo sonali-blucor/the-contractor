@@ -81,7 +81,9 @@ public class ProjectListActivity extends BaseAppCompatActivity {
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                Bundle bundle =new Bundle();
+                ProjectsModel model = mList.get(position);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(AppKeys.PROJECT,model);
                 bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
                 ScreenHelper.redirectToClass(ProjectListActivity.this, ProjectDetailsActivity.class,bundle);
             }
@@ -93,7 +95,9 @@ public class ProjectListActivity extends BaseAppCompatActivity {
 
             @Override
             public void editViewListClicked(View v, int position) {
-                Uri u = Uri.parse("tel:" + "8776879387");
+                ProjectsModel model = mList.get(position);
+                String client_mobile_number = model.mobile;
+                Uri u = Uri.parse("tel:" + client_mobile_number);
                 Intent i = new Intent(Intent.ACTION_DIAL, u);
                 try {
                     startActivity(i);
