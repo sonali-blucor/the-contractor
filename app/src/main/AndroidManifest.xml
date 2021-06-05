@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".client.ClientAddAndSearchActivity"></activity>
+        <activity android:name=".project.ScheduleActivity"></activity>
+        <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
             android:name=".account.ConfirmPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
