@@ -3,6 +3,7 @@ package com.blucor.thecontractor.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -16,6 +17,10 @@ public class SubActivityModel implements Parcelable {
     @Expose
     public int project_id;
 
+    @SerializedName("sub_activity_name")
+    @Expose
+    public String sub_activity_name;
+
     @SerializedName("start_date")
     @Expose
     public String start_date;
@@ -27,6 +32,22 @@ public class SubActivityModel implements Parcelable {
     @SerializedName("sub_contractor_id")
     @Expose
     public int sub_contractor_id;
+
+    @SerializedName("fname")
+    @Expose
+    public String sub_contractor_first_name;
+
+    @SerializedName("lname")
+    @Expose
+    public String sub_contractor_last_name;
+
+    @SerializedName("mobile")
+    @Expose
+    public String sub_contractor_mobile;
+
+    @SerializedName("email")
+    @Expose
+    public String sub_contractor_email;
 
     @SerializedName("duration")
     @Expose

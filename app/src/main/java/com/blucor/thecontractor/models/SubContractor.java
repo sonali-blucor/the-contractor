@@ -31,6 +31,10 @@ public class SubContractor implements Parcelable {
     @Expose
     public String email;
 
+    @SerializedName("contractor_id")
+    @Expose
+    public int contractor_id;
+
     @SerializedName("created_at")
     @Expose
     public String created_at;
