@@ -10,6 +10,8 @@ import android.widget.RadioGroup;
 import com.blucor.thecontractor.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class WeekDaysCheckBox extends RadioGroup {
     private CheckBox rb_sun;
@@ -160,5 +162,44 @@ public class WeekDaysCheckBox extends RadioGroup {
 
     public ArrayList<String> selectedWeekDays() {
         return listDays;
+    }
+
+    public void setSelectedWeekDays(String weekDays) {
+        getArrayFromString(weekDays);
+        setCheckboxAccordingToList(listDays);
+    }
+
+    private void setCheckboxAccordingToList(List<String> myList) {
+        for (int i = 0; i < myList.size(); i++) {
+            setcheckedFromString(myList.get(i));
+        }
+    }
+
+    private void setcheckedFromString(String s) {
+        if(s.equalsIgnoreCase(str_sun)) {
+            rb_sun.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_mon)) {
+            rb_mon.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_tue)) {
+            rb_tue.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_wed)) {
+            rb_wed.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_thu)) {
+            rb_thu.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_fri)) {
+            rb_fri.setChecked(true);
+        } else if(s.equalsIgnoreCase(str_sat)) {
+            rb_sat.setChecked(true);
+        }
+    }
+
+    private void getArrayFromString(String officeDays) {
+        if (officeDays.contains("[")) {
+            officeDays = officeDays.replace("[", "");
+        }
+        if (officeDays.contains("]")) {
+            officeDays = officeDays.replace("]", "");
+        }
+        listDays = new ArrayList<>(Arrays.asList(officeDays.split(",")));
     }
 }
