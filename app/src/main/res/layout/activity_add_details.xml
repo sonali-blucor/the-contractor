@@ -31,167 +31,46 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
                     android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Activity Name"
+                    android:hint="Main Activity Name"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLength="40"
-                    android:nextFocusDown="@id/edt_act_start_date"
                     android:singleLine="true" />
-
-                <requestFocus></requestFocus>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/main_activity_start_end_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:text="Activity Start date And End Date"
+                android:layout_margin="10dp"/>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_act_start_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/input_margin_5dp"
-                        android:background="@drawable/edit_background"
-                        app:errorIconDrawable="@drawable/edit_background">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_act_start_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edit_background"
-                            android:drawablePadding="@dimen/drawable_padding"
-                            android:enabled="false"
-                            android:hint="Start and End Date"
-                            android:imeOptions="actionNext"
-                            android:inputType="date"
-                            android:nextFocusDown="@id/edt_act_worker_name"
-                            android:onClick="onClickDate"
-                            android:singleLine="true"
-                            android:textColor="@color/black" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/img_date"
-                        style="@style/Theme.TheContractor.ImageViewTheme"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:onClick="onClickDate"
-                        android:padding="@dimen/drawable_padding"
-                        android:src="@drawable/ic_date" />
-                </RelativeLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_act_end_date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/input_margin_5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/edit_background"
-                    android:visibility="gone"
-                    app:errorIconDrawable="@drawable/edit_background">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_act_end_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_background"
-                        android:drawablePadding="@dimen/drawable_padding"
-                        android:hint="End Date"
-                        android:imeOptions="actionNext"
-                        android:inputType="date"
-                        android:maxLength="20"
-                        android:nextFocusDown="@id/edt_act_worker_name"
-                        android:singleLine="true" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right|center_vertical"
-                android:orientation="horizontal">
+                android:text="Sub Activity List"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Duration: "
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_act_duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="0 Days"
-                    android:textSize="@dimen/label_text_size"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_act_worker_name"
+            <ListView
+                android:id="@+id/lst_add_activity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_act_worker_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Worker Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="150"
-                    android:nextFocusDown="@id/edt_act_worker_mobile"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_act_worker_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_act_worker_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Worker Mobile"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:nextFocusDown="@id/btn_submit"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:background="@color/yellow"
             android:onClick="onClickToSubmit"
-            android:text="Submit"
             android:textColor="@color/white"
+            android:src="@drawable/ic_add"
             android:textStyle="bold" />
 
     </RelativeLayout>

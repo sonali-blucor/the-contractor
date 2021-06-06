@@ -68,6 +68,10 @@ public class ProjectsModel implements Parcelable {
     @Expose
     public String email;
 
+    @SerializedName("main_activity_name")
+    @Expose
+    public String main_activity_name;
+
     @SerializedName("mobile")
     @Expose
     public String mobile;

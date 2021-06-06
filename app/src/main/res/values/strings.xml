@@ -49,5 +49,6 @@
     <string name="input_country">Country</string>
     <string name="create_client">Create Client</string>
     <string name="client_id">Client Id</string>
+    <string name="create_sub_contractor">Create Sub Contractor</string>
 
 </resources>
