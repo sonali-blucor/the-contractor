@@ -45,6 +45,12 @@ public class ScheduleActivity extends AppCompatActivity {
             }
         });
 
+        getScheduleDtails();
+
+    }
+
+    private void getScheduleDtails() {
+
     }
 
     private void saveScheduleToDb() {

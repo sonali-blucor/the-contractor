@@ -5,7 +5,6 @@ import com.blucor.thecontractor.models.ClientAddSearchModel;
 import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
-import com.blucor.thecontractor.models.Project;
 import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ServerResponseModel;
@@ -122,7 +121,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.SAVE_PROJECT)
-    Call<Project> saveProject(@Field("project_name") String project_name,
+    Call<ProjectsModel> saveProject(@Field("project_name") String project_name,
                                       @Field("project_type") String project_type,
                                       @Field("contract_type") String contract_type,
                                       @Field("client_id") int client_id,

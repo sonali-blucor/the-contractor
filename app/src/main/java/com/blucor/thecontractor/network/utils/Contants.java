@@ -33,4 +33,6 @@ public class Contants {
     public static final String STORE_CLIENT_WITH_ID = "store_client_by_id";
     public static final String SAVE_PROJECT = "save_project";
     public static final String VIEW_ALL_PROJECTS_BY_CONTRACTOR_ID = "view_all_projects_by_contractor_id";
+    public static final String STORE_OR_UPDATE_SCHEDULE = "store_or_update_schedule";
+    public static final String GET_SCHEDULE_BY_PROJECT_ID = "get_schedule_by_project_id";
 }
