@@ -47,7 +47,7 @@ public class WeekDaysCheckBox extends RadioGroup {
     }
 
     private void initViews() {
-
+        listDays = new ArrayList<>();
         LinearLayout.LayoutParams childParam1 = new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT);
         childParam1.weight = 1f;
 
@@ -142,13 +142,13 @@ public class WeekDaysCheckBox extends RadioGroup {
             }
         });
 
-        rb_sun.setButtonDrawable(R.drawable.ic_sun);
-        rb_mon.setButtonDrawable(R.drawable.ic_mon);
-        rb_tue.setButtonDrawable(R.drawable.ic_tue);
-        rb_wed.setButtonDrawable(R.drawable.ic_wed);
-        rb_thu.setButtonDrawable(R.drawable.ic_thu);
-        rb_fri.setButtonDrawable(R.drawable.ic_fri);
-        rb_sat.setButtonDrawable(R.drawable.ic_sat);
+        rb_sun.setButtonDrawable(R.drawable.ic_sun_selector);
+        rb_mon.setButtonDrawable(R.drawable.ic_mon_selector);
+        rb_tue.setButtonDrawable(R.drawable.ic_tue_selector);
+        rb_wed.setButtonDrawable(R.drawable.ic_wed_selector);
+        rb_thu.setButtonDrawable(R.drawable.ic_thu_selector);
+        rb_fri.setButtonDrawable(R.drawable.ic_fri_selector);
+        rb_sat.setButtonDrawable(R.drawable.ic_sat_selector);
 
         this.addView(rb_sun);
         this.addView(rb_mon);

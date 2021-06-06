@@ -1,5 +1,7 @@
 package com.blucor.thecontractor.project;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,32 +61,58 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             }
         });
 
-        getScheduleDetails();
+        edt_project_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupProjectStatusDialog();
+            }
+        });
 
+        getScheduleDetails();
+    }
+
+    private void popupProjectStatusDialog() {
+        String[] status_list = new String[]{"On Going","Complete"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(ScheduleActivity.this);
+        builder.setTitle("Select Project Status");
+        builder.setItems(status_list, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String status = status_list[which];
+                edt_project_status.setText(status);
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void getScheduleDetails() {
         showLoader();
         if (project != null) {
-            RetrofitClient.getApiService().getScheduleByProjectId(project.id).enqueue(new Callback<ScheduleModel>() {
+            RetrofitClient.getApiService().getScheduleByProjectId(project.id).enqueue(new Callback<List<ScheduleModel>>() {
                 @Override
-                public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
+                public void onResponse(Call<List<ScheduleModel>> call, Response<List<ScheduleModel>> response) {
                     if (response.code() == 200 && response.body() != null) {
-                        schedule = response.body();
-                        is_scheduled = true;
-                        setupSchedule();
+                        if (response.body().size() > 0) {
+                            schedule = response.body().get(0);
+                            is_scheduled = true;
+                        } else {
+                            is_scheduled = false;
+                        }
                     } else {
                         is_scheduled = false;
                     }
                     stopLoader();
+                    setupSchedule();
                 }
 
                 @Override
-                public void onFailure(Call<ScheduleModel> call, Throwable t) {
-                    stopLoader();
+                public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
                     Toast.makeText(ScheduleActivity.this, "Error in getting schedule", Toast.LENGTH_SHORT).show();
                 }
             });
+        } else {
+            Toast.makeText(this, "Project not recived ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -91,6 +121,8 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             edt_project_name.setText(schedule.project_name);
             edt_no_of_days.setText(schedule.no_of_days);
             edt_project_status.setText(schedule.project_status);
+            wd_schedule.setSelectedWeekDays(schedule.week_days);
+            rt_bar_schedule.setRating(schedule.rating);
         } else {
             edt_project_name.setText(project.project_name);
         }
@@ -98,6 +130,32 @@ public class ScheduleActivity extends BaseAppCompatActivity {
 
     private void saveScheduleToDb() {
         String project_status = edt_project_status.getText().toString();
+        String week_days = wd_schedule.selectedWeekDays().toString();
+        int num_of_days = Integer.parseInt(edt_no_of_days.getText().toString());
+        float ratings = rt_bar_schedule.getRating();
+
+        showLoader();
+        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,ratings).enqueue(new Callback<ScheduleModel>() {
+            @Override
+            public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    schedule  = response.body();
+                    Toast.makeText(ScheduleActivity.this, "Project Scheduled Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ScheduleActivity.this,ProjectListActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ScheduleActivity.this, "Error in scheduling", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<ScheduleModel> call, Throwable t) {
+                stopLoader();
+                Toast.makeText(ScheduleActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private boolean isValidData() {

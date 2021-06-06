@@ -138,7 +138,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.GET_SCHEDULE_BY_PROJECT_ID)
-    Call<ScheduleModel> getScheduleByProjectId(@Field("project_id") int project_id);
+    Call<List<ScheduleModel>> getScheduleByProjectId(@Field("project_id") int project_id);
 
     @FormUrlEncoded
     @POST(Contants.STORE_OR_UPDATE_SCHEDULE)

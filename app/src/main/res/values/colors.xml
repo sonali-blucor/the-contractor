@@ -16,4 +16,5 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="fontSemiWhiteColor">#aaa</color>
+    <color name="basic_question_fab_clor">@color/yellow</color>
 </resources>
