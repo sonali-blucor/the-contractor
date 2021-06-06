@@ -60,7 +60,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+       <!-- <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_project_no_of_holidays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +80,13 @@
                 android:nextFocusDown="@id/edt_project_type"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>-->
+
+       <com.blucor.thecontractor.custom.WeekDaysCheckBox
+           android:id="@+id/wd_schedule"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_no_of_days"
@@ -119,7 +125,7 @@
             android:layout_margin="10dp"
             android:numStars="5"
             android:stepSize="0.1"
-            android:isIndicator="true" />
+            android:isIndicator="false" />
 
 
     </LinearLayout>

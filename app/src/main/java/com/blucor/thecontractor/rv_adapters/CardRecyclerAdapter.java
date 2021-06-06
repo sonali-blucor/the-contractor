@@ -175,7 +175,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 @Override
                 public void onClick(View view) {
                     if (mListener != null) {
-//                        mListener.recyclerViewListClicked(item_5, getAdapterPosition());
+                       mListener.recyclerViewListClicked(item_5, getAdapterPosition());
                     }
                 }
             });
@@ -194,7 +194,15 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_6.setVisibility(View.VISIBLE);
             //item_6.setText(item.getTotalMaterial());
 
-            item_5.setVisibility(View.INVISIBLE);
+            item_5.setVisibility(View.VISIBLE);
+            item_5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null) {
+                        mListener.recyclerViewListClicked(item_5,position);
+                    }
+                }
+            });
             item_4.setVisibility(View.VISIBLE);
             item_4.setOnClickListener(new View.OnClickListener() {
                 @Override

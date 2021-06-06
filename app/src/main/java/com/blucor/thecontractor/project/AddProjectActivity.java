@@ -192,7 +192,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                         if(response.body() != null) {
                             Project project = response.body();
                             Toast.makeText(AddProjectActivity.this, "Project added with id : " + project.id, Toast.LENGTH_SHORT).show();
-                            ScreenHelper.redirectToClass(AddProjectActivity.this,SuccessFullscreenActivity.class);
+                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class);
                             finish();
                         }else {
                             Toast.makeText(AddProjectActivity.this, "Unable to add project", Toast.LENGTH_SHORT).show();

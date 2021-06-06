@@ -24,6 +24,7 @@ import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
 
