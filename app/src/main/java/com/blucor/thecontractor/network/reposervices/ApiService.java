@@ -1,5 +1,6 @@
 package com.blucor.thecontractor.network.reposervices;
 
+import com.blucor.thecontractor.models.ActivityResponseModel;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.ClientAddSearchModel;
 import com.blucor.thecontractor.models.Contract_Type;
@@ -148,5 +149,9 @@ public interface ApiService {
             @Field("no_of_days") int no_of_days,
             @Field("week_days") String week_days,
             @Field("rating") float rating);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_ACTIVITY_BY_PROJECT_ID)
+    Call<List<ActivityResponseModel>> getActivityList(@Field("project_id") int id);
 }
 

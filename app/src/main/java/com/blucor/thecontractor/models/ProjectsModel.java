@@ -80,6 +80,8 @@ public class ProjectsModel implements Parcelable {
 
     public boolean is_material = false;
 
+    public String client_name = ""+client_fname+" "+client_lname;
+
 
     protected ProjectsModel(Parcel in) {
         id = in.readInt();
