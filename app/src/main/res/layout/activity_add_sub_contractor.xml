@@ -11,13 +11,12 @@
         style="@style/LardTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_logo"
         android:text="@string/create_sub_contractor" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_txt_regs"
+        android:layout_below="@+id/tv_txt_reg"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
@@ -181,11 +180,7 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/til_cpassword"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/nav_header_height"
+            android:layout_margin="10dp"
             android:background="@drawable/button_background"
             android:drawableEnd="@drawable/ic_arrow_right"
             android:drawableRight="@drawable/ic_arrow_right"

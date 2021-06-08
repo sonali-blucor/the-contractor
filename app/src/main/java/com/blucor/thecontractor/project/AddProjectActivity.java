@@ -23,6 +23,7 @@ import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
+import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Project_Type;
@@ -106,7 +107,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                 cal.set(year,month,dayOfMonth);
                 start_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 mEdtPStartDate.setText(date);
             }
@@ -225,7 +226,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
 
                 end_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 mEdtPEndDate.setText(date);
                 long days = TimeUnit.MILLISECONDS.toDays(Math.abs(cal.getTimeInMillis() - start_date));

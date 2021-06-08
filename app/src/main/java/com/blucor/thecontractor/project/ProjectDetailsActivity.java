@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.material.AddMaterialActivity;
@@ -26,7 +27,7 @@ import com.blucor.thecontractor.project.activity.AddProjectActActivity;
 import com.blucor.thecontractor.project.activity.EditProjectActActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
-public class ProjectDetailsActivity extends AppCompatActivity {
+public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
 
@@ -85,16 +86,16 @@ public class ProjectDetailsActivity extends AppCompatActivity {
     }
 
     private void setupProject() {
-        tv_project_id.setText(project.id);
-        tv_project_name.setText(project.project_name);
-        tv_project_type.setText(project.project_type);
-        tv_contract_type.setText(project.contract_type);
-        tv_client_name.setText(project.client_name);
-        tv_client_mobile.setText(project.mobile);
-        tv_client_id.setText(project.client_id);
-        tv_project_location.setText(project.project_location);
-        tv_project_start_end_date.setText(project.start_date+" to "+project.end_date);
-        tv_project_duration.setText(project.duration);
+        tv_project_id.setText(""+project.id);
+        tv_project_name.setText(""+project.project_name);
+        tv_project_type.setText(""+project.project_type);
+        tv_contract_type.setText(""+project.contract_type);
+        tv_client_name.setText(""+project.client_fname+" "+project.client_lname);
+        tv_client_mobile.setText(""+project.mobile);
+        tv_client_id.setText(""+project.client_id);
+        tv_project_location.setText(""+project.project_location);
+        tv_project_start_end_date.setText(""+project.start_date+" to "+project.end_date);
+        tv_project_duration.setText(""+project.duration);
     }
 
 
@@ -126,7 +127,7 @@ public class ProjectDetailsActivity extends AppCompatActivity {
     public void onClickToClientSMS(View view) {
         checkForSmsPermission();
         String destinationAddress = "smsto:" + project.mobile;
-        String smsMessage = "Client ID: "+project.client_id+" \n Client Name: "+project.client_name;
+        String smsMessage = "Client ID: "+project.client_id+" \n Client Name: "+project.client_fname+" "+project.client_lname;
         // Create the intent.
         Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
         smsIntent.setData(Uri.parse(destinationAddress));

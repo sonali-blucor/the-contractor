@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class ActivityResponseModel implements Parcelable {
 
-    private Activity activity;
+    public Activity activity;
 
-    private ArrayList<SubActivityModel> subActivities;
+    public ArrayList<SubActivityModel> subActivities;
 
     protected ActivityResponseModel(Parcel in) {
         activity = in.readParcelable(Activity.class.getClassLoader());

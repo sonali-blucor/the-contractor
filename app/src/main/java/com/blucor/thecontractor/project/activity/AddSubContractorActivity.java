@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,7 +55,27 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
 
         if(validateData()) {
             showLoader();
-            RetrofitClient.getApiService();
+            RetrofitClient.getApiService().storeSubContractor(fname,lname,id,mobile,email,password).enqueue(new Callback<SubContractor>() {
+                @Override
+                public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
+                    if (response.code() == 200 && response.body() != null) {
+                        subContractor = response.body();
+                        Intent intent = new Intent();
+                        intent.putExtra(AppKeys.SUB_CONTRACTOR, subContractor);
+                        setResult(AppKeys.SUB_CONTRACTOR_RESULT, intent);
+                        finish();
+                    } else {
+                        Toast.makeText(AddSubContractorActivity.this, "Error in inserting sub contractor", Toast.LENGTH_SHORT).show();
+                    }
+                    stopLoader();
+                }
+
+                @Override
+                public void onFailure(Call<SubContractor> call, Throwable t) {
+                    Toast.makeText(AddSubContractorActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    stopLoader();
+                }
+            });
         }
     }
 

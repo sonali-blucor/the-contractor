@@ -9,14 +9,25 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.helper.AppKeys;
+import com.blucor.thecontractor.models.ActivityResponseModel;
 import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.SubActivityModel;
+import com.blucor.thecontractor.models.SubContractor;
+import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.AddProjectActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,9 +40,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class AddActivityDetailsActivity extends AppCompatActivity {
+public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_activity_name;
     private TextView main_activity_start_end_date;
     private ListView lst_add_activity;
@@ -44,7 +56,10 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
     private Button btn_add_activity;
     private long start_date = 0;
     private long end_date = 0;
-    private ArrayList<SubActivityModel> subActivities;
+    private ActivityResponseModel model;
+    private AlertDialog dialog;
+    private List<SubActivityModel> subActivities;
+    private SubContractor subContractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,26 +76,40 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
         }
 
-        setupActivity();
+        getProjectActivityDetails();
 
     }
 
-    private void setupActivity() {
-        if (project != null) {
-            edt_activity_name.setText(project.main_activity_name);
-            String start_and_date = "Start Date : "+project.start_date+" - End Date : "+project.end_date;
-            main_activity_start_end_date.setText(start_and_date);
+    private void getProjectActivityDetails() {
+        showLoader();
+        RetrofitClient.getApiService().getProjectActivityDetails(project.id,project.main_activity_id).enqueue(new Callback<ActivityResponseModel>() {
+            @Override
+            public void onResponse(Call<ActivityResponseModel> call, Response<ActivityResponseModel> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    model = response.body();
+                    setProjectSubActivity();
+                } else {
+                    Toast.makeText(AddActivityDetailsActivity.this, "No data received", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
 
-            getProjectActivity();
-        }
+            @Override
+            public void onFailure(Call<ActivityResponseModel> call, Throwable t) {
+                Toast.makeText(AddActivityDetailsActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
     }
 
-    private void getProjectActivity() {
-        subActivities = new ArrayList<>();
-        if (subActivities.size() <= 0) {
+
+    private void setProjectSubActivity() {
+        //subActivities = new ArrayList<>();
+        if (model.subActivities.size() <= 0) {
             try {
+                main_activity_start_end_date.setText(project.start_date+" "+project.end_date);
                 String dateString = project.start_date;
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 Date date = sdf.parse(dateString);
 
                 start_date = date.getTime();
@@ -92,16 +121,54 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
     }
 
     public void onClickToSubmit(View view) {
-        openAddActivityDialog();
+        if (edt_activity_name.getText().toString().isEmpty() || edt_activity_name.getText().toString().equalsIgnoreCase("")) {
+            edt_activity_name.setError("Please set activity name first");
+        } else {
+            edt_activity_name.setError(null);
+            insertOrUpdateActivity();
+        }
+    }
+
+    private void insertOrUpdateActivity() {
+        showLoader();
+        RetrofitClient.getApiService().insertOrUpdateActivity(project.id,edt_activity_name.getText().toString(),project.start_date,project.end_date).enqueue(new Callback<ServerResponseModel>() {
+            @Override
+            public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
+                if (response.code() == 200 && response != null) {
+                    ServerResponseModel responseModel = response.body();
+                    if (responseModel.success) {
+                        openAddActivityDialog();
+                    } else {
+                        Toast.makeText(AddActivityDetailsActivity.this, ""+responseModel.message, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(AddActivityDetailsActivity.this, "Error ", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponseModel> call, Throwable t) {
+                Toast.makeText(AddActivityDetailsActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
     }
 
     private void openAddActivityDialog() {
-        AlertDialog dialog = new AlertDialog.Builder(AddActivityDetailsActivity.this).create();
+        dialog = new AlertDialog.Builder(AddActivityDetailsActivity.this).create();
         dialog.setTitle("Add Sub Activity");
         View view  = LayoutInflater.from(AddActivityDetailsActivity.this).inflate(R.layout.add_sub_activity_dialog,null);
         edt_sub_activity_start_date = view.findViewById(R.id.edt_sub_activity_start_date);
         edt_sub_activity_end_date = view.findViewById(R.id.edt_sub_activity_end_date);
         edt_add_sub_contractor = view.findViewById(R.id.edt_add_sub_contractor);
+        edt_add_sub_contractor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddActivityDetailsActivity.this, AddSubContractorActivity.class);
+                startActivityForResult(intent,AppKeys.SUB_CONTRACTOR_RESULT);
+            }
+        });
         tv_total_sub_activity_days = view.findViewById(R.id.tv_total_sub_activity_days);
         btn_add_activity = view.findViewById(R.id.btn_add_sub_activity);
         btn_add_activity.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +177,27 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
                 insertOrUpdateSubActivity();
             }
         });
+        dialog.setView(view);
+        dialog.show();
+
+    }
+
+    private void setupDate() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 120) {
+            if (data.hasExtra(AppKeys.SUB_CONTRACTOR)) {
+                subContractor = data.getParcelableExtra(AppKeys.SUB_CONTRACTOR);
+                edt_add_sub_contractor.setText(""+subContractor.fname+" "+subContractor.lname);
+                if (dialog!=null && !dialog.isShowing()) {
+                    dialog.show();
+                }
+            }
+        }
     }
 
     private void insertOrUpdateSubActivity() {
@@ -136,7 +224,7 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
 
                 end_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 edt_sub_activity_end_date.setText(date);
                 long days = TimeUnit.MILLISECONDS.toDays(Math.abs(cal.getTimeInMillis() - start_date));
@@ -162,11 +250,12 @@ public class AddActivityDetailsActivity extends AppCompatActivity {
                 cal.set(year,month,dayOfMonth);
                 start_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 edt_sub_activity_start_date.setText(date);
             }
         }, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(start_date);
         datePickerDialog.show();
     }
 }

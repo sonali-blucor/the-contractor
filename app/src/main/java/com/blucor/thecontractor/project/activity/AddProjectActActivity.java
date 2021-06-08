@@ -56,7 +56,7 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
         }
 
-        getProjectActivities();
+       // getProjectActivities();
     }
 
     private void getProjectActivities() {
@@ -67,7 +67,6 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
                 if (response.code() == 200 && response.body() != null) {
                     activityResponses = response.body();
                 }
-
                 stopLoader();
             }
 

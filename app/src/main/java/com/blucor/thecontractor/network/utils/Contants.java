@@ -36,4 +36,7 @@ public class Contants {
     public static final String STORE_OR_UPDATE_SCHEDULE = "store_or_update_schedule";
     public static final String GET_SCHEDULE_BY_PROJECT_ID = "get_schedule_by_project_id";
     public static final String GET_ACTIVITY_BY_PROJECT_ID = "get_activity_by_project_id";
+    public static final String GET_ACTIVITY_BY_PROJECT_ID_ACT_ID = "get_activity_by_project_id_act_id";
+    public static final String STORE_OR_UPDATE_ACTIVITY = "store_or_update_activity";
+    public static final String STORE_SUB_CONTRACTOR = "store_sub_contractor";
 }
