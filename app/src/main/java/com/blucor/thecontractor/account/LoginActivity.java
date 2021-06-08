@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.MenuActivity;
 import com.blucor.thecontractor.R;
@@ -21,16 +23,18 @@ import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.network.utils.Contants;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends BaseAppCompatActivity {
 
+    private TextInputLayout mTilUserName;
+    private TextInputLayout mTilPassword;
     private TextInputEditText mEdtUserName;
     private TextInputEditText mEdtPassword;
     private TextView tv_error;
@@ -42,14 +46,17 @@ public class LoginActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mEdtUserName = (TextInputEditText)findViewById(R.id.edt_user_name);
-        mEdtPassword = (TextInputEditText)findViewById(R.id.edt_password);
+        mTilUserName = (TextInputLayout) findViewById(R.id.til_user_name);
+        mTilPassword = (TextInputLayout) findViewById(R.id.til_password);
 
-        sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME,MODE_PRIVATE);
-        is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY,-1);
+        mEdtUserName = (TextInputEditText) findViewById(R.id.edt_user_name);
+        mEdtPassword = (TextInputEditText) findViewById(R.id.edt_password);
+
+        sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, MODE_PRIVATE);
+        is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY, -1);
         tv_error = findViewById(R.id.tv_txt_error);
 
-        ImageView mImgLogo = (ImageView)findViewById(R.id.img_logo);
+        ImageView mImgLogo = (ImageView) findViewById(R.id.img_logo);
 
         int width = ScreenHelper.getWidthInPercentage(getApplicationContext(), 40);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, width);
@@ -59,7 +66,7 @@ public class LoginActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToRegister(View view) {
-        ScreenHelper.redirectToClass(LoginActivity.this,RegisterActivity.class);
+        ScreenHelper.redirectToClass(LoginActivity.this, RegisterActivity.class);
     }
 
     public void onClickToLogin(View view) {
@@ -80,7 +87,7 @@ public class LoginActivity extends BaseAppCompatActivity {
         String mobile = mEdtUserName.getText().toString();
         String password = mEdtPassword.getText().toString();
 
-        if(validateData()) {
+        if (validateData()) {
             showLoader();
             RetrofitClient.getApiService().checkContractorLogin(mobile, password).enqueue(new Callback<List<Contractor>>() {
                 @Override
@@ -88,7 +95,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                     if (response.code() == 200 && response.body() != null) {
                         tv_error.setVisibility(View.GONE);
                         List<Contractor> contractorList = response.body();
-                        if(contractorList.size() > 0) {
+                        if (contractorList.size() > 0) {
                             Contractor contractor = contractorList.get(0);
                             User user = new User();
                             user.setMobile(contractor.mobile);
@@ -121,7 +128,7 @@ public class LoginActivity extends BaseAppCompatActivity {
 
                 @Override
                 public void onFailure(Call<List<Contractor>> call, Throwable t) {
-                    Log.e("Login Error",""+t.getMessage());
+                    Log.e("Login Error", "" + t.getMessage());
                     stopLoader();
                 }
             });
@@ -129,11 +136,11 @@ public class LoginActivity extends BaseAppCompatActivity {
     }
 
     private boolean validateData() {
-        if(mEdtUserName.getText().toString().isEmpty() || mEdtUserName.getText().toString().equalsIgnoreCase("")) {
+        if (mEdtUserName.getText().toString().isEmpty() || mEdtUserName.getText().toString().equalsIgnoreCase("")) {
             mEdtUserName.setError("Empty Field");
             mEdtUserName.requestFocus();
             return false;
-        } else if(mEdtPassword.getText().toString().isEmpty() || mEdtPassword.getText().toString().equalsIgnoreCase("")) {
+        } else if (mEdtPassword.getText().toString().isEmpty() || mEdtPassword.getText().toString().equalsIgnoreCase("")) {
             mEdtPassword.setError("Empty Field");
             mEdtPassword.requestFocus();
             return false;
@@ -148,7 +155,7 @@ public class LoginActivity extends BaseAppCompatActivity {
         String mobile = mEdtUserName.getText().toString();
         String password = mEdtPassword.getText().toString();
 
-        if(validateData()) {
+        if (validateData()) {
             showLoader();
             RetrofitClient.getApiService().checkClientLogin(mobile, password).enqueue(new Callback<List<Client>>() {
                 @Override
@@ -156,7 +163,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                     if (response.code() == 200 && response.body() != null) {
                         tv_error.setVisibility(View.GONE);
                         List<Client> clientList = response.body();
-                        if(clientList.size() > 0) {
+                        if (clientList.size() > 0) {
                             Client client = clientList.get(0);
                             User user = new User();
                             user.setMobile(client.mobile);
@@ -196,7 +203,7 @@ public class LoginActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToForgotPassword(View view) {
-        if(is_client == -1) {
+        if (is_client == -1) {
             Toast.makeText(this, "Please select client or contractor", Toast.LENGTH_SHORT).show();
         } else {
             ScreenHelper.redirectToClass(LoginActivity.this, ForgotPasswordActivity.class);
