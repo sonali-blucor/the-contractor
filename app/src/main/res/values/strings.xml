@@ -50,5 +50,7 @@
     <string name="create_client">Create Client</string>
     <string name="client_id">Client Id</string>
     <string name="create_sub_contractor">Create Sub Contractor</string>
+    <string name="next">Next</string>
+    <string name="register">Regitser</string>
 
 </resources>

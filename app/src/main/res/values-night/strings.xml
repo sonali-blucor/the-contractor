@@ -30,4 +30,6 @@
     <string name="failure_permission">SMS Persimission is not granted</string>
     <string name="permission_not_granted">Permission not yet granted</string>
     <string name="forgot_password_label">Forgot Password?</string>
+    <string name="next">Next</string>
+    <string name="register">Regitser</string>
 </resources>
