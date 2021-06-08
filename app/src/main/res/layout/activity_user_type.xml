@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/tv_txt_login"
+        style="@style/LardTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_above="@+id/ll_role"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="Your Role"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="10dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <RadioGroup
             android:id="@+id/rg_user_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/rb_contractor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/contractor"
-                android:padding="@dimen/activity_horizontal_margin" />
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/selector_contractor"
+                android:button="@null"
+                android:padding="@dimen/_10sdp" />
 
             <RadioButton
                 android:id="@+id/rb_client"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/client"
-                android:padding="@dimen/activity_horizontal_margin" />
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/selector_client"
+                android:button="@null"
+                android:padding="@dimen/_10sdp" />
         </RadioGroup>
 
         <LinearLayout
             android:id="@+id/llh_user_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -49,6 +69,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/contractor"
+                android:textAllCaps="true"
                 android:textSize="@dimen/label_text_size"
                 android:textStyle="bold" />
 
@@ -60,10 +81,28 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/client"
+                android:textAllCaps="true"
                 android:textSize="@dimen/label_text_size"
                 android:textStyle="bold" />
         </LinearLayout>
 
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_go"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_below="@+id/ll_role"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/button_background"
+        android:drawableEnd="@drawable/ic_arrow_right"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:onClick="onClickToGo"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 </RelativeLayout>

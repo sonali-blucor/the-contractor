@@ -3,24 +3,30 @@ package com.blucor.thecontractor.account;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.network.utils.Contants;
 import com.blucor.thecontractor.utility.ScreenHelper;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class UserTypeActivity extends AppCompatActivity {
+    private  int backPressed = 0;
+
     private RadioGroup rg_user_type;
     private TextView tv_contractor;
     private TextView tv_client;
+    private Button btn_go;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -32,6 +38,7 @@ public class UserTypeActivity extends AppCompatActivity {
         rg_user_type = findViewById(R.id.rg_user_type);
         tv_contractor = findViewById(R.id.tv_contractor_user_type);
         tv_client = findViewById(R.id.tv_client_user_type);
+        btn_go = findViewById(R.id.btn_go);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, Context.MODE_PRIVATE);
 
@@ -56,23 +63,46 @@ public class UserTypeActivity extends AppCompatActivity {
     private void selectClient() {
         tv_client.setTextColor(getResources().getColor(R.color.yellow));
         tv_contractor.setTextColor(getResources().getColor(R.color.black));
+        btn_go.setVisibility(View.VISIBLE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(Contants.USER_TYPE_KEY,Contants.USER_TYPE_CLIENT);
+        editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CLIENT);
         editor.apply();
-
-        ScreenHelper.redirectToClass(UserTypeActivity.this,LoginActivity.class);finish();;
     }
 
     private void selectContractor() {
         tv_client.setTextColor(getResources().getColor(R.color.black));
         tv_contractor.setTextColor(getResources().getColor(R.color.yellow));
+        btn_go.setVisibility(View.VISIBLE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(Contants.USER_TYPE_KEY,Contants.USER_TYPE_CONTRACTOR);
+        editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CONTRACTOR);
         editor.apply();
-
-        ScreenHelper.redirectToClass(UserTypeActivity.this,LoginActivity.class);finish();
     }
 
+    public void onClickToGo(View view) {
+        ScreenHelper.redirectToClass(UserTypeActivity.this, LoginActivity.class);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        backPressed = backPressed + 1;
+        if (backPressed == 1) {
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            new CountDownTimer(5000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {
+                    backPressed = 0;
+                }
+            }.start();
+        }
+        if (backPressed == 2) {
+            backPressed = 0;
+            this.finishAffinity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        }
+    }
 }
