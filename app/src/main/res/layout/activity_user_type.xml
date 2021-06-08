@@ -89,19 +89,22 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btn_go"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@+id/ll_role"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/selector_button_active"
         android:drawableEnd="@drawable/ic_arrow_right"
         android:drawableRight="@drawable/ic_arrow_right"
+        android:gravity="center"
         android:onClick="onClickToGo"
         android:text="@string/next"
+        android:textAllCaps="true"
         android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
         android:textStyle="bold"
         android:visibility="visible" />
 
