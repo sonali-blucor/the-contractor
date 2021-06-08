@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow"
     android:fillViewport="true"
     tools:context=".account.LoginActivity">
 
@@ -13,14 +14,13 @@
 
         <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_5dp">
+            android:layout_height="wrap_content">
 
             <!--  login view -->
             <ImageView
                 android:id="@+id/img_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/the_contractor_logo" />
 
@@ -33,7 +33,7 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/login"
+                android:text="@string/sign_in"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -45,15 +45,17 @@
                 android:layout_below="@+id/tv_txt_login"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="@string/please_login_to_continue"
-                android:textColor="@color/gray" />
+                android:text="@string/sign_in_to_continue"
+                android:textColor="@color/black" />
             <!-- login details -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tv_txt_logins"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:orientation="vertical">
+                android:background="@drawable/round_corner_light_background"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_user_name"
@@ -76,6 +78,7 @@
                         android:maxLength="10"
                         android:nextFocusDown="@id/edt_password"
                         android:singleLine="true" />
+
                     <requestFocus></requestFocus>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,11 +112,11 @@
                     android:id="@+id/tv_txt_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:padding="@dimen/padding_5dp"
                     android:textColor="@color/red"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_txt_forgot_password"
@@ -121,32 +124,47 @@
                     android:layout_height="wrap_content"
                     android:onClick="onClickToForgotPassword"
                     android:padding="@dimen/padding_5dp"
+                    android:layout_gravity="right"
                     android:text="@string/forgot_password_label"
-                    android:textColor="@color/yellow"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btn_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="center"
                     android:background="@drawable/button_background"
                     android:drawableEnd="@drawable/ic_arrow_right"
                     android:drawableRight="@drawable/ic_arrow_right"
                     android:onClick="onClickToLogin"
-                    android:text="@string/login"
+                    android:text="@string/sign_in"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
+                    <Button
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/button_background_unselect"
+                        android:onClick="onClickToRegister"
+                        android:text="New User Sign Up"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/tv_txt_alt_register"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onClickToRegister"
+                        android:visibility="gone"
                         android:text="@string/don_t_have_an_account"
                         android:textColor="@color/gray" />
 
@@ -156,98 +174,97 @@
                         android:layout_height="wrap_content"
                         android:onClick="onClickToRegister"
                         android:paddingStart="@dimen/padding_5dp"
+                        android:visibility="gone"
                         android:paddingLeft="@dimen/padding_5dp"
-                        android:text="@string/register"
+                        android:text="@string/sign_up"
                         android:textColor="@color/yellow"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
-              <!--  <TextView
-                    android:id="@+id/tv_app_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/nav_header_height"
-                    android:gravity="center"
-                    android:text="the \n contractor"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/margin_24dp"
-                    android:textStyle="bold" />
+                <!--  <TextView
+                      android:id="@+id/tv_app_name"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/nav_header_height"
+                      android:gravity="center"
+                      android:text="the \n contractor"
+                      android:textAllCaps="true"
+                      android:textColor="@color/black"
+                      android:textSize="@dimen/margin_24dp"
+                      android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Design and  Developed by BluCor System Pvt. Ltd."
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_24dp"
-                    android:layout_marginBottom="@dimen/nav_header_height"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="10sp" />-->
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Design and  Developed by BluCor System Pvt. Ltd."
+                      android:gravity="center_horizontal"
+                      android:layout_marginTop="@dimen/margin_24dp"
+                      android:layout_marginBottom="@dimen/nav_header_height"
+                      android:layout_gravity="center_horizontal"
+                      android:textSize="10sp" />-->
 
 
             </LinearLayout>
         </RelativeLayout>
 
     </ScrollView>
-<!-- bottom layout -->
-        <LinearLayout
-            android:id="@+id/llh_bottom"
+    <!-- bottom layout -->
+    <LinearLayout
+        android:id="@+id/llh_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_5dp">
+
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/padding_5dp"
-            android:orientation="vertical">
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_txt_alt_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClickToRegister"
-                    android:text="@string/don_t_have_an_account"
-                    android:textColor="@color/gray" />
-
-                <TextView
-                    android:id="@+id/tv_txt_register"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClickToRegister"
-                    android:paddingStart="@dimen/padding_5dp"
-                    android:paddingLeft="@dimen/padding_5dp"
-                    android:text="@string/register"
-                    android:textColor="@color/yellow"
-                    android:textStyle="bold" />
-
-            </LinearLayout>-->
-
-
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_app_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="the \n contractor"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/margin_24dp"
-                android:textStyle="bold" />
-
-            <TextView
+                android:id="@+id/tv_txt_alt_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Design and  Developed by BluCor System Pvt. Ltd."
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_horizontal"
-                android:textSize="10sp" />
-        </LinearLayout>
+                android:onClick="onClickToRegister"
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/tv_txt_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickToRegister"
+                android:paddingStart="@dimen/padding_5dp"
+                android:paddingLeft="@dimen/padding_5dp"
+                android:text="@string/register"
+                android:textColor="@color/yellow"
+                android:textStyle="bold" />
+
+        </LinearLayout>-->
+
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="the \n contractor"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/margin_24dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="Design and  Developed by BluCor System Pvt. Ltd."
+            android:textSize="10sp" />
+    </LinearLayout>
 
 </RelativeLayout>
