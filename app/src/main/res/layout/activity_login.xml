@@ -52,13 +52,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tv_txt_logins"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/round_corner_light_background"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:padding="@dimen/_10sdp">
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_user_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/input_margin_5dp"
@@ -84,6 +86,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/input_margin_5dp"
@@ -122,9 +125,9 @@
                     android:id="@+id/tv_txt_forgot_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:onClick="onClickToForgotPassword"
                     android:padding="@dimen/padding_5dp"
-                    android:layout_gravity="right"
                     android:text="@string/forgot_password_label"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -133,8 +136,8 @@
                     android:id="@+id/btn_login"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/button_background"
                     android:drawableEnd="@drawable/ic_arrow_right"
                     android:drawableRight="@drawable/ic_arrow_right"
@@ -159,14 +162,15 @@
                         android:text="New User Sign Up"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_txt_alt_register"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onClickToRegister"
-                        android:visibility="gone"
                         android:text="@string/don_t_have_an_account"
-                        android:textColor="@color/gray" />
+                        android:textColor="@color/gray"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/tv_txt_register"
@@ -174,11 +178,11 @@
                         android:layout_height="wrap_content"
                         android:onClick="onClickToRegister"
                         android:paddingStart="@dimen/padding_5dp"
-                        android:visibility="gone"
                         android:paddingLeft="@dimen/padding_5dp"
                         android:text="@string/sign_up"
                         android:textColor="@color/yellow"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
