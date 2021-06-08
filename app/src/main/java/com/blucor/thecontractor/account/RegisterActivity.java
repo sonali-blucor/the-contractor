@@ -36,7 +36,7 @@ public class RegisterActivity extends BaseAppCompatActivity {
      private TextInputEditText edt_email;
      private TextInputEditText edt_password;
      private TextInputEditText edt_cpassword;
-     private Button btn_register;
+     private TextView btn_register;
      private LinearLayout llh_bottom;
      private TextView tv_txt_sign_ups;
      private TextView tv_txt_sign_up;
