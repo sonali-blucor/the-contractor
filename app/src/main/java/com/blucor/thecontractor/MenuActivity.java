@@ -66,13 +66,13 @@ public class MenuActivity extends BaseAppCompatActivity {
         RelativeLayout.LayoutParams paramsU = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, widthU);
         mRlUserProfile.setLayoutParams(paramsU);
 
-        int width = ScreenHelper.getWidthInPercentage(getApplicationContext(), 15);
+       /* int width = ScreenHelper.getWidthInPercentage(getApplicationContext(), 15);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, width);
         mImgProjectMenu.setLayoutParams(params);
         mImgMaterialMenu.setLayoutParams(params);
         mImgAccountMenu.setLayoutParams(params);
         mImgShareMenu.setLayoutParams(params);
-        mImgLogoutMenu.setLayoutParams(params);
+        mImgLogoutMenu.setLayoutParams(params);*/
 
         int width1 = ScreenHelper.getWidthInPercentage(getApplicationContext(), 20);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(width1, width1);
