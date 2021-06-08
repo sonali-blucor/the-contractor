@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
@@ -14,6 +14,7 @@ import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.network.utils.Contants;
+import com.blucor.thecontractor.utility.ScreenHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +23,7 @@ import retrofit2.Response;
 public class ForgotPasswordActivity extends BaseAppCompatActivity {
     private int is_client = -1;
     private EditText edt_mobile_email;
-    private Button btn_forgot_pass;
+    private TextView btn_forgot_pass;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -32,8 +33,8 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
 
         edt_mobile_email = findViewById(R.id.edt_mobile_email);
         btn_forgot_pass = findViewById(R.id.btn_submit_forgot_pass);
-        sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME,MODE_PRIVATE);
-        is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY,-1);
+        sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, MODE_PRIVATE);
+        is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY, -1);
 
         btn_forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +150,8 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
 
     private boolean is_mobile() {
         String mobile = edt_mobile_email.getText().toString();
-        if(Patterns.PHONE.matcher(mobile).matches()) {
-            if(mobile.length() < 10) {
+        if (Patterns.PHONE.matcher(mobile).matches()) {
+            if (mobile.length() < 10) {
                 return false;
             } else {
                 return true;
@@ -161,7 +162,7 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
     }
 
     private boolean is_email() {
-        if(Patterns.EMAIL_ADDRESS.matcher(edt_mobile_email.getText().toString()).matches()) {
+        if (Patterns.EMAIL_ADDRESS.matcher(edt_mobile_email.getText().toString()).matches()) {
             return true;
         } else {
             return false;
@@ -169,9 +170,9 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
     }
 
     private int is_valid_data() {
-        if(is_email()) {
+        if (is_email()) {
             return 1;
-        } else if(is_mobile()) {
+        } else if (is_mobile()) {
             return 2;
         } else {
             return 0;
@@ -189,5 +190,10 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
         } else {
             Toast.makeText(this, "Otp null try again", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onClickToLogin(View view) {
+        ScreenHelper.redirectToClass(ForgotPasswordActivity.this, LoginActivity.class);
+        finish();
     }
 }
