@@ -6,6 +6,7 @@ import com.blucor.thecontractor.models.ClientAddSearchModel;
 import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
+import com.blucor.thecontractor.models.InsertActivityResponseModel;
 import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
@@ -162,10 +163,10 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.STORE_OR_UPDATE_ACTIVITY)
-    Call<ServerResponseModel> insertOrUpdateActivity(@Field("project_id") int id,
-                                                     @Field("activity_name") String main_activity_name,
-                                                     @Field("start_date") String start_date,
-                                                     @Field("end_date") String end_date);
+    Call<InsertActivityResponseModel> insertOrUpdateActivity(@Field("project_id") int id,
+                                                             @Field("activity_name") String main_activity_name,
+                                                             @Field("start_date") String start_date,
+                                                             @Field("end_date") String end_date);
 
 
     @FormUrlEncoded

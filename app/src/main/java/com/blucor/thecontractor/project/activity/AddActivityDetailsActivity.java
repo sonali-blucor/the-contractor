@@ -22,9 +22,10 @@ import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.helper.AppKeys;
+import com.blucor.thecontractor.models.Activity;
 import com.blucor.thecontractor.models.ActivityResponseModel;
 import com.blucor.thecontractor.models.ProjectsModel;
-import com.blucor.thecontractor.models.ServerResponseModel;
+import com.blucor.thecontractor.models.InsertActivityResponseModel;
 import com.blucor.thecontractor.models.SubActivityModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
@@ -131,12 +132,15 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
     private void insertOrUpdateActivity() {
         showLoader();
-        RetrofitClient.getApiService().insertOrUpdateActivity(project.id,edt_activity_name.getText().toString(),project.start_date,project.end_date).enqueue(new Callback<ServerResponseModel>() {
+        RetrofitClient.getApiService().insertOrUpdateActivity(project.id,edt_activity_name.getText().toString(),project.start_date,project.end_date).enqueue(new Callback<InsertActivityResponseModel>() {
             @Override
-            public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
+            public void onResponse(Call<InsertActivityResponseModel> call, Response<InsertActivityResponseModel> response) {
                 if (response.code() == 200 && response != null) {
-                    ServerResponseModel responseModel = response.body();
+                    InsertActivityResponseModel responseModel = response.body();
                     if (responseModel.success) {
+                        Activity activity = responseModel.activity;
+                        project.main_activity_name = activity.activity_name;
+                        project.main_activity_id = activity.activity_id;
                         openAddActivityDialog();
                     } else {
                         Toast.makeText(AddActivityDetailsActivity.this, ""+responseModel.message, Toast.LENGTH_SHORT).show();
@@ -148,7 +152,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ServerResponseModel> call, Throwable t) {
+            public void onFailure(Call<InsertActivityResponseModel> call, Throwable t) {
                 Toast.makeText(AddActivityDetailsActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
@@ -174,12 +178,29 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
         btn_add_activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertOrUpdateSubActivity();
+                if (is_valid()) {
+                    insertOrUpdateSubActivity();
+                }
             }
         });
         dialog.setView(view);
         dialog.show();
 
+    }
+
+    private boolean is_valid() {
+        if (edt_sub_activity_start_date.getText().toString().isEmpty() || edt_sub_activity_start_date.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(this, "Please select sub activity start date", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (edt_sub_activity_end_date.getText().toString().isEmpty() || edt_sub_activity_end_date.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(this, "Please select sub activity end date", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (edt_add_sub_contractor.getText().toString().isEmpty() || edt_add_sub_contractor.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(this, "Please select sub contractor", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void setupDate() {
@@ -189,7 +210,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 120) {
+        if (requestCode == AppKeys.SUB_CONTRACTOR_RESULT) {
             if (data.hasExtra(AppKeys.SUB_CONTRACTOR)) {
                 subContractor = data.getParcelableExtra(AppKeys.SUB_CONTRACTOR);
                 edt_add_sub_contractor.setText(""+subContractor.fname+" "+subContractor.lname);
@@ -212,10 +233,10 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
     public void onClickActivityEndDate(View view) {
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(start_date);
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        calendar.setTimeInMillis(start_date);
         DatePickerDialog datePickerDialog = new DatePickerDialog(AddActivityDetailsActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

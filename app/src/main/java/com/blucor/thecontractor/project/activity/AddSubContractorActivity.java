@@ -9,6 +9,8 @@ import retrofit2.Response;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
@@ -30,6 +32,7 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_password;
     private TextInputEditText edt_cpassword;
     private SubContractor subContractor;
+    private Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,13 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
         edt_cpassword = findViewById(R.id.edt_cpassword);
+        btn_register = findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerSubContractor();
+            }
+        });
     }
 
     private void registerSubContractor() {
