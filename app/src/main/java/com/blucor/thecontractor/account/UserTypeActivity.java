@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +20,12 @@ import com.blucor.thecontractor.utility.ScreenHelper;
  * status bar and navigation/system bar) with user interaction.
  */
 public class UserTypeActivity extends AppCompatActivity {
-    private  int backPressed = 0;
+    private int backPressed = 0;
 
     private RadioGroup rg_user_type;
     private TextView tv_contractor;
     private TextView tv_client;
-    private Button btn_go;
+    private TextView btn_go;
     private SharedPreferences sharedPreferences;
 
     @Override
