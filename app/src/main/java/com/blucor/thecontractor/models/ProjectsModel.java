@@ -68,6 +68,14 @@ public class ProjectsModel implements Parcelable {
     @Expose
     public String email;
 
+    @SerializedName("main_activity_name")
+    @Expose
+    public String main_activity_name;
+
+    @SerializedName("main_activity_id")
+    @Expose
+    public int main_activity_id;
+
     @SerializedName("mobile")
     @Expose
     public String mobile;
@@ -75,6 +83,8 @@ public class ProjectsModel implements Parcelable {
     public int view_type = 1;
 
     public boolean is_material = false;
+
+    //public String client_name = ""+client_fname+" "+client_lname;
 
 
     protected ProjectsModel(Parcel in) {

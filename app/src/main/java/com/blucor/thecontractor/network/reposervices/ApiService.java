@@ -1,14 +1,17 @@
 package com.blucor.thecontractor.network.reposervices;
 
+import com.blucor.thecontractor.models.ActivityResponseModel;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.ClientAddSearchModel;
 import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
-import com.blucor.thecontractor.models.Project;
+import com.blucor.thecontractor.models.InsertActivityResponseModel;
 import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.models.ScheduleModel;
 import com.blucor.thecontractor.models.ServerResponseModel;
+import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.utils.Contants;
 
 import java.util.List;
@@ -122,7 +125,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.SAVE_PROJECT)
-    Call<Project> saveProject(@Field("project_name") String project_name,
+    Call<ProjectsModel> saveProject(@Field("project_name") String project_name,
                                       @Field("project_type") String project_type,
                                       @Field("contract_type") String contract_type,
                                       @Field("client_id") int client_id,
@@ -135,5 +138,44 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CONTRACTOR_ID)
     Call<List<ProjectsModel>> getAllProjectContractorType(@Field("contractor_id") int contractor_id);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_SCHEDULE_BY_PROJECT_ID)
+    Call<List<ScheduleModel>> getScheduleByProjectId(@Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_OR_UPDATE_SCHEDULE)
+    Call<ScheduleModel> saveOrUpdateSchedule(
+            @Field("project_id") int project_id,
+            @Field("project_status") String project_status,
+            @Field("no_of_days") int no_of_days,
+            @Field("week_days") String week_days,
+            @Field("rating") float rating);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_ACTIVITY_BY_PROJECT_ID)
+    Call<List<ActivityResponseModel>> getActivityList(@Field("project_id") int id);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_ACTIVITY_BY_PROJECT_ID_ACT_ID)
+    Call<ActivityResponseModel> getProjectActivityDetails(@Field("project_id") int id,
+                                                          @Field("main_activity_id") int main_activity_id);
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_OR_UPDATE_ACTIVITY)
+    Call<InsertActivityResponseModel> insertOrUpdateActivity(@Field("project_id") int id,
+                                                             @Field("activity_name") String main_activity_name,
+                                                             @Field("start_date") String start_date,
+                                                             @Field("end_date") String end_date);
+
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_SUB_CONTRACTOR)
+    Call<SubContractor>  storeSubContractor(@Field("fname") String fname,
+                                            @Field("lname") String lname,
+                                            @Field("contractor_id") int contractor_id,
+                                            @Field("mobile") String mobile,
+                                            @Field("email") String email,
+                                            @Field("password") String password);
 }
 

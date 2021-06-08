@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.network.utils.Contants;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -96,7 +97,7 @@ public class ScreenHelper {
     }
 
     public static String findDifference(String start_date, String end_date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
         try {
             Date d1 = sdf.parse(start_date + "00:00:00");
             Date d2 = sdf.parse(end_date + "00:00:00");

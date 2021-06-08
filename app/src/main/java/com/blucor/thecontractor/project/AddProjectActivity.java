@@ -21,13 +21,13 @@ import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.SuccessFullscreenActivity;
 import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
+import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.Contract_Type;
-import com.blucor.thecontractor.models.Project;
 import com.blucor.thecontractor.models.Project_Type;
+import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.rv_adapters.ContractTypeAdapter;
@@ -107,7 +107,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                 cal.set(year,month,dayOfMonth);
                 start_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 mEdtPStartDate.setText(date);
             }
@@ -185,14 +185,14 @@ public class AddProjectActivity extends BaseAppCompatActivity {
 
             showLoader();
 
-            RetrofitClient.getApiService().saveProject(ProjectName,ProjectType,ContractType,client.id,Address,PStartDate,PEndDate,PDuration,user.server_id).enqueue(new Callback<Project>() {
+            RetrofitClient.getApiService().saveProject(ProjectName,ProjectType,ContractType,client.id,Address,PStartDate,PEndDate,PDuration,user.server_id).enqueue(new Callback<ProjectsModel>() {
                 @Override
-                public void onResponse(Call<Project> call, Response<Project> response) {
+                public void onResponse(Call<ProjectsModel> call, Response<ProjectsModel> response) {
                     if (response!= null && response.code() == 201) {
                         if(response.body() != null) {
-                            Project project = response.body();
+                            ProjectsModel project = response.body();
                             Toast.makeText(AddProjectActivity.this, "Project added with id : " + project.id, Toast.LENGTH_SHORT).show();
-                            ScreenHelper.redirectToClass(AddProjectActivity.this,SuccessFullscreenActivity.class);
+                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class);
                             finish();
                         }else {
                             Toast.makeText(AddProjectActivity.this, "Unable to add project", Toast.LENGTH_SHORT).show();
@@ -204,7 +204,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Project> call, Throwable t) {
+                public void onFailure(Call<ProjectsModel> call, Throwable t) {
                     Toast.makeText(AddProjectActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
                     stopLoader();
                 }
@@ -226,7 +226,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
 
                 end_date = cal.getTimeInMillis();
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 String date = sdf.format(cal.getTimeInMillis());
                 mEdtPEndDate.setText(date);
                 long days = TimeUnit.MILLISECONDS.toDays(Math.abs(cal.getTimeInMillis() - start_date));

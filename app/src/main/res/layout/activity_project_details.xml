@@ -12,9 +12,9 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/llh_call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/llh_call"
             android:onClick="onClickToCall"
             android:gravity="center_horizontal"
             android:padding="@dimen/padding_5dp"
@@ -276,6 +276,7 @@
                                 android:layout_below="@+id/tv_t_client_password"
                                 android:background="@drawable/edit_box_background"
                                 android:padding="@dimen/padding_5dp"
+                                android:visibility="gone"
                                 android:text="sanju123"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/label_text_size" />
