@@ -23,15 +23,15 @@ public class WeekDaysCheckBox extends RadioGroup {
     private CheckBox rb_sat;
 
     private ArrayList<String> listDays;
-    private String str_sun = "SUN";
-    private String str_mon = "MON";
-    private String str_tue = "TUE";
-    private String str_wed = "WED";
-    private String str_thu = "THU";
-    private String str_fri = "FRI";
-    private String str_sat = "SAT";
+    private final String str_sun = "SUN";
+    private final String str_mon = "MON";
+    private final String str_tue = "TUE";
+    private final String str_wed = "WED";
+    private final String str_thu = "THU";
+    private final String str_fri = "FRI";
+    private final String str_sat = "SAT";
 
-    private Context mContext;
+    private final Context mContext;
 
 
     public WeekDaysCheckBox(Context context) {

@@ -74,10 +74,6 @@ public class DatabaseUtil {
     }
 
     public boolean hasLogin() {
-        if(getAllUser().size() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return getAllUser().size() > 0;
     }
 }

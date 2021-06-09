@@ -27,7 +27,7 @@ public class ProjectActActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_act);
 
-        mRvView = (RecyclerView) findViewById(R.id.recycler_view_list);
+        mRvView = findViewById(R.id.recycler_view_list);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);

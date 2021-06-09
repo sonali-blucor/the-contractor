@@ -52,8 +52,8 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_details);
 
-        mLlhActivity = (LinearLayout) findViewById(R.id.llh_activity);
-        mLlhMaterial = (LinearLayout) findViewById(R.id.llh_material);
+        mLlhActivity = findViewById(R.id.llh_activity);
+        mLlhMaterial = findViewById(R.id.llh_material);
         btn_call = findViewById(R.id.btn_call);
         tv_project_id = findViewById(R.id.tv_project_id);
         tv_project_name = findViewById(R.id.tv_project_name);
@@ -157,7 +157,7 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_SEND_SMS: {
                 if (permissions[0].equalsIgnoreCase(Manifest.permission.SEND_SMS)

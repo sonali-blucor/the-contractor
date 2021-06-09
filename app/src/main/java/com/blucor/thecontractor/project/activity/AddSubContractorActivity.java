@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
@@ -33,6 +34,7 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_cpassword;
     private SubContractor subContractor;
     private Button btn_register;
+    private EditText edt_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

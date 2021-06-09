@@ -13,8 +13,8 @@ import com.blucor.thecontractor.models.Project_Type;
 import java.util.List;
 
 public class ProjectTypeAdapter extends BaseAdapter {
-    private Context mContext;
-    private List<Project_Type> project_types;
+    private final Context mContext;
+    private final List<Project_Type> project_types;
 
     public ProjectTypeAdapter(Context mContext, List<Project_Type> project_types) {
         this.mContext = mContext;

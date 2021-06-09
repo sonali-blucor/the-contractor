@@ -125,7 +125,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             rt_bar_schedule.setRating(schedule.rating);
         } else {
             edt_project_name.setText(project.project_name);
-            String num_days = project.duration.replace("Days","").trim().toString();
+            String num_days = project.duration.replace("Days","").trim();
             int numDays = Integer.parseInt(num_days);
             edt_no_of_days.setText(""+numDays);
         }

@@ -21,10 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int VIEW_TYPE_NORMAL = 1;
-    private boolean isLoaderVisible = false;
+    private final boolean isLoaderVisible = false;
     private List mList = new ArrayList();
 
-    private Context mContext;
+    private final Context mContext;
     private RecyclerViewClickListener mListener;
 
     public CardProjectsRecyclerAdapter(Context context) {
@@ -90,22 +90,22 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
     public class ViewHolder extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ProjectsModel item;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
 
         ViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

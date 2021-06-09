@@ -13,8 +13,8 @@ import com.blucor.thecontractor.models.Contract_Type;
 import java.util.List;
 
 public class ContractTypeAdapter extends BaseAdapter {
-    private Context mContext;
-    private List<Contract_Type> contract_types;
+    private final Context mContext;
+    private final List<Contract_Type> contract_types;
 
     public ContractTypeAdapter(Context mContext, List<Contract_Type> contract_types) {
         this.mContext = mContext;

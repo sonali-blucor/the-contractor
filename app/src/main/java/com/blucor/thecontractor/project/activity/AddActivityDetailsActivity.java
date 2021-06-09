@@ -3,6 +3,7 @@ package com.blucor.thecontractor.project.activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Activity;
 import com.blucor.thecontractor.models.ActivityResponseModel;
+import com.blucor.thecontractor.models.InsertSubActivityResponseModel;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.InsertActivityResponseModel;
 import com.blucor.thecontractor.models.SubActivityModel;
@@ -51,6 +53,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     private FloatingActionButton btn_submit;
     private ProjectsModel project;
     private TextInputEditText edt_sub_activity_start_date;
+    private TextInputEditText edt_sub_activity_name;
     private TextInputEditText edt_sub_activity_end_date;
     private TextInputEditText edt_add_sub_contractor;
     private TextView tv_total_sub_activity_days;
@@ -163,6 +166,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
         dialog = new AlertDialog.Builder(AddActivityDetailsActivity.this).create();
         dialog.setTitle("Add Sub Activity");
         View view  = LayoutInflater.from(AddActivityDetailsActivity.this).inflate(R.layout.add_sub_activity_dialog,null);
+        edt_sub_activity_name = view.findViewById(R.id.edt_sub_activity_name);
         edt_sub_activity_start_date = view.findViewById(R.id.edt_sub_activity_start_date);
         edt_sub_activity_end_date = view.findViewById(R.id.edt_sub_activity_end_date);
         edt_add_sub_contractor = view.findViewById(R.id.edt_add_sub_contractor);
@@ -189,7 +193,10 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     }
 
     private boolean is_valid() {
-        if (edt_sub_activity_start_date.getText().toString().isEmpty() || edt_sub_activity_start_date.getText().toString().equalsIgnoreCase("")) {
+        if (edt_sub_activity_name.getText().toString().isEmpty() || edt_sub_activity_name.getText().toString().equalsIgnoreCase("")) {
+            Toast.makeText(this, "Please enter sub activity name", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (edt_sub_activity_start_date.getText().toString().isEmpty() || edt_sub_activity_start_date.getText().toString().equalsIgnoreCase("")) {
             Toast.makeText(this, "Please select sub activity start date", Toast.LENGTH_SHORT).show();
             return false;
         } else if (edt_sub_activity_end_date.getText().toString().isEmpty() || edt_sub_activity_end_date.getText().toString().equalsIgnoreCase("")) {
@@ -222,9 +229,27 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     }
 
     private void insertOrUpdateSubActivity() {
+        int activity_id = project.main_activity_id;
+        String sub_activity_name = edt_sub_activity_name.getText().toString();
         String sub_activity_start_date = edt_sub_activity_start_date.getText().toString();
         String sub_activity_end_date = edt_sub_activity_end_date.getText().toString();
-        String total_sub_activity_days = tv_total_sub_activity_days.getText().toString();
+        int sub_contractor_id = subContractor.id;
+        String duration = tv_total_sub_activity_days.getText().toString().replace("Total Days : ","").trim();
+
+        showLoader();
+        RetrofitClient.getApiService().saveOrUpdateSubActivity(activity_id,sub_activity_name,sub_activity_start_date,sub_activity_end_date,sub_contractor_id,duration).enqueue(new Callback<InsertSubActivityResponseModel>() {
+            @Override
+            public void onResponse(Call<InsertSubActivityResponseModel> call, Response<InsertSubActivityResponseModel> response) {
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<InsertSubActivityResponseModel> call, Throwable t) {
+                stopLoader();
+                Log.e("Sub activity","Error : "+t.getMessage());
+            }
+        });
+
     }
 
     public void onClickAddSubContractor(View view) {

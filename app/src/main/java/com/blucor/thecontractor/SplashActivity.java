@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView mImgLogo = (ImageView) findViewById(R.id.img_logo);
+        ImageView mImgLogo = findViewById(R.id.img_logo);
         //mDbHandler = DbHandler.getInstance(getApplicationContext());
 
         int width = ScreenHelper.getWidthInPercentage(getApplicationContext(), 60);

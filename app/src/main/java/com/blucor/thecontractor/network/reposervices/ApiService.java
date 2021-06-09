@@ -7,6 +7,7 @@ import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
 import com.blucor.thecontractor.models.InsertActivityResponseModel;
+import com.blucor.thecontractor.models.InsertSubActivityResponseModel;
 import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
@@ -177,5 +178,14 @@ public interface ApiService {
                                             @Field("mobile") String mobile,
                                             @Field("email") String email,
                                             @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_OR_UPDATE_SUB_ACTIVITY)
+    Call<InsertSubActivityResponseModel>  saveOrUpdateSubActivity(@Field("activity_id") int activity_id,
+                                                                  @Field("sub_activity_name") String sub_activity_name,
+                                                                  @Field("start_date") String sub_activity_start_date,
+                                                                  @Field("end_date") String sub_activity_end_date,
+                                                                  @Field("sub_contractor_id") int sub_contractor_id,
+                                                                  @Field("duration") String duration);
 }
 

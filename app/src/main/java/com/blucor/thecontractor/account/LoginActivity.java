@@ -46,17 +46,17 @@ public class LoginActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mTilUserName = (TextInputLayout) findViewById(R.id.til_user_name);
-        mTilPassword = (TextInputLayout) findViewById(R.id.til_password);
+        mTilUserName = findViewById(R.id.til_user_name);
+        mTilPassword = findViewById(R.id.til_password);
 
-        mEdtUserName = (TextInputEditText) findViewById(R.id.edt_user_name);
-        mEdtPassword = (TextInputEditText) findViewById(R.id.edt_password);
+        mEdtUserName = findViewById(R.id.edt_user_name);
+        mEdtPassword = findViewById(R.id.edt_password);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, MODE_PRIVATE);
         is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY, -1);
         tv_error = findViewById(R.id.tv_txt_error);
 
-        ImageView mImgLogo = (ImageView) findViewById(R.id.img_logo);
+        ImageView mImgLogo = findViewById(R.id.img_logo);
 
         int width = ScreenHelper.getWidthInPercentage(getApplicationContext(), 40);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, width);

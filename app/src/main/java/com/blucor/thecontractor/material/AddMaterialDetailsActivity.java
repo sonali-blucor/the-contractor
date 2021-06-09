@@ -25,7 +25,7 @@ public class AddMaterialDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_material_details);
 
-        mEdtMDate = (TextInputEditText) findViewById(R.id.edt_material_date);
+        mEdtMDate = findViewById(R.id.edt_material_date);
 
        /* mEdtMDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -53,7 +53,7 @@ public class AddMaterialDetailsActivity extends AppCompatActivity {
                 new android.app.DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        String startDate = String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear) + "/" + String.valueOf(year);
+                        String startDate = dayOfMonth + "/" + monthOfYear + "/" + year;
                         mEdtMDate.setText(startDate);
                     }
                 }, year, month, day);

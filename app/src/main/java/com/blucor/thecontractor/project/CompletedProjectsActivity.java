@@ -23,7 +23,7 @@ public class CompletedProjectsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completed_projects);
 
-        mRvView = (RecyclerView) findViewById(R.id.recycler_view_list);
+        mRvView = findViewById(R.id.recycler_view_list);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);

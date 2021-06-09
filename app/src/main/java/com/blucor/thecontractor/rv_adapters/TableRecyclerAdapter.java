@@ -26,10 +26,10 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int VIEW_TYPE_NORMAL_ACTIVITY = 1;
     private static final int VIEW_TYPE_NORMAL_MATERIAL = 2;
     private static final int VIEW_TYPE_NORMAL_CLIENT_PROJECT = 3;
-    private boolean isLoaderVisible = false;
+    private final boolean isLoaderVisible = false;
     private List mList = new ArrayList();
 
-    private Context mContext;
+    private final Context mContext;
     private RecyclerViewClickListener mListener;
 
     public TableRecyclerAdapter(Context context) {
@@ -107,28 +107,28 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class ViewHolder extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ProjectActivityModel item;
-        private LinearLayout item_table;
-        private ImageView item_img_edit;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
-        private TextView item_6;
+        private final LinearLayout item_table;
+        private final ImageView item_img_edit;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
+        private final TextView item_6;
 
         ViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_table = (LinearLayout) itemView.findViewById(R.id.llh_item_table);
-            item_img_edit = (ImageView) itemView.findViewById(R.id.img_edit_item);
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
-            item_6 = (TextView) itemView.findViewById(R.id.txt_item_6);
+            item_table = itemView.findViewById(R.id.llh_item_table);
+            item_img_edit = itemView.findViewById(R.id.img_edit_item);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
             viewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -186,28 +186,28 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class MaterialViewHolder extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ProjectMaterialModel item;
-        private LinearLayout item_table;
-        private ImageView item_img_edit;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_6;
-        private TextView item_7;
+        private final LinearLayout item_table;
+        private final ImageView item_img_edit;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_6;
+        private final TextView item_7;
 
         MaterialViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_table = (LinearLayout) itemView.findViewById(R.id.llh_item_table);
-            item_img_edit = (ImageView) itemView.findViewById(R.id.img_edit_item);
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_6 = (TextView) itemView.findViewById(R.id.txt_item_6);
-            item_7 = (TextView) itemView.findViewById(R.id.txt_item_7);
+            item_table = itemView.findViewById(R.id.llh_item_table);
+            item_img_edit = itemView.findViewById(R.id.img_edit_item);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
+            item_7 = itemView.findViewById(R.id.txt_item_7);
             viewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -265,28 +265,28 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class ClientViewHolder extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ClientProjectActivityModel item;
-        private LinearLayout item_table;
-        private ImageView item_img_edit;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
-        private TextView item_6;
+        private final LinearLayout item_table;
+        private final ImageView item_img_edit;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
+        private final TextView item_6;
 
         ClientViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_table = (LinearLayout) itemView.findViewById(R.id.llh_item_table);
-            item_img_edit = (ImageView) itemView.findViewById(R.id.img_edit_item);
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
-            item_6 = (TextView) itemView.findViewById(R.id.txt_item_6);
+            item_table = itemView.findViewById(R.id.llh_item_table);
+            item_img_edit = itemView.findViewById(R.id.img_edit_item);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
             viewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -346,30 +346,30 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
 
     private class ViewInit {
-        private LinearLayout item_table;
-        private ImageView item_img_edit;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
-        private TextView item_6;
-        private TextView item_7;
-        private TextView item_8;
-        private TextView item_9;
+        private final LinearLayout item_table;
+        private final ImageView item_img_edit;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
+        private final TextView item_6;
+        private final TextView item_7;
+        private final TextView item_8;
+        private final TextView item_9;
 
         ViewInit(View itemView) {
-            item_table = (LinearLayout) itemView.findViewById(R.id.llh_item_table);
-            item_img_edit = (ImageView) itemView.findViewById(R.id.img_edit_item);
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
-            item_6 = (TextView) itemView.findViewById(R.id.txt_item_6);
-            item_7 = (TextView) itemView.findViewById(R.id.txt_item_7);
-            item_8 = (TextView) itemView.findViewById(R.id.txt_item_8);
-            item_9 = (TextView) itemView.findViewById(R.id.txt_item_9);
+            item_table = itemView.findViewById(R.id.llh_item_table);
+            item_img_edit = itemView.findViewById(R.id.img_edit_item);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
+            item_7 = itemView.findViewById(R.id.txt_item_7);
+            item_8 = itemView.findViewById(R.id.txt_item_8);
+            item_9 = itemView.findViewById(R.id.txt_item_9);
         }
 
     }

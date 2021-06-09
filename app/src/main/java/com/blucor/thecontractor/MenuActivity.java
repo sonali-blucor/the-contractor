@@ -50,13 +50,13 @@ public class MenuActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        mRlUserProfile = (RelativeLayout) findViewById(R.id.rl_user_details);
-        mImgProfile = (ImageView)findViewById(R.id.img_logo);
-        mImgProjectMenu = (ImageView)findViewById(R.id.img_project_menu);
-        mImgMaterialMenu = (ImageView)findViewById(R.id.img_material_menu);
-        mImgAccountMenu = (ImageView)findViewById(R.id.img_user_profile_menu);
-        mImgShareMenu = (ImageView)findViewById(R.id.img_share_menu);
-        mImgLogoutMenu = (ImageView)findViewById(R.id.img_logout_menu);
+        mRlUserProfile = findViewById(R.id.rl_user_details);
+        mImgProfile = findViewById(R.id.img_logo);
+        mImgProjectMenu = findViewById(R.id.img_project_menu);
+        mImgMaterialMenu = findViewById(R.id.img_material_menu);
+        mImgAccountMenu = findViewById(R.id.img_user_profile_menu);
+        mImgShareMenu = findViewById(R.id.img_share_menu);
+        mImgLogoutMenu = findViewById(R.id.img_logout_menu);
         mProgressBar = findViewById(R.id.pb_menu_contractor);
         mLlUserProfile = findViewById(R.id.ll_user_details);
         mUserName = findViewById(R.id.tv_user_name);

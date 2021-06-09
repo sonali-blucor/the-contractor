@@ -54,7 +54,7 @@ public class UserProfileActivity extends BaseAppCompatActivity {
     private EditText edt_email;
     private Button btn_submit;
     private ImageView img_logo;
-    private int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
+    private final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

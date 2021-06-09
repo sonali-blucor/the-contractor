@@ -151,22 +151,14 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
     private boolean is_mobile() {
         String mobile = edt_mobile_email.getText().toString();
         if (Patterns.PHONE.matcher(mobile).matches()) {
-            if (mobile.length() < 10) {
-                return false;
-            } else {
-                return true;
-            }
+            return mobile.length() >= 10;
         } else {
             return false;
         }
     }
 
     private boolean is_email() {
-        if (Patterns.EMAIL_ADDRESS.matcher(edt_mobile_email.getText().toString()).matches()) {
-            return true;
-        } else {
-            return false;
-        }
+        return Patterns.EMAIL_ADDRESS.matcher(edt_mobile_email.getText().toString()).matches();
     }
 
     private int is_valid_data() {

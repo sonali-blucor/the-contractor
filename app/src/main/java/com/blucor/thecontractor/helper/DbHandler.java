@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHandler extends SQLiteOpenHelper {
-    private Context context;
+    private final Context context;
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "db_the_contractor";
     public static final String TABLE_LOGIN_ACCOUNT = "login_account";
@@ -75,32 +75,29 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public int empty(String TBL_NAME) {
-        return (int) db.delete(TBL_NAME, null, null);
+        return db.delete(TBL_NAME, null, null);
     }
 
     public int delete(String TBL_NAME, int _id) {
-        return (int) db.delete(TBL_NAME, COL_ID + "=" + _id, null);
+        return db.delete(TBL_NAME, COL_ID + "=" + _id, null);
     }
 
     public int update(String TBL_NAME, ContentValues values) {
-        return (int) db.update(TBL_NAME, values, null, null);
+        return db.update(TBL_NAME, values, null, null);
     }
 
     public int update(String TBL_NAME, ContentValues values, int _id) {
-        return (int) db.update(TBL_NAME, values, COL_ID + "=" + _id, null);
+        return db.update(TBL_NAME, values, COL_ID + "=" + _id, null);
     }
 
     public int updateAccess(ContentValues values, String _id) {
-        return (int) db.update(TABLE_LOGIN_ACCOUNT, values, COL_USER_ACCOUNT_ID + "='" + _id + "'", null);
+        return db.update(TABLE_LOGIN_ACCOUNT, values, COL_USER_ACCOUNT_ID + "='" + _id + "'", null);
     }
 
 
     public boolean hasLogin() {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_LOGIN_ACCOUNT, null);
-        if (cursor.getCount() > 0) {
-            return true;
-        }
-        return false;
+        return cursor.getCount() > 0;
     }
 
 

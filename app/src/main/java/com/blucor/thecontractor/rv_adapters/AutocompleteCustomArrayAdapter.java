@@ -47,7 +47,7 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
              */
             if(convertView==null){
                 // inflate the layout
-                LayoutInflater inflater = ((ClientAddAndSearchActivity) mContext).getLayoutInflater();
+                LayoutInflater inflater = mContext.getLayoutInflater();
                 convertView = inflater.inflate(layoutResourceId, parent, false);
             }
 
@@ -55,7 +55,7 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
             Client objectItem = getItem(position);
 
             // get the TextView and then set the text (item name) and tag (item ID) values
-            TextView textViewItem = (TextView) convertView.findViewById(R.id.textViewItem);
+            TextView textViewItem = convertView.findViewById(R.id.textViewItem);
             textViewItem.setText(objectItem.fname+" "+objectItem.lname);
 
         } catch (NullPointerException e) {

@@ -28,7 +28,7 @@ public class MaterialMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_menu);
 
-        mRvView = (RecyclerView) findViewById(R.id.recycler_view_list);
+        mRvView = findViewById(R.id.recycler_view_list);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);

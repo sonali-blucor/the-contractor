@@ -27,10 +27,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int VIEW_TYPE_NORMAL = 1;
     private static final int VIEW_TYPE_COMPLETED = 2;
-    private boolean isLoaderVisible = false;
+    private final boolean isLoaderVisible = false;
     private List<ProjectsModel> mList = new ArrayList();
 
-    private Activity mContext;
+    private final Activity mContext;
     private RecyclerViewClickListener mListener;
 
     public CardRecyclerAdapter(Activity context) {
@@ -100,24 +100,24 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class ViewHolder extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ProjectsModel item;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
-        private TextView item_schedule;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
+        private final TextView item_schedule;
 
         ViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
-            item_schedule = (TextView) itemView.findViewById(R.id.txt_schedule);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_schedule = itemView.findViewById(R.id.txt_schedule);
 
             item_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -145,7 +145,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         public void onBind(int position) {
             super.onBind(position);
-            item = (ProjectsModel) mList.get(position);
+            item = mList.get(position);
             item_1.setText(item.project_name);
             item_2.setText(item.id);
             item_3.setText(item.client_fname +" "+item.client_lname);
@@ -174,24 +174,24 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public class ViewHolderCompleted extends BaseViewHolder {
 
-        private View viewHolder;
+        private final View viewHolder;
         private ProjectsModel item;
-        private TextView item_1;
-        private TextView item_2;
-        private TextView item_3;
-        private TextView item_4;
-        private TextView item_5;
-        private TextView item_6;
+        private final TextView item_1;
+        private final TextView item_2;
+        private final TextView item_3;
+        private final TextView item_4;
+        private final TextView item_5;
+        private final TextView item_6;
 
         ViewHolderCompleted(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            item_1 = (TextView) itemView.findViewById(R.id.txt_item_1);
-            item_2 = (TextView) itemView.findViewById(R.id.txt_item_2);
-            item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
-            item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
-            item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
-            item_6 = (TextView) itemView.findViewById(R.id.txt_item_6);
+            item_1 = itemView.findViewById(R.id.txt_item_1);
+            item_2 = itemView.findViewById(R.id.txt_item_2);
+            item_3 = itemView.findViewById(R.id.txt_item_3);
+            item_4 = itemView.findViewById(R.id.txt_item_4);
+            item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -207,7 +207,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         public void onBind(int position) {
             super.onBind(position);
-            item = (ProjectsModel) mList.get(position);
+            item = mList.get(position);
             item_1.setText(item.project_name);
             item_2.setText(""+item.id);
             item_3.setText(item.client_fname +" "+item.client_lname);
