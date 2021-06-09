@@ -42,12 +42,12 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
                 switch (is_valid_data()) {
                     case 1:
                         //email
-                        edt_mobile_email.setError("");
+                        edt_mobile_email.setError(null);
                         forgotPassUsingEmail();
                         break;
                     case 2:
                         //mobile
-                        edt_mobile_email.setError("");
+                        edt_mobile_email.setError(null);
                         forgotPassUsingMobile();
                         break;
                     case 0:

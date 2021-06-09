@@ -279,11 +279,11 @@ public class UserProfileActivity extends BaseAppCompatActivity {
             edt_company_name.requestFocus();
             isValid = false;
         } else {
-            edt_first_name.setError("");
-            edt_last_name.setError("");
-            edt_email.setError("");
-            edt_mobile.setError("");
-            edt_company_name.setError("");
+            edt_first_name.setError(null);
+            edt_last_name.setError(null);
+            edt_email.setError(null);
+            edt_mobile.setError(null);
+            edt_company_name.setError(null);
             isValid = true;
         }
 

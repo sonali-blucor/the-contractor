@@ -215,13 +215,13 @@ public class RegisterActivity extends BaseAppCompatActivity {
             edt_password.requestFocus();
             isValid = false;
         } else {
-            edt_first_name.setError("");
-            edt_last_name.setError("");
-            edt_email.setError("");
-            edt_mobile.setError("");
-            edt_password.setError("");
-            edt_company_name.setError("");
-            edt_cpassword.setError("");
+            edt_first_name.setError(null);
+            edt_last_name.setError(null);
+            edt_email.setError(null);
+            edt_mobile.setError(null);
+            edt_password.setError(null);
+            edt_company_name.setError(null);
+            edt_cpassword.setError(null);
             isValid = true;
         }
 

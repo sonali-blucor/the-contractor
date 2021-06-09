@@ -449,13 +449,13 @@ public class AddProjectActivity extends BaseAppCompatActivity {
             Toast.makeText(this, "Duration not calculated", Toast.LENGTH_SHORT).show();
             isValid = false;
         } else {
-            mEdtProjectName.setError("");
-            mEdtProjectType.setError("");
-            mEdtContractType.setError("");
-            mEdtAddress.setError("");
-            mEdtPStartDate.setError("");
-            mEdtPEndDate.setError("");
-            mEdtAddClient.setError("");
+            mEdtProjectName.setError(null);
+            mEdtProjectType.setError(null);
+            mEdtContractType.setError(null);
+            mEdtAddress.setError(null);
+            mEdtPStartDate.setError(null);
+            mEdtPEndDate.setError(null);
+            mEdtAddClient.setError(null);
             isValid = true;
         }
 

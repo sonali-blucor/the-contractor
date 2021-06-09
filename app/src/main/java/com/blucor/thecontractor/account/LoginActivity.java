@@ -145,8 +145,8 @@ public class LoginActivity extends BaseAppCompatActivity {
             mEdtPassword.requestFocus();
             return false;
         } else {
-            mEdtUserName.setError("");
-            mEdtPassword.setError("");
+            mEdtUserName.setError(null);
+            mEdtPassword.setError(null);
             return true;
         }
     }

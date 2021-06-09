@@ -160,8 +160,8 @@ public class ConfirmPasswordActivity extends BaseAppCompatActivity {
             edt_confirm_password.requestFocus();
             return false;
         } else {
-            edt_confirm_password.setError("");
-            edt_confirm_cpassword.setError("");
+            edt_confirm_password.setError(null);
+            edt_confirm_cpassword.setError(null);
             return true;
         }
     }
