@@ -2,6 +2,7 @@ package com.blucor.thecontractor.rv_adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.helper.AppKeys;
+import android.app.Activity;
 import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.project.ProjectDetailsActivity;
+import com.blucor.thecontractor.project.ProjectListActivity;
+import com.blucor.thecontractor.project.ScheduleActivity;
+import com.blucor.thecontractor.utility.ScreenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +30,14 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private boolean isLoaderVisible = false;
     private List<ProjectsModel> mList = new ArrayList();
 
-    private Context mContext;
+    private Activity mContext;
     private RecyclerViewClickListener mListener;
 
-    public CardRecyclerAdapter(Context context) {
+    public CardRecyclerAdapter(Activity context) {
         this.mContext = context;
     }
 
-    public CardRecyclerAdapter(Context mContext, List<ProjectsModel> mList) {
+    public CardRecyclerAdapter(Activity mContext, List<ProjectsModel> mList) {
         this.mContext = mContext;
         this.mList = mList;
     }
@@ -100,6 +107,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         private TextView item_3;
         private TextView item_4;
         private TextView item_5;
+        private TextView item_schedule;
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -109,6 +117,19 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_3 = (TextView) itemView.findViewById(R.id.txt_item_3);
             item_4 = (TextView) itemView.findViewById(R.id.txt_item_4);
             item_5 = (TextView) itemView.findViewById(R.id.txt_item_5);
+            item_schedule = (TextView) itemView.findViewById(R.id.txt_schedule);
+
+            item_schedule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProjectsModel model = mList.get(getAdapterPosition());
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppKeys.PROJECT,model);
+                    bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
+                    ScreenHelper.redirectToClass(mContext, ScheduleActivity.class,bundle);
+                }
+            });
+
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
