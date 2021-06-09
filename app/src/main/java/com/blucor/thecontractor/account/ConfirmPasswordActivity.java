@@ -63,6 +63,8 @@ public class ConfirmPasswordActivity extends BaseAppCompatActivity {
         btn_confirm_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                edt_confirm_password.setError(null);
+                edt_confirm_cpassword.setError(null);
                 if(is_valid()) {
                     requestChangePassword();
                 }

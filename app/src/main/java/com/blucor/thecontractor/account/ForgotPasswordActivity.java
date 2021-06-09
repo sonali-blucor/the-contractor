@@ -56,6 +56,8 @@ public class ForgotPasswordActivity extends BaseAppCompatActivity {
                     default:
                         if (edt_mobile_email.getText().toString().isEmpty() || edt_mobile_email.getText().toString().equalsIgnoreCase("")) {
                             edt_mobile_email.setError(getString(R.string.invalid_data_forgot_password));
+                        } else {
+                            edt_mobile_email.setError(null);
                         }
                         break;
                 }

@@ -151,6 +151,14 @@ public class RegisterActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToRegister(View view) {
+        edt_first_name.setError(null);
+        edt_last_name.setError(null);
+        edt_email.setError(null);
+        edt_mobile.setError(null);
+        edt_password.setError(null);
+        edt_company_name.setError(null);
+        edt_cpassword.setError(null);
+
         switch (is_client) {
             case Contants.USER_TYPE_CLIENT:
                 registerClient();

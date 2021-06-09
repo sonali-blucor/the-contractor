@@ -78,17 +78,15 @@ public class UserProfileActivity extends BaseAppCompatActivity {
     }
 
     public void onClickGallery(View view){
-        int readPermission = ActivityCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        /*int readPermission = ActivityCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
         int writePermission = ActivityCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if ( readPermission!= PackageManager.PERMISSION_GRANTED && writePermission!= PackageManager.PERMISSION_GRANTED) {
             openGallary();
-        } else {
+        } else {*/
             // Requesting Permission to access External Storage
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     EXTERNAL_STORAGE_PERMISSION_CODE);
-        }
-
-
+        //}
     }
 
     private void openGallary() {
@@ -132,8 +130,9 @@ public class UserProfileActivity extends BaseAppCompatActivity {
                 // getExternalStoragePublicDirectory() represents root of external storage, we are using DOWNLOADS
                 // We can use following directories: MUSIC, PODCASTS, ALARMS, RINGTONES, NOTIFICATIONS, PICTURES, MOVIES
                 File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                String file_name = user.fname+"_"+user.lname+"_temp"+System.currentTimeMillis()+".jpg";
 
-                File file = new File(folder + File.separator + "temporary_file.jpg");
+                File file = new File(folder + File.separator + file_name);
                 try {
                     file.createNewFile();
                     FileOutputStream fo = new FileOutputStream(file);
