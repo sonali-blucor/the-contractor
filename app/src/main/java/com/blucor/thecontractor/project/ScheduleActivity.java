@@ -79,7 +79,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String status = status_list[which];
-                edt_project_status.setText(status);
+                edt_project_status.setText(""+status);
             }
         });
         AlertDialog dialog = builder.create();
@@ -109,22 +109,24 @@ public class ScheduleActivity extends BaseAppCompatActivity {
                 @Override
                 public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
                     Toast.makeText(ScheduleActivity.this, "Error in getting schedule", Toast.LENGTH_SHORT).show();
+                    stopLoader();
                 }
             });
         } else {
+            stopLoader();
             Toast.makeText(this, "Project not recived ", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void setupSchedule() {
         if (is_scheduled) {
-            edt_project_name.setText(schedule.project_name);
-            edt_no_of_days.setText(schedule.no_of_days);
-            edt_project_status.setText(schedule.project_status);
+            edt_project_name.setText(""+schedule.project_name);
+            edt_no_of_days.setText(""+schedule.no_of_days);
+            edt_project_status.setText(""+schedule.project_status);
             wd_schedule.setSelectedWeekDays(schedule.week_days);
             rt_bar_schedule.setRating(schedule.rating);
         } else {
-            edt_project_name.setText(project.project_name);
+            edt_project_name.setText(""+project.project_name);
             String num_days = project.duration.replace("Days","").trim();
             int numDays = Integer.parseInt(num_days);
             edt_no_of_days.setText(""+numDays);

@@ -129,11 +129,18 @@ public class UserProfileActivity extends BaseAppCompatActivity {
 
                 // getExternalStoragePublicDirectory() represents root of external storage, we are using DOWNLOADS
                 // We can use following directories: MUSIC, PODCASTS, ALARMS, RINGTONES, NOTIFICATIONS, PICTURES, MOVIES
-                File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                String folder_path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "TheContractor";
+                File folder = new File(folder_path);
+                if (!folder.exists()) {
+                    folder.mkdir();
+                }
                 String file_name = user.fname+"_"+user.lname+"_temp"+System.currentTimeMillis()+".jpg";
 
-                File file = new File(folder + File.separator + file_name);
+                File file = new File(folder_path + File.separator + file_name);
                 try {
+                    if(file.exists()) {
+                        file.delete();
+                    }
                     file.createNewFile();
                     FileOutputStream fo = new FileOutputStream(file);
                     fo.write(bytes.toByteArray());
@@ -142,7 +149,7 @@ public class UserProfileActivity extends BaseAppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (file != null) {
+                if (file != null && file.exists()) {
                     saveProfilePicture(file);
                 }
             }

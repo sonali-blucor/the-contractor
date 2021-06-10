@@ -71,7 +71,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.get(position).view_type == VIEW_TYPE_NORMAL) {
+        if (mList.get(position).getView_type() == VIEW_TYPE_NORMAL) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_COMPLETED;
@@ -118,7 +118,19 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_4 = itemView.findViewById(R.id.txt_item_4);
             item_5 = itemView.findViewById(R.id.txt_item_5);
             item_schedule = itemView.findViewById(R.id.txt_schedule);
+        }
 
+        protected void clear() {
+        }
+
+        public void onBind(int position) {
+            super.onBind(position);
+            item = mList.get(position);
+            item_1.setText(item.project_name);
+            item_2.setText(""+item.id);
+            item_3.setText(item.client_fname +" "+item.client_lname);
+
+            item_schedule.setText("Schedule Project");
             item_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -138,17 +150,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     }
                 }
             });
-        }
 
-        protected void clear() {
-        }
-
-        public void onBind(int position) {
-            super.onBind(position);
-            item = mList.get(position);
-            item_1.setText(item.project_name);
-            item_2.setText(item.id);
-            item_3.setText(item.client_fname +" "+item.client_lname);
             if (!item.is_material) {
                 item_4.setVisibility(View.VISIBLE);
                 item_4.setOnClickListener(new View.OnClickListener() {

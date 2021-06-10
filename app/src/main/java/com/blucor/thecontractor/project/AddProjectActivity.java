@@ -192,11 +192,15 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                         if(response.body() != null) {
                             ProjectsModel project = response.body();
                             Toast.makeText(AddProjectActivity.this, "Project added with id : " + project.id, Toast.LENGTH_SHORT).show();
-                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable(AppKeys.PROJECT,project);
+                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class,bundle);
                             finish();
                         }else {
                             Toast.makeText(AddProjectActivity.this, "Unable to add project", Toast.LENGTH_SHORT).show();
                         }
+                    } else if(response.code() == 500) {
+                        Toast.makeText(AddProjectActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(AddProjectActivity.this, "Project is already exists", Toast.LENGTH_SHORT).show();
                     }

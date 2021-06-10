@@ -116,6 +116,13 @@ public class ClientAddAndSearchActivity extends BaseAppCompatActivity {
     }
 
     private boolean validateData() {
+        edt_first_name.setError(null);
+        edt_last_name.setError(null);
+        edt_email.setError(null);
+        edt_mobile.setError(null);
+        edt_password.setError(null);
+        edt_cpassword.setError(null);
+
         boolean isValid = false;
         String fanme = edt_first_name.getText().toString();
         String lname = edt_last_name.getText().toString();

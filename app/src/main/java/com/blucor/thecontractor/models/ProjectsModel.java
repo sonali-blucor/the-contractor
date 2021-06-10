@@ -123,6 +123,170 @@ public class ProjectsModel implements Parcelable {
         return 0;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
+    }
+
+    public String getProject_type() {
+        return project_type;
+    }
+
+    public void setProject_type(String project_type) {
+        this.project_type = project_type;
+    }
+
+    public String getContract_type() {
+        return contract_type;
+    }
+
+    public void setContract_type(String contract_type) {
+        this.contract_type = contract_type;
+    }
+
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
+    public String getProject_location() {
+        return project_location;
+    }
+
+    public void setProject_location(String project_location) {
+        this.project_location = project_location;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public int getContractor_id() {
+        return contractor_id;
+    }
+
+    public void setContractor_id(int contractor_id) {
+        this.contractor_id = contractor_id;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getClient_fname() {
+        return client_fname;
+    }
+
+    public void setClient_fname(String client_fname) {
+        this.client_fname = client_fname;
+    }
+
+    public String getClient_lname() {
+        return client_lname;
+    }
+
+    public void setClient_lname(String client_lname) {
+        this.client_lname = client_lname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMain_activity_name() {
+        return main_activity_name;
+    }
+
+    public void setMain_activity_name(String main_activity_name) {
+        this.main_activity_name = main_activity_name;
+    }
+
+    public int getMain_activity_id() {
+        return main_activity_id;
+    }
+
+    public void setMain_activity_id(int main_activity_id) {
+        this.main_activity_id = main_activity_id;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public int getView_type() {
+        return 1;
+    }
+
+    public void setView_type(int view_type) {
+        this.view_type = view_type;
+    }
+
+    public boolean isIs_material() {
+        return is_material;
+    }
+
+    public void setIs_material(boolean is_material) {
+        this.is_material = is_material;
+    }
+
+    public static Creator<ProjectsModel> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
