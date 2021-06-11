@@ -8,22 +8,32 @@ import retrofit2.Response;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
+import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+import com.blucor.thecontractor.project.activity.AddSubContractorActivity;
+import com.blucor.thecontractor.custom.CustomAutoCompleteTextChangedListener;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
-import com.blucor.thecontractor.models.Client;
+import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.models.User;
-import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+import com.blucor.thecontractor.models.SubContractor;
+import com.blucor.thecontractor.rv_adapters.AutocompleteCustomArrayAdapter;
+import com.blucor.thecontractor.rv_adapters.AutocompleteSubContractorCustomArrayAdapter;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
 
 public class AddSubContractorActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_first_name;
@@ -34,7 +44,11 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_cpassword;
     private SubContractor subContractor;
     private Button btn_register;
-    private EditText edt_search;
+    public EditText edt_search;
+    public RelativeLayout rl_search;
+    public RelativeLayout rl_add_sub_contractor;
+    public ListView lst_search_sub_contractor;
+    private AutocompleteSubContractorCustomArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +61,11 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_password = findViewById(R.id.edt_password);
         edt_cpassword = findViewById(R.id.edt_cpassword);
+        edt_search = findViewById(R.id.edt_search_sub_contractor);
         btn_register = findViewById(R.id.btn_register);
+        rl_search = findViewById(R.id.rl_search_sub_contractor);
+        rl_add_sub_contractor = findViewById(R.id.rl_add_sub_contractor);
+        lst_search_sub_contractor = findViewById(R.id.lst_sub_contractor);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,5 +177,37 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
         }
 
         return isValid;
+    }
+
+    public void setListViewAdapter(ArrayList<SubContractor> sub_contractors) {
+        if (sub_contractors.size() <= 0) {
+            rl_add_sub_contractor.setVisibility(View.VISIBLE);
+            lst_search_sub_contractor.setVisibility(View.GONE);
+            rl_search.setVisibility(View.GONE);
+        } else {
+            rl_add_sub_contractor.setVisibility(View.GONE);
+            lst_search_sub_contractor.setVisibility(View.VISIBLE);
+            rl_search.setVisibility(View.VISIBLE);
+        }
+        edt_search.addTextChangedListener(new CustomAutoCompleteTextChangedListener(AddSubContractorActivity.this));
+
+        // set the custom ArrayAdapter
+        adapter = new AutocompleteSubContractorCustomArrayAdapter(AddSubContractorActivity.this, R.layout.list_view_row, sub_contractors);
+        try {
+            lst_search_sub_contractor.setAdapter(adapter);
+        } catch (Exception e) {
+            Log.e("TAG",e.getMessage());
+        }
+        lst_search_sub_contractor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SubContractor sub_contractor = sub_contractors.get(position);
+                edt_search.setText("" + sub_contractor.fname + " " + sub_contractor.lname);
+                Intent intent = new Intent();
+                intent.putExtra(AppKeys.SUB_CONTRACTOR, subContractor);
+                setResult(AppKeys.SUB_CONTRACTOR_RESULT, intent);
+                finish();
+            }
+        });
     }
 }
