@@ -102,7 +102,6 @@
             android:hint="Add Sub Contractor"
             android:imeOptions="actionNext"
             android:inputType="none"
-            android:onClick="onClickAddSubContractor"
             android:focusable="false"
             android:editable="false"
             android:longClickable="false"

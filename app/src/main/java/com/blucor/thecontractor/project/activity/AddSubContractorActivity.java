@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
+import com.blucor.thecontractor.custom.CustomSubContractorAutoCompleteTextChangedListener;
+import com.blucor.thecontractor.models.SubContractorAddSearchModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.activity.AddSubContractorActivity;
 import com.blucor.thecontractor.custom.CustomAutoCompleteTextChangedListener;
@@ -48,7 +51,9 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     public RelativeLayout rl_search;
     public RelativeLayout rl_add_sub_contractor;
     public ListView lst_search_sub_contractor;
-    private AutocompleteSubContractorCustomArrayAdapter adapter;
+    public AutocompleteSubContractorCustomArrayAdapter adapter;
+    private ArrayList<SubContractor> contractors;
+   // private String sub_contractor_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,38 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
                 registerSubContractor();
             }
         });
+        loadAllSubContractors();
+    }
+
+    public void loadAllSubContractors() {
+        User user = DatabaseUtil.on().getAllUser().get(0);
+        int id = user.server_id;
+        //int id = 0;
+        showLoader();
+
+        RetrofitClient.getApiService().getAllSubContractorsByContractor(id).enqueue(new Callback<SubContractorAddSearchModel>() {
+            @Override
+            public void onResponse(Call<SubContractorAddSearchModel> call, Response<SubContractorAddSearchModel> response) {
+                if(response.code() == 200 && response.body() != null) {
+                    SubContractorAddSearchModel model = response.body();
+                    contractors = model.sub_contractors;
+                    //sub_contractor_id = model.sub_contractor_id;
+
+                    //.setText(""+client_id);
+                    setListViewAdapter(contractors);
+
+                } else {
+                    Toast.makeText(AddSubContractorActivity.this, "Unable to get sub contractors", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<SubContractorAddSearchModel> call, Throwable t) {
+                Toast.makeText(AddSubContractorActivity.this, "Error in loading sub contractor : "+t.getMessage(), Toast.LENGTH_LONG).show();
+                stopLoader();
+            }
+        });
     }
 
     private void registerSubContractor() {
@@ -90,10 +127,7 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
                 public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
                     if (response.code() == 200 && response.body() != null) {
                         subContractor = response.body();
-                        Intent intent = new Intent();
-                        intent.putExtra(AppKeys.SUB_CONTRACTOR, subContractor);
-                        setResult(AppKeys.SUB_CONTRACTOR_RESULT, intent);
-                        finish();
+                        sendIntent();
                     } else {
                         Toast.makeText(AddSubContractorActivity.this, "Error in inserting sub contractor", Toast.LENGTH_SHORT).show();
                     }
@@ -189,7 +223,7 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
             lst_search_sub_contractor.setVisibility(View.VISIBLE);
             rl_search.setVisibility(View.VISIBLE);
         }
-        edt_search.addTextChangedListener(new CustomAutoCompleteTextChangedListener(AddSubContractorActivity.this));
+        edt_search.addTextChangedListener(new CustomSubContractorAutoCompleteTextChangedListener(AddSubContractorActivity.this));
 
         // set the custom ArrayAdapter
         adapter = new AutocompleteSubContractorCustomArrayAdapter(AddSubContractorActivity.this, R.layout.list_view_row, sub_contractors);
@@ -201,12 +235,9 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
         lst_search_sub_contractor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SubContractor sub_contractor = sub_contractors.get(position);
-                edt_search.setText("" + sub_contractor.fname + " " + sub_contractor.lname);
-                Intent intent = new Intent();
-                intent.putExtra(AppKeys.SUB_CONTRACTOR, subContractor);
-                setResult(AppKeys.SUB_CONTRACTOR_RESULT, intent);
-                finish();
+                subContractor = sub_contractors.get(position);
+                edt_search.setText("" + subContractor.fname + " " + subContractor.lname);
+                sendIntent();
             }
         });
     }

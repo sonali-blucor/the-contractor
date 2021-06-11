@@ -13,6 +13,7 @@ import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
 import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.SubContractor;
+import com.blucor.thecontractor.models.SubContractorAddSearchModel;
 import com.blucor.thecontractor.network.utils.Contants;
 
 import java.util.List;
@@ -187,5 +188,9 @@ public interface ApiService {
                                                                   @Field("end_date") String sub_activity_end_date,
                                                                   @Field("sub_contractor_id") int sub_contractor_id,
                                                                   @Field("duration") String duration);
+
+    @FormUrlEncoded
+    @POST(Contants.SHOW_SUB_CONTRACTOR_BY_CONTRACTOR_ID)
+    Call<SubContractorAddSearchModel> getAllSubContractorsByContractor(@Field("contractor_id") int contractor_id);
 }
 

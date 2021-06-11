@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Search sub contractor"
+        android:drawableRight="@drawable/ic_search"
+        android:drawableEnd="@drawable/ic_search"
         android:layout_margin="10dp"/>
 
     <RelativeLayout
         android:id="@+id/rl_search_sub_contractor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        tools:context=".project.activity.AddSubContractorActivity">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_txt_reg1"
@@ -40,9 +40,7 @@
     <RelativeLayout
         android:id="@+id/rl_add_sub_contractor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:context=".project.activity.AddSubContractorActivity">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_txt_reg"

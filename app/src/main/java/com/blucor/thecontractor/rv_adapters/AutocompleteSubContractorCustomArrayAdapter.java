@@ -32,6 +32,7 @@ public class AutocompleteSubContractorCustomArrayAdapter extends ArrayAdapter<Su
         this.mContext = mContext;
         this.layoutResourceId = layoutResourceId;
         this.data = data;
+        this.allJournals = data;
     }
 
     @Override

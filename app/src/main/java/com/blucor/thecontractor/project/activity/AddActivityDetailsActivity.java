@@ -252,10 +252,6 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
     }
 
-    public void onClickAddSubContractor(View view) {
-        //start add sub contractor activity here
-    }
-
     public void onClickActivityEndDate(View view) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(start_date);
