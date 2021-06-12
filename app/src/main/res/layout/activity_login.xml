@@ -62,7 +62,7 @@
                     android:id="@+id/til_user_name"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_margin="@dimen/input_margin_5dp"
                     app:errorIconDrawable="@drawable/edit_background"
                     app:startIconDrawable="@drawable/ic_user">
@@ -88,7 +88,7 @@
                     android:id="@+id/til_password"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_margin="@dimen/input_margin_5dp"
                     app:passwordToggleEnabled="true"
                     app:startIconDrawable="@drawable/ic_password">
