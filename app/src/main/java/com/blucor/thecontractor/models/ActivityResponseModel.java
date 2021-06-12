@@ -3,12 +3,19 @@ package com.blucor.thecontractor.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class ActivityResponseModel implements Parcelable {
 
+    @SerializedName("activity")
+    @Expose
     public Activity activity;
 
+    @SerializedName("sub_activities")
+    @Expose
     public ArrayList<SubActivityModel> subActivities;
 
     protected ActivityResponseModel(Parcel in) {

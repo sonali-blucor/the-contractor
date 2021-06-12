@@ -24,6 +24,7 @@ import com.blucor.thecontractor.models.ProjectActivityModel;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.ProjectDetailsActivity;
+import com.blucor.thecontractor.rv_adapters.ActivityExpandableListViewAdapter;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.rv_adapters.TableRecyclerAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
@@ -42,6 +43,7 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
     private ExpandableListView exp_lst_main_activity;
     private FloatingActionButton add_activity;
     private List<ActivityResponseModel> activityResponses;
+    private ActivityExpandableListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
             public void onResponse(Call<List<ActivityResponseModel>> call, Response<List<ActivityResponseModel>> response) {
                 if (response.code() == 200 && response.body() != null) {
                     activityResponses = response.body();
+                    setupAdapter();
                 }
                 stopLoader();
             }
@@ -75,6 +78,11 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
                 stopLoader();
             }
         });
+    }
+
+    private void setupAdapter() {
+        adapter = new ActivityExpandableListViewAdapter(AddProjectActActivity.this,activityResponses);
+        exp_lst_main_activity.setAdapter(adapter);
     }
 
 
