@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,15 @@ public class UserTypeActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, Context.MODE_PRIVATE);
 
+        try {
+            if (sharedPreferences.getInt(Contants.USER_TYPE_KEY, 0) == Contants.USER_TYPE_CONTRACTOR) {
+                ((RadioButton) findViewById(R.id.rb_contractor)).setChecked(true);
+            }
+            if (sharedPreferences.getInt(Contants.USER_TYPE_KEY, 1) == Contants.USER_TYPE_CLIENT) {
+                ((RadioButton) findViewById(R.id.rb_client)).setChecked(true);
+            }
+        } catch (Exception e) {
+        }
         rg_user_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
