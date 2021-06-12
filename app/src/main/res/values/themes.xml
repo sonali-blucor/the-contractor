@@ -42,6 +42,15 @@
         <item name="android:textSize">@dimen/text_size</item>
     </style>
 
+    <style name="Theme.TheContractor.NoActionBarYellow">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryVariant">@color/yellow</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
     <style name="LardTextView">
         <item name="android:textSize">35sp</item>
         <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
