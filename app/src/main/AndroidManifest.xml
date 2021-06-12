@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
+
+
         <activity android:name=".project.activity.AddSubContractorActivity"></activity>
         <activity android:name=".project.ScheduleActivity" />
         <activity android:name=".client.ClientAddAndSearchActivity" />
@@ -52,13 +54,13 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".project.ProjectDetailsActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
             android:name=".project.CompletedProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
             android:name=".project.activity.AddProjectActActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
             android:name=".project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
@@ -73,20 +75,20 @@
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
             android:name=".account.UserProfileActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
             android:name=".MenuActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
             android:name=".account.ForgotPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
             android:name=".account.RegisterActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBar"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".account.LoginActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBar"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".SplashActivity"
