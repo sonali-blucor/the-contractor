@@ -89,45 +89,65 @@
            android:layout_height="wrap_content"
            android:layout_margin="10dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_no_of_days"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/input_margin_5dp"
-            app:errorIconDrawable="@drawable/edit_background">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_no_of_days"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_no_of_days"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_background"
-                android:drawablePadding="@dimen/drawable_padding"
-                android:hint="Number of Days"
-                android:imeOptions="actionNext"
-                android:digits="0123456789"
-                android:inputType="number"
-                android:maxLength="140"
-                android:nextFocusDown="@id/edt_project_type"
-                android:singleLine="true" />
+                android:layout_margin="@dimen/input_margin_5dp"
+                app:errorIconDrawable="@drawable/edit_background">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_no_of_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="Number of Days"
+                    android:imeOptions="actionNext"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:maxLength="140"
+                    android:nextFocusDown="@id/edt_project_type"
+                    android:singleLine="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            android:text="Rate for project" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <RatingBar
-            android:id="@+id/rt_bar_schedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:numStars="5"
-            android:stepSize="0.1"
-            android:isIndicator="false" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
+                    android:text="Rate for project" />
+
+                <RatingBar
+                    android:id="@+id/rt_bar_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    android:scaleX=".5"
+                    android:scaleY=".5"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:isIndicator="false" />
+            </LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
