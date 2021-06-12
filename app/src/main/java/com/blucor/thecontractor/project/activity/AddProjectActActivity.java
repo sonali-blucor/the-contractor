@@ -56,7 +56,7 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
         }
 
-       // getProjectActivities();
+        getProjectActivities();
     }
 
     private void getProjectActivities() {

@@ -32,6 +32,7 @@ import com.blucor.thecontractor.models.SubActivityModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.AddProjectActivity;
+import com.blucor.thecontractor.rv_adapters.SubActivityAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -49,7 +50,7 @@ import java.util.concurrent.TimeUnit;
 public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_activity_name;
     private TextView main_activity_start_end_date;
-    private ListView lst_add_activity;
+    private ListView lst_sub_activity;
     private FloatingActionButton btn_submit;
     private ProjectsModel project;
     private TextInputEditText edt_sub_activity_start_date;
@@ -64,6 +65,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     private AlertDialog dialog;
     private List<SubActivityModel> subActivities;
     private SubContractor subContractor;
+    private SubActivityAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
         edt_activity_name = findViewById(R.id.edt_activity_name);
         main_activity_start_end_date = findViewById(R.id.main_activity_start_end_date);
-        lst_add_activity = findViewById(R.id.lst_add_activity);
+        lst_sub_activity = findViewById(R.id.lst_sub_activity);
         btn_submit = findViewById(R.id.btn_submit);
 
         Intent intent = getIntent();
@@ -117,6 +119,10 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
                 Date date = sdf.parse(dateString);
 
                 start_date = date.getTime();
+
+                subActivities = model.subActivities;
+                adapter = new SubActivityAdapter(AddActivityDetailsActivity.this,subActivities);
+                lst_sub_activity.setAdapter(adapter);
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -210,10 +216,6 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
         }
     }
 
-    private void setupDate() {
-
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -240,6 +242,23 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
         RetrofitClient.getApiService().saveOrUpdateSubActivity(activity_id,sub_activity_name,sub_activity_start_date,sub_activity_end_date,sub_contractor_id,duration).enqueue(new Callback<InsertSubActivityResponseModel>() {
             @Override
             public void onResponse(Call<InsertSubActivityResponseModel> call, Response<InsertSubActivityResponseModel> response) {
+                if(subActivities == null) {
+                    subActivities = new ArrayList<>();
+                    adapter = new SubActivityAdapter(AddActivityDetailsActivity.this,subActivities);
+                    lst_sub_activity.setAdapter(adapter);
+                }
+
+                SubActivityModel subActivity = response.body().sub_activity;
+                subActivity.sub_contractor_id = response.body().sub_contractor.id;
+                subActivity.sub_contractor_first_name = response.body().sub_contractor.fname;
+                subActivity.sub_contractor_last_name = response.body().sub_contractor.lname;
+                subActivity.sub_contractor_mobile = response.body().sub_contractor.mobile;
+                subActivity.sub_contractor_email = response.body().sub_contractor.email;
+                subActivities.add(response.body().sub_activity);
+                adapter.notifyDataSetChanged();
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 stopLoader();
             }
 

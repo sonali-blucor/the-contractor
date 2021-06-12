@@ -6,8 +6,11 @@ public class InsertSubActivityResponseModel {
     @SerializedName("success")
    public boolean success;
 
-    @SerializedName("activity")
-    public SubActivityModel activity;
+    @SerializedName("sub_activity")
+    public SubActivityModel sub_activity;
+
+    @SerializedName("sub_contractor")
+    public SubContractor sub_contractor;
 
     @SerializedName("message")
     public String message;
@@ -17,7 +20,7 @@ public class InsertSubActivityResponseModel {
     }
 
     public SubActivityModel getActivity() {
-        return activity;
+        return sub_activity;
     }
 
     public String getMessage() {
