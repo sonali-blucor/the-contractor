@@ -22,7 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/rl_user_details"
@@ -97,23 +98,25 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToProject">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_project_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToProject"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/img_project_menu"
                                 android:layout_width="@dimen/_60sdp"
                                 android:layout_height="@dimen/_60sdp"
-                                android:padding="@dimen/_5sdp"
                                 android:layout_margin="@dimen/_5sdp"
+                                android:padding="@dimen/_5sdp"
                                 android:src="@drawable/ic_hu_project_mgm" />
 
                             <TextView
@@ -131,23 +134,25 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToMaterial">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_material_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToMaterial"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/img_material_menu"
                                 android:layout_width="@dimen/_60sdp"
                                 android:layout_height="@dimen/_60sdp"
-                                android:padding="@dimen/_5sdp"
                                 android:layout_margin="@dimen/_5sdp"
+                                android:padding="@dimen/_5sdp"
                                 android:src="@drawable/ic_hu_material" />
 
                             <TextView
@@ -170,24 +175,26 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToAccount">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_user_profile_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
-                            android:padding="@dimen/_5sdp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:onClick="onClickToAccount"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_5sdp">
 
                             <ImageView
                                 android:id="@+id/img_user_profile_menu"
                                 android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
                                 android:layout_margin="@dimen/_5sdp"
                                 android:padding="@dimen/_5sdp"
-                                android:layout_height="@dimen/_60sdp"
                                 android:src="@drawable/ic_hu_account" />
 
                             <TextView
@@ -205,23 +212,25 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToShare">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_share_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
-                            android:layout_margin="@dimen/_5sdp"
+                            android:onClick="onClickToShare"
                             android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/img_share_menu"
                                 android:layout_width="@dimen/_60sdp"
                                 android:layout_height="@dimen/_60sdp"
-                                android:padding="@dimen/_5sdp"
                                 android:layout_margin="@dimen/_5sdp"
+                                android:padding="@dimen/_5sdp"
                                 android:src="@drawable/ic_hu_share" />
 
                             <TextView
@@ -245,15 +254,17 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToSendFeedBack">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_send_feedback"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToSendFeedBack"
                             android:orientation="vertical">
 
                             <ImageView
@@ -279,15 +290,17 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToAboutUs">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_about_us"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToAboutUs"
                             android:orientation="vertical">
 
                             <ImageView
@@ -318,15 +331,17 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToUpgradePremium">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_upgrade_to_premium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToUpgradePremium"
                             android:orientation="vertical">
 
                             <ImageView
@@ -352,15 +367,17 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
-                        android:layout_weight="1"
-                        android:onClick="onClickToLogout">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:id="@+id/llv_logout_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_5dp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
+                            android:onClick="onClickToLogout"
                             android:orientation="vertical">
 
                             <ImageView
