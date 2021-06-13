@@ -8,4 +8,5 @@ public class AppKeys {
     public static final String SUB_CONTRACTOR = "sub_contractor";
     public static final int SUB_CONTRACTOR_RESULT = 205;
     public static final String DATE_FORMAT = "yyyy-MM-dd";
+    public static final String ACTIVTY = "activity";
 }

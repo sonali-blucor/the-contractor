@@ -82,6 +82,13 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
         }
 
+        if (intent.hasExtra(AppKeys.ACTIVTY)) {
+            model = intent.getParcelableExtra(AppKeys.ACTIVTY);
+            project.main_activity_id = model.activity.activity_id;
+            project.main_activity_name = model.activity.activity_name;
+           // setProjectSubActivity();
+        }
+
         getProjectActivityDetails();
 
     }
@@ -111,9 +118,10 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
     private void setProjectSubActivity() {
         //subActivities = new ArrayList<>();
-        if (model.subActivities.size() <= 0) {
+        if (model.subActivities.size() > 0) {
             try {
-                main_activity_start_end_date.setText(project.start_date+" "+project.end_date);
+                edt_activity_name.setText(model.activity.activity_name);
+                main_activity_start_end_date.setText(project.start_date+" - "+project.end_date);
                 String dateString = project.start_date;
                 SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 Date date = sdf.parse(dateString);

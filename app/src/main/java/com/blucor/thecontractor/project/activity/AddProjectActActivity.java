@@ -81,7 +81,7 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
     }
 
     private void setupAdapter() {
-        adapter = new ActivityExpandableListViewAdapter(AddProjectActActivity.this,activityResponses);
+        adapter = new ActivityExpandableListViewAdapter(AddProjectActActivity.this,activityResponses,project);
         exp_lst_main_activity.setAdapter(adapter);
     }
 

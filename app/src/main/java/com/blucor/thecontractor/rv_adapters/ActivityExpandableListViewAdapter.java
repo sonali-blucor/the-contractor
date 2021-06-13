@@ -1,6 +1,7 @@
 package com.blucor.thecontractor.rv_adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -13,9 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Activity;
 import com.blucor.thecontractor.models.ActivityResponseModel;
+import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.SubActivityModel;
+import com.blucor.thecontractor.project.activity.AddActivityDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +27,12 @@ import java.util.List;
 public class ActivityExpandableListViewAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<ActivityResponseModel> activityResponses;
+    private ProjectsModel project;
 
-    public ActivityExpandableListViewAdapter(Context context, List<ActivityResponseModel> activityResponses) {
+    public ActivityExpandableListViewAdapter(Context context, List<ActivityResponseModel> activityResponses,ProjectsModel project) {
         this.context = context;
         this.activityResponses = activityResponses;
+        this.project = project;
     }
 
     @Override
@@ -71,8 +77,22 @@ public class ActivityExpandableListViewAdapter extends BaseExpandableListAdapter
         }
 
         TextView tv_activity = convertView.findViewById(R.id.tv_exp_list_activity_group_item);
+        ImageView img_edit_activity = convertView.findViewById(R.id.img_edit_exp_list_activity_group_item);
         ActivityResponseModel activityResponse = getGroup(groupPosition);
         tv_activity.setText(activityResponse.activity.activity_name);
+
+        img_edit_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                project.main_activity_name = activityResponse.activity.activity_name;
+                project.main_activity_id = activityResponse.activity.activity_id;
+
+                Intent intent = new Intent(context, AddActivityDetailsActivity.class);
+                intent.putExtra(AppKeys.PROJECT,project);
+                intent.putExtra(AppKeys.ACTIVTY,activityResponse);
+                context.startActivity(intent);
+            }
+        });
         return convertView;
     }
 
@@ -95,7 +115,11 @@ public class ActivityExpandableListViewAdapter extends BaseExpandableListAdapter
         name.setText(" "+subActivity.sub_activity_name);
         start_end_date.setText(" "+subActivity.start_date+" - "+subActivity.end_date);
         sub_contractor_name.setText(" "+subActivity.sub_contractor_first_name+" "+subActivity.sub_contractor_last_name);
-        duration_name.setText(" "+subActivity.duration+" Days");
+        if (subActivity.duration == 1) {
+            duration_name.setText(" " + subActivity.duration + " Day");
+        } else {
+            duration_name.setText(" " + subActivity.duration + " Days");
+        }
 
         return convertView;
     }
