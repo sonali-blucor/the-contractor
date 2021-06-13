@@ -34,6 +34,8 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     private ProjectsModel project;
     private ScheduleModel schedule;
     private boolean is_scheduled;
+    private String on_going = "On Going";
+    private String complete = "Complete";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     }
 
     private void popupProjectStatusDialog() {
-        String[] status_list = new String[]{"On Going","Complete"};
+        String[] status_list = new String[]{on_going,complete};
         AlertDialog.Builder builder = new AlertDialog.Builder(ScheduleActivity.this);
         builder.setTitle("Select Project Status");
         builder.setItems(status_list, new DialogInterface.OnClickListener() {
@@ -122,12 +124,19 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         if (is_scheduled) {
             edt_project_name.setText(""+schedule.project_name);
             edt_no_of_days.setText(""+schedule.no_of_days);
-            edt_project_status.setText(""+schedule.project_status);
+            if (schedule.project_status == 1) {
+                edt_project_status.setText(complete);
+            } else {
+                edt_project_status.setText(on_going);
+            }
             wd_schedule.setSelectedWeekDays(schedule.week_days);
             rt_bar_schedule.setRating(schedule.rating);
         } else {
             edt_project_name.setText(""+project.project_name);
-            String num_days = project.duration.replace("Days","").trim();
+            String num_days = project.duration.toLowerCase().replace("days","").trim();
+            if (num_days.toLowerCase().contains("day")) {
+                num_days = num_days.toLowerCase().replace("day","").trim();
+            }
             int numDays = Integer.parseInt(num_days);
             edt_no_of_days.setText(""+numDays);
         }
@@ -138,9 +147,13 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         String week_days = wd_schedule.selectedWeekDays().toString();
         int num_of_days = Integer.parseInt(edt_no_of_days.getText().toString());
         float ratings = rt_bar_schedule.getRating();
+        int project_status_integer = 0;
+        if (project_status.equalsIgnoreCase(complete)) {
+            project_status_integer = 1;
+        }
 
         showLoader();
-        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,ratings).enqueue(new Callback<ScheduleModel>() {
+        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,project_status_integer,ratings).enqueue(new Callback<ScheduleModel>() {
             @Override
             public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
                 if (response.code() == 200 && response.body() != null) {

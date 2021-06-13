@@ -152,6 +152,7 @@ public interface ApiService {
             @Field("project_status") String project_status,
             @Field("no_of_days") int no_of_days,
             @Field("week_days") String week_days,
+            @Field("project_status_integer") int project_status_integer,
             @Field("rating") float rating);
 
     @FormUrlEncoded
@@ -192,5 +193,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.SHOW_SUB_CONTRACTOR_BY_CONTRACTOR_ID)
     Call<SubContractorAddSearchModel> getAllSubContractorsByContractor(@Field("contractor_id") int contractor_id);
+
+    @FormUrlEncoded
+    @POST(Contants.VIEW_ALL_COMPLETED_PROJECTS_BY_CONTRACTOR_ID)
+    Call<List<ProjectsModel>> getAllCompletedProjectContractorType(@Field("contractor_id") int contractor_id);
 }
 

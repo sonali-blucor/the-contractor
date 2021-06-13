@@ -184,6 +184,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         private final TextView item_4;
         private final TextView item_5;
         private final TextView item_6;
+        private final TextView item_schedule;
 
         ViewHolderCompleted(final View itemView) {
             super(itemView);
@@ -194,6 +195,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_4 = itemView.findViewById(R.id.txt_item_4);
             item_5 = itemView.findViewById(R.id.txt_item_5);
             item_6 = itemView.findViewById(R.id.txt_item_6);
+            item_schedule = itemView.findViewById(R.id.txt_schedule);
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -215,7 +217,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_3.setText(item.client_fname +" "+item.client_lname);
 
             item_6.setVisibility(View.VISIBLE);
-            //item_6.setText(item.getTotalMaterial());
+            item_schedule.setVisibility(View.GONE);
 
             item_5.setVisibility(View.VISIBLE);
             item_5.setOnClickListener(new View.OnClickListener() {

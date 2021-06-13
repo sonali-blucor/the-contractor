@@ -48,6 +48,10 @@ public class ProjectsModel implements Parcelable {
     @Expose
     public int contractor_id;
 
+    @SerializedName("project_status")
+    @Expose
+    public int project_status;
+
     @SerializedName("created_at")
     @Expose
     public String created_at;
@@ -268,7 +272,11 @@ public class ProjectsModel implements Parcelable {
     }
 
     public int getView_type() {
-        return 1;
+        if (project_status == 1) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     public void setView_type(int view_type) {
