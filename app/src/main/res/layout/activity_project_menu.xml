@@ -28,31 +28,41 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_add_project_menu"
                     android:layout_width="match_parent"
-                    android:padding="@dimen/padding_5dp"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickToAddProject"
                     android:layout_margin="@dimen/margin_5dp">
 
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToAddProject"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/tv_add_project_menu"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_title"
-                            android:layout_marginLeft="@dimen/margin_8dp"
                             android:layout_marginStart="@dimen/margin_8dp"
-                            android:textStyle="bold"
-                            android:text="Add Project" />
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Add Project"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/img_add_project_menu"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="right"
-                            android:padding="@dimen/margin_24dp"
+                            android:padding="@dimen/_10sdp"
                             android:src="@drawable/ic_add_project" />
+                    </LinearLayout>
 
 
                 </androidx.cardview.widget.CardView>
@@ -60,32 +70,40 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_view_project_menu"
                     android:layout_width="match_parent"
-                    android:padding="@dimen/padding_5dp"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickToProjects"
                     android:layout_margin="@dimen/margin_5dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToProject"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_view_project_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Projects" />
+                        <TextView
+                            android:id="@+id/tv_view_project_menu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Projects"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_view_project_menu"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_view_project_s" />
-
+                        <ImageView
+                            android:id="@+id/img_view_project_menu"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_view_project_s" />
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -93,156 +111,199 @@
                     android:id="@+id/cv_completed_project_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_5dp"
-                    android:onClick="onClickToCompletedProject"
                     android:layout_margin="@dimen/margin_5dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToCompletedProject"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_completed_project_menu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Completed Projects" />
+                        <TextView
+                            android:id="@+id/tv_completed_project_menu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Completed Projects"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_completed_project_menu"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_completed_project" />
+                        <ImageView
+                            android:id="@+id/img_completed_project_menu"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_completed_project" />
 
-
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_activity_management"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_5dp"
-                    android:onClick="onClickToActivityManagement"
                     android:layout_margin="@dimen/margin_5dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToActivityManagement"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_activity_management"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Activity Management" />
+                        <TextView
+                            android:id="@+id/tv_activity_management"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Activity Management"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_activity_management"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_completed_project" />
-
+                        <ImageView
+                            android:id="@+id/img_activity_management"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_completed_project" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_sub_contractor_management"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_5dp"
-                    android:onClick="onClickToSubContractorManagement"
                     android:layout_margin="@dimen/margin_5dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToSubContractorManagement"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_sub_contractor_management"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Sub Conractor Management" />
+                        <TextView
+                            android:id="@+id/tv_sub_contractor_management"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Sub Contractor Management"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_sub_contractor_management"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_completed_project" />
-
+                        <ImageView
+                            android:id="@+id/img_sub_contractor_management"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_completed_project" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_material_management"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_5dp"
+                    android:layout_margin="@dimen/margin_5dp"
                     android:onClick="onClickToMaterialManagement"
-                    android:layout_margin="@dimen/margin_5dp">
+                    android:padding="@dimen/padding_5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToMaterialManagement"
+                        android:orientation="horizontal">
 
 
-                    <TextView
-                        android:id="@+id/tv_material_management"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Material Management" />
+                        <TextView
+                            android:id="@+id/tv_material_management"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Material Management"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_material_management"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_material" />
-
+                        <ImageView
+                            android:id="@+id/img_material_management"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_material" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_download_reportd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_5dp"
-                    android:onClick="onClickToDownloadAndReport"
                     android:layout_margin="@dimen/margin_5dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_menu"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClickToDownloadAndReport"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_download_reportd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_title"
-                        android:layout_marginLeft="@dimen/margin_8dp"
-                        android:layout_marginStart="@dimen/margin_8dp"
-                        android:textStyle="bold"
-                        android:text="Download And Report" />
+                        <TextView
+                            android:id="@+id/tv_download_reportd"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:text="Download And Report"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/img_download_reportd"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:padding="@dimen/margin_24dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/ic_download" />
-
+                        <ImageView
+                            android:id="@+id/img_download_reportd"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="right"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_download" />
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
