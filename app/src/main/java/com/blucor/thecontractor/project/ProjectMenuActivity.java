@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
+import com.blucor.thecontractor.material.AddMaterialActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,7 @@ public class ProjectMenuActivity extends AppCompatActivity {
     }
 
     public void onClickToMaterialManagement(View view) {
-
+        ScreenHelper.redirectToClass(ProjectMenuActivity.this, AddMaterialActivity.class);
     }
 
     public void onClickToDownloadAndReport(View view) {
