@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
@@ -26,8 +27,8 @@ public class ConfirmPasswordActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_confirm_password;
     private TextInputEditText edt_confirm_cpassword;
     private TextInputEditText edt_otp;
-    private MaterialButton btn_confirm_password;
-    private MaterialButton btn_confirm_otp;
+    private TextView btn_confirm_password;
+    private TextView btn_confirm_otp;
     private String otp;
     private String server_id;
     private int is_client = -1;
