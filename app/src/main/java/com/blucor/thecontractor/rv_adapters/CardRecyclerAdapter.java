@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import android.app.Activity;
+
+import com.blucor.thecontractor.material.AddMaterialActivity;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.project.ProjectDetailsActivity;
 import com.blucor.thecontractor.project.ProjectListActivity;
@@ -107,6 +109,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         private final TextView item_3;
         private final TextView item_4;
         private final TextView item_5;
+        private final TextView item_6;
         private final TextView item_schedule;
 
         ViewHolder(final View itemView) {
@@ -117,6 +120,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             item_3 = itemView.findViewById(R.id.txt_item_3);
             item_4 = itemView.findViewById(R.id.txt_item_4);
             item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_6 = itemView.findViewById(R.id.txt_item_6);
             item_schedule = itemView.findViewById(R.id.txt_schedule);
         }
 
@@ -139,6 +143,28 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     bundle.putParcelable(AppKeys.PROJECT,model);
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
                     ScreenHelper.redirectToClass(mContext, ScheduleActivity.class,bundle);
+                }
+            });
+
+            item_6.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProjectsModel model = mList.get(getAdapterPosition());
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppKeys.PROJECT,model);
+                    bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
+                    ScreenHelper.redirectToClass(mContext, AddMaterialActivity.class,bundle);
+                }
+            });
+
+            item_schedule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProjectsModel model = mList.get(getAdapterPosition());
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppKeys.PROJECT,model);
+                    bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
+                    ScreenHelper.redirectToClass(mContext, AddMaterialActivity.class,bundle);
                 }
             });
 

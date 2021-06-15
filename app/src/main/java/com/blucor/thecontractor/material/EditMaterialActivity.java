@@ -35,30 +35,6 @@ public class EditMaterialActivity extends AppCompatActivity {
         mAdapter = new TableRecyclerAdapter(EditMaterialActivity.this);
         mRvView.setAdapter(mAdapter);
 
-        mList.clear();
-        mList.add(new ProjectMaterialModel(true));
-        mList.add(new ProjectMaterialModel("1", "Cement", "12/04/2021", "Bag", "25", true));
-        mList.add(new ProjectMaterialModel("2", "Sand", "09/04/2021", "Small", "4", true));
 
-        mAdapter.addItems(mList);
-        mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
-            @Override
-            public void recyclerViewListClicked(View v, int position) {
-
-            }
-
-            @Override
-            public void addViewListClicked(View v, int position) {
-
-            }
-
-            @Override
-            public void editViewListClicked(View v, int position) {
-                ProjectMaterialModel projectMaterialModel = (ProjectMaterialModel)mList.get(position);
-                Bundle bundle =new Bundle();
-                bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE,true);
-                ScreenHelper.redirectToClass(EditMaterialActivity.this, AddMaterialDetailsActivity.class,bundle);
-            }
-        });
     }
 }

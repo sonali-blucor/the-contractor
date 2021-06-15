@@ -65,7 +65,7 @@
             android:drawableLeft="@drawable/ic_m_material"
             android:drawablePadding="@dimen/drawable_padding"
             android:text="Material"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textColor="@color/gray"
             app:drawableStartCompat="@drawable/ic_m_material"
             tools:ignore="UseCompatTextViewDrawableXml" />

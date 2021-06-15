@@ -1,76 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".material.AddMaterialDetailsActivity">
 
     <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/btn_submit"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_name"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Material Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="40"
-                    android:nextFocusDown="@id/edt_material_date"
-                    android:singleLine="true" />
-
-                <requestFocus></requestFocus>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_brand"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_brand"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Material Brand"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="40"
-                    android:nextFocusDown="@id/edt_material_date"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btn_submit"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_material_date"
+                    android:id="@+id/til_material_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/input_margin_5dp"
@@ -78,197 +29,251 @@
                     app:errorIconDrawable="@drawable/edit_background">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_material_date"
+                        android:id="@+id/edt_material_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_background"
                         android:drawablePadding="@dimen/drawable_padding"
-                        android:enabled="false"
-                        android:hint="Date"
+                        android:hint="Material Name"
                         android:imeOptions="actionNext"
-                        android:inputType="date"
-                        android:maxLength="20"
-                        android:nextFocusDown="@id/edt_material_type"
-                        android:onClick="onClickDate"
-                        android:singleLine="true"
-                        android:textColor="@color/black" />
+                        android:inputType="text"
+                        android:maxLength="40"
+                        android:nextFocusDown="@id/edt_material_date"
+                        android:singleLine="true" />
+
+                    <requestFocus></requestFocus>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_brand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Material Brand"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="40"
+                        android:nextFocusDown="@id/edt_material_date"
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/img_date"
-                    style="@style/Theme.TheContractor.ImageViewTheme"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:onClick="onClickDate"
-                    android:padding="@dimen/drawable_padding"
-                    android:src="@drawable/ic_date" />
-            </RelativeLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_type"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_material_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/input_margin_5dp"
+                        android:background="@drawable/edit_background"
+                        app:errorIconDrawable="@drawable/edit_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_material_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_background"
+                            android:drawablePadding="@dimen/drawable_padding"
+                            android:enabled="false"
+                            android:hint="Date"
+                            android:imeOptions="actionNext"
+                            android:inputType="date"
+                            android:maxLength="20"
+                            android:nextFocusDown="@id/edt_material_type"
+                            android:onClick="onClickDate"
+                            android:singleLine="true"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/img_date"
+                        style="@style/Theme.TheContractor.ImageViewTheme"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:onClick="onClickDate"
+                        android:padding="@dimen/drawable_padding"
+                        android:src="@drawable/ic_date" />
+                </RelativeLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Material Type"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="50"
-                    android:nextFocusDown="@id/edt_material_quantity"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Material Type"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:nextFocusDown="@id/edt_material_quantity"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_supplier_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_supplier_name"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_supplier_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Supplier Name"
-                    android:imeOptions="actionNext"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:nextFocusDown="@id/edt_material_quantity"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_supplier_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Supplier Name"
+                        android:imeOptions="actionNext"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:inputType="textPersonName"
+                        android:maxLength="50"
+                        android:nextFocusDown="@id/edt_material_quantity"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_supplier_contact_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_supplier_contact_number"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_supplier_contact_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Supplier Contact Number"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLength="50"
-                    android:nextFocusDown="@id/edt_material_quantity"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_supplier_contact_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Supplier Contact Number"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:digits="0123456789"
+                        android:maxLength="10"
+                        android:nextFocusDown="@id/edt_material_quantity"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_unit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_unit"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_unit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Unit"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:nextFocusDown="@id/btn_submit"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Unit"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:nextFocusDown="@id/btn_submit"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_quantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_quantity"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_quantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Quantity"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:nextFocusDown="@id/btn_submit"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Quantity"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:nextFocusDown="@id/btn_submit"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_rate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_rate"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Rate"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:nextFocusDown="@id/btn_submit"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Rate"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:nextFocusDown="@id/btn_submit"
+                        android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_material_amount"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
                     android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Amount"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:nextFocusDown="@id/btn_submit"
-                    android:singleLine="true" />
+                    app:errorIconDrawable="@drawable/edit_background">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="Amount"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:nextFocusDown="@id/btn_submit"
+                        android:singleLine="true" />
 
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/btn_submit"
@@ -277,10 +282,11 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:background="@color/yellow"
-            android:onClick="onClickToSubmit"
+            android:onClick="onClickToSubmitMaterial"
             android:text="Submit"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
+
     </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

@@ -8,6 +8,8 @@ import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
 import com.blucor.thecontractor.models.InsertActivityResponseModel;
 import com.blucor.thecontractor.models.InsertSubActivityResponseModel;
+import com.blucor.thecontractor.models.Material;
+import com.blucor.thecontractor.models.ProjectMaterialModel;
 import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
@@ -197,5 +199,25 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_COMPLETED_PROJECTS_BY_CONTRACTOR_ID)
     Call<List<ProjectsModel>> getAllCompletedProjectContractorType(@Field("contractor_id") int contractor_id);
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_MATERIAL)
+    Call<ProjectMaterialModel> storeMaterial(@Field("material_name") String material_name,
+                                             @Field("material_brand") String material_brand,
+                                             @Field("material_date") String material_date,
+                                             @Field("material_type") String material_type,
+                                             @Field("supplier_name") String supplier_name,
+                                             @Field("supplier_contact") String supplier_contact,
+                                             @Field("unit") String unit,
+                                             @Field("quantity") String quantity,
+                                             @Field("rate") String rate,
+                                             @Field("amount") String amount,
+                                             @Field("project_id") int project_id,
+                                             @Field("is_edit") boolean is_edit,
+                                             @Field("material_id") int material_id);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_MATERIAL_BY_PROJECT_ID)
+    Call<List<Material>> getMaterialsByProjectId(@Field("project_id") int project_id);
 }
 
