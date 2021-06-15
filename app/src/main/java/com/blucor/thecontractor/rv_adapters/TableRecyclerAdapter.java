@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
+import com.blucor.thecontractor.models.Material;
 import com.blucor.thecontractor.models.ProjectActivityModel;
 import com.blucor.thecontractor.models.ProjectMaterialModel;
 
@@ -76,7 +77,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (mList.get(position) instanceof ProjectActivityModel) {
             return VIEW_TYPE_NORMAL_ACTIVITY;
         }
-        if (mList.get(position) instanceof ProjectMaterialModel) {
+        if (mList.get(position) instanceof Material) {
             return VIEW_TYPE_NORMAL_MATERIAL;
         }
         if (mList.get(position) instanceof ClientProjectActivityModel) {
@@ -187,7 +188,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public class MaterialViewHolder extends BaseViewHolder {
 
         private final View viewHolder;
-        private ProjectMaterialModel item;
+        private Material item;
         private final LinearLayout item_table;
         private final ImageView item_img_edit;
         private final TextView item_1;
@@ -224,7 +225,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @SuppressLint("UseCompatLoadingForDrawables")
         public void onBind(int position) {
             super.onBind(position);
-            item = (ProjectMaterialModel) mList.get(position);
+            item = (Material) mList.get(position);
             item_6.setVisibility(View.VISIBLE);
             if (position == 0) {
                 item_table.setBackgroundColor(mContext.getResources().getColor(R.color.yellow));
@@ -233,16 +234,16 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 setViewToHeader(item_3, "Date");
                 setViewToHeader(item_4, "Type");
                 setViewToHeader(item_6, "Quantity");
-                if (item.isEditFlag()) {
+                //if (item.isEditFlag()) {
                     item_img_edit.setVisibility(View.VISIBLE);
-                }
+                //}
             } else {
                 item_1.setText(String.valueOf(position));
-                item_2.setText(item.getMaterialName());
-                item_3.setText(item.getMaterialDate());
-                item_4.setText(item.getMaterialType());
-                item_6.setText(item.getMaterialQuantity());
-                if (item.isEditFlag()) {
+                item_2.setText(""+item.material_name);
+                item_3.setText(""+item.material_date);
+                item_4.setText(""+item.material_type);
+                item_6.setText(""+item.quantity);
+                //if (false) {
                     item_img_edit.setVisibility(View.VISIBLE);
                     item_img_edit.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -252,7 +253,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                             }
                         }
                     });
-                }
+                //}
             }
         }
 

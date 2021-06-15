@@ -1,127 +1,57 @@
 package com.blucor.thecontractor.models;
 
-public class ProjectMaterialModel {
-    private String no;
-    private String materialName;
-    private String materialDate;
-    private String materialType;
-    private String materialTransport;
-    private String materialQuantity;
-    private String materialUnit;
-    private boolean editFlag;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class ProjectMaterialModel implements Parcelable {
+
+    @SerializedName("success")
+    @Expose
+    public boolean success;
+
+    @SerializedName("material")
+    @Expose
+    public Material material;
+
+    @SerializedName("message")
+    @Expose
+    public String message;
+
 
     public ProjectMaterialModel() {
     }
 
-    /**
-     *
-     * @param editFlag
-     */
-    public ProjectMaterialModel(boolean editFlag) {
-        this.editFlag = editFlag;
+
+    protected ProjectMaterialModel(Parcel in) {
+        success = in.readByte() != 0;
+        material = in.readParcelable(Material.class.getClassLoader());
+        message = in.readString();
     }
 
-    /**
-     *
-     * @param no
-     * @param materialName
-     * @param materialDate
-     * @param materialType
-     * @param materialTransport
-     * @param materialQuantity
-     * @param materialUnit
-     * @param editFlag
-     */
-    public ProjectMaterialModel(String no, String materialName, String materialDate, String materialType, String materialTransport, String materialQuantity, String materialUnit, boolean editFlag) {
-        this.no = no;
-        this.materialName = materialName;
-        this.materialDate = materialDate;
-        this.materialType = materialType;
-        this.materialTransport = materialTransport;
-        this.materialQuantity = materialQuantity;
-        this.materialUnit = materialUnit;
-        this.editFlag = editFlag;
+    public static final Creator<ProjectMaterialModel> CREATOR = new Creator<ProjectMaterialModel>() {
+        @Override
+        public ProjectMaterialModel createFromParcel(Parcel in) {
+            return new ProjectMaterialModel(in);
+        }
+
+        @Override
+        public ProjectMaterialModel[] newArray(int size) {
+            return new ProjectMaterialModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    /**
-     *
-     * @param no
-     * @param materialName
-     * @param materialDate
-     * @param materialType
-     * @param materialQuantity
-     * @param editFlag
-     */
-    public ProjectMaterialModel(String no, String materialName, String materialDate, String materialType, String materialQuantity, boolean editFlag) {
-        this.no = no;
-        this.materialName = materialName;
-        this.materialDate = materialDate;
-        this.materialType = materialType;
-        this.materialQuantity = materialQuantity;
-        this.editFlag = editFlag;
-    }
-
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
-    }
-
-    public String getMaterialName() {
-        return materialName;
-    }
-
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
-    }
-
-    public String getMaterialDate() {
-        return materialDate;
-    }
-
-    public void setMaterialDate(String materialDate) {
-        this.materialDate = materialDate;
-    }
-
-    public String getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(String materialType) {
-        this.materialType = materialType;
-    }
-
-    public String getMaterialTransport() {
-        return materialTransport;
-    }
-
-    public void setMaterialTransport(String materialTransport) {
-        this.materialTransport = materialTransport;
-    }
-
-    public String getMaterialQuantity() {
-        return materialQuantity;
-    }
-
-    public void setMaterialQuantity(String materialQuantity) {
-        this.materialQuantity = materialQuantity;
-    }
-
-    public String getMaterialUnit() {
-        return materialUnit;
-    }
-
-    public void setMaterialUnit(String materialUnit) {
-        this.materialUnit = materialUnit;
-    }
-
-    public boolean isEditFlag() {
-        return editFlag;
-    }
-
-    public void setEditFlag(boolean editFlag) {
-        this.editFlag = editFlag;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (success ? 1 : 0));
+        dest.writeParcelable(material, flags);
+        dest.writeString(message);
     }
 }

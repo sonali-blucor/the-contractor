@@ -79,7 +79,7 @@
                         android:background="@drawable/selector_menu"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="onClickToProject"
+                        android:onClick="onClickToProjects"
                         android:orientation="horizontal">
 
                         <TextView
