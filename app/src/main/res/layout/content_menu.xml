@@ -162,7 +162,7 @@
                                 android:id="@+id/tv_material_menu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Material"
+                                android:text="Today's Activities"
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/_14sdp"
                                 android:textStyle="bold" />

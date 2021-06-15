@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
@@ -14,6 +16,7 @@ import com.blucor.thecontractor.helper.AppKeys;
 import android.app.Activity;
 
 import com.blucor.thecontractor.material.AddMaterialActivity;
+import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.project.ProjectDetailsActivity;
 import com.blucor.thecontractor.project.ProjectListActivity;
@@ -26,11 +29,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> implements Filterable {
     private static final int VIEW_TYPE_NORMAL = 1;
     private static final int VIEW_TYPE_COMPLETED = 2;
     private final boolean isLoaderVisible = false;
     private List<ProjectsModel> mList = new ArrayList();
+    private List<ProjectsModel> allJournals = new ArrayList();
 
     private final Activity mContext;
     private RecyclerViewClickListener mListener;
@@ -42,6 +46,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public CardRecyclerAdapter(Activity mContext, List<ProjectsModel> mList) {
         this.mContext = mContext;
         this.mList = mList;
+        this.allJournals = mList;
     }
 
     public void setOnRecyclerViewClickListener(RecyclerViewClickListener listener) {
@@ -92,12 +97,56 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void addItems(List list) {
         mList.addAll(list);
+        allJournals.addAll(list);
         notifyDataSetChanged();
     }
 
     public void clear() {
         mList.clear();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults result = new FilterResults();
+                if(constraint == null || constraint.length() == 0){
+                    result.values = allJournals;
+                    result.count = allJournals.size();
+                }else{
+                    ArrayList<ProjectsModel> filteredList = new ArrayList<>();
+                    for(ProjectsModel j: allJournals){
+                        if(j.project_name.toLowerCase().contains(constraint.toString().toLowerCase()))
+                            filteredList.add(j);
+                        else if(j.project_name.toLowerCase().contains(constraint.toString().toLowerCase()))
+                            filteredList.add(j);
+                    }
+                    result.values = filteredList;
+                    result.count = filteredList.size();
+                }
+
+                return result;
+            }
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                if (results.count == 0) {
+                    allJournals = mList;
+                    notifyDataSetChangedFiler();
+                } else {
+                    allJournals = (ArrayList<ProjectsModel>) results.values;
+                    notifyDataSetChangedFiler();
+                }
+            }
+        };
+    }
+
+    public void notifyDataSetChangedFiler() {
+        if (mContext instanceof ProjectListActivity) {
+            ((ProjectListActivity) mContext).setadapter(allJournals);
+        }
     }
 
     public class ViewHolder extends BaseViewHolder {
@@ -285,4 +334,5 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             super.onBind(position);
         }
     }
+
 }

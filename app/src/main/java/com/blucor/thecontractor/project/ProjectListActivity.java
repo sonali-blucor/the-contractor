@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.custom.CustomProjectAutoCompleteTextChangedListener;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
@@ -29,8 +31,9 @@ import retrofit2.Response;
 public class ProjectListActivity extends BaseAppCompatActivity {
 
     private RecyclerView mRvView;
-    private CardRecyclerAdapter mAdapter;
+    public CardRecyclerAdapter mAdapter;
     private List<ProjectsModel> mList;
+    public EditText mEdtProjectSearch;
     private User user;
 
     @Override
@@ -39,6 +42,7 @@ public class ProjectListActivity extends BaseAppCompatActivity {
         setContentView(R.layout.activity_project_list);
 
         mRvView = findViewById(R.id.recycler_view_list);
+        mEdtProjectSearch = findViewById(R.id.edt_project_search);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);
@@ -58,7 +62,7 @@ public class ProjectListActivity extends BaseAppCompatActivity {
                 public void onResponse(Call<List<ProjectsModel>> call, Response<List<ProjectsModel>> response) {
                     if (response.code() == 200 && response.body() != null) {
                         mList = response.body();
-                        setadapter();
+                        setadapter(mList);
                     }
                     stopLoader();
                 }
@@ -73,7 +77,8 @@ public class ProjectListActivity extends BaseAppCompatActivity {
         }
     }
 
-    private void setadapter() {
+    public void setadapter(List<ProjectsModel> mList) {
+        mEdtProjectSearch.addTextChangedListener(new CustomProjectAutoCompleteTextChangedListener(ProjectListActivity.this));
         mAdapter = new CardRecyclerAdapter(ProjectListActivity.this);
         mRvView.setAdapter(mAdapter);
 
