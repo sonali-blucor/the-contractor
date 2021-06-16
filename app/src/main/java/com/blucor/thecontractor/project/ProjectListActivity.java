@@ -20,8 +20,11 @@ import com.blucor.thecontractor.rv_adapters.CardRecyclerAdapter;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -49,40 +52,16 @@ public class ProjectListActivity extends BaseAppCompatActivity {
 
         user = DatabaseUtil.on().getAllUser().get(0);
 
-        getProjectList();
-    }
+        mList = new ArrayList<>();
+        mAdapter = new CardRecyclerAdapter(this,mList);
 
-    private void getProjectList() {
-        int contractor_id = user.server_id;
-
-        showLoader();
-        try {
-            RetrofitClient.getApiService().getAllProjectContractorType(contractor_id).enqueue(new Callback<List<ProjectsModel>>() {
-                @Override
-                public void onResponse(Call<List<ProjectsModel>> call, Response<List<ProjectsModel>> response) {
-                    if (response.code() == 200 && response.body() != null) {
-                        mList = response.body();
-                        setadapter(mList);
-                    }
-                    stopLoader();
-                }
-
-                @Override
-                public void onFailure(Call<List<ProjectsModel>> call, Throwable t) {
-                    stopLoader();
-                }
-            });
-        } catch(Exception e) {
-            Log.e("view project",e.getMessage());
-        }
-    }
-
-    public void setadapter(List<ProjectsModel> mList) {
-        mEdtProjectSearch.addTextChangedListener(new CustomProjectAutoCompleteTextChangedListener(ProjectListActivity.this));
-        mAdapter = new CardRecyclerAdapter(ProjectListActivity.this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRvView.setLayoutManager(mLayoutManager);
+        mRvView.setItemAnimator(new DefaultItemAnimator());
         mRvView.setAdapter(mAdapter);
 
-        mAdapter.addItems(mList);
+        mEdtProjectSearch.addTextChangedListener(new CustomProjectAutoCompleteTextChangedListener(ProjectListActivity.this));
+
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
@@ -111,5 +90,37 @@ public class ProjectListActivity extends BaseAppCompatActivity {
                 }
             }
         });
+
+        getProjectList();
+    }
+
+    private void getProjectList() {
+        int contractor_id = user.server_id;
+
+        showLoader();
+        try {
+            RetrofitClient.getApiService().getAllProjectContractorType(contractor_id).enqueue(new Callback<List<ProjectsModel>>() {
+                @Override
+                public void onResponse(Call<List<ProjectsModel>> call, Response<List<ProjectsModel>> response) {
+                    if (response.code() == 200 && response.body() != null) {
+                        mList.addAll(response.body());
+                        mAdapter.notifyDataSetChanged();
+                    }
+                    stopLoader();
+                }
+
+                @Override
+                public void onFailure(Call<List<ProjectsModel>> call, Throwable t) {
+                    stopLoader();
+                }
+            });
+        } catch(Exception e) {
+            Log.e("view project",e.getMessage());
+        }
+    }
+
+    public void setadapter(List<ProjectsModel> mAdapterList) {
+        mAdapter = new CardRecyclerAdapter(ProjectListActivity.this,mList);
+        mRvView.setAdapter(mAdapter);
     }
 }

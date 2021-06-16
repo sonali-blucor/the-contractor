@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/search_background">
             <EditText
+                android:id="@+id/edt_completed_project_search"
                 android:drawableStart="@drawable/ic_search"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="@dimen/drawable_padding"

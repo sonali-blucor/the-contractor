@@ -34,14 +34,9 @@ public class MaterialMenuActivity extends AppCompatActivity {
         mRvView.setLayoutManager(layoutManager);
 
         mList = new ArrayList();
-        mAdapter = new CardRecyclerAdapter(MaterialMenuActivity.this);
+        mAdapter = new CardRecyclerAdapter(MaterialMenuActivity.this,mList);
         mRvView.setAdapter(mAdapter);
 
-        mList.clear();
-        //mList.add(new ProjectsModel("PSD1", "Project 1", "Samit Patil", "879887899", true));
-        //mList.add(new ProjectsModel("PSD2", "Project2", "Ravi Patil", "849887899", true));
-
-        mAdapter.addItems(mList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {

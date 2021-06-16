@@ -78,7 +78,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.get(position).getView_type() == VIEW_TYPE_NORMAL) {
+        if (allJournals.get(position).getView_type() == VIEW_TYPE_NORMAL) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_COMPLETED;
@@ -87,67 +87,24 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
 
     @Override
     public int getItemCount() {
-        return mList == null ? 0 : mList.size();
+        return allJournals == null ? 0 : allJournals.size();
     }
 
     public void changeItems(List<ProjectsModel> list, int position) {
-        mList.set(position, list.get(position));
+        allJournals.set(position, list.get(position));
         notifyDataSetChanged();
     }
 
-    public void addItems(List list) {
-        mList.addAll(list);
+    /*public void addItems(List list) {
         allJournals.addAll(list);
         notifyDataSetChanged();
     }
 
     public void clear() {
-        mList.clear();
+        allJournals.clear();
         notifyDataSetChanged();
-    }
+    }*/
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                FilterResults result = new FilterResults();
-                if(constraint == null || constraint.length() == 0){
-                    result.values = allJournals;
-                    result.count = allJournals.size();
-                }else{
-                    ArrayList<ProjectsModel> filteredList = new ArrayList<>();
-                    for(ProjectsModel j: allJournals){
-                        if(j.project_name.toLowerCase().contains(constraint.toString().toLowerCase()))
-                            filteredList.add(j);
-                        else if(j.project_name.toLowerCase().contains(constraint.toString().toLowerCase()))
-                            filteredList.add(j);
-                    }
-                    result.values = filteredList;
-                    result.count = filteredList.size();
-                }
-
-                return result;
-            }
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                if (results.count == 0) {
-                    allJournals = mList;
-                    notifyDataSetChangedFiler();
-                } else {
-                    allJournals = (ArrayList<ProjectsModel>) results.values;
-                    notifyDataSetChangedFiler();
-                }
-            }
-        };
-    }
-
-    public void notifyDataSetChangedFiler() {
-        if (mContext instanceof ProjectListActivity) {
-            ((ProjectListActivity) mContext).setadapter(allJournals);
-        }
-    }
 
     public class ViewHolder extends BaseViewHolder {
 
@@ -178,7 +135,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
 
         public void onBind(int position) {
             super.onBind(position);
-            item = mList.get(position);
+            item = allJournals.get(position);
             item_1.setText(item.project_name);
             item_2.setText(""+item.id);
             item_3.setText(item.client_fname +" "+item.client_lname);
@@ -187,7 +144,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
             item_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ProjectsModel model = mList.get(getAdapterPosition());
+                    ProjectsModel model = allJournals.get(getAdapterPosition());
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppKeys.PROJECT,model);
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
@@ -198,7 +155,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
             item_6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ProjectsModel model = mList.get(getAdapterPosition());
+                    ProjectsModel model = allJournals.get(getAdapterPosition());
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppKeys.PROJECT,model);
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
@@ -209,7 +166,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
             item_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ProjectsModel model = mList.get(getAdapterPosition());
+                    ProjectsModel model = allJournals.get(getAdapterPosition());
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppKeys.PROJECT,model);
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
@@ -286,7 +243,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
 
         public void onBind(int position) {
             super.onBind(position);
-            item = mList.get(position);
+            item = allJournals.get(position);
             item_1.setText(item.project_name);
             item_2.setText(""+item.id);
             item_3.setText(item.client_fname +" "+item.client_lname);
@@ -333,6 +290,41 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
         public void onBind(int position) {
             super.onBind(position);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    allJournals = mList;
+                } else {
+                    List<ProjectsModel> filteredList = new ArrayList<>();
+                    for (ProjectsModel row : mList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.project_name.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    allJournals = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = allJournals;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                allJournals = (ArrayList<ProjectsModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
 }
