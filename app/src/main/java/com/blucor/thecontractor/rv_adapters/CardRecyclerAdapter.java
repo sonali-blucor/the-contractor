@@ -163,17 +163,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
                 }
             });
 
-            item_schedule.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProjectsModel model = allJournals.get(getAdapterPosition());
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(AppKeys.PROJECT,model);
-                    bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-                    ScreenHelper.redirectToClass(mContext, AddMaterialActivity.class,bundle);
-                }
-            });
-
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
