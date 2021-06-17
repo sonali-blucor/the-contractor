@@ -140,9 +140,11 @@
                         android:text="@string/input_state" />
 
                     <EditText
+                        android:id="@+id/et_shipping_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/et_shipping_state"
+                        android:enabled="false"
+                        android:text="Maharashtra"
                         />
                 </LinearLayout>
                 <!--END OF EDITTEXT : STATE-->
@@ -161,9 +163,11 @@
                         android:text="@string/input_country" />
 
                     <EditText
+                        android:id="@+id/et_shipping_country"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/et_shipping_country"
+                        android:enabled="false"
+                        android:text="India"
                         />
                 </LinearLayout>
                 <!--END OF EDITTEXT : COUNTRY-->
