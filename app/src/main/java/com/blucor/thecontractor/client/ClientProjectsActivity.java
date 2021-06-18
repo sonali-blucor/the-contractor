@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
+import com.blucor.thecontractor.MenuActivity;
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
@@ -170,6 +172,8 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
 
     private void logoutClientFromServer() {
         DatabaseUtil.on().deleteAll();
-        ScreenHelper.exitApp(ClientProjectsActivity.this);
+        ScreenHelper.redirectToClass(ClientProjectsActivity.this, LoginActivity.class);
+        finish();
+        Toast.makeText(this, "Successfully logout", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,5 +1,6 @@
 package com.blucor.thecontractor;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.account.UserProfileActivity;
+import com.blucor.thecontractor.client.ClientProjectsActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.material.MaterialMenuActivity;
 import com.blucor.thecontractor.models.Contractor;
@@ -24,6 +26,7 @@ import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.multidex.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -89,6 +92,30 @@ public class MenuActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToLogout(View view) {
+       logoutContractor();
+    }
+
+    private void logoutContractor() {
+        AlertDialog dialog = new AlertDialog.Builder(MenuActivity.this).create();
+        dialog.setMessage("Do you want to logout?");
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                logoutContractorFromServer();
+            }
+        });
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void logoutContractorFromServer() {
         DatabaseUtil.on().deleteAll();
         ScreenHelper.redirectToClass(MenuActivity.this, LoginActivity.class);
         finish();
