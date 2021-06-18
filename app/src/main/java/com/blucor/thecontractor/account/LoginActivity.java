@@ -109,6 +109,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                             user.setCreated_at(contractor.created_at);
                             user.setImage_name(contractor.profile_pic);
 
+                            DatabaseUtil.on().deleteAll();
                             DatabaseUtil.on().insertUser(user);
 
                             Toast.makeText(LoginActivity.this, "Sucessfully logged in", Toast.LENGTH_SHORT).show();
@@ -176,6 +177,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                             user.setCreated_at(client.created_at);
                             user.setImage_name(client.profile_pic);
 
+                            DatabaseUtil.on().deleteAll();
                             DatabaseUtil.on().insertUser(user);
 
                             Toast.makeText(LoginActivity.this, "Sucessfully logged in", Toast.LENGTH_SHORT).show();

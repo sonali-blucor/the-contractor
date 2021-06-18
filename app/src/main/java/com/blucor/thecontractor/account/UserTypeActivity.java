@@ -42,7 +42,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, Context.MODE_PRIVATE);
 
-        try {
+       /* try {
             if (sharedPreferences.getInt(Contants.USER_TYPE_KEY, 0) == Contants.USER_TYPE_CONTRACTOR) {
                 ((RadioButton) findViewById(R.id.rb_contractor)).setChecked(true);
             }
@@ -50,7 +50,7 @@ public class UserTypeActivity extends AppCompatActivity {
                 ((RadioButton) findViewById(R.id.rb_client)).setChecked(true);
             }
         } catch (Exception e) {
-        }
+        }*/
         rg_user_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
