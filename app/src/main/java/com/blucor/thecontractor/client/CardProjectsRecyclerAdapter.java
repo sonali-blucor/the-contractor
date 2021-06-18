@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.models.ClientProjectActivityModel;
 import com.blucor.thecontractor.rv_adapters.BaseViewHolder;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 
@@ -27,9 +27,9 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
     private final Context mContext;
     private RecyclerViewClickListener mListener;
 
-    public CardProjectsRecyclerAdapter(Context context) {
+   /* public CardProjectsRecyclerAdapter(Context context) {
         this.mContext = context;
-    }
+    }*/
 
     public CardProjectsRecyclerAdapter(Context mContext, List mList) {
         this.mContext = mContext;
@@ -62,7 +62,7 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.get(position) instanceof ProjectsModel) {
+        if (mList.get(position) instanceof ClientProjectActivityModel) {
             return VIEW_TYPE_NORMAL;
         }
         return 0;
@@ -91,12 +91,13 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
     public class ViewHolder extends BaseViewHolder {
 
         private final View viewHolder;
-        private ProjectsModel item;
+        private ClientProjectActivityModel item;
         private final TextView item_1;
         private final TextView item_2;
         private final TextView item_3;
         private final TextView item_4;
         private final TextView item_5;
+        private final TextView item_schedule;
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -106,6 +107,8 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
             item_3 = itemView.findViewById(R.id.txt_item_3);
             item_4 = itemView.findViewById(R.id.txt_item_4);
             item_5 = itemView.findViewById(R.id.txt_item_5);
+            item_schedule = itemView.findViewById(R.id.txt_schedule);
+            item_schedule.setVisibility(View.GONE);
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -121,11 +124,11 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
         public void onBind(int position) {
             super.onBind(position);
-            /*item = (ProjectsModel) mList.get(position);
-                item_1.setText(item.getProjectName());
-                item_2.setText(item.getProjectId());
-                item_3.setText(item.getProjectClientName());
-                if (!item.isMaterial()) {
+            item = (ClientProjectActivityModel) mList.get(position);
+                item_1.setText(""+item.project_name);
+                item_2.setText(""+item.id);
+                item_3.setText(""+item.fname+" "+item.lname);
+               // if (!item.isMaterial()) {
                     item_4.setText("Contractor");
                     item_4.setVisibility(View.VISIBLE);
                     item_4.setOnClickListener(new View.OnClickListener() {
@@ -136,13 +139,13 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
                             }
                         }
                     });
-                }else{
+                /*}else{
                     item_4.setVisibility(View.INVISIBLE);
                 }*/
         }
 
         private void setViewToHeader(TextView textView, String text) {
-            textView.setText(text);
+            textView.setText(""+text);
             textView.setTextColor(mContext.getResources().getColor(R.color.white));
             textView.setTypeface(null, Typeface.BOLD);
         }

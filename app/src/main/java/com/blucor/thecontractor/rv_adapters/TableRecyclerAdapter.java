@@ -313,12 +313,12 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 setViewToHeader(item_3, "Start and End Date");
                 setViewToHeader(item_4, "Duration");
                 setViewToHeader(item_5, "Contact");
-                if (item.isEditFlag()) {
+               /* if (item.isEditFlag()) {
                     item_img_edit.setVisibility(View.VISIBLE);
                     item_img_edit.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_call_yellow));
-                }
+                }*/
             } else {
-                item_1.setText(String.valueOf(position));
+                /*item_1.setText(String.valueOf(position));
                 item_2.setText(item.getActivityName());
                 item_3.setText(item.getStartDate() + " to " + item.getEndDate());
                 item_4.setText(item.getDuration());
@@ -334,7 +334,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                             }
                         }
                     });
-                }
+                }*/
             }
         }
 

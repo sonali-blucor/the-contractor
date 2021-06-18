@@ -3,6 +3,7 @@ package com.blucor.thecontractor.network.reposervices;
 import com.blucor.thecontractor.models.ActivityResponseModel;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.ClientAddSearchModel;
+import com.blucor.thecontractor.models.ClientProjectActivityModel;
 import com.blucor.thecontractor.models.Contract_Type;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.ForgotPasswordModel;
@@ -219,5 +220,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.GET_MATERIAL_BY_PROJECT_ID)
     Call<List<Material>> getMaterialsByProjectId(@Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.VIEW_ALL_PROJECTS_BY_CLIENT_ID)
+    Call<List<ClientProjectActivityModel>> getAllProjectClientType(@Field("client_id") int client_id);
 }
 

@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
+import com.blucor.thecontractor.models.User;
+import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
@@ -18,12 +22,15 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class ClientProjectsActivity extends AppCompatActivity {
+public class ClientProjectsActivity extends BaseAppCompatActivity {
 
     private RecyclerView mRvView;
     private CardProjectsRecyclerAdapter mAdapter;
-    private List mList;
+    private List<ClientProjectActivityModel> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +43,45 @@ public class ClientProjectsActivity extends AppCompatActivity {
         mRvView.setLayoutManager(layoutManager);
 
         mList = new ArrayList();
-        mAdapter = new CardProjectsRecyclerAdapter(ClientProjectsActivity.this);
+        mAdapter = new CardProjectsRecyclerAdapter(ClientProjectsActivity.this,mList);
         mRvView.setAdapter(mAdapter);
+        setupAdapter();
 
-        mList.clear();
-       // mList.add(new ProjectsModel("PSD1", "Project 1", "Contractor 1", "879887899", false));
-       // mList.add(new ProjectsModel("PSD2", "Project2", "Contractor 2", "849887899", false));
+        loadProjectList();
+    }
 
+    private void loadProjectList() {
+        showLoader();
+        User user = DatabaseUtil.on().getAllUser().get(0);
+        int id = user.server_id;
+        RetrofitClient.getApiService().getAllProjectClientType(id).enqueue(new Callback<List<ClientProjectActivityModel>>() {
+            @Override
+            public void onResponse(Call<List<ClientProjectActivityModel>> call, Response<List<ClientProjectActivityModel>> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    mList.clear();
+                    mList.addAll(response.body());
+                    mAdapter.notifyDataSetChanged();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<List<ClientProjectActivityModel>> call, Throwable t) {
+                Toast.makeText(ClientProjectsActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
+    }
+
+    private void setupAdapter() {
         mAdapter.addItems(mList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
+                ClientProjectActivityModel project = mList.get(position);
                 Bundle bundle =new Bundle();
                 bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
+                bundle.putParcelable(AppKeys.PROJECT,project);
                 ScreenHelper.redirectToClass(ClientProjectsActivity.this, ProjectActActivity.class,bundle);
             }
 
@@ -60,7 +93,7 @@ public class ClientProjectsActivity extends AppCompatActivity {
             @Override
             public void editViewListClicked(View v, int position) {
                 ClientProjectActivityModel clientProjectActivityModel  = (ClientProjectActivityModel) mList.get(position);
-                Uri u = Uri.parse("tel:" + clientProjectActivityModel.getWorkerMobileNo());
+                Uri u = Uri.parse("tel:" + clientProjectActivityModel.mobile);
                 Intent i = new Intent(Intent.ACTION_DIAL, u);
                 try {
                     startActivity(i);

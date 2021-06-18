@@ -19,8 +19,9 @@ import java.util.List;
 public class ProjectActActivity extends AppCompatActivity {
 
     private RecyclerView mRvView;
-    private TableRecyclerAdapter mAdapter;
+    //private TableRecyclerAdapter mAdapter;
     private List mList;
+    private ClientProjectActivityModel project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,16 @@ public class ProjectActActivity extends AppCompatActivity {
         mRvView.setLayoutManager(layoutManager);
 
         mList = new ArrayList();
-        mAdapter = new TableRecyclerAdapter(ProjectActActivity.this);
-        mRvView.setAdapter(mAdapter);
+       // mAdapter = new TableRecyclerAdapter(ProjectActActivity.this);
+       // mRvView.setAdapter(mAdapter);
 
         mList.clear();
-        mList.add(new ClientProjectActivityModel(true));
-        mList.add(new ClientProjectActivityModel("1", "Column", "12/04/2021", "15/04/2021", "4 Days", "Samit Patil", "8798878995", true));
-        mList.add(new ClientProjectActivityModel("2", "Lining", "09/04/2021", "12/04/2021", "4 Days", "Ravi Patil", "8498878993", true));
+      //  mList.add(new ClientProjectActivityModel(true));
+      //  mList.add(new ClientProjectActivityModel("1", "Column", "12/04/2021", "15/04/2021", "4 Days", "Samit Patil", "8798878995", true));
+      //  mList.add(new ClientProjectActivityModel("2", "Lining", "09/04/2021", "12/04/2021", "4 Days", "Ravi Patil", "8498878993", true));
 
-        mAdapter.addItems(mList);
-        mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
+        //mAdapter.addItems(mList);
+       /* mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
 
@@ -55,9 +56,9 @@ public class ProjectActActivity extends AppCompatActivity {
 
             @Override
             public void editViewListClicked(View v, int position) {
-                String contact = ((ClientProjectActivityModel)mList.get(position)).getWorkerMobileNo();
-                ScreenHelper.goToDialPad(ProjectActActivity.this,contact);
+              //  String contact = ((ClientProjectActivityModel)mList.get(position)).getWorkerMobileNo();
+              //  ScreenHelper.goToDialPad(ProjectActActivity.this,contact);
             }
-        });
+        });*/
     }
 }
