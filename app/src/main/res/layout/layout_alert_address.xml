@@ -145,6 +145,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:text="Maharashtra"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
                 <!--END OF EDITTEXT : STATE-->
@@ -168,6 +169,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:text="India"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
                 <!--END OF EDITTEXT : COUNTRY-->

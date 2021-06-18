@@ -68,8 +68,8 @@ public class AddProjectActivity extends BaseAppCompatActivity {
     private String address2 = "";
     private String city = "";
     private String zip = "";
-    private String state = "";
-    private String country = "";
+    private String state = "Maharashtra";
+    private String country = "India";
     private Dialog dialog;
     private boolean isFieldEmpty;
     private boolean isAddressInput;
