@@ -6,9 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.models.ClientProjectActivityModel;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
 import com.blucor.thecontractor.rv_adapters.BaseViewHolder;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
@@ -19,10 +22,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> implements Filterable {
     private static final int VIEW_TYPE_NORMAL = 1;
     private final boolean isLoaderVisible = false;
-    private List mList = new ArrayList();
+    private List<ClientProjectActivityModel> mList = new ArrayList();
+    private List<ClientProjectActivityModel> allJournals = new ArrayList();
 
     private final Context mContext;
     private RecyclerViewClickListener mListener;
@@ -34,6 +38,7 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
     public CardProjectsRecyclerAdapter(Context mContext, List mList) {
         this.mContext = mContext;
         this.mList = mList;
+        this.allJournals = mList;
     }
 
     public void setOnRecyclerViewClickListener(RecyclerViewClickListener listener) {
@@ -62,7 +67,7 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.get(position) instanceof ClientProjectActivityModel) {
+        if (allJournals.get(position) instanceof ClientProjectActivityModel) {
             return VIEW_TYPE_NORMAL;
         }
         return 0;
@@ -70,22 +75,57 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
     @Override
     public int getItemCount() {
-        return mList == null ? 0 : mList.size();
+        return allJournals == null ? 0 : allJournals.size();
     }
 
-    public void changeItems(List list, int position) {
+   /* public void changeItems(List<ClientProjectActivityModel> list, int position) {
         mList.set(position, list);
         notifyDataSetChanged();
-    }
+    }*/
 
-    public void addItems(List list) {
+    /*public void addItems(List list) {
         mList.addAll(list);
         notifyDataSetChanged();
-    }
+    }*/
 
-    public void clear() {
+    /*public void clear() {
         mList.clear();
         notifyDataSetChanged();
+    }*/
+
+    @Override
+    public Filter getFilter() {
+         return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    allJournals = mList;
+                } else {
+                    List<ClientProjectActivityModel> filteredList = new ArrayList<>();
+                    for (ClientProjectActivityModel row : mList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.project_name.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    allJournals = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = allJournals;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                allJournals = (ArrayList<ClientProjectActivityModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends BaseViewHolder {
@@ -124,7 +164,7 @@ public class CardProjectsRecyclerAdapter extends RecyclerView.Adapter<BaseViewHo
 
         public void onBind(int position) {
             super.onBind(position);
-            item = (ClientProjectActivityModel) mList.get(position);
+            item = allJournals.get(position);
                 item_1.setText(""+item.project_name);
                 item_2.setText(""+item.id);
                 item_3.setText(""+item.fname+" "+item.lname);

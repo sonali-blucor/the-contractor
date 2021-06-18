@@ -3,7 +3,10 @@ package com.blucor.thecontractor.client;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
@@ -31,6 +34,7 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
     private RecyclerView mRvView;
     private CardProjectsRecyclerAdapter mAdapter;
     private List<ClientProjectActivityModel> mList;
+    private EditText mEdtSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
         setContentView(R.layout.activity_client_projects);
 
         mRvView = findViewById(R.id.recycler_view_list);
+        mEdtSearch = findViewById(R.id.edt_client_project_search);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);
@@ -46,6 +51,23 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
         mAdapter = new CardProjectsRecyclerAdapter(ClientProjectsActivity.this,mList);
         mRvView.setAdapter(mAdapter);
         setupAdapter();
+
+        mEdtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         loadProjectList();
     }
@@ -74,7 +96,6 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
     }
 
     private void setupAdapter() {
-        mAdapter.addItems(mList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
