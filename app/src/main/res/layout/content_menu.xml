@@ -127,7 +127,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Project Management"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -164,7 +165,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Today's Activities"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -207,7 +209,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Account"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -244,7 +247,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Share App"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -287,7 +291,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Send Feedback"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -324,7 +329,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="About Us"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -366,7 +372,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Upgrade to Premium"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -403,7 +410,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Log Out"
                                 android:textAllCaps="true"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
