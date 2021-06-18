@@ -224,5 +224,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CLIENT_ID)
     Call<List<ClientProjectActivityModel>> getAllProjectClientType(@Field("client_id") int client_id);
+
 }
 

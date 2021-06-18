@@ -1,10 +1,14 @@
 package com.blucor.thecontractor.client;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +18,7 @@ import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
+import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
@@ -22,6 +27,8 @@ import com.blucor.thecontractor.utility.ScreenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -123,5 +130,46 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.client_home_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout_menu) {
+            logoutClient();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logoutClient() {
+        AlertDialog dialog = new AlertDialog.Builder(ClientProjectsActivity.this).create();
+        dialog.setMessage("Do you want to logout?");
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                logoutClientFromServer();
+            }
+        });
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void logoutClientFromServer() {
+        DatabaseUtil.on().deleteAll();
+        ScreenHelper.exitApp(ClientProjectsActivity.this);
     }
 }
