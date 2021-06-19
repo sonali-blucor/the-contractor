@@ -13,20 +13,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.multidex.BuildConfig;
+
 import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.account.UserProfileActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
-import com.blucor.thecontractor.project.material.MaterialMenuActivity;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.network.utils.Contants;
 import com.blucor.thecontractor.project.ProjectManagementMenuActivity;
+import com.blucor.thecontractor.project.activity.TodaysActivitiesActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.multidex.BuildConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -139,8 +140,8 @@ public class MenuActivity extends BaseAppCompatActivity {
         ScreenHelper.redirectToClass(MenuActivity.this, UserProfileActivity.class);
     }
 
-    public void onClickToMaterial(View view) {
-        ScreenHelper.redirectToClass(MenuActivity.this, MaterialMenuActivity.class);
+    public void onClickToTodayActivity(View view) {
+        ScreenHelper.redirectToClass(MenuActivity.this, TodaysActivitiesActivity.class);
     }
 
     public void onClickToProject(View view) {

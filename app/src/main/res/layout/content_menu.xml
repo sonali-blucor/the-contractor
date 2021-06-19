@@ -150,7 +150,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:gravity="center"
-                            android:onClick="onClickToMaterial"
+                            android:onClick="onClickToTodayActivity"
                             android:orientation="vertical">
 
                             <ImageView
