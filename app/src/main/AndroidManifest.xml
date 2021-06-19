@@ -21,7 +21,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.activity.TodaysActivitiesActivity"></activity>
+        <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity"></activity>
+        <activity android:name=".project.sub_contractor.BillingActivity" />
+        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
+        <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.ProjectMenuActivity" />
         <activity
             android:name=".client.ClientProjectSubActDetailsActivity"
