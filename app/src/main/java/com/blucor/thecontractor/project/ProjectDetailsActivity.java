@@ -23,8 +23,6 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
 
-    private LinearLayout mLlhActivity;
-    private LinearLayout mLlhMaterial;
     private ProjectsModel project;
     private TextView btn_call;
     private TextView tv_project_id;
@@ -59,18 +57,12 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
         try {
             Bundle bundle = getIntent().getExtras();
-            if (bundle.getBoolean(AppKeys.PROJECT_DETAIL_TYPE)) {
-                mLlhMaterial.setVisibility(View.VISIBLE);
-            } else {
-                mLlhActivity.setVisibility(View.VISIBLE);
-            }
-
             if (bundle.containsKey(AppKeys.PROJECT)) {
                 project = bundle.getParcelable(AppKeys.PROJECT);
                 setupProject();
             }
         } catch (Exception e) {
-            mLlhActivity.setVisibility(View.VISIBLE);
+
         }
 
     }
