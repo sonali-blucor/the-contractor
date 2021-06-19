@@ -44,8 +44,6 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_details);
 
-        mLlhActivity = findViewById(R.id.llh_activity);
-        mLlhMaterial = findViewById(R.id.llh_material);
         btn_call = findViewById(R.id.btn_call);
         tv_project_id = findViewById(R.id.tv_project_id);
         tv_project_name = findViewById(R.id.tv_project_name);
