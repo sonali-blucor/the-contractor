@@ -1,4 +1,4 @@
-package com.blucor.thecontractor.material;
+package com.blucor.thecontractor.project.material;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +22,6 @@ import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
 

@@ -1,18 +1,13 @@
-package com.blucor.thecontractor.material;
+package com.blucor.thecontractor.project.material;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.helper.AppKeys;
-import com.blucor.thecontractor.models.ProjectMaterialModel;
-import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.rv_adapters.TableRecyclerAdapter;
-import com.blucor.thecontractor.utility.ScreenHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".material.AddMaterialActivity">
+    tools:context=".project.material.AddMaterialActivity">
 
     <LinearLayout
         android:id="@+id/llh_project_id"

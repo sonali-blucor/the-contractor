@@ -1,6 +1,5 @@
 package com.blucor.thecontractor.rv_adapters;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +14,8 @@ import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import android.app.Activity;
 
-import com.blucor.thecontractor.material.AddMaterialActivity;
-import com.blucor.thecontractor.models.Client;
+import com.blucor.thecontractor.project.material.AddMaterialActivity;
 import com.blucor.thecontractor.models.ProjectsModel;
-import com.blucor.thecontractor.project.ProjectDetailsActivity;
-import com.blucor.thecontractor.project.ProjectListActivity;
 import com.blucor.thecontractor.project.ScheduleActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 

@@ -1,4 +1,4 @@
-package com.blucor.thecontractor.material;
+package com.blucor.thecontractor.project.material;
 
 import android.os.Bundle;
 import android.view.View;

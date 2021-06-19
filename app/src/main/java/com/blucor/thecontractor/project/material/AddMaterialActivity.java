@@ -1,6 +1,5 @@
-package com.blucor.thecontractor.material;
+package com.blucor.thecontractor.project.material;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -16,13 +15,8 @@ import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Material;
-import com.blucor.thecontractor.models.ProjectActivityModel;
-import com.blucor.thecontractor.models.ProjectMaterialModel;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
-import com.blucor.thecontractor.project.activity.AddActivityDetailsActivity;
-import com.blucor.thecontractor.project.activity.AddProjectActActivity;
-import com.blucor.thecontractor.project.activity.EditProjectActActivity;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.rv_adapters.TableRecyclerAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;

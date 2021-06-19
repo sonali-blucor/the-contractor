@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.account.UserProfileActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
-import com.blucor.thecontractor.material.MaterialMenuActivity;
+import com.blucor.thecontractor.project.material.MaterialMenuActivity;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
