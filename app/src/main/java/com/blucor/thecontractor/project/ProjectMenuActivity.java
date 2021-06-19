@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
-import com.blucor.thecontractor.models.SubContractor;
-import com.blucor.thecontractor.project.activity.AddActivityDetailsActivity;
-import com.blucor.thecontractor.project.material.MaterialMenuActivity;
+import com.blucor.thecontractor.project.activity.AddProjectActActivity;
+import com.blucor.thecontractor.project.material.AddMaterialActivity;
+import com.blucor.thecontractor.project.sub_contractor.SubContractorMgtMenuActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 public class ProjectMenuActivity extends AppCompatActivity {
@@ -35,21 +35,21 @@ public class ProjectMenuActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddActivityDetailsActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, AddProjectActActivity.class,bundle);
     }
 
     public void onClickToSubContractorManagement(View view) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, SubContractor.class,bundle);
+        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class,bundle);
     }
 
     public void onClickToMaterialManagement(View view) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, MaterialMenuActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, AddMaterialActivity.class,bundle);
     }
 
     public void onClickToProjectDetail(View view) {
