@@ -1,31 +1,23 @@
 package com.blucor.thecontractor.project;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
-import com.blucor.thecontractor.material.AddMaterialActivity;
-import com.blucor.thecontractor.material.EditMaterialActivity;
 import com.blucor.thecontractor.models.ProjectsModel;
-import com.blucor.thecontractor.project.activity.AddProjectActActivity;
-import com.blucor.thecontractor.project.activity.EditProjectActActivity;
-import com.blucor.thecontractor.utility.ScreenHelper;
 
 public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
@@ -111,18 +103,6 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         }
     }
 
-    public void onClickToAddActivity(View view) {
-        if (project != null) {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(AppKeys.PROJECT, project);
-            ScreenHelper.redirectToClass(ProjectDetailsActivity.this, AddProjectActActivity.class,bundle);
-        }
-    }
-
-    public void onClickToEditActivity(View view) {
-        ScreenHelper.redirectToClass(ProjectDetailsActivity.this, EditProjectActActivity.class);
-    }
-
     @SuppressLint("QueryPermissionsNeeded")
     public void onClickToClientSMS(View view) {
         checkForSmsPermission();
@@ -177,11 +157,4 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         }
     }
 
-    public void onClickToAddMaterial(View view) {
-        ScreenHelper.redirectToClass(ProjectDetailsActivity.this, AddMaterialActivity.class);
-    }
-
-    public void onClickToEditMaterial(View view) {
-        ScreenHelper.redirectToClass(ProjectDetailsActivity.this, EditMaterialActivity.class);
-    }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,30 +14,30 @@
             android:id="@+id/llh_call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickToCall"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/padding_5dp"
             android:background="@color/yellow"
-            android:orientation="horizontal">
+            android:gravity="center_horizontal"
+            android:onClick="onClickToCall"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_5dp">
 
             <TextView
                 android:id="@+id/btn_call"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:drawableStart="@drawable/ic_call"
                 android:drawableLeft="@drawable/ic_call"
+                android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center"
                 android:text="Call To Client"
-                android:gravity="center_horizontal"
                 android:textAllCaps="true"
-                android:textSize="@dimen/label_text_size"
                 android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/llh_bottom"
+            android:layout_height="match_parent"
             android:layout_below="@+id/llh_call"
             android:fillViewport="true">
 
@@ -231,9 +230,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_below="@id/tv_t_client_sms"
-                        android:background="@drawable/table_content_cell_bg">
+                        android:background="@drawable/table_content_cell_bg"
+                        android:orientation="vertical">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -275,11 +274,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/tv_t_client_password"
                                 android:background="@drawable/edit_box_background"
+                                android:inputType="textPassword"
                                 android:padding="@dimen/padding_5dp"
-                                android:visibility="gone"
                                 android:text="sanju123"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/label_text_size" />
+                                android:textSize="@dimen/label_text_size"
+                                android:visibility="visible" />
 
                             <TextView
                                 android:id="@+id/tv_t_client_password"
@@ -299,15 +299,15 @@
                         android:id="@+id/tv_t_client_sms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/margin_5dp"
-                        android:layout_marginEnd="@dimen/margin_5dp"
-                        android:background="@color/yellow"
-                        android:layout_marginBottom="-5dp"
-                        android:padding="@dimen/padding_5dp"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:text="Client SMS"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/margin_5dp"
+                        android:layout_marginRight="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/yellow"
                         android:onClick="onClickToClientSMS"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Client SMS"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/label_text_size"
@@ -403,85 +403,5 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/llh_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/llh_activity"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_add_activity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:background="@color/yellow"
-                    android:onClick="onClickToAddActivity"
-                    android:text="Add Activity"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_edit_activity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:background="@color/yellow"
-                    android:onClick="onClickToEditActivity"
-                    android:text="Activitys"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/llh_material"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_add_material"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:background="@color/yellow"
-                    android:onClick="onClickToAddMaterial"
-                    android:text="Add Material"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_edit_material"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:background="@color/yellow"
-                    android:onClick="onClickToEditMaterial"
-                    android:text="Materials"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-
     </RelativeLayout>
-</ScrollView>
+</RelativeLayout>
