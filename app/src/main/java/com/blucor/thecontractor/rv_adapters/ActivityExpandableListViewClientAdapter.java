@@ -113,7 +113,12 @@ public class ActivityExpandableListViewClientAdapter extends BaseExpandableListA
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return true;
     }
 
     public Drawable applyThemeToDrawable(Drawable image) {

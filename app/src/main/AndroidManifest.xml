@@ -11,9 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-
-
-        <activity android:name=".project.activity.AddSubContractorActivity"></activity>
+        <activity android:name=".client.ClientProjectSubActDetailsActivity"
+            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
+        <activity android:name=".project.activity.AddSubContractorActivity" />
         <activity android:name=".project.ScheduleActivity" />
         <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
@@ -25,10 +25,9 @@
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
             android:name=".client.ProjectActActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
         <activity
-            android:name=".client.ClientProjectsActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+            android:name=".client.ClientProjectsActivity" />
         <activity
             android:name=".material.AddMaterialDetailsActivity"
             android:label="Material"

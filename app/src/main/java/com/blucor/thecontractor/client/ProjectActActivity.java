@@ -78,10 +78,12 @@ public class ProjectActActivity extends BaseAppCompatActivity {
         exp_lst_main_activity.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                SubActivityModel subActivity = activityResponses.get(groupPosition).subActivities.get(childPosition);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(AppKeys.SUB_ACTIVITY,subActivity);
-               // ScreenHelper.redirectToClass(ProjectActActivity.this,"class",bundle);
+                SubActivityModel subActivity = adapter.getChild(groupPosition,childPosition);
+                if (subActivity != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppKeys.SUB_ACTIVITY, subActivity);
+                    ScreenHelper.redirectToClass(ProjectActActivity.this, ClientProjectSubActDetailsActivity.class, bundle);
+                }
                 return true;
             }
         });
