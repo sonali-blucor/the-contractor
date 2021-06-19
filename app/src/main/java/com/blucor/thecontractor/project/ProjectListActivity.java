@@ -69,7 +69,7 @@ public class ProjectListActivity extends BaseAppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(AppKeys.PROJECT,model);
                 bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-                ScreenHelper.redirectToClass(ProjectListActivity.this, ProjectDetailsActivity.class,bundle);
+                ScreenHelper.redirectToClass(ProjectListActivity.this, ProjectMenuActivity.class,bundle);
             }
 
             @Override
