@@ -10,26 +10,26 @@ import com.blucor.thecontractor.utility.ScreenHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ProjectMenuActivity extends AppCompatActivity {
+public class ProjectManagementMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_menu);
+        setContentView(R.layout.activity_project_management_menu);
     }
 
     public void onClickToCompletedProject(View view) {
-        ScreenHelper.redirectToClass(ProjectMenuActivity.this,CompletedProjectsActivity.class);
+        ScreenHelper.redirectToClass(ProjectManagementMenuActivity.this,CompletedProjectsActivity.class);
     }
 
     public void onClickToProjects(View view) {
         Bundle bundle =new Bundle();
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(ProjectMenuActivity.this,ProjectListActivity.class,bundle);
+        ScreenHelper.redirectToClass(ProjectManagementMenuActivity.this,ProjectListActivity.class,bundle);
     }
 
     public void onClickToAddProject(View view) {
-        ScreenHelper.redirectToClass(ProjectMenuActivity.this,AddProjectActivity.class);
+        ScreenHelper.redirectToClass(ProjectManagementMenuActivity.this,AddProjectActivity.class);
     }
 
     public void onClickToActivityManagement(View view) {
@@ -41,7 +41,7 @@ public class ProjectMenuActivity extends AppCompatActivity {
     }
 
     public void onClickToMaterialManagement(View view) {
-        ScreenHelper.redirectToClass(ProjectMenuActivity.this, AddMaterialActivity.class);
+        ScreenHelper.redirectToClass(ProjectManagementMenuActivity.this, AddMaterialActivity.class);
     }
 
     public void onClickToDownloadAndReport(View view) {

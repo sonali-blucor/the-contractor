@@ -468,7 +468,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(AddProjectActivity.this,ProjectMenuActivity.class);
+        Intent intent = new Intent(AddProjectActivity.this, ProjectManagementMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

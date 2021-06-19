@@ -15,14 +15,13 @@ import android.widget.Toast;
 
 import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.account.UserProfileActivity;
-import com.blucor.thecontractor.client.ClientProjectsActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.material.MaterialMenuActivity;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.network.utils.Contants;
-import com.blucor.thecontractor.project.ProjectMenuActivity;
+import com.blucor.thecontractor.project.ProjectManagementMenuActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 import androidx.annotation.NonNull;
@@ -145,19 +144,19 @@ public class MenuActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToProject(View view) {
-        ScreenHelper.redirectToClass(MenuActivity.this, ProjectMenuActivity.class);
+        ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
     }
 
     public void onClickToSendFeedBack(View view) {
-       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectMenuActivity.class);
+       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
     }
 
     public void onClickToAboutUs(View view) {
-       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectMenuActivity.class);
+       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
     }
 
     public void onClickToUpgradePremium(View view) {
-       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectMenuActivity.class);
+       // ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
     }
 
     @Override

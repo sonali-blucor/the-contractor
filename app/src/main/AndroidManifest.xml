@@ -42,7 +42,7 @@
             android:label="@string/title_activity_success_fullscreen"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" /> <!-- android:theme="@style/Theme.TheContractor.Fullscreen" /> -->
         <activity
-            android:name=".project.ProjectMenuActivity"
+            android:name=".project.ProjectManagementMenuActivity"
             android:label="Project" />
         <activity
             android:name=".project.ProjectListActivity"
