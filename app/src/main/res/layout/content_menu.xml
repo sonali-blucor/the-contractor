@@ -106,6 +106,7 @@
                             android:id="@+id/llv_project_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp"
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
@@ -144,6 +145,7 @@
                             android:id="@+id/llv_material_menu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp"
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
@@ -188,6 +190,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/selector_menu"
+                            android:layout_margin="@dimen/_5sdp"
                             android:clickable="true"
                             android:focusable="true"
                             android:gravity="center"
@@ -228,6 +231,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
+                            android:layout_margin="@dimen/_5sdp"
                             android:focusable="true"
                             android:gravity="center"
                             android:onClick="onClickToShare"
@@ -273,6 +277,7 @@
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
+                            android:layout_margin="@dimen/_5sdp"
                             android:gravity="center"
                             android:onClick="onClickToSendFeedBack"
                             android:orientation="vertical">
@@ -311,6 +316,7 @@
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
+                            android:layout_margin="@dimen/_5sdp"
                             android:gravity="center"
                             android:onClick="onClickToAboutUs"
                             android:orientation="vertical">
@@ -354,6 +360,7 @@
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
+                            android:layout_margin="@dimen/_5sdp"
                             android:gravity="center"
                             android:onClick="onClickToUpgradePremium"
                             android:orientation="vertical">
@@ -392,6 +399,7 @@
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
                             android:focusable="true"
+                            android:layout_margin="@dimen/_5sdp"
                             android:gravity="center"
                             android:onClick="onClickToLogout"
                             android:orientation="vertical">
