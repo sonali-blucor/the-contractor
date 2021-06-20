@@ -2,16 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blucor.thecontractor">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <application
         android:name=".project.ContractorApplication"
         android:allowBackup="true"
@@ -21,14 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity"></activity>
-        <activity android:name=".project.sub_contractor.BillingActivity" />
-        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
-        <activity android:name=".project.activity.TodaysActivitiesActivity" />
-        <activity android:name=".project.ProjectMenuActivity" />
-        <activity
-            android:name=".client.ClientProjectSubActDetailsActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+        <activity android:name=".client.ClientProjectSubActDetailsActivity"
+            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
         <activity android:name=".project.activity.AddSubContractorActivity" />
         <activity android:name=".project.ScheduleActivity" />
         <activity android:name=".client.ClientAddAndSearchActivity" />
@@ -41,10 +25,11 @@
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
             android:name=".client.ProjectActActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
-        <activity android:name=".client.ClientProjectsActivity" />
+            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
         <activity
-            android:name=".project.material.AddMaterialDetailsActivity"
+            android:name=".client.ClientProjectsActivity" />
+        <activity
+            android:name=".material.AddMaterialDetailsActivity"
             android:label="Material"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -57,7 +42,7 @@
             android:label="@string/title_activity_success_fullscreen"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" /> <!-- android:theme="@style/Theme.TheContractor.Fullscreen" /> -->
         <activity
-            android:name=".project.ProjectManagementMenuActivity"
+            android:name=".project.ProjectMenuActivity"
             android:label="Project" />
         <activity
             android:name=".project.ProjectListActivity"
@@ -79,13 +64,13 @@
             android:name=".project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.MaterialMenuActivity"
+            android:name=".material.MaterialMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.AddMaterialActivity"
+            android:name=".material.AddMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.EditMaterialActivity"
+            android:name=".material.EditMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
             android:name=".account.UserProfileActivity"
@@ -114,5 +99,15 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>
