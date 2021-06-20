@@ -1,4 +1,4 @@
-package com.blucor.thecontractor.project;
+package com.blucor.thecontractor.project.sub_contractor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
