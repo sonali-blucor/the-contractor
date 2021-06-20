@@ -29,7 +29,7 @@ public class Contants {
     public static final String UPDATE_CLIENT = "update_client";
     public static final String GET_CONTRACT_TYPE = "view_contract_type";
     public static final String GET_PROJECT_TYPE = "view_project_type";
-    public static final String SHOW_CLIENT_BY_CONTRACTOR_ID = "show_client_by_contractor_id";
+    public static final String SHOW_CLIENT = "show_client";
     public static final String STORE_CLIENT_WITH_ID = "store_client_by_id";
     public static final String SAVE_PROJECT = "save_project";
     public static final String VIEW_ALL_PROJECTS_BY_CONTRACTOR_ID = "view_all_projects_by_contractor_id";

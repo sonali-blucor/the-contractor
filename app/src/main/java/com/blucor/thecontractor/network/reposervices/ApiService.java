@@ -114,9 +114,8 @@ public interface ApiService {
     @GET(Contants.GET_PROJECT_TYPE)
     Call<List<Project_Type>>  getProjectType();
 
-    @FormUrlEncoded
-    @POST(Contants.SHOW_CLIENT_BY_CONTRACTOR_ID)
-    Call<ClientAddSearchModel> getAllClientsByContractor(@Field("contractor_id") int contractor_id);
+    @GET(Contants.SHOW_CLIENT)
+    Call<ClientAddSearchModel> getAllClients();
 
     @FormUrlEncoded
     @POST(Contants.STORE_CLIENT_WITH_ID)

@@ -14,6 +14,7 @@ import com.blucor.thecontractor.models.Client;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
 
@@ -68,6 +69,12 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
 
     }
 
+    @Nullable
+    @Override
+    public Client getItem(int position) {
+        return allJournals.get(position);
+    }
+
     @NonNull
     @Override
     public Filter getFilter() {
@@ -96,9 +103,10 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 if (results.count == 0) {
-                    notifyDataSetInvalidated();
+                    allJournals = data;
                     mContext.rl_client.setVisibility(View.VISIBLE);
                     mContext.lst_search_client.setVisibility(View.GONE);
+                    notifyDataSetChanged();
                 } else {
                     allJournals = (ArrayList<Client>) results.values;
                     mContext.rl_client.setVisibility(View.GONE);
@@ -107,10 +115,5 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Client> {
                 }
             }
         };
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        mContext.setListViewAdapter(allJournals);
     }
 }

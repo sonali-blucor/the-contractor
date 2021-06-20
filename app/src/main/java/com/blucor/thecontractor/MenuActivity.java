@@ -146,10 +146,10 @@ public class MenuActivity extends BaseAppCompatActivity {
     }
 
     public void onClickToProject(View view) {
-        Intent intent = new Intent(MenuActivity.this, ProjectManagementMenuActivity.class);
+       /* Intent intent = new Intent(MenuActivity.this, ProjectManagementMenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        //ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
+        startActivity(intent);*/
+        ScreenHelper.redirectToClass(MenuActivity.this, ProjectManagementMenuActivity.class);
     }
 
     public void onClickToSendFeedBack(View view) {

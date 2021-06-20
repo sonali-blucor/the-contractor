@@ -92,6 +92,9 @@ public class ClientAddAndSearchActivity extends BaseAppCompatActivity {
                     Client client = response.body();
                     if (response.code() == 201) {
                         if (client != null) {
+                            if(client.client_id == null && client_id != null) {
+                                client.client_id = client_id;
+                            }
                             Intent intent = new Intent();
                             intent.putExtra("client", client);
                             setResult(120, intent);
@@ -186,12 +189,9 @@ public class ClientAddAndSearchActivity extends BaseAppCompatActivity {
     }
 
     public void loadAllClients() {
-        User user = DatabaseUtil.on().getAllUser().get(0);
-        int id = user.server_id;
-        //int id = 0;
-        showLoader();
+       showLoader();
 
-        RetrofitClient.getApiService().getAllClientsByContractor(id).enqueue(new Callback<ClientAddSearchModel>() {
+        RetrofitClient.getApiService().getAllClients().enqueue(new Callback<ClientAddSearchModel>() {
             @Override
             public void onResponse(Call<ClientAddSearchModel> call, Response<ClientAddSearchModel> response) {
                 if(response.code() == 200 && response.body() != null) {

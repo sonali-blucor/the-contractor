@@ -35,6 +35,14 @@ public class Client implements Parcelable {
     @Expose
     public String profile_pic;
 
+    @SerializedName("client_id")
+    @Expose
+    public String client_id;
+
+    @SerializedName("contractor_id")
+    @Expose
+    public int contractor_id;
+
     @SerializedName("created_at")
     @Expose
     public String created_at;
