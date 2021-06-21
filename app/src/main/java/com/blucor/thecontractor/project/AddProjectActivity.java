@@ -250,9 +250,13 @@ public class AddProjectActivity extends BaseAppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 120) {
-            if (data.hasExtra("client")) {
-                client = data.getParcelableExtra("client");
-                mEdtAddClient.setText(client.fname+" "+client.lname);
+            try {
+                if (data.hasExtra("client")) {
+                    client = data.getParcelableExtra("client");
+                    mEdtAddClient.setText(client.fname+" "+client.lname);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
