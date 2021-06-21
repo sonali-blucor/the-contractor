@@ -32,20 +32,20 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddProjectActActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, AddWorkOrderToProjectActivity.class,bundle);
     }
 
     public void onClickToBilling(View view) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddProjectActActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, BillingActivity.class,bundle);
     }
 
     public void onClickToDownloadReport(View view) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddProjectActActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, SubContractorDownloadReportActivity.class,bundle);
     }
 }

@@ -14,6 +14,7 @@
         <activity android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
         <activity android:name=".project.activity.AddSubContractorActivity" />
+        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity"/>
         <activity android:name=".project.ScheduleActivity" />
         <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
@@ -29,7 +30,7 @@
         <activity
             android:name=".client.ClientProjectsActivity" />
         <activity
-            android:name=".material.AddMaterialDetailsActivity"
+            android:name=".project.material.AddMaterialDetailsActivity"
             android:label="Material"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -68,13 +69,13 @@
             android:name=".project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".material.MaterialMenuActivity"
+            android:name=".project.material.MaterialMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".material.AddMaterialActivity"
+            android:name=".project.material.AddMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".material.EditMaterialActivity"
+            android:name=".project.material.EditMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
             android:name=".account.UserProfileActivity"
