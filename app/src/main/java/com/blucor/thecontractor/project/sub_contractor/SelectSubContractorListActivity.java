@@ -1,0 +1,120 @@
+package com.blucor.thecontractor.project.sub_contractor;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.blucor.thecontractor.BaseAppCompatActivity;
+import com.blucor.thecontractor.R;
+import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
+import com.blucor.thecontractor.helper.AppKeys;
+import com.blucor.thecontractor.models.SubContractor;
+import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+import com.blucor.thecontractor.project.AddProjectActivity;
+import com.blucor.thecontractor.rv_adapters.SubContractorListAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SelectSubContractorListActivity extends BaseAppCompatActivity {
+    private EditText edt_search_work_form;
+    private RecyclerView recycler_view;
+    private Button btn_submit_list;
+    public List<SubContractor> selectedSubContractors;
+    public List<SubContractor> subContractors;
+    private SubContractorListAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_select_sub_contractor_list);
+
+        edt_search_work_form = findViewById(R.id.edt_search_sub_contractor_work_form);
+        recycler_view = findViewById(R.id.recycler_view_sub_contractor);
+        btn_submit_list = findViewById(R.id.btn_submit_sub_contractor_list);
+        selectedSubContractors = new ArrayList<>();
+        subContractors = new ArrayList<>();
+
+        mAdapter = new SubContractorListAdapter(SelectSubContractorListActivity.this,subContractors);
+        recycler_view.setAdapter(mAdapter);
+        edt_search_work_form.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        btn_submit_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        loadAllSubContractors();
+    }
+
+    public void onClickAddClient(View view) {
+        Intent intent = new Intent(SelectSubContractorListActivity.this, AddWorkOrderToProjectActivity.class);
+        startActivityForResult(intent,120);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 120) {
+            try {
+                if (data.hasExtra(AppKeys.SUB_CONTRACTOR)) {
+                    //subContractor = data.getParcelableExtra("client");
+                    //mEdtAddClient.setText(client.fname+" "+client.lname);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadAllSubContractors() {
+        showLoader();
+        RetrofitClient.getApiService().getAllSubContractors().enqueue(new Callback<List<SubContractor>>() {
+            @Override
+            public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    subContractors.addAll(response.body());
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(SelectSubContractorListActivity.this, "There is no sub contractor", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<List<SubContractor>> call, Throwable t) {
+                Toast.makeText(SelectSubContractorListActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
+    }
+}

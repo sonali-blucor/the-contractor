@@ -224,5 +224,7 @@ public interface ApiService {
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CLIENT_ID)
     Call<List<ClientProjectActivityModel>> getAllProjectClientType(@Field("client_id") int client_id);
 
+    @GET(Contants.SHOW_SUB_CONTRACTORS)
+    Call<List<SubContractor>> getAllSubContractors();
 }
 
