@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".client.ClientProjectSubActDetailsActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
+        <activity
+            android:name=".client.ClientProjectSubActDetailsActivity"
+            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+        <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.activity.AddSubContractorActivity" />
-        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity"/>
+        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
         <activity android:name=".project.ScheduleActivity" />
         <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
@@ -26,9 +28,8 @@
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
             android:name=".client.ProjectActActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBarApp"/>
-        <activity
-            android:name=".client.ClientProjectsActivity" />
+            android:theme="@style/Theme.TheContractor.NoActionBarApp" />
+        <activity android:name=".client.ClientProjectsActivity" />
         <activity
             android:name=".project.material.AddMaterialDetailsActivity"
             android:label="Material"
@@ -104,6 +105,7 @@
             </intent-filter>
         </activity>
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
