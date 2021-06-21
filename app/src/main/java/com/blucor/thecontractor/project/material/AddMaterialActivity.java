@@ -44,9 +44,8 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PROJECT)) {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
+            getMaterialList();
         }
-
-        getMaterialList();
 
     }
 
