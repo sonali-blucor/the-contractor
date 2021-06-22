@@ -253,7 +253,9 @@ public class AddProjectActivity extends BaseAppCompatActivity {
             try {
                 if (data.hasExtra("client")) {
                     client = data.getParcelableExtra("client");
-                    mEdtAddClient.setText(client.fname+" "+client.lname);
+                    if(client != null) {
+                        mEdtAddClient.setText(client.fname + " " + client.lname);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

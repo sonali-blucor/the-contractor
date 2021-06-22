@@ -86,8 +86,10 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
                     //subContractors.clear();
                     ArrayList<SubContractor> subContractorsFromUser = data.getParcelableArrayListExtra(AppKeys.SUB_CONTRACTOR_LIST);
                     for (SubContractor subContractor : subContractorsFromUser) {
-                        if (!contains(prevSubContractors,subContractor) && !contains(subContractors,subContractor)) {
-                            subContractors.add(subContractor);
+                        if (!contains(prevSubContractors,subContractor)) {
+                            if(!contains(subContractors,subContractor)) {
+                                subContractors.add(subContractor);
+                            }
                         }
                     }
                     mAdapter.notifyDataSetChanged();

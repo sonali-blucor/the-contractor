@@ -245,4 +245,9 @@ public class ClientAddAndSearchActivity extends BaseAppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
