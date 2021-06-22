@@ -2,6 +2,7 @@ package com.blucor.thecontractor.project.sub_contractor;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +33,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     private EditText edt_search_work_form;
     private RecyclerView recycler_view;
     private Button btn_submit_list;
-    public List<SubContractor> selectedSubContractors;
+    public ArrayList<SubContractor> selectedSubContractors;
     public List<SubContractor> subContractors;
     private SubContractorListAdapter mAdapter;
 
@@ -46,6 +47,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         btn_submit_list = findViewById(R.id.btn_submit_sub_contractor_list);
         selectedSubContractors = new ArrayList<>();
         subContractors = new ArrayList<>();
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recycler_view.setLayoutManager(mLayoutManager);
 
         mAdapter = new SubContractorListAdapter(SelectSubContractorListActivity.this,subContractors);
         recycler_view.setAdapter(mAdapter);
@@ -69,32 +73,20 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         btn_submit_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setResults();
             }
         });
 
         loadAllSubContractors();
     }
 
-    public void onClickAddClient(View view) {
-        Intent intent = new Intent(SelectSubContractorListActivity.this, AddWorkOrderToProjectActivity.class);
-        startActivityForResult(intent,120);
+    private void setResults() {
+        Intent intent = new Intent();
+        intent.putParcelableArrayListExtra(AppKeys.SUB_CONTRACTOR_LIST, selectedSubContractors);
+        setResult(AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE, intent);
+        finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 120) {
-            try {
-                if (data.hasExtra(AppKeys.SUB_CONTRACTOR)) {
-                    //subContractor = data.getParcelableExtra("client");
-                    //mEdtAddClient.setText(client.fname+" "+client.lname);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private void loadAllSubContractors() {
         showLoader();
@@ -103,7 +95,8 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
             public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
                 if (response.code() == 200 && response.body() != null) {
                     subContractors.addAll(response.body());
-                    mAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged(); /*= new SubContractorListAdapter(SelectSubContractorListActivity.this,subContractors);
+                    recycler_view.setAdapter(mAdapter);*/
                 } else {
                     Toast.makeText(SelectSubContractorListActivity.this, "There is no sub contractor", Toast.LENGTH_SHORT).show();
                 }

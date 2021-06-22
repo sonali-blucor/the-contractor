@@ -11,4 +11,6 @@ public class AppKeys {
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final String ACTIVTY = "activity";
     public static final String SUB_ACTIVITY = "sub_activity";
+    public static final int SUB_CONTRACTOR_LIST_REQUEST_CODE = 130;
+    public static final String SUB_CONTRACTOR_LIST = "sub_contractor_list";
 }

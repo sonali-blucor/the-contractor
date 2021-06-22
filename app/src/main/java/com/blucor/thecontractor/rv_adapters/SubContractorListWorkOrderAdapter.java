@@ -2,7 +2,6 @@ package com.blucor.thecontractor.rv_adapters;
 
 import android.app.Activity;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.SubContractor;
-import com.blucor.thecontractor.project.ScheduleActivity;
-import com.blucor.thecontractor.project.material.AddMaterialActivity;
-import com.blucor.thecontractor.project.sub_contractor.SelectSubContractorListActivity;
-import com.blucor.thecontractor.utility.ScreenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +21,18 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolder> implements Filterable {
+public class SubContractorListWorkOrderAdapter extends RecyclerView.Adapter<BaseViewHolder> implements Filterable {
     private List<SubContractor> mList = new ArrayList();
     private List<SubContractor> allJournals = new ArrayList();
 
-    private final SelectSubContractorListActivity mContext;
+    private final Activity mContext;
     private RecyclerViewClickListener mListener;
 
-    public SubContractorListAdapter(SelectSubContractorListActivity context) {
+    public SubContractorListWorkOrderAdapter(Activity context) {
         this.mContext = context;
     }
 
-    public SubContractorListAdapter(SelectSubContractorListActivity mContext, List<SubContractor> mList) {
+    public SubContractorListWorkOrderAdapter(Activity mContext, List<SubContractor> mList) {
         this.mContext = mContext;
         this.mList = mList;
         this.allJournals = mList;
@@ -51,16 +45,8 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == 1) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.work_order_sub_contractor_list_item_with_checkbox, parent, false));
-        } else {
-            return new BaseViewHolder(parent) {
-                @Override
-                protected void clear() {
-
-                }
-            };
-        }
+        Log.e("View Type", "" + viewType);
+          return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.work_order_sub_contractor_list_item, parent, false));
     }
 
     @Override
@@ -68,10 +54,7 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
         holder.onBind(position);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return 1;
-    }
+
 
     @Override
     public int getItemCount() {
@@ -83,12 +66,12 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
 
         private final View viewHolder;
         private SubContractor item;
-        private final CheckBox cb_sub_contractor;
+        private final TextView tv_sub_contractor;
 
         ViewHolder(final View itemView) {
             super(itemView);
             viewHolder = itemView;
-            cb_sub_contractor = itemView.findViewById(R.id.cb_sub_contractor_list);
+            tv_sub_contractor = itemView.findViewById(R.id.tv_work_order_sub_contractor_list_item);
         }
 
         protected void clear() {
@@ -97,23 +80,13 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
         public void onBind(int position) {
             super.onBind(position);
             item = allJournals.get(position);
-            cb_sub_contractor.setText(""+item.fname+" "+item.lname);
-            cb_sub_contractor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            tv_sub_contractor.setText(""+item.fname+" "+item.lname);
+            tv_sub_contractor.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        mContext.selectedSubContractors.add(item);
-                    } else {
-                        mContext.selectedSubContractors.remove(item);
-                    }
+                public void onClick(View v) {
+                    mListener.recyclerViewListClicked(v,getAdapterPosition());
                 }
             });
-        }
-
-        private void setViewToHeader(TextView textView, String text) {
-            textView.setText(text);
-            textView.setTextColor(mContext.getResources().getColor(R.color.white));
-            textView.setTypeface(null, Typeface.BOLD);
         }
     }
 

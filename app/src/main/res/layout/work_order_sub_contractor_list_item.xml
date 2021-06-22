@@ -5,10 +5,12 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/tv_work_order_sub_contractor_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Sub Contractor"
+        android:textSize="20sp"
         android:layout_margin="10dp"/>
 
 </LinearLayout>
