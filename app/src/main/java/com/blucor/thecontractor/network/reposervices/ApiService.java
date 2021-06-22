@@ -235,7 +235,8 @@ public interface ApiService {
     Call<ServerResponseModel>  storeWorkOrder(@Field("project_id") int project_id,
                                               @Field("sub_contractors") String sub_contractors);
 
-    @GET(Contants.SHOW_WORK_ORDER)
-    Call<List<SubContractor>> getAllWorkOrderSubContractors();
+    @FormUrlEncoded
+    @POST(Contants.SHOW_WORK_ORDER)
+    Call<List<SubContractor>> getAllWorkOrderSubContractors(@Field("project_id") int project_id);
 }
 

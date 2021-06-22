@@ -35,6 +35,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     private Button btn_submit_list;
     public ArrayList<SubContractor> selectedSubContractors;
     public List<SubContractor> subContractors;
+    public ArrayList<SubContractor> prevSubContractors;
     private SubContractorListAdapter mAdapter;
 
     @Override
@@ -77,7 +78,11 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
             }
         });
 
-        loadAllSubContractors();
+        Intent intent = getIntent();
+        if (intent.hasExtra(AppKeys.PREV_SUBCONTRACTORS)) {
+            prevSubContractors = intent.getParcelableArrayListExtra(AppKeys.PREV_SUBCONTRACTORS);
+            loadAllSubContractors();
+        }
     }
 
     private void setResults() {
@@ -93,10 +98,16 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         RetrofitClient.getApiService().getAllSubContractors().enqueue(new Callback<List<SubContractor>>() {
             @Override
             public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
+                subContractors.clear();
                 if (response.code() == 200 && response.body() != null) {
-                    subContractors.addAll(response.body());
-                    mAdapter.notifyDataSetChanged(); /*= new SubContractorListAdapter(SelectSubContractorListActivity.this,subContractors);
-                    recycler_view.setAdapter(mAdapter);*/
+                    ArrayList<SubContractor> subContractorsFromUser = (ArrayList<SubContractor>) response.body();
+                    for (SubContractor subContractor : subContractorsFromUser) {
+                        if (!contains(prevSubContractors,subContractor)) {
+                            subContractors.add(subContractor);
+                        }
+                    }
+
+                    mAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(SelectSubContractorListActivity.this, "There is no sub contractor", Toast.LENGTH_SHORT).show();
                 }
@@ -109,5 +120,19 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                 stopLoader();
             }
         });
+    }
+
+    private boolean contains(ArrayList<SubContractor> list,SubContractor listitem) {
+        boolean is_contain = false;
+        for (SubContractor subContractor : list) {
+            if ((subContractor.id == listitem.id) && (subContractor.fname.equalsIgnoreCase(listitem.fname))
+                    && (subContractor.lname.equalsIgnoreCase(listitem.lname))
+                    && subContractor.mobile.equalsIgnoreCase(listitem.mobile)
+                    && subContractor.email.equalsIgnoreCase(listitem.email)) {
+                is_contain = true;
+            }
+        }
+
+        return is_contain;
     }
 }

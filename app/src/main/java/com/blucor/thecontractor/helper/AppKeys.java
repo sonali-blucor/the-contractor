@@ -13,4 +13,5 @@ public class AppKeys {
     public static final String SUB_ACTIVITY = "sub_activity";
     public static final int SUB_CONTRACTOR_LIST_REQUEST_CODE = 130;
     public static final String SUB_CONTRACTOR_LIST = "sub_contractor_list";
+    public static final String PREV_SUBCONTRACTORS = "prev_sub_contractors";
 }

@@ -32,9 +32,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
     private ArrayList<SubContractor> subContractors;
+    private ArrayList<SubContractor> prevSubContractors;
     private RecyclerView rv_sub_contractor_work_order;
     private FloatingActionButton btn_add_sub_contractor;
     private SubContractorListWorkOrderAdapter mAdapter;
@@ -66,10 +68,12 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
         subContractors = new ArrayList<>();
         mAdapter = new SubContractorListWorkOrderAdapter(AddWorkOrderToProjectActivity.this,subContractors);
         rv_sub_contractor_work_order.setAdapter(mAdapter);
+        getSubContractors();
     }
 
     private void startIntent(){
         Intent intent = new Intent(AddWorkOrderToProjectActivity.this, SelectSubContractorListActivity.class);
+        intent.putExtra(AppKeys.PREV_SUBCONTRACTORS,prevSubContractors);
         startActivityForResult(intent, AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE);
     }
 
@@ -79,7 +83,13 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
         if (requestCode == AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE) {
             try {
                 if (data.hasExtra(AppKeys.SUB_CONTRACTOR_LIST)) {
-                    subContractors.addAll(data.getParcelableArrayListExtra(AppKeys.SUB_CONTRACTOR_LIST));
+                    //subContractors.clear();
+                    ArrayList<SubContractor> subContractorsFromUser = data.getParcelableArrayListExtra(AppKeys.SUB_CONTRACTOR_LIST);
+                    for (SubContractor subContractor : subContractorsFromUser) {
+                        if (!contains(prevSubContractors,subContractor) && !contains(subContractors,subContractor)) {
+                            subContractors.add(subContractor);
+                        }
+                    }
                     mAdapter.notifyDataSetChanged();
                 }
             } catch (Exception e) {
@@ -106,7 +116,26 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
 
     private void getSubContractors() {
         showLoader();
-        RetrofitClient.getApiService().getAllWorkOrderSubContractors();
+        int id = project.id;
+        RetrofitClient.getApiService().getAllWorkOrderSubContractors(id).enqueue(new Callback<List<SubContractor>>() {
+            @Override
+            public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
+                if (response.code() == 200 && response.body() != null) {
+                    prevSubContractors = (ArrayList<SubContractor>) response.body();
+                    subContractors.addAll(prevSubContractors);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(AddWorkOrderToProjectActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<List<SubContractor>> call, Throwable t) {
+                Toast.makeText(AddWorkOrderToProjectActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
     }
 
     private void saveList() {
@@ -133,5 +162,19 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
                 stopLoader();
             }
         });
+    }
+
+    private boolean contains(ArrayList<SubContractor> list,SubContractor listitem) {
+        boolean is_contain = false;
+        for (SubContractor subContractor : list) {
+            if ((subContractor.id == listitem.id) && (subContractor.fname.equalsIgnoreCase(listitem.fname))
+                    && (subContractor.lname.equalsIgnoreCase(listitem.lname))
+                    && subContractor.mobile.equalsIgnoreCase(listitem.mobile)
+                    && subContractor.email.equalsIgnoreCase(listitem.email)) {
+                is_contain = true;
+            }
+        }
+
+        return is_contain;
     }
 }
