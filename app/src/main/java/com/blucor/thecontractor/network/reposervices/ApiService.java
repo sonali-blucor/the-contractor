@@ -1,6 +1,7 @@
 package com.blucor.thecontractor.network.reposervices;
 
 import com.blucor.thecontractor.models.ActivityResponseModel;
+import com.blucor.thecontractor.models.ArrayListSubContractor;
 import com.blucor.thecontractor.models.Client;
 import com.blucor.thecontractor.models.ClientAddSearchModel;
 import com.blucor.thecontractor.models.ClientProjectActivityModel;
@@ -19,11 +20,13 @@ import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.models.SubContractorAddSearchModel;
 import com.blucor.thecontractor.network.utils.Contants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -226,5 +229,13 @@ public interface ApiService {
 
     @GET(Contants.SHOW_SUB_CONTRACTORS)
     Call<List<SubContractor>> getAllSubContractors();
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_WORK_ORDER)
+    Call<ServerResponseModel>  storeWorkOrder(@Field("project_id") int project_id,
+                                              @Field("sub_contractors") String sub_contractors);
+
+    @GET(Contants.SHOW_WORK_ORDER)
+    Call<List<SubContractor>> getAllWorkOrderSubContractors();
 }
 
