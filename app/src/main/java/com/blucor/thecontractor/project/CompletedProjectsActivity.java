@@ -98,4 +98,10 @@ public class CompletedProjectsActivity extends BaseAppCompatActivity {
             Log.e("view project",e.getMessage());
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        ScreenHelper.redirectToClass(this,ProjectManagementMenuActivity.class);
+        finish();
+    }
 }

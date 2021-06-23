@@ -24,6 +24,8 @@ import com.blucor.thecontractor.models.ProjectActivityModel;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.ProjectDetailsActivity;
+import com.blucor.thecontractor.project.ProjectManagementMenuActivity;
+import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.rv_adapters.ActivityExpandableListViewAdapter;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.rv_adapters.TableRecyclerAdapter;
@@ -92,5 +94,11 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
             bundle.putParcelable(AppKeys.PROJECT, project);
             ScreenHelper.redirectToClass(AddProjectActActivity.this, AddActivityDetailsActivity.class,bundle);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ScreenHelper.redirectToClass(this, ProjectManagementMenuActivity.class);
+        finish();
     }
 }

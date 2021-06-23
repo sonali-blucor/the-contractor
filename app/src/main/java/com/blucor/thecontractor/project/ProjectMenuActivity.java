@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blucor.thecontractor.MenuActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
@@ -64,5 +65,11 @@ public class ProjectMenuActivity extends AppCompatActivity {
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
         ScreenHelper.redirectToClass(this, ScheduleActivity.class,bundle);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ScreenHelper.redirectToClass(this, ProjectListActivity.class);
+        finish();
     }
 }

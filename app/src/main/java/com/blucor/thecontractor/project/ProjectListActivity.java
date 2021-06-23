@@ -123,4 +123,10 @@ public class ProjectListActivity extends BaseAppCompatActivity {
         mAdapter = new CardRecyclerAdapter(ProjectListActivity.this,mList);
         mRvView.setAdapter(mAdapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        ScreenHelper.redirectToClass(this,ProjectManagementMenuActivity.class);
+        finish();
+    }
 }
