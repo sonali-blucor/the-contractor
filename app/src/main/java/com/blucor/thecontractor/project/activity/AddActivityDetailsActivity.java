@@ -188,6 +188,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddActivityDetailsActivity.this, AddSubContractorActivity.class);
+                intent.putExtra(AppKeys.PROJECT,project);
                 startActivityForResult(intent,AppKeys.SUB_CONTRACTOR_RESULT);
             }
         });
@@ -228,12 +229,14 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AppKeys.SUB_CONTRACTOR_RESULT) {
-            if (data.hasExtra(AppKeys.SUB_CONTRACTOR)) {
+            if (data.hasExtra(AppKeys.SUB_CONTRACTOR) && data.getParcelableExtra(AppKeys.SUB_CONTRACTOR) != null) {
                 subContractor = data.getParcelableExtra(AppKeys.SUB_CONTRACTOR);
                 edt_add_sub_contractor.setText(""+subContractor.fname+" "+subContractor.lname);
                 if (dialog!=null && !dialog.isShowing()) {
                     dialog.show();
                 }
+            } else {
+                Toast.makeText(this, "No Sub Contractor Selected", Toast.LENGTH_SHORT).show();
             }
         }
     }

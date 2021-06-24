@@ -147,8 +147,22 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                allJournals = (ArrayList<SubContractor>) filterResults.values;
-                notifyDataSetChanged();
+                ArrayList<SubContractor> results = (ArrayList<SubContractor>) filterResults.values;
+                if (results.size() == 0) {
+                    mContext.recycler_view.setVisibility(View.GONE);
+                    mContext.btn_submit_list.setVisibility(View.GONE);
+                    mContext.rl_add_sub_contractor.setVisibility(View.VISIBLE);
+
+                    allJournals = mList;
+                    notifyDataSetChanged();
+                } else {
+                    mContext.recycler_view.setVisibility(View.VISIBLE);
+                    mContext.btn_submit_list.setVisibility(View.VISIBLE);
+                    mContext.rl_add_sub_contractor.setVisibility(View.GONE);
+
+                    allJournals = (ArrayList<SubContractor>) filterResults.values;
+                    notifyDataSetChanged();
+                }
             }
         };
     }

@@ -74,6 +74,7 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
     private void startIntent(){
         Intent intent = new Intent(AddWorkOrderToProjectActivity.this, SelectSubContractorListActivity.class);
         intent.putExtra(AppKeys.PREV_SUBCONTRACTORS,prevSubContractors);
+        intent.putExtra(AppKeys.PROJECT,project);
         startActivityForResult(intent, AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE);
     }
 

@@ -12,40 +12,68 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
+import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
+import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.SubContractor;
+import com.blucor.thecontractor.models.User;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.AddProjectActivity;
+import com.blucor.thecontractor.project.activity.AddSubContractorActivity;
 import com.blucor.thecontractor.rv_adapters.SubContractorListAdapter;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectSubContractorListActivity extends BaseAppCompatActivity {
+    private TextInputEditText edt_first_name;
+    private TextInputEditText edt_last_name;
+    private TextInputEditText edt_mobile;
+    private TextInputEditText edt_email;
+    public RelativeLayout rl_add_sub_contractor;
+    private Button btn_register;
+
     private EditText edt_search_work_form;
-    private RecyclerView recycler_view;
-    private Button btn_submit_list;
+    public RecyclerView recycler_view;
+    public Button btn_submit_list;
     public ArrayList<SubContractor> selectedSubContractors;
     public List<SubContractor> subContractors;
     public ArrayList<SubContractor> prevSubContractors;
     private SubContractorListAdapter mAdapter;
+    private ProjectsModel project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sub_contractor_list);
 
+        edt_first_name = findViewById(R.id.edt_first_name);
+        edt_last_name = findViewById(R.id.edt_last_name);
+        edt_mobile = findViewById(R.id.edt_mobile);
+        edt_email = findViewById(R.id.edt_email);
+        rl_add_sub_contractor = findViewById(R.id.rl_add_sub_contractor);
         edt_search_work_form = findViewById(R.id.edt_search_sub_contractor_work_form);
         recycler_view = findViewById(R.id.recycler_view_sub_contractor);
         btn_submit_list = findViewById(R.id.btn_submit_sub_contractor_list);
+        btn_register = findViewById(R.id.btn_register);
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerSubContractor();
+            }
+        });
         selectedSubContractors = new ArrayList<>();
         subContractors = new ArrayList<>();
 
@@ -81,8 +109,91 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PREV_SUBCONTRACTORS)) {
             prevSubContractors = intent.getParcelableArrayListExtra(AppKeys.PREV_SUBCONTRACTORS);
+            project = intent.getParcelableExtra(AppKeys.PROJECT);
             loadAllSubContractors();
         }
+    }
+
+    private void registerSubContractor() {
+        String fname = edt_first_name.getText().toString();
+        String lname = edt_last_name.getText().toString();
+        String email = edt_email.getText().toString();
+        String mobile = edt_mobile.getText().toString();
+        User user = DatabaseUtil.on().getAllUser().get(0);
+        int id = user.server_id;
+
+        if(validateData()) {
+            showLoader();
+            RetrofitClient.getApiService().storeSubContractor(fname,lname,id,mobile,email,"NULL").enqueue(new Callback<SubContractor>() {
+                @Override
+                public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
+                    if (response.code() == 200 && response.body() != null) {
+                        SubContractor subContractor = response.body();
+                        subContractors.add(subContractor);
+                        mAdapter.notifyDataSetChanged();
+                        recycler_view.setVisibility(View.VISIBLE);
+                        btn_submit_list.setVisibility(View.VISIBLE);
+                        rl_add_sub_contractor.setVisibility(View.GONE);
+                    } else {
+                        Toast.makeText(SelectSubContractorListActivity.this, "Error in inserting sub contractor", Toast.LENGTH_SHORT).show();
+                    }
+                    stopLoader();
+                }
+
+                @Override
+                public void onFailure(Call<SubContractor> call, Throwable t) {
+                    Toast.makeText(SelectSubContractorListActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    stopLoader();
+                }
+            });
+        }
+    }
+
+    private boolean validateData() {
+        boolean isValid = false;
+        String fanme = edt_first_name.getText().toString();
+        String lname = edt_last_name.getText().toString();
+        String email = edt_email.getText().toString();
+        String mobile = edt_mobile.getText().toString();
+        String error = "Empty Feild";
+
+        if(fanme.isEmpty() || fanme.equalsIgnoreCase("")) {
+            edt_first_name.setError(error);
+            edt_first_name.requestFocus();
+            isValid = false;
+        } else if(lname.isEmpty() || lname.equalsIgnoreCase("")) {
+            edt_last_name.setError(error);
+            edt_last_name.requestFocus();
+            isValid = false;
+        } else if(email.isEmpty() || email.equalsIgnoreCase("")) {
+            edt_email.setError(error);
+            edt_email.requestFocus();
+            isValid = false;
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edt_email.setError("Invalid Email");
+            edt_email.requestFocus();
+            isValid = false;
+        }else if(!Patterns.PHONE.matcher(mobile).matches()) {
+            edt_mobile.setError("Invalid Mobile Number");
+            edt_mobile.requestFocus();
+            isValid = false;
+        } else if(mobile.length() < 10) {
+            edt_mobile.setError("Invalid Mobile Number");
+            edt_mobile.requestFocus();
+            isValid = false;
+        } else if(mobile.isEmpty() || mobile.equalsIgnoreCase("")) {
+            edt_mobile.setError(error);
+            edt_mobile.requestFocus();
+            isValid = false;
+        } else {
+            edt_first_name.setError(null);
+            edt_last_name.setError(null);
+            edt_email.setError(null);
+            edt_mobile.setError(null);
+            isValid = true;
+        }
+
+        return isValid;
     }
 
     private void setResults() {
