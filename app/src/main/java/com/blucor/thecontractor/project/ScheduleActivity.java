@@ -17,6 +17,7 @@ import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ScheduleModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+import com.blucor.thecontractor.utility.ScreenHelper;
 
 import java.util.List;
 
@@ -203,5 +204,10 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             edt_project_status.setError(null);
             return true;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class);
     }
 }
