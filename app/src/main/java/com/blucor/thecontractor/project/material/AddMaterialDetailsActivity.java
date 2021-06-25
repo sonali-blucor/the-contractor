@@ -23,6 +23,7 @@ import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
@@ -105,8 +106,16 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
                 new android.app.DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        String startDate = year + "-" + monthOfYear + "-" + dayOfMonth;
-                        edt_material_date.setText(startDate);
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.YEAR,year);
+                        cal.set(Calendar.MONTH,month);
+                        cal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                        long startDate = cal.getTimeInMillis();
+
+                        SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
+                        String str_startDate = sdf.format(cal);
+
+                        edt_material_date.setText(str_startDate);
                     }
                 }, year, month, day);
         datePickerDialog.show();
