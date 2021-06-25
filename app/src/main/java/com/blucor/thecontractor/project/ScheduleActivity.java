@@ -124,11 +124,12 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         if (is_scheduled) {
             edt_project_name.setText(""+schedule.project_name);
             edt_no_of_days.setText(""+schedule.no_of_days);
-            if (schedule.project_status == 1) {
+            /*if (schedule.project_status == 1) {
                 edt_project_status.setText(complete);
             } else {
                 edt_project_status.setText(on_going);
-            }
+            }*/
+            edt_project_status.setText(""+schedule.project_status);
             wd_schedule.setSelectedWeekDays(schedule.week_days);
             rt_bar_schedule.setRating(schedule.rating);
         } else {

@@ -22,7 +22,7 @@ public class ScheduleModel implements Parcelable {
 
     @SerializedName("project_status")
     @Expose
-    public int project_status;
+    public String project_status;
 
     @SerializedName("week_days")
     @Expose
@@ -40,7 +40,7 @@ public class ScheduleModel implements Parcelable {
         id = in.readInt();
         project_id = in.readInt();
         project_name = in.readString();
-        project_status = in.readInt();
+        project_status = in.readString();
         week_days = in.readString();
         no_of_days = in.readInt();
         rating = in.readFloat();
@@ -87,11 +87,11 @@ public class ScheduleModel implements Parcelable {
         this.project_name = project_name;
     }
 
-    public int getProject_status() {
+    public String getProject_status() {
         return project_status;
     }
 
-    public void setProject_status(int project_status) {
+    public void setProject_status(String project_status) {
         this.project_status = project_status;
     }
 
@@ -128,7 +128,7 @@ public class ScheduleModel implements Parcelable {
         dest.writeInt(id);
         dest.writeInt(project_id);
         dest.writeString(project_name);
-        dest.writeInt(project_status);
+        dest.writeString(project_status);
         dest.writeString(week_days);
         dest.writeInt(no_of_days);
         dest.writeFloat(rating);

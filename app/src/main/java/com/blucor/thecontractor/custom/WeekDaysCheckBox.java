@@ -176,31 +176,34 @@ public class WeekDaysCheckBox extends RadioGroup {
     }
 
     private void setcheckedFromString(String s) {
-        switch (s) {
-            case str_sun:
+            if(s.trim().equalsIgnoreCase(str_sun)) {
                 rb_sun.setChecked(true);
-                break;
-            case str_mon:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_mon)) {
                 rb_mon.setChecked(true);
-                break;
-            case str_tue:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_tue)) {
                 rb_tue.setChecked(true);
-                break;
-            case str_wed:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_wed)) {
                 rb_wed.setChecked(true);
-                break;
-            case str_thu:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_thu)) {
                 rb_thu.setChecked(true);
-                break;
-            case str_fri:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_fri)) {
                 rb_fri.setChecked(true);
-                break;
-            case str_sat:
+            }
+
+            if(s.trim().equalsIgnoreCase(str_sat)) {
                 rb_sat.setChecked(true);
-                break;
-            default:
-                break;
-        }
+            }
+
     }
 
     private void getArrayFromString(String officeDays) {
