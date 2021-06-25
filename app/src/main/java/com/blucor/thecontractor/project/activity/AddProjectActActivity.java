@@ -98,7 +98,8 @@ public class AddProjectActActivity extends BaseAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ScreenHelper.redirectToClass(this, ProjectManagementMenuActivity.class);
-        finish();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class,bundle);
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.project.activity.AddProjectActActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
@@ -47,5 +48,12 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
         ScreenHelper.redirectToClass(this, SubContractorDownloadReportActivity.class,bundle);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this, ProjectMenuActivity.class,bundle);
     }
 }

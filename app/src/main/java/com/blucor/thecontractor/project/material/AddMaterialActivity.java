@@ -17,6 +17,7 @@ import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.Material;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
+import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.thecontractor.rv_adapters.TableRecyclerAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
@@ -106,5 +107,12 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE,false);
         bundle.putParcelable(AppKeys.PROJECT,project);
         ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class,bundle);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this, ProjectMenuActivity.class,bundle);
     }
 }

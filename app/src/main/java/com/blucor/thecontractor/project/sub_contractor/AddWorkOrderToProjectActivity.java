@@ -26,6 +26,7 @@ import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.ProjectListActivity;
+import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.rv_adapters.SubContractorListWorkOrderAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -179,5 +180,12 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
         }
 
         return is_contain;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class,bundle);
     }
 }

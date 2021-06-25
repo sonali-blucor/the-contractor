@@ -246,4 +246,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
         return is_contain;
     }
+
+    @Override
+    public void onBackPressed() {
+        setResults();
+    }
 }

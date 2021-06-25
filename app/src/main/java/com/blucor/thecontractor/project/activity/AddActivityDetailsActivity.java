@@ -32,6 +32,7 @@ import com.blucor.thecontractor.models.SubActivityModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.AddProjectActivity;
+import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.rv_adapters.SubActivityAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -329,5 +330,12 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
         }, year, month, day);
         datePickerDialog.getDatePicker().setMinDate(start_date);
         datePickerDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this, AddProjectActActivity.class,bundle);
     }
 }

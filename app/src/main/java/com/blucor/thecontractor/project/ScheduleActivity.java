@@ -208,6 +208,8 @@ public class ScheduleActivity extends BaseAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class,bundle);
     }
 }

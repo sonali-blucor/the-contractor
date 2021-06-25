@@ -18,6 +18,7 @@ import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
+import com.blucor.thecontractor.utility.ScreenHelper;
 
 public class ProjectDetailsActivity extends BaseAppCompatActivity {
 
@@ -145,6 +146,13 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class,bundle);
     }
 
 }
