@@ -107,6 +107,10 @@ public interface ApiService {
     @POST(Contants.SHOW_CONTRACTOR_BY_ID)
     Call<Contractor> getContractorDetails(@Field("id") int server_id);
 
+    @FormUrlEncoded
+    @POST(Contants.SHOW_CLIENT_BY_ID)
+    Call<Client> getClientDetails(@Field("id") int server_id);
+
     @Multipart
     @POST(Contants.SAVE_CONTRACTOR_PROFILE_PICTURE)
     Call<ServerResponseModel> saveProfilePicture(@Part MultipartBody.Part file,@Part("id") RequestBody server_id);

@@ -48,4 +48,5 @@ public class Contants {
     public static final String SHOW_SUB_CONTRACTORS = "show_sub_contractors";
     public static final String STORE_WORK_ORDER = "store_work_order";
     public static final String SHOW_WORK_ORDER = "show_work_order";
+    public static final String SHOW_CLIENT_BY_ID = "show_client_by_id";
 }

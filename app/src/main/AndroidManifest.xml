@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.sub_contractor.SelectSubContractorListActivity"></activity>
+        <activity android:name=".ClientMenuActivity"></activity>
+        <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
         <activity
             android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
