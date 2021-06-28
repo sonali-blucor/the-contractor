@@ -122,7 +122,14 @@ public class ClientProjectsActivity extends BaseAppCompatActivity {
 
             @Override
             public void editViewListClicked(View v, int position) {
-
+                ClientProjectActivityModel clientProjectActivityModel  = (ClientProjectActivityModel) mList.get(position);
+                Uri u = Uri.parse("tel:" + clientProjectActivityModel.mobile);
+                Intent i = new Intent(Intent.ACTION_DIAL, u);
+                try {
+                    startActivity(i);
+                } catch (SecurityException s) {
+                    Toast.makeText(ClientProjectsActivity.this, "An error occurred", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
