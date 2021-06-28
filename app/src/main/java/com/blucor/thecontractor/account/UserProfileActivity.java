@@ -76,8 +76,10 @@ public class UserProfileActivity extends BaseAppCompatActivity {
         user = DatabaseUtil.on().getAllUser().get(0);
         setupProfile();
         if (is_client == Contants.USER_TYPE_CONTRACTOR) {
+            edt_company_name.setVisibility(View.VISIBLE);
             getContractorDetails();
         } else if (is_client == Contants.USER_TYPE_CLIENT) {
+            edt_company_name.setVisibility(View.GONE);
             getClientDetails();
         }
     }

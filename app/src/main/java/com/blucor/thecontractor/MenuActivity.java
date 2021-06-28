@@ -19,7 +19,6 @@ import androidx.multidex.BuildConfig;
 
 import com.blucor.thecontractor.account.LoginActivity;
 import com.blucor.thecontractor.account.UserProfileActivity;
-import com.blucor.thecontractor.client.ProjectActActivity;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.models.Contractor;
 import com.blucor.thecontractor.models.User;
