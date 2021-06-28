@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
+import com.blucor.thecontractor.ClientMenuActivity;
 import com.blucor.thecontractor.MenuActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.client.ClientProjectsActivity;
@@ -181,7 +182,7 @@ public class LoginActivity extends BaseAppCompatActivity {
                             DatabaseUtil.on().insertUser(user);
 
                             Toast.makeText(LoginActivity.this, "Sucessfully logged in", Toast.LENGTH_SHORT).show();
-                            ScreenHelper.redirectToClass(LoginActivity.this, ClientProjectsActivity.class);
+                            ScreenHelper.redirectToClass(LoginActivity.this, ClientMenuActivity.class);
                         } else {
                             tv_error.setVisibility(View.VISIBLE);
                             tv_error.setText(getString(R.string.login_error));

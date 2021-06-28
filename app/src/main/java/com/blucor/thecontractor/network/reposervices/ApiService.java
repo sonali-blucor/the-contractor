@@ -115,6 +115,10 @@ public interface ApiService {
     @POST(Contants.SAVE_CONTRACTOR_PROFILE_PICTURE)
     Call<ServerResponseModel> saveProfilePicture(@Part MultipartBody.Part file,@Part("id") RequestBody server_id);
 
+    @Multipart
+    @POST(Contants.SAVE_CLIENT_PROFILE_PICTURE)
+    Call<ServerResponseModel> saveClientProfilePicture(@Part MultipartBody.Part file,@Part("id") RequestBody server_id);
+
     @GET(Contants.GET_CONTRACT_TYPE)
     Call<List<Contract_Type>>  getContractType();
 
@@ -242,5 +246,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.SHOW_WORK_ORDER)
     Call<List<SubContractor>> getAllWorkOrderSubContractors(@Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_CLIENT_TODAY_ACTIVITY)
+    Call<List<ActivityResponseModel>> getClientTodaysActivities(@Field("client_id") int client_id);
+
+    @FormUrlEncoded
+    @POST(Contants.GET_CONTRACTOR_TODAY_ACTIVITY)
+    Call<List<ActivityResponseModel>> getContractorTodaysActivities(@Field("contractor_id") int contractor_id);
 }
 

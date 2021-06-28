@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
                     if (sharedPreferences.getInt(Contants.USER_TYPE_KEY, 0) == Contants.USER_TYPE_CONTRACTOR) {
                         ScreenHelper.redirectToClass(SplashActivity.this, MenuActivity.class);
                     } else if (sharedPreferences.getInt(Contants.USER_TYPE_KEY, 0) == Contants.USER_TYPE_CLIENT) {
-                        ScreenHelper.redirectToClass(SplashActivity.this, ClientProjectsActivity.class);
+                        ScreenHelper.redirectToClass(SplashActivity.this, ClientMenuActivity.class);
                     }
                 }
                 else

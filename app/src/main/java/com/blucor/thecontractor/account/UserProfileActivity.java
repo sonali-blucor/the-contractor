@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
+import com.blucor.thecontractor.ClientMenuActivity;
 import com.blucor.thecontractor.MenuActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.database.DatabaseUtil;
@@ -74,7 +75,44 @@ public class UserProfileActivity extends BaseAppCompatActivity {
 
         user = DatabaseUtil.on().getAllUser().get(0);
         setupProfile();
-        getContractorDetails();
+        if (is_client == Contants.USER_TYPE_CONTRACTOR) {
+            getContractorDetails();
+        } else if (is_client == Contants.USER_TYPE_CLIENT) {
+            getClientDetails();
+        }
+    }
+
+    private void getClientDetails() {
+        showLoader();
+        RetrofitClient.getApiService().getClientDetails(user.server_id).enqueue(new Callback<Client>() {
+            @Override
+            public void onResponse(@NonNull Call<Client> call, @NonNull retrofit2.Response<Client> response) {
+                if (response.body() != null) {
+                    Client client = response.body();
+                    user = new User();
+                    user.setMobile(client.mobile);
+                    user.setEmail(client.email);
+                    user.setPassword(client.password);
+                    user.setLname(client.lname);
+                    user.setFname(client.fname);
+                    user.setServer_id(client.id);
+                    user.setIs_client(is_client);
+                    user.setImage_name(client.profile_pic);
+                    user.setCreated_at(client.created_at);
+
+                    DatabaseUtil.on().deleteAll();
+                    DatabaseUtil.on().insertUser(user);
+                    setupProfile();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
+                Toast.makeText(UserProfileActivity.this, "Error to load Client details", Toast.LENGTH_SHORT).show();
+                stopLoader();
+            }
+        });
     }
 
     public void onClickGallery(View view){
@@ -150,7 +188,11 @@ public class UserProfileActivity extends BaseAppCompatActivity {
                     e.printStackTrace();
                 }
                 if (file != null && file.exists()) {
-                    saveProfilePicture(file);
+                    if (is_client == Contants.USER_TYPE_CONTRACTOR) {
+                        saveProfilePicture(file);
+                    } else if (is_client == Contants.USER_TYPE_CLIENT) {
+                        saveClientProfilePicture(file);
+                    }
                 }
             }
         }
@@ -188,7 +230,37 @@ public class UserProfileActivity extends BaseAppCompatActivity {
         });
     }
 
+    private void saveClientProfilePicture(File file) {
+        // Parsing any Media type file
+        showLoader();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        int id = user.server_id;
+        RequestBody server_id = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id));
 
+        RetrofitClient.getApiService().saveClientProfilePicture(fileToUpload,server_id).enqueue(new Callback<ServerResponseModel>() {
+            @Override
+            public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
+                ServerResponseModel model = response.body();
+                if (model.success) {
+                    String image_name = model.message;
+                    ScreenHelper.setThumbImageUriInView(img_logo,image_name);
+                    user.setImage_name(image_name);
+                    DatabaseUtil.on().updateImageName(image_name,id);
+                } else {
+                    Toast.makeText(UserProfileActivity.this, ""+model.message, Toast.LENGTH_SHORT).show();
+                }
+                Log.e("TAG",model.message);
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponseModel> call, Throwable t) {
+                Log.e("xg",""+t.getMessage());
+                stopLoader();
+            }
+        });
+    }
 
     private void getContractorDetails() {
         showLoader();
@@ -396,8 +468,14 @@ public class UserProfileActivity extends BaseAppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MenuActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        if (is_client == Contants.USER_TYPE_CLIENT) {
+            Intent intent = new Intent(this, ClientMenuActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MenuActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }

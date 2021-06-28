@@ -12,7 +12,7 @@
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
         <activity android:name=".ClientMenuActivity"
-            android:theme="@style/Theme.TheContractor.NoActionBar" />
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
         <activity
             android:name=".client.ClientProjectSubActDetailsActivity"

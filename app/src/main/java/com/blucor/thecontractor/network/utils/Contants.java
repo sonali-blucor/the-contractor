@@ -49,4 +49,7 @@ public class Contants {
     public static final String STORE_WORK_ORDER = "store_work_order";
     public static final String SHOW_WORK_ORDER = "show_work_order";
     public static final String SHOW_CLIENT_BY_ID = "show_client_by_id";
+    public static final String GET_CLIENT_TODAY_ACTIVITY = "get_client_today_activity";
+    public static final String GET_CONTRACTOR_TODAY_ACTIVITY = "get_contractor_today_activity";
+    public static final String SAVE_CLIENT_PROFILE_PICTURE = "save_client_profile_picture";
 }

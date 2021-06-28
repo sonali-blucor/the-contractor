@@ -25,6 +25,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
 
@@ -107,15 +109,11 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar cal = Calendar.getInstance();
-                        cal.set(Calendar.YEAR,year);
-                        cal.set(Calendar.MONTH,month);
-                        cal.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                        long startDate = cal.getTimeInMillis();
+                        cal.set(year,monthOfYear,dayOfMonth);
 
                         SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
-                        String str_startDate = sdf.format(cal);
-
-                        edt_material_date.setText(str_startDate);
+                        String date = sdf.format(cal.getTimeInMillis());
+                        edt_material_date.setText(date);
                     }
                 }, year, month, day);
         datePickerDialog.show();
