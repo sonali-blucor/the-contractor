@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".project.activity.BillingDetailsActivity">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:background="#DC8209">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Billing order details"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:orientation="vertical">
+
+
+
+        <EditText
+            android:id="@+id/et_percentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:hint="Percentage" />
+
+
+        <EditText
+            android:id="@+id/et_paid"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_13sdp"
+            android:layout_height="wrap_content"
+            android:hint="Paid" />
+
+        <EditText
+            android:id="@+id/et_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_13sdp"
+            android:inputType="number"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:hint="Amount" />
+
+        <EditText
+            android:id="@+id/et_balance"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_13sdp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:hint="Balance" />
+        <EditText
+            android:id="@+id/et_remark"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_13sdp"
+            android:layout_height="wrap_content"
+            android:hint="Remarks" />
+
+
+        <TextView
+            android:id="@+id/btnsubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="@dimen/_280sdp"
+            android:gravity="center"
+            android:text="Submit"
+            android:background="#DC8209"
+
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+</RelativeLayout>
