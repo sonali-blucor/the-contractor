@@ -15,7 +15,7 @@ public class WorkOrderActivity extends AppCompatActivity {
     EditText et_workdesc, et_unit, et_qty, et_rate, et_amount;
     TextView btnsubmit;
 
-
+    boolean isAllFieldsChecked = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class WorkOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean isAllFieldsChecked = CheckAllFields();
+                isAllFieldsChecked = CheckAllFields();
                 if (isAllFieldsChecked) {
                     Intent intent = new Intent(WorkOrderActivity.this, AddProjectActActivity.class);
                     startActivity(intent);

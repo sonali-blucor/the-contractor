@@ -15,7 +15,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
     EditText et_percentage,et_paid,et_amount,et_balance,et_remark;
     TextView btnsubmit;
 
-
+    boolean isAllFieldsChecked = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean isAllFieldsChecked = CheckAllFields();
+                isAllFieldsChecked = CheckAllFields();
                 if (isAllFieldsChecked) {
                     Intent intent = new Intent(BillingDetailsActivity.this, AddProjectActActivity.class);
                     startActivity(intent);

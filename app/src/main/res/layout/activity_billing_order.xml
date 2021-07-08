@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".project.activity.BillingDetailsActivity">
 
-
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -44,7 +43,6 @@
             android:textSize="@dimen/_13sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:hint="Percentage" />
-
 
         <EditText
             android:id="@+id/et_paid"
@@ -84,24 +82,26 @@
             android:hint="Remarks" />
 
 
-        <TextView
-            android:id="@+id/btnsubmit"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="center"
 
-            android:layout_marginTop="@dimen/_280sdp"
-            android:gravity="center"
-            android:text="Submit"
-            android:background="#DC8209"
-
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_15sdp"
-            android:textStyle="bold">
-
-        </TextView>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/btnsubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:text="Submit"
+        android:background="#DC8209"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+
 
 </RelativeLayout>

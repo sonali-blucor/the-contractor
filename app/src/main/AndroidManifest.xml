@@ -21,7 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.activity.BillingDetailsActivity"></activity>
+        <activity android:name=".project.activity.BillingDetailsDisplayListActivity"></activity>
+        <activity android:name=".project.activity.WorkOrderDisplayListActivity" />
+        <activity android:name=".project.activity.BillingDetailsActivity" />
         <activity android:name=".project.activity.WorkOrderActivity" />
         <activity
             android:name=".ClientMenuActivity"
