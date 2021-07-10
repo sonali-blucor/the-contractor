@@ -19,7 +19,7 @@ public class WorkOrderDisplayListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_work_order_display_list);
 
         simpleList = (ListView)findViewById(R.id.lvbillingDetails);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.workorder_row, R.id.txt_billing, workorderList);
-        simpleList.setAdapter(arrayAdapter);
+        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.workorder_row, R.id.txt_billing, workorderList);
+        //simpleList.setAdapter(arrayAdapter);
     }
 }

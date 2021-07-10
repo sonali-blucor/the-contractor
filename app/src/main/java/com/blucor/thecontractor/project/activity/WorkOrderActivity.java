@@ -12,8 +12,7 @@ import com.blucor.thecontractor.R;
 
 public class WorkOrderActivity extends AppCompatActivity {
 
-    EditText et_workdesc, et_unit, et_qty, et_rate, et_amount;
-    TextView btnsubmit;
+    TextView et_workdesc, et_unit, et_qty, et_rate, et_amount ,btnsubmit;
 
     boolean isAllFieldsChecked = false;
     @Override

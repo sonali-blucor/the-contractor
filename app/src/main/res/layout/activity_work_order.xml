@@ -8,25 +8,8 @@
     tools:context=".project.activity.WorkOrderActivity">
 
 
-    <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="0dp"
-        android:orientation="horizontal"
-        android:background="#DC8209">
 
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:textSize="23dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:text="Work order details"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,58 +17,92 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="vertical">
 
-
-
-        <EditText
+        <TextView
             android:id="@+id/et_workdesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_10sdp"
             android:textSize="@dimen/_13sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:hint="Work description" />
+           android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:text="Work description" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
 
-        <EditText
+        <TextView
             android:id="@+id/et_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_13sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:hint="Unit" />
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:text="Unit" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
 
-        <EditText
+
+        <TextView
             android:id="@+id/et_qty"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
+            android:textColor="@color/black"
             android:inputType="number"
             android:layout_height="wrap_content"
-            android:hint="Quantity" />
+            android:text="Quantity" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
 
-        <EditText
+
+        <TextView
             android:id="@+id/et_rate"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:hint="Rate" />
-        <EditText
+            android:text="Rate" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+        <TextView
             android:id="@+id/et_amount"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:inputType="number"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:hint="Amount" />
-
-
+            android:text="Amount" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_250sdp">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/btnsubmit"
         android:layout_width="match_parent"

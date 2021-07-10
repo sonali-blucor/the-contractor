@@ -18,8 +18,8 @@ public class BillingDetailsDisplayListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_billing_details_display_list);
 
             simpleList = (ListView)findViewById(R.id.lvbillingDetails);
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.billing_details_row, R.id.txt_billing, billingDetailsList);
-            simpleList.setAdapter(arrayAdapter);
+           // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.billing_details_row, R.id.txt_billing, billingDetailsList);
+           // simpleList.setAdapter(arrayAdapter);
         }
     }
 

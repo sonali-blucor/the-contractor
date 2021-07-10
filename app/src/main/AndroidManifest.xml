@@ -25,8 +25,7 @@
         <activity android:name=".project.activity.WorkOrderDisplayListActivity" />
         <activity android:name=".project.activity.BillingDetailsActivity" />
         <activity android:name=".project.activity.WorkOrderActivity" />
-        <activity
-            android:name=".ClientMenuActivity"
+            <activity android:name=".ClientMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
         <activity

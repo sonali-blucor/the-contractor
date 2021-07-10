@@ -4,11 +4,86 @@
     android:padding="@dimen/_10sdp"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txt_billing"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_marginTop="@dimen/_50sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_rcc"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_13sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:text="50%" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+        <TextView
+            android:id="@+id/tv_masanory"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_13sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:text="25%" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+
+        <TextView
+            android:id="@+id/tv_plaster"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:text="15%" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+
+        <TextView
+            android:inputType="number"
+            android:id="@+id/tv_painting"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="10%" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:layout_height="wrap_content"
+            android:text="Total" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
