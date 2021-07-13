@@ -54,8 +54,8 @@ public class TodaysActivitiesActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todays_activities);
 
-        vp_slider = findViewById(R.id.vp_slider);
         exp_lst_main_activity = findViewById(R.id.exp_lst_main_activity);
+        vp_slider = findViewById(R.id.vp_slider);
         ll_dots = findViewById(R.id.ll_dots);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME,MODE_PRIVATE);
