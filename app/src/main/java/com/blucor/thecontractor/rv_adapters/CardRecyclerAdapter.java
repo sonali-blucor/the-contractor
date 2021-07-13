@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> implements Filterable {
@@ -31,7 +32,6 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
     private final boolean isLoaderVisible = false;
     private List<ProjectsModel> mList = new ArrayList();
     private List<ProjectsModel> allJournals = new ArrayList();
-
     private final Activity mContext;
     private RecyclerViewClickListener mListener;
 
@@ -113,6 +113,8 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
         private final TextView item_5;
         private final TextView item_6;
         private final TextView item_schedule;
+        private final CardView cardview;
+
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -124,6 +126,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
             item_5 = itemView.findViewById(R.id.txt_item_5);
             item_6 = itemView.findViewById(R.id.txt_item_6);
             item_schedule = itemView.findViewById(R.id.txt_schedule);
+            cardview = itemView.findViewById(R.id.cardview);
         }
 
         protected void clear() {
@@ -163,7 +166,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
                 @Override
                 public void onClick(View view) {
                     if (mListener != null) {
-                        mListener.recyclerViewListClicked(item_5, getAdapterPosition());
+                        mListener.recyclerViewListClicked(cardview, getAdapterPosition());
                     }
                 }
             });
@@ -202,6 +205,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
         private final TextView item_5;
         private final TextView item_6;
         private final TextView item_schedule;
+
 
         ViewHolderCompleted(final View itemView) {
             super(itemView);

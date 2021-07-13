@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".project.activity.BillingDetailsDisplayListActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:background="#DC8209">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Billing order display list"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lvbillingDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_40sdp">
+    </ListView>
+    <TextView
+        android:id="@+id/tv_total"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:text="Total = "
+        android:textSize="@dimen/_10sdp"
+        android:padding="@dimen/_15sdp"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/_385sdp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/btnsubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Submit"
+        android:background="#DC8209"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+
+</RelativeLayout>
