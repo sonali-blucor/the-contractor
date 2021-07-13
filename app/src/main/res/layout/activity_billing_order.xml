@@ -14,11 +14,11 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/et_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Percentage"
+            android:text="@string/percentage"
             android:textSize="@dimen/_13sdp"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"/>
@@ -26,19 +26,19 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
             android:background="@color/grey_300"/>
-        <TextView
+        <EditText
             android:id="@+id/et_paid"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:text="Paid"
+            android:text="@string/Paid"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
             android:background="@color/grey_300"/>
-        <TextView
+        <EditText
             android:id="@+id/et_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,12 +46,12 @@
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
             android:inputType="number"
-            android:text="Amount" />
+            android:text="@string/Amount" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
             android:background="@color/grey_300"/>
-        <TextView
+        <EditText
             android:id="@+id/et_balance"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
@@ -59,49 +59,40 @@
             android:textSize="@dimen/_13sdp"
             android:inputType="number"
             android:layout_height="wrap_content"
-            android:text="Balance" />
+            android:text="@string/Balance" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
             android:background="@color/grey_300"/>
-        <TextView
+        <EditText
             android:id="@+id/et_remark"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:text="Remarks" />
+            android:text="@string/Remarks" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
             android:background="@color/grey_300"/>
     </LinearLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/btnsubmit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:text="Submit"
+        android:text="@string/submit"
         android:background="#DC8209"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold">
 
-    </TextView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_50sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_add"/>
+    </EditText>
 
 
 
