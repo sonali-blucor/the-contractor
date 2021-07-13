@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/_10sdp"
     tools:context=".project.activity.BillingDetailsActivity">
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,60 +14,69 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="vertical">
 
-
-
-        <EditText
+        <TextView
             android:id="@+id/et_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_10sdp"
+            android:text="Percentage"
             android:textSize="@dimen/_13sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:hint="Percentage" />
-
-        <EditText
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+        <TextView
             android:id="@+id/et_paid"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:hint="Paid" />
-
-        <EditText
+            android:text="Paid"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+        <TextView
             android:id="@+id/et_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_13sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
             android:inputType="number"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:hint="Amount" />
-
-        <EditText
+            android:text="Amount" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+        <TextView
             android:id="@+id/et_balance"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
             android:inputType="number"
             android:layout_height="wrap_content"
-            android:hint="Balance" />
-        <EditText
+            android:text="Balance" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
+        <TextView
             android:id="@+id/et_remark"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:hint="Remarks" />
-
-
-
-
+            android:text="Remarks" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/grey_300"/>
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/btnsubmit"
@@ -85,20 +93,16 @@
         android:textStyle="bold">
 
     </TextView>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_250sdp">
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/ic_add"/>
-</LinearLayout>
+
 
 
 

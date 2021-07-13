@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/cardview"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_5dp"
     android:padding="@dimen/margin_8dp">
@@ -103,6 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:drawablePadding="@dimen/drawable_padding"
                 android:gravity="right|center_vertical"
                 android:text="Know More"

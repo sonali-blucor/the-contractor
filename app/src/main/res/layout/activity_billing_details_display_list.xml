@@ -39,7 +39,7 @@
         android:id="@+id/tv_total"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:text="Total"
+        android:text="Total = "
         android:textSize="@dimen/_10sdp"
         android:padding="@dimen/_15sdp"
         android:inputType="number"
