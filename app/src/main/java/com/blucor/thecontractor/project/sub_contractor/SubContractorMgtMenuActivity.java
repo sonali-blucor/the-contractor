@@ -10,6 +10,8 @@ import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.project.activity.AddProjectActActivity;
+import com.blucor.thecontractor.project.activity.BillingDetailsDisplayListActivity;
+import com.blucor.thecontractor.project.activity.WorkOrderDisplayListActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 
 public class SubContractorMgtMenuActivity extends AppCompatActivity {
@@ -33,14 +35,14 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddWorkOrderToProjectActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, WorkOrderDisplayListActivity.class,bundle);
     }
 
     public void onClickToBilling(View view) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, BillingActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, BillingDetailsDisplayListActivity.class,bundle);
     }
 
     public void onClickToDownloadReport(View view) {
@@ -48,6 +50,13 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
         ScreenHelper.redirectToClass(this, SubContractorDownloadReportActivity.class,bundle);
+    }
+
+    public void onClickToSubContractor(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(AppKeys.PROJECT,project);
+        bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
+        ScreenHelper.redirectToClass(this, AddWorkOrderToProjectActivity.class,bundle);
     }
 
     @Override

@@ -140,7 +140,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
             item_3.setText(item.client_fname +" "+item.client_lname);
 
             item_schedule.setText("Schedule Project");
-            item_schedule.setOnClickListener(new View.OnClickListener() {
+            /*item_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ProjectsModel model = allJournals.get(getAdapterPosition());
@@ -149,9 +149,9 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
                     ScreenHelper.redirectToClass(mContext, ScheduleActivity.class,bundle);
                 }
-            });
+            });*/
 
-            item_6.setOnClickListener(new View.OnClickListener() {
+            /*item_6.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ProjectsModel model = allJournals.get(getAdapterPosition());
@@ -160,7 +160,7 @@ public class CardRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> im
                     bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
                     ScreenHelper.redirectToClass(mContext, AddMaterialActivity.class,bundle);
                 }
-            });
+            });*/
 
             item_5.setOnClickListener(new View.OnClickListener() {
                 @Override

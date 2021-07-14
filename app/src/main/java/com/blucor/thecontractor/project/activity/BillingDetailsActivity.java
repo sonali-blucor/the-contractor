@@ -2,6 +2,7 @@ package com.blucor.thecontractor.project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
     TextView btnsubmit;
 
     boolean isAllFieldsChecked = false;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
