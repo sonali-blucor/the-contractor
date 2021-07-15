@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".project.activity.BillingDetailsDisplayListActivity">
 
-    <LinearLayout
+  <!--  <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -25,15 +25,14 @@
             android:text="Billing order display list"
             android:textColor="@color/black" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
     <ListView
         android:id="@+id/lvbillingDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_40sdp">
+        android:layout_marginBottom="@dimen/_200sdp">
     </ListView>
     <TextView
         android:id="@+id/tv_total"
@@ -47,7 +46,18 @@
 
     </TextView>
 
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_billing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        app:maxImageSize="40dp"
+        android:src="@drawable/ic_add"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <!--<TextView
         android:id="@+id/btnsubmit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -61,7 +71,7 @@
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold">
 
-    </TextView>
+    </TextView>-->
 
 
 

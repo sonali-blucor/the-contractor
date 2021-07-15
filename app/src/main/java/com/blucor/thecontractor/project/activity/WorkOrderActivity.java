@@ -34,8 +34,8 @@ public class WorkOrderActivity extends AppCompatActivity {
 
                 isAllFieldsChecked = CheckAllFields();
                 if (isAllFieldsChecked) {
-                    Intent intent = new Intent(WorkOrderActivity.this, AddProjectActActivity.class);
-                    startActivity(intent);
+                    /*Intent intent = new Intent(WorkOrderActivity.this, AddProjectActActivity.class);
+                    startActivity(intent);*/
                 }
             }
         });
@@ -43,31 +43,41 @@ public class WorkOrderActivity extends AppCompatActivity {
 
     private boolean CheckAllFields() {
 
-        if (et_workdesc.length() == 0) {
+        if (et_workdesc.getText().toString().length() == 0) {
             et_workdesc.setError("All Fields are mendatory");
+            et_workdesc.requestFocus();
             return false;
         }
 
-        if (et_unit.length() == 0) {
+        if (et_unit.getText().toString().length() == 0) {
             et_unit.setError("All Fields are mendatory");
+            et_unit.requestFocus();
             return false;
         }
 
-        if (et_qty.length() == 0) {
+        if (et_qty.getText().toString().length() == 0) {
             et_qty.setError("All Fields are mendatory");
+            et_qty.requestFocus();
             return false;
         }
 
-        if (et_rate.length() == 0) {
+        if (et_rate.getText().toString().length() == 0) {
             et_rate.setError("All Fields are mendatory");
+            et_rate.requestFocus();
             return false;
         }
 
-        if (et_amount.length() == 0) {
+        if (et_amount.getText().toString().length() == 0) {
             et_amount.setError("All Fields are mendatory");
+            et_amount.requestFocus();
             return false;
         }
 
+        et_workdesc.setError(null);
+        et_unit.setError(null);
+        et_qty.setError(null);
+        et_rate.setError(null);
+        et_amount.setError(null);
         return true;
     }
 }

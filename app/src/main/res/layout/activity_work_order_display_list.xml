@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".project.activity.WorkOrderDisplayListActivity">
 
-    <LinearLayout
+    <!--<LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -25,15 +25,14 @@
             android:text="Work order display list"
             android:textColor="@color/black" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
     <ListView
         android:id="@+id/lvwork"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_40sdp">
+        android:layout_marginBottom="@dimen/_200sdp">
 
     </ListView>
 
