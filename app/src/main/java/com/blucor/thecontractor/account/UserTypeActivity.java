@@ -35,7 +35,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_type);
 
-        rg_user_type = findViewById(R.id.rg_user_type);
+        //rg_user_type = findViewById(R.id.rg_user_type);
         tv_contractor = findViewById(R.id.tv_contractor_user_type);
         tv_client = findViewById(R.id.tv_client_user_type);
         btn_go = findViewById(R.id.btn_go);
@@ -55,12 +55,12 @@ public class UserTypeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.rb_contractor:
-                        selectContractor();
-                        break;
-                    case R.id.rb_client:
-                        selectClient();
-                        break;
+                   // case R.id.rb_contractor:
+                        //selectContractor();
+                       // break;
+                    //case R.id.rb_client:
+                        //selectClient();
+                       // break;
                     default:
                         Toast.makeText(UserTypeActivity.this, "Please select client or contractor", Toast.LENGTH_SHORT).show();
                         break;
