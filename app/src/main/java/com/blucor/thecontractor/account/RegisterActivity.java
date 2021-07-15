@@ -28,7 +28,7 @@ public class RegisterActivity extends BaseAppCompatActivity {
      private ImageView img_logo;
      private TextView tv_txt_reg;
      private TextView tv_txt_regs;
-     private LinearLayout llh_user_type;
+     //private LinearLayout llh_user_type;
      private TextInputEditText edt_first_name;
      private TextInputEditText edt_last_name;
      private TextInputEditText edt_company_name;
@@ -51,7 +51,7 @@ public class RegisterActivity extends BaseAppCompatActivity {
          img_logo = findViewById(R.id.img_logo);
          tv_txt_reg = findViewById(R.id.tv_txt_reg);
          tv_txt_regs = findViewById(R.id.tv_txt_regs);
-         llh_user_type = findViewById(R.id.llh_user_type);
+         //llh_user_type = findViewById(R.id.llh_user_type);
          edt_first_name = findViewById(R.id.edt_first_name);
          edt_last_name = findViewById(R.id.edt_last_name);
          edt_company_name = findViewById(R.id.edt_company_name);
