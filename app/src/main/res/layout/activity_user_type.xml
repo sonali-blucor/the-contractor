@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E7E7E7">
 
-    <androidx.cardview.widget.CardView
+   <!-- <androidx.cardview.widget.CardView
     android:id="@+id/cv_1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -145,77 +145,77 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="@color/black"
         android:textStyle="bold" />
+-->
+
+    <LinearLayout
+        android:id="@+id/ll_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RadioGroup
+            android:id="@+id/rg_user_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_contractor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/selector_contractor"
+                android:button="@null"
+                android:padding="@dimen/_10sdp" />
+
+            <RadioButton
+                android:id="@+id/rb_client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/selector_client"
+                android:button="@null"
+                android:padding="@dimen/_10sdp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/llh_user_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_contractor_user_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/contractor"
+                android:textAllCaps="true"
+                android:textSize="@dimen/label_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_client_user_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/client"
+                android:textAllCaps="true"
+                android:textSize="@dimen/label_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ll_role"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="10dp">-->
-
-<!--        <RadioGroup-->
-<!--            android:id="@+id/rg_user_type"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rb_contractor"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/selector_contractor"-->
-<!--                android:button="@null"-->
-<!--                android:padding="@dimen/_10sdp" />-->
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rb_client"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/selector_client"-->
-<!--                android:button="@null"-->
-<!--                android:padding="@dimen/_10sdp" />-->
-<!--        </RadioGroup>-->
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/llh_user_type"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/_5sdp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_contractor_user_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/input_margin_5dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/contractor"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textSize="@dimen/label_text_size"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_client_user_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/input_margin_5dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/client"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textSize="@dimen/label_text_size"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
-
-
-<!--    </LinearLayout>-->
+    </LinearLayout>
 
     <TextView
         android:id="@+id/btn_go"
