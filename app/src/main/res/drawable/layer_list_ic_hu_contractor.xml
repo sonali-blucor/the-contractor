@@ -3,17 +3,19 @@
     <item
         android:width="@dimen/_110sdp"
         android:height="@dimen/_110sdp">
-        <shape android:shape="rectangle">
+        <shape android:shape="oval">
             <stroke
                 android:width="@dimen/_1sdp"
                 android:color="@color/black" />
             <solid android:color="@color/white" />
+
+
         </shape>
     </item>
 
     <item
-        android:width="@dimen/_100sdp"
-        android:height="@dimen/_100sdp"
+        android:width="@dimen/_80sdp"
+        android:height="@dimen/_80sdp"
         android:drawable="@drawable/ic_hu_contractor"
         android:gravity="center" />
 </layer-list>
