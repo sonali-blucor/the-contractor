@@ -204,6 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
+                android:visibility="gone"
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
@@ -232,6 +233,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
+                android:visibility="gone"
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
@@ -284,6 +286,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right|center_vertical"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <TextView

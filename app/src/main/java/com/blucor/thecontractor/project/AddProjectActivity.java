@@ -91,6 +91,15 @@ public class AddProjectActivity extends BaseAppCompatActivity {
         mEdtAddress = findViewById(R.id.edt_project_location);
         mEdtAddClient = findViewById(R.id.edt_add_client);
         mTvPDuration = findViewById(R.id.tv_project_duration);
+        start_date = System.currentTimeMillis();
+        end_date = System.currentTimeMillis();
+
+        SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
+        String date = sdf.format(start_date);
+        mEdtPStartDate.setText(date);
+
+        String date1 = sdf.format(end_date);
+        mEdtPEndDate.setText(date1);
 
         getDetails();
     }

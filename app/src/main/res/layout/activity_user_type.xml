@@ -67,7 +67,7 @@
             android:layout_marginTop="-62dp"
             android:layout_marginEnd="128dp"
             android:layout_marginRight="128dp"
-            android:src="@drawable/btn_round_small_primary" />
+            android:src="@drawable/selector_client" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
     android:id="@+id/cv_2"
@@ -131,7 +131,7 @@
             android:layout_marginTop="-62dp"
             android:layout_marginEnd="128dp"
             android:layout_marginRight="128dp"
-            android:src="@drawable/btn_round_small_primary" />
+            android:src="@drawable/selector_contractor" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -217,7 +217,8 @@
 
 <!--    </LinearLayout>-->
 
-    <TextView
+    <!-- Please dont use textview as button. Its not textview -->
+    <Button
         android:id="@+id/btn_go"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_35sdp"
