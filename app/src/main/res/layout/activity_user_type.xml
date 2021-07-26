@@ -215,7 +215,7 @@
 
 
       </LinearLayout>
-
+-->
       <TextView
           android:id="@+id/btn_go"
           android:layout_width="@dimen/_200sdp"
@@ -227,12 +227,13 @@
           android:drawableEnd="@drawable/ic_arrow_right"
           android:drawableRight="@drawable/ic_arrow_right"
           android:gravity="center"
+          android:layout_marginBottom="@dimen/_5sdp"
           android:onClick="onClickToGo"
           android:text="@string/next"
           android:textAllCaps="true"
           android:textColor="@color/white"
           android:textSize="@dimen/_10sdp"
           android:textStyle="bold"
-          android:visibility="visible" />-->
+          android:visibility="gone" />
 
 </RelativeLayout>

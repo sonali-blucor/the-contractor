@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,11 +23,14 @@ import com.blucor.thecontractor.utility.ScreenHelper;
 public class UserTypeActivity extends AppCompatActivity {
     private int backPressed = 0;
 
-    private RadioGroup rg_user_type;
+    //    private RadioGroup rg_user_type;
     private TextView tv_contractor;
     private TextView tv_client;
     private TextView btn_go;
     private SharedPreferences sharedPreferences;
+
+    private LinearLayout ll_contractor, ll_client;
+    private ImageView img_contractor, img_client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,20 @@ public class UserTypeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_type);
 
-        rg_user_type = findViewById(R.id.rg_user_type);
+//        rg_user_type = findViewById(R.id.rg_user_type);
         tv_contractor = findViewById(R.id.tv_contractor_user_type);
         tv_client = findViewById(R.id.tv_client_user_type);
         btn_go = findViewById(R.id.btn_go);
+
+        ll_contractor = findViewById(R.id.cv_1);
+        ll_client = findViewById(R.id.cv_2);
+        img_contractor = findViewById(R.id.img_contractor);
+        img_client = findViewById(R.id.img_client);
+
+        ll_contractor.setOnClickListener(onClickListener);
+        ll_client.setOnClickListener(onClickListener);
+        img_contractor.setOnClickListener(onClickListener);
+        img_client.setOnClickListener(onClickListener);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, Context.MODE_PRIVATE);
 
@@ -51,7 +64,7 @@ public class UserTypeActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
         }*/
-        rg_user_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    /*    rg_user_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
@@ -66,8 +79,25 @@ public class UserTypeActivity extends AppCompatActivity {
                         break;
                 }
             }
-        });
+        });*/
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            switch (v.getId()) {
+                case R.id.cv_1:
+                case R.id.img_contractor:
+                    selectContractor();
+                    break;
+                case R.id.cv_2:
+                case R.id.img_client:
+                    selectClient();
+                    break;
+            }
+        }
+    };
 
     private void selectClient() {
         tv_client.setTextColor(getResources().getColor(R.color.yellow));
