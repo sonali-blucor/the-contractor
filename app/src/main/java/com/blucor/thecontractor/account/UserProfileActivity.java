@@ -459,7 +459,7 @@ public class UserProfileActivity extends BaseAppCompatActivity {
         edt_first_name.setEnabled(enabled);
         edt_last_name.setEnabled(enabled);
         edt_company_name.setEnabled(enabled);
-        edt_mobile.setEnabled(enabled);
+        //edt_mobile.setEnabled(enabled);
         edt_email.setEnabled(enabled);
         if (enabled) {
             btn_submit.setVisibility(View.VISIBLE);
