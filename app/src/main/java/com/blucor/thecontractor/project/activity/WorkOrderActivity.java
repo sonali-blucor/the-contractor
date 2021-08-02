@@ -19,10 +19,8 @@ import android.widget.TextView;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.models.Project_Type;
 import com.blucor.thecontractor.models.UnitModal;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
-import com.blucor.thecontractor.project.AddProjectActivity;
 import com.blucor.thecontractor.rv_adapters.UnitAdapter;
 
 import java.util.ArrayList;
