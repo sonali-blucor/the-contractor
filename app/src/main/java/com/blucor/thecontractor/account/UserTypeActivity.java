@@ -44,8 +44,8 @@ public class UserTypeActivity extends AppCompatActivity {
         Commented by swapna
         tv_contractor = findViewById(R.id.tv_contractor_user_type);
         tv_client = findViewById(R.id.tv_client_user_type);*/
-        cv_client = findViewById(R.id.cv_1);
-        cv_contractor = findViewById(R.id.cv_2);
+        cv_client = findViewById(R.id.cv_2);
+        cv_contractor = findViewById(R.id.cv_1);
         btn_go = findViewById(R.id.btn_go);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME, Context.MODE_PRIVATE);
@@ -93,7 +93,7 @@ public class UserTypeActivity extends AppCompatActivity {
     private void selectClient() {
         /*tv_client.setTextColor(getResources().getColor(R.color.yellow));
         tv_contractor.setTextColor(getResources().getColor(R.color.black));*/
-        btn_go.callOnClick();
+        btn_go.setVisibility(View.VISIBLE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CLIENT);
@@ -103,7 +103,7 @@ public class UserTypeActivity extends AppCompatActivity {
     private void selectContractor() {
         /*tv_client.setTextColor(getResources().getColor(R.color.black));
         tv_contractor.setTextColor(getResources().getColor(R.color.yellow));*/
-        btn_go.callOnClick();
+        btn_go.setVisibility(View.VISIBLE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CONTRACTOR);
