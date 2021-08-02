@@ -18,6 +18,7 @@ import com.blucor.thecontractor.models.ScheduleModel;
 import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.models.SubContractorAddSearchModel;
+import com.blucor.thecontractor.models.UnitModal;
 import com.blucor.thecontractor.network.utils.Contants;
 
 import java.util.ArrayList;
@@ -124,6 +125,9 @@ public interface ApiService {
 
     @GET(Contants.GET_PROJECT_TYPE)
     Call<List<Project_Type>>  getProjectType();
+
+    @GET(Contants.GET_UNIT)
+    Call<List<UnitModal>>  getUnits();
 
     @GET(Contants.SHOW_CLIENT)
     Call<ClientAddSearchModel> getAllClients();

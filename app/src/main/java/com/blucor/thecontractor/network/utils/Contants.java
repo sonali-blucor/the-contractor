@@ -52,4 +52,5 @@ public class Contants {
     public static final String GET_CLIENT_TODAY_ACTIVITY = "get_client_today_activity";
     public static final String GET_CONTRACTOR_TODAY_ACTIVITY = "get_contractor_today_activity";
     public static final String SAVE_CLIENT_PROFILE_PICTURE = "save_client_profile_picture";
+    public static final String GET_UNIT = "view_unit";
 }

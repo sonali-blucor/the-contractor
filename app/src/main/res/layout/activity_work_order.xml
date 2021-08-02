@@ -18,80 +18,153 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/et_workdesc"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_workdesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_13sdp"
-           android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:text="Work description" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
 
-        <TextView
-            android:id="@+id/et_unit"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_workdesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Work_description"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_unit"
+                android:onClick="showPopupViewForUnits"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Unit"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:enabled="false"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/edt_contract_type"
+                    android:onClick="showPopupViewForUnits"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/img_project_type"
+                style="@style/Theme.TheContractor.ImageViewTheme"
+                android:onClick="showPopupViewForUnits"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/drawable_padding"
+                android:src="@drawable/ic_down" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_qty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_13sdp"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:text="Unit" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Quantity"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_rate"
+                android:onClick="showPopupViewForUnits"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <TextView
-            android:id="@+id/et_qty"
-            android:padding="@dimen/_10sdp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_rate"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_13sdp"
-            android:textColor="@color/black"
-            android:inputType="number"
             android:layout_height="wrap_content"
-            android:text="Quantity" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Rate"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_amount"
+                android:onClick="showPopupViewForUnits"
+                android:singleLine="true" />
 
-        <TextView
-            android:id="@+id/et_rate"
-            android:padding="@dimen/_10sdp"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_amount"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_13sdp"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="Rate" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
 
-        <TextView
-            android:id="@+id/et_amount"
-            android:padding="@dimen/_10sdp"
-            android:layout_width="match_parent"
-            android:inputType="number"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
-            android:layout_height="wrap_content"
-            android:text="Amount" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Amount"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_rate"
+                android:onClick="showPopupViewForUnits"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </LinearLayout>
 
 
-    <TextView
+    <Button
         android:id="@+id/btnsubmit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -105,5 +178,5 @@
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold">
 
-    </TextView>
+    </Button>
 </RelativeLayout>
