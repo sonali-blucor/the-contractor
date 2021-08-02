@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,8 +28,8 @@ public class UserTypeActivity extends AppCompatActivity {
     /*private RadioGroup rg_user_type;
     private TextView tv_contractor;
     private TextView tv_client;*/
-    private CardView cv_client;
-    private CardView cv_contractor;
+    private LinearLayout cv_client;
+    private LinearLayout cv_contractor;
     private TextView btn_go;
     private SharedPreferences sharedPreferences;
 
@@ -92,7 +93,7 @@ public class UserTypeActivity extends AppCompatActivity {
     private void selectClient() {
         /*tv_client.setTextColor(getResources().getColor(R.color.yellow));
         tv_contractor.setTextColor(getResources().getColor(R.color.black));*/
-        btn_go.setVisibility(View.VISIBLE);
+        btn_go.callOnClick();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CLIENT);
@@ -102,7 +103,7 @@ public class UserTypeActivity extends AppCompatActivity {
     private void selectContractor() {
         /*tv_client.setTextColor(getResources().getColor(R.color.black));
         tv_contractor.setTextColor(getResources().getColor(R.color.yellow));*/
-        btn_go.setVisibility(View.VISIBLE);
+        btn_go.callOnClick();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(Contants.USER_TYPE_KEY, Contants.USER_TYPE_CONTRACTOR);
