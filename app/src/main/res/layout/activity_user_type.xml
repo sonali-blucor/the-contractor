@@ -2,239 +2,238 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E7E7E7">
+    android:layout_centerVertical="true"
+    android:background="@color/grey_100">
 
-    <androidx.cardview.widget.CardView
-    android:id="@+id/cv_1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_80sdp"
-    android:layout_marginLeft="@dimen/_20sdp"
-    android:outlineSpotShadowColor="@color/black"
-    android:layout_marginRight="@dimen/_20sdp">
-
-        <LinearLayout
-            android:id="@+id/ll_role"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_client_user_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/white"
-                android:fontFamily="serif"
-                android:gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:text="Client"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:text="SCAN QR hgvjhfuykfytdgyjdjtrdyjdjydjjdhttdsth
-        hgdcgdytdytdt
-        fdsgrstgrdrdhyth
-        ghfdhtdhydCODE"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginStart="128dp"
-            android:layout_marginLeft="128dp"
-            android:layout_marginTop="-62dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="128dp"
-            android:src="@drawable/selector_client" />
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-    android:id="@+id/cv_2"
-        android:layout_below="@+id/cv_1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_80sdp"
-    android:layout_marginLeft="@dimen/_20sdp"
-    android:outlineSpotShadowColor="@color/black"
-    android:layout_marginRight="@dimen/_20sdp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_contractor_user_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/white"
-                android:fontFamily="serif"
-                android:gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:text="Contractor"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_clint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:text="SCAN QR hgvjhfuykfytdgyjdjtrdyjdjydjjdhttdsth
-        hgdcgdytdytdt
-        fdsgrstgrdrdhyth
-        ghfdhtdhydCODE"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginStart="128dp"
-            android:layout_marginLeft="128dp"
-            android:layout_marginTop="-62dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="128dp"
-            android:src="@drawable/selector_contractor" />
-    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_txt_login"
         style="@style/LardTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:text="Your Role"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_txt_login"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ll_role"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="10dp">-->
+        <LinearLayout
+            android:id="@+id/cv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_contractor"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="-30dp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@color/white"
+            android:padding="@dimen/_20sdp">
 
-<!--        <RadioGroup-->
-<!--            android:id="@+id/rg_user_type"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal">-->
+            <LinearLayout
+                android:id="@+id/ll_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
 
-<!--            <RadioButton-->
-<!--                android:id="@+id/rb_contractor"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/selector_contractor"-->
-<!--                android:button="@null"-->
-<!--                android:padding="@dimen/_10sdp" />-->
+                <TextView
+                    android:id="@+id/tv_contractor_user_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="I'm a Contractor"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
 
-<!--            <RadioButton-->
-<!--                android:id="@+id/rb_client"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/_10sdp"-->
-<!--                android:background="@drawable/selector_client"-->
-<!--                android:button="@null"-->
-<!--                android:padding="@dimen/_10sdp" />-->
-<!--        </RadioGroup>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="The Contractor Application"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/llh_user_type"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/_5sdp"-->
-<!--            android:orientation="horizontal">-->
+        </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_contractor_user_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/input_margin_5dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/contractor"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textSize="@dimen/label_text_size"-->
-<!--                android:textStyle="bold" />-->
+        <ImageView
+            android:id="@+id/img_contractor"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/selector_contractor" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_client_user_type"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/input_margin_5dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/client"-->
-<!--                android:textAllCaps="true"-->
-<!--                android:textSize="@dimen/label_text_size"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:id="@+id/cv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_client"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="-30dp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@color/white"
+            android:padding="@dimen/_20sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_client_user_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="I'm a Client"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="The Contractor Application"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
 
-<!--    </LinearLayout>-->
+        </LinearLayout>
 
-    <!-- Please dont use textview as button. Its not textview -->
-    <Button
-        android:id="@+id/btn_go"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/selector_button_active"
-        android:drawableEnd="@drawable/ic_arrow_right"
-        android:drawableRight="@drawable/ic_arrow_right"
-        android:gravity="center"
-        android:onClick="onClickToGo"
-        android:text="@string/next"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10sdp"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        <ImageView
+            android:id="@+id/img_client"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_below="@id/cv_1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/selector_client" />
+    </RelativeLayout>
+
+
+    <!--  <LinearLayout
+          android:id="@+id/ll_role"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:gravity="center"
+          android:orientation="vertical"
+          android:padding="10dp">
+
+          <RadioGroup
+              android:id="@+id/rg_user_type"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="horizontal">
+
+              <RadioButton
+                  android:id="@+id/rb_contractor"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/_10sdp"
+                  android:background="@drawable/selector_contractor"
+                  android:button="@null"
+                  android:padding="@dimen/_10sdp" />
+
+              <RadioButton
+                  android:id="@+id/rb_client"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/_10sdp"
+                  android:background="@drawable/selector_client"
+                  android:button="@null"
+                  android:padding="@dimen/_10sdp" />
+          </RadioGroup>
+
+          <LinearLayout
+              android:id="@+id/llh_user_type"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/_5sdp"
+              android:orientation="horizontal">
+
+              <TextView
+                  android:id="@+id/tv_contractor_user_type"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/input_margin_5dp"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:text="@string/contractor"
+                  android:textAllCaps="true"
+                  android:textSize="@dimen/label_text_size"
+                  android:textStyle="bold" />
+
+              <TextView
+                  android:id="@+id/tv_client_user_type"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/input_margin_5dp"
+                  android:layout_weight="1"
+                  android:gravity="center"
+                  android:text="@string/client"
+                  android:textAllCaps="true"
+                  android:textSize="@dimen/label_text_size"
+                  android:textStyle="bold" />
+          </LinearLayout>
+
+
+      </LinearLayout>
+-->
+      <TextView
+          android:id="@+id/btn_go"
+          android:layout_width="@dimen/_200sdp"
+          android:layout_height="@dimen/_35sdp"
+          android:layout_alignParentBottom="true"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/_20sdp"
+          android:background="@drawable/selector_button_active"
+          android:drawableEnd="@drawable/ic_arrow_right"
+          android:drawableRight="@drawable/ic_arrow_right"
+          android:gravity="center"
+          android:layout_marginBottom="@dimen/_5sdp"
+          android:onClick="onClickToGo"
+          android:text="@string/next"
+          android:textAllCaps="true"
+          android:textColor="@color/white"
+          android:textSize="@dimen/_10sdp"
+          android:textStyle="bold"
+          android:visibility="gone" />
 
 </RelativeLayout>
