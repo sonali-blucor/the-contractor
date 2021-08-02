@@ -1,13 +1,10 @@
 package com.blucor.thecontractor.rv_adapters;
 
 import android.app.Activity;
-import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
@@ -46,7 +43,7 @@ public class SubContractorListWorkOrderAdapter extends RecyclerView.Adapter<Base
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.e("View Type", "" + viewType);
-          return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.work_order_sub_contractor_list_item, parent, false));
+          return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.project_sub_contractor_list_item, parent, false));
     }
 
     @Override

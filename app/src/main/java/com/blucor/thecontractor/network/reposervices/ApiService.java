@@ -239,13 +239,13 @@ public interface ApiService {
     Call<List<SubContractor>> getAllSubContractors();
 
     @FormUrlEncoded
-    @POST(Contants.STORE_WORK_ORDER)
-    Call<ServerResponseModel>  storeWorkOrder(@Field("project_id") int project_id,
+    @POST(Contants.STORE_PROJECT_SUB_CONTRACTORS)
+    Call<ServerResponseModel>  storeProjectSubContractor(@Field("project_id") int project_id,
                                               @Field("sub_contractors") String sub_contractors);
 
     @FormUrlEncoded
-    @POST(Contants.SHOW_WORK_ORDER)
-    Call<List<SubContractor>> getAllWorkOrderSubContractors(@Field("project_id") int project_id);
+    @POST(Contants.SHOW_PROJECT_SUB_CONTRACTORS)
+    Call<List<SubContractor>> getAllProjectSubContractors(@Field("project_id") int project_id);
 
     @FormUrlEncoded
     @POST(Contants.GET_CLIENT_TODAY_ACTIVITY)

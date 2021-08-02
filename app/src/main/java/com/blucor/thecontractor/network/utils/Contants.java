@@ -46,8 +46,8 @@ public class Contants {
     public static final String GET_MATERIAL_BY_PROJECT_ID = "get_material_by_project_id";
     public static final String VIEW_ALL_PROJECTS_BY_CLIENT_ID = "view_all_projects_by_client_id";
     public static final String SHOW_SUB_CONTRACTORS = "show_sub_contractors";
-    public static final String STORE_WORK_ORDER = "store_work_order";
-    public static final String SHOW_WORK_ORDER = "show_work_order";
+    public static final String STORE_PROJECT_SUB_CONTRACTORS = "store_project_sub_contractors";
+    public static final String SHOW_PROJECT_SUB_CONTRACTORS = "show_project_sub_contractors";
     public static final String SHOW_CLIENT_BY_ID = "show_client_by_id";
     public static final String GET_CLIENT_TODAY_ACTIVITY = "get_client_today_activity";
     public static final String GET_CONTRACTOR_TODAY_ACTIVITY = "get_contractor_today_activity";

@@ -2,7 +2,6 @@ package com.blucor.thecontractor.project.sub_contractor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -20,13 +19,11 @@ import android.widget.Toast;
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
-import com.blucor.thecontractor.models.ArrayListSubContractor;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.models.ServerResponseModel;
 import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
 import com.blucor.thecontractor.project.ProjectListActivity;
-import com.blucor.thecontractor.project.ProjectMenuActivity;
 import com.blucor.thecontractor.rv_adapters.SubContractorListWorkOrderAdapter;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,10 +32,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
+public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivity {
     private ArrayList<SubContractor> subContractors;
     private ArrayList<SubContractor> prevSubContractors;
-    private RecyclerView rv_sub_contractor_work_order;
+    private RecyclerView rv_sub_contractors_to_project;
     private FloatingActionButton btn_add_sub_contractor;
     private SubContractorListWorkOrderAdapter mAdapter;
     private ProjectsModel project;
@@ -46,12 +43,12 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_work_order_to_project);
+        setContentView(R.layout.activity_add_sub_contractor_list_to_project);
 
-        rv_sub_contractor_work_order = findViewById(R.id.rv_sub_contractor_work_order);
+        rv_sub_contractors_to_project = findViewById(R.id.rv_sub_contractors_to_project);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        rv_sub_contractor_work_order.setLayoutManager(mLayoutManager);
+        rv_sub_contractors_to_project.setLayoutManager(mLayoutManager);
 
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PROJECT)) {
@@ -67,13 +64,13 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
         });
 
         subContractors = new ArrayList<>();
-        mAdapter = new SubContractorListWorkOrderAdapter(AddWorkOrderToProjectActivity.this,subContractors);
-        rv_sub_contractor_work_order.setAdapter(mAdapter);
+        mAdapter = new SubContractorListWorkOrderAdapter(AddSubContractorsListToProjectActivity.this,subContractors);
+        rv_sub_contractors_to_project.setAdapter(mAdapter);
         getSubContractors();
     }
 
     private void startIntent(){
-        Intent intent = new Intent(AddWorkOrderToProjectActivity.this, SelectSubContractorListActivity.class);
+        Intent intent = new Intent(AddSubContractorsListToProjectActivity.this, SelectSubContractorListActivity.class);
         intent.putExtra(AppKeys.PREV_SUBCONTRACTORS,prevSubContractors);
         intent.putExtra(AppKeys.PROJECT,project);
         startActivityForResult(intent, AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE);
@@ -121,7 +118,7 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
     private void getSubContractors() {
         showLoader();
         int id = project.id;
-        RetrofitClient.getApiService().getAllWorkOrderSubContractors(id).enqueue(new Callback<List<SubContractor>>() {
+        RetrofitClient.getApiService().getAllProjectSubContractors(id).enqueue(new Callback<List<SubContractor>>() {
             @Override
             public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
                 if (response.code() == 200 && response.body() != null) {
@@ -129,14 +126,14 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
                     subContractors.addAll(prevSubContractors);
                     mAdapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(AddWorkOrderToProjectActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddSubContractorsListToProjectActivity.this, "No data found", Toast.LENGTH_SHORT).show();
                 }
                 stopLoader();
             }
 
             @Override
             public void onFailure(Call<List<SubContractor>> call, Throwable t) {
-                Toast.makeText(AddWorkOrderToProjectActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });
@@ -147,14 +144,14 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
         int id = project.id;
         Gson gson = new Gson();
         String sub_contractor = gson.toJson(subContractors);
-        RetrofitClient.getApiService().storeWorkOrder(id,sub_contractor).enqueue(new Callback<ServerResponseModel>() {
+        RetrofitClient.getApiService().storeProjectSubContractor(id,sub_contractor).enqueue(new Callback<ServerResponseModel>() {
             @Override
             public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
                 if (response.code() == 200) {
-                    Toast.makeText(AddWorkOrderToProjectActivity.this, "Sucessfully Saved", Toast.LENGTH_SHORT).show();
-                    ScreenHelper.redirectToClass(AddWorkOrderToProjectActivity.this,ProjectListActivity.class);
+                    Toast.makeText(AddSubContractorsListToProjectActivity.this, "Sucessfully Saved", Toast.LENGTH_SHORT).show();
+                    ScreenHelper.redirectToClass(AddSubContractorsListToProjectActivity.this,ProjectListActivity.class);
                 } else {
-                    Toast.makeText(AddWorkOrderToProjectActivity.this, "Not Saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddSubContractorsListToProjectActivity.this, "Not Saved", Toast.LENGTH_SHORT).show();
                 }
 
                 stopLoader();
@@ -162,7 +159,7 @@ public class AddWorkOrderToProjectActivity extends BaseAppCompatActivity {
 
             @Override
             public void onFailure(Call<ServerResponseModel> call, Throwable t) {
-                Toast.makeText(AddWorkOrderToProjectActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });

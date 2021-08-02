@@ -9,7 +9,6 @@ import com.blucor.thecontractor.R;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.ProjectsModel;
 import com.blucor.thecontractor.project.ProjectMenuActivity;
-import com.blucor.thecontractor.project.activity.AddProjectActActivity;
 import com.blucor.thecontractor.project.activity.BillingDetailsDisplayListActivity;
 import com.blucor.thecontractor.project.activity.WorkOrderDisplayListActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
@@ -56,7 +55,7 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, AddWorkOrderToProjectActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, AddSubContractorsListToProjectActivity.class,bundle);
     }
 
     @Override

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    tools:context=".project.sub_contractor.AddWorkOrderToProjectActivity">
+    tools:context=".project.sub_contractor.AddSubContractorsListToProjectActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,10 +28,10 @@
             android:padding="@dimen/_10sdp">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_sub_contractor_work_order"
+                android:id="@+id/rv_sub_contractors_to_project"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/work_order_sub_contractor_list_item"/>
+                tools:listitem="@layout/project_sub_contractor_list_item"/>
 
         </LinearLayout>
 

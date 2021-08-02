@@ -1,7 +1,5 @@
 package com.blucor.thecontractor.project.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,21 +19,13 @@ import android.widget.Toast;
 
 import com.blucor.thecontractor.BaseAppCompatActivity;
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.thecontractor.custom.CustomSubContractorAutoCompleteTextChangedListener;
 import com.blucor.thecontractor.models.ProjectsModel;
-import com.blucor.thecontractor.models.SubContractorAddSearchModel;
 import com.blucor.thecontractor.network.retrofit.RetrofitClient;
-import com.blucor.thecontractor.project.activity.AddSubContractorActivity;
-import com.blucor.thecontractor.custom.CustomAutoCompleteTextChangedListener;
 import com.blucor.thecontractor.database.DatabaseUtil;
 import com.blucor.thecontractor.helper.AppKeys;
 import com.blucor.thecontractor.models.SubContractor;
-import com.blucor.thecontractor.models.SubContractor;
 import com.blucor.thecontractor.models.User;
-import com.blucor.thecontractor.models.SubContractor;
-import com.blucor.thecontractor.project.sub_contractor.AddWorkOrderToProjectActivity;
-import com.blucor.thecontractor.rv_adapters.AutocompleteCustomArrayAdapter;
 import com.blucor.thecontractor.rv_adapters.AutocompleteSubContractorCustomArrayAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -93,7 +83,7 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     public void loadAllSubContractors() {
         showLoader();
         int id = project.id;
-        RetrofitClient.getApiService().getAllWorkOrderSubContractors(id).enqueue(new Callback<List<SubContractor>>() {
+        RetrofitClient.getApiService().getAllProjectSubContractors(id).enqueue(new Callback<List<SubContractor>>() {
             @Override
             public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
                 if (response.code() == 200 && response.body() != null) {

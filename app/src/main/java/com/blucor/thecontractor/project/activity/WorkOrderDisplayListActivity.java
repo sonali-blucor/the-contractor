@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.blucor.thecontractor.R;
-import com.blucor.thecontractor.helper.AppKeys;
-import com.blucor.thecontractor.project.sub_contractor.AddWorkOrderToProjectActivity;
 import com.blucor.thecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
