@@ -14,56 +14,150 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_percentage"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_work_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_work_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Work_order"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:enabled="false"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/edt_contract_type"
+                    android:onClick="showPopupViewForWorkOrder"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/img_project_type"
+                style="@style/Theme.TheContractor.ImageViewTheme"
+                android:onClick="showPopupViewForWorkOrder"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/drawable_padding"
+                android:src="@drawable/ic_down" />
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Percentage"
-            android:textSize="@dimen/_13sdp"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"/>
-        <View
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/percentage"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:enabled="false"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/edt_contract_type"
+                android:onClick="showPopupViewForWorkOrder"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_paid"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
-        <EditText
-            android:id="@+id/et_paid"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:text="Paid"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
-        <EditText
-            android:id="@+id/et_amount"
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_paid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Paid"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:enabled="false"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/edt_contract_type"
+                android:onClick="showPopupViewForWorkOrder"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_13sdp"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:inputType="number"
-            android:text="Amount" />
-        <View
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Amount"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:enabled="false"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/edt_contract_type"
+                android:onClick="showPopupViewForWorkOrder"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_balance"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
-        <EditText
-            android:id="@+id/et_balance"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/_13sdp"
-            android:inputType="number"
             android:layout_height="wrap_content"
-            android:text="Balance" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Balance"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:enabled="false"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/edt_contract_type"
+                android:onClick="showPopupViewForWorkOrder"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <EditText
             android:id="@+id/et_remark"
             android:padding="@dimen/_10sdp"

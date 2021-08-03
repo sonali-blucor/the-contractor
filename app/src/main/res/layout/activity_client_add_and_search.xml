@@ -10,19 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:visibility="gone"
         android:hint="Search Client" />
 
     <ListView
         android:id="@+id/lst_search_client"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:id="@+id/rl_add_client"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="gone"
         android:padding="@dimen/padding_5dp">
 
         <ScrollView

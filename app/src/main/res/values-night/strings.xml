@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">The Contractor</string>
+    <string name="app_name">Tc The Contractor</string>
 
     <string name="exit_app_string">Do you wan\'t to exit?</string>
     <string name="yes">Yes</string>

@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
@@ -136,8 +136,12 @@
                     android:drawablePadding="@dimen/drawable_padding"
                     android:hint="Work order form"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="100"
+                    android:inputType="none"
+                    android:onClick="onClickAddWorkOrder"
+                    android:focusable="false"
+                    android:editable="false"
+                    android:longClickable="false"
+                    android:drawableRight="@drawable/ic_add_client"
                     android:nextFocusDown="@id/edt_project_location"
                     android:singleLine="true" />
 

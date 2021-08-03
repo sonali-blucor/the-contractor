@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.blucor.thecontractor">
+    package="com.blucor.tcthecontractor">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
-        android:name=".project.ContractorApplication"
+        android:name="com.blucor.tcthecontractor.project.ContractorApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,107 +21,107 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.activity.BillingDetailsDisplayListActivity"
+        <activity android:name="com.blucor.tcthecontractor.project.activity.BillingDetailsDisplayListActivity"
             android:label="Billing Details List"/>
-        <activity android:name=".project.activity.WorkOrderDisplayListActivity"
+        <activity android:name="com.blucor.tcthecontractor.project.activity.WorkOrderDisplayListActivity"
             android:label="Work Order List"/>
-        <activity android:name=".project.activity.BillingDetailsActivity"
+        <activity android:name="com.blucor.tcthecontractor.project.activity.BillingDetailsActivity"
             android:label="Add Billing"/>
-        <activity android:name=".project.activity.WorkOrderActivity"
+        <activity android:name="com.blucor.tcthecontractor.project.activity.WorkOrderActivity"
             android:label="Add Work Order"/>
-            <activity android:name=".ClientMenuActivity"
+            <activity android:name="com.blucor.tcthecontractor.ClientMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
-        <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SelectSubContractorListActivity" />
         <activity
-            android:name=".client.ClientProjectSubActDetailsActivity"
+            android:name="com.blucor.tcthecontractor.client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
-        <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity" />
-        <activity android:name=".project.sub_contractor.BillingActivity" />
-        <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity" />
-        <activity android:name=".project.activity.TodaysActivitiesActivity" />
-        <activity android:name=".project.activity.AddSubContractorActivity" />
-        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
-        <activity android:name=".project.ScheduleActivity" />
-        <activity android:name=".client.ClientAddAndSearchActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SubContractorDownloadReportActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.BillingActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.AddSubContractorsListToProjectActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.activity.TodaysActivitiesActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.activity.AddSubContractorActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SubContractorMgtMenuActivity" />
+        <activity android:name="com.blucor.tcthecontractor.project.ScheduleActivity" />
+        <activity android:name="com.blucor.tcthecontractor.client.ClientAddAndSearchActivity" />
         <activity
-            android:name=".account.ConfirmPasswordActivity"
+            android:name="com.blucor.tcthecontractor.account.ConfirmPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".account.UserTypeActivity"
+            android:name="com.blucor.tcthecontractor.account.UserTypeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name=".client.ProjectActActivity"
+            android:name="com.blucor.tcthecontractor.client.ProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".client.ClientProjectsActivity"
+            android:name="com.blucor.tcthecontractor.client.ClientProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name=".project.material.AddMaterialDetailsActivity"
+            android:name="com.blucor.tcthecontractor.project.material.AddMaterialDetailsActivity"
             android:label="Material"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".project.activity.AddActivityDetailsActivity"
+            android:name="com.blucor.tcthecontractor.project.activity.AddActivityDetailsActivity"
             android:label="Activity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SuccessFullscreenActivity"
+            android:name="com.blucor.tcthecontractor.SuccessFullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_success_fullscreen"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" /> <!-- android:theme="@style/Theme.TheContractor.Fullscreen" /> -->
         <activity
-            android:name=".project.ProjectMenuActivity"
+            android:name="com.blucor.tcthecontractor.project.ProjectMenuActivity"
             android:label="Project" />
         <activity
-            android:name=".project.ProjectManagementMenuActivity"
+            android:name="com.blucor.tcthecontractor.project.ProjectManagementMenuActivity"
             android:label="Project" />
         <activity
-            android:name=".project.ProjectListActivity"
+            android:name="com.blucor.tcthecontractor.project.ProjectListActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.AddProjectActivity"
+            android:name="com.blucor.tcthecontractor.project.AddProjectActivity"
             android:label="Add Project"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".project.ProjectDetailsActivity"
+            android:name="com.blucor.tcthecontractor.project.ProjectDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name=".project.CompletedProjectsActivity"
+            android:name="com.blucor.tcthecontractor.project.CompletedProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.activity.AddProjectActActivity"
+            android:name="com.blucor.tcthecontractor.project.activity.AddProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name=".project.activity.EditProjectActActivity"
+            android:name="com.blucor.tcthecontractor.project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.MaterialMenuActivity"
+            android:name="com.blucor.tcthecontractor.project.material.MaterialMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.AddMaterialActivity"
+            android:name="com.blucor.tcthecontractor.project.material.AddMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.EditMaterialActivity"
+            android:name="com.blucor.tcthecontractor.project.material.EditMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".account.UserProfileActivity"
+            android:name="com.blucor.tcthecontractor.account.UserProfileActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name=".MenuActivity"
+            android:name="com.blucor.tcthecontractor.MenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name=".account.ForgotPasswordActivity"
+            android:name="com.blucor.tcthecontractor.account.ForgotPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name=".account.RegisterActivity"
+            android:name="com.blucor.tcthecontractor.account.RegisterActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".account.LoginActivity"
+            android:name="com.blucor.tcthecontractor.account.LoginActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.blucor.tcthecontractor.SplashActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
