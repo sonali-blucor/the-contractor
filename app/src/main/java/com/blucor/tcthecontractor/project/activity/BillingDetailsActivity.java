@@ -3,20 +3,23 @@ package com.blucor.tcthecontractor.project.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.helper.AppKeys;
+import com.blucor.tcthecontractor.models.ProjectsModel;
 
 public class BillingDetailsActivity extends AppCompatActivity {
 
     EditText et_percentage,et_paid,et_amount,et_balance,et_remark;
     Button btnsubmit;
+    private ProjectsModel project;
 
     boolean isAllFieldsChecked = false;
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,11 @@ public class BillingDetailsActivity extends AppCompatActivity {
         et_remark=findViewById(R.id.et_remark);
         btnsubmit=findViewById(R.id.btn_submit);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra(AppKeys.PROJECT)) {
+            project = intent.getParcelableExtra(AppKeys.PROJECT);
+        }
+
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +48,12 @@ public class BillingDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        getAllWorkOrder();
+
+    }
+
+    private void getAllWorkOrder() {
 
     }
 

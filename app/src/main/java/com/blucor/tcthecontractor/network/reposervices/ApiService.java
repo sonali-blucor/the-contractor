@@ -256,5 +256,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.GET_CONTRACTOR_TODAY_ACTIVITY)
     Call<List<ActivityResponseModel>> getContractorTodaysActivities(@Field("contractor_id") int contractor_id);
+
+    /*@FormUrlEncoded
+    @POST(Contants.SHOW_WORK_ORDERS)
+    Call<List<ScheduleModel>> getScheduleByProjectId(@Field("project_id") int project_id);*/
 }
 

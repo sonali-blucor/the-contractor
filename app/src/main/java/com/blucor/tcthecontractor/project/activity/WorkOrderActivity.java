@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
+import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
@@ -34,6 +35,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
     List<UnitModal> units;
     private boolean is_edit;
     private int unit_id;
+    private ProjectsModel project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
         et_rate = findViewById(R.id.et_rate);
         et_amount = findViewById(R.id.et_amount);
         btnsubmit = findViewById(R.id.btnsubmit);
+
 
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +63,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
 
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PROJECT)) {
+            project = intent.getParcelableExtra(AppKeys.PROJECT);
             is_edit = true;
         } else {
             is_edit = false;

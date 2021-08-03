@@ -38,7 +38,7 @@
                     android:enabled="false"
                     android:maxLength="150"
                     android:textColor="@color/black"
-                    android:nextFocusDown="@id/edt_contract_type"
+                    android:nextFocusDown="@id/et_percentage"
                     android:onClick="showPopupViewForWorkOrder"
                     android:singleLine="true" />
 
@@ -70,12 +70,10 @@
                 android:drawablePadding="@dimen/drawable_padding"
                 android:hint="@string/percentage"
                 android:imeOptions="actionNext"
-                android:inputType="text"
-                android:enabled="false"
+                android:inputType="numberDecimal"
                 android:maxLength="150"
                 android:textColor="@color/black"
-                android:nextFocusDown="@id/edt_contract_type"
-                android:onClick="showPopupViewForWorkOrder"
+                android:nextFocusDown="@id/et_paid"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,8 +94,7 @@
                 android:drawablePadding="@dimen/drawable_padding"
                 android:hint="@string/Paid"
                 android:imeOptions="actionNext"
-                android:inputType="text"
-                android:enabled="false"
+                android:inputType="numberDecimal"
                 android:maxLength="150"
                 android:textColor="@color/black"
                 android:nextFocusDown="@id/edt_contract_type"
@@ -122,11 +119,10 @@
                 android:drawablePadding="@dimen/drawable_padding"
                 android:hint="@string/Amount"
                 android:imeOptions="actionNext"
-                android:inputType="text"
-                android:enabled="false"
+                android:inputType="numberDecimal"
                 android:maxLength="150"
                 android:textColor="@color/black"
-                android:nextFocusDown="@id/edt_contract_type"
+                android:nextFocusDown="@id/et_amount"
                 android:onClick="showPopupViewForWorkOrder"
                 android:singleLine="true" />
 
@@ -152,24 +148,37 @@
                 android:enabled="false"
                 android:maxLength="150"
                 android:textColor="@color/black"
-                android:nextFocusDown="@id/edt_contract_type"
+                android:nextFocusDown="@id/et_remark"
                 android:onClick="showPopupViewForWorkOrder"
                 android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/et_remark"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_remark"
             android:layout_width="match_parent"
-            android:textSize="@dimen/_13sdp"
             android:layout_height="wrap_content"
-            android:text="Remarks" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/grey_300"/>
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Remarks"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/btn_submit"
+                android:onClick="showPopupViewForWorkOrder"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <Button
