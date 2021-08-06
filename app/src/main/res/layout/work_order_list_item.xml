@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_no_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="1"
+        android:gravity="right"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_item_name_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="Item Name"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_unit_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="Kg"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_qty_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="10"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_rate_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="20"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_amount_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/table_content_cell_bg"
+        android:text="200"
+        android:textColor="@android:color/black"/>
+
+    <ImageView
+        android:id="@+id/img_edit_work_order_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/table_content_cell_bg"
+        android:src="@drawable/ic_edit_yellow"/>
+
+</LinearLayout>

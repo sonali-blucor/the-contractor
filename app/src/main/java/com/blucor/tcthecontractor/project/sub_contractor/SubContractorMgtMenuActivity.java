@@ -9,8 +9,8 @@ import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.project.ProjectMenuActivity;
+import com.blucor.tcthecontractor.project.WorkOrderBillingProjectListActivity;
 import com.blucor.tcthecontractor.project.activity.BillingDetailsDisplayListActivity;
-import com.blucor.tcthecontractor.project.activity.WorkOrderDisplayListActivity;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 
 public class SubContractorMgtMenuActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, WorkOrderDisplayListActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, WorkOrderBillingProjectListActivity.class,bundle);
     }
 
     public void onClickToBilling(View view) {

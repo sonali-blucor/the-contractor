@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="right">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remaining Percent: "
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_percentage_bill_list_total_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10.00"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total : "
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_bill_list_total_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="800.00"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/black"/>
+
+</LinearLayout>

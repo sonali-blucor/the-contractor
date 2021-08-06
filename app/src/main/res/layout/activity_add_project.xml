@@ -119,6 +119,136 @@
                     android:padding="@dimen/drawable_padding"
                     android:src="@drawable/ic_down" />
             </RelativeLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_add_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_add_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="Add Client"
+                    android:imeOptions="actionNext"
+                    android:inputType="none"
+                    android:onClick="onClickAddClient"
+                    android:focusable="false"
+                    android:editable="false"
+                    android:longClickable="false"
+                    android:drawableRight="@drawable/ic_add_client"
+                    android:nextFocusDown="@id/edt_project_location"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+          <!--  <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:text="Add Work Order"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+
+                        android:textColor="@android:color/black"
+                        android:gravity="center"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_client"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.4"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="No."
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="2.6"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="Item"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.6"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="@string/Unit"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.7"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="Qty"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="@string/Rate"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:text="@string/Amount"
+                        android:textColor="@android:color/black"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/table_content_cell_bg_yellow"
+                        android:src="@drawable/ic_edit_yellow"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/work_order_list_item"
+                    />
+
+            </LinearLayout>-->
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_work_order_form"
                 android:layout_width="match_parent"
@@ -148,23 +278,24 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_add_client"
+                android:id="@+id/til_billing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
+                android:visibility="visible"
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_add_client"
+                    android:id="@+id/edt_billing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
                     android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Add Client"
+                    android:hint="Billing Section"
                     android:imeOptions="actionNext"
                     android:inputType="none"
-                    android:onClick="onClickAddClient"
+                    android:onClick="onClickAddBill"
                     android:focusable="false"
                     android:editable="false"
                     android:longClickable="false"

@@ -1,5 +1,6 @@
 package com.blucor.tcthecontractor.project;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -24,6 +25,7 @@ import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.client.ClientAddAndSearchActivity;
 import com.blucor.tcthecontractor.database.DatabaseUtil;
 import com.blucor.tcthecontractor.helper.AppKeys;
+import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.Client;
 import com.blucor.tcthecontractor.models.Contract_Type;
 import com.blucor.tcthecontractor.models.Project_Type;
@@ -31,6 +33,7 @@ import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.User;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.project.activity.BillingDetailsActivity;
 import com.blucor.tcthecontractor.project.activity.WorkOrderActivity;
 import com.blucor.tcthecontractor.rv_adapters.ContractTypeAdapter;
 import com.blucor.tcthecontractor.rv_adapters.ProjectTypeAdapter;
@@ -39,6 +42,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -49,6 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@SuppressLint("SimpleDateFormat")
 public class AddProjectActivity extends BaseAppCompatActivity {
 
     private TextInputEditText mEdtProjectName;
@@ -81,7 +86,9 @@ public class AddProjectActivity extends BaseAppCompatActivity {
     private List<Contract_Type> contract_types;
     private List<Project_Type> project_types;
     private Client client;
-    private WorkOrderModel workOrder;
+    private ArrayList<WorkOrderModel> workOrders;
+    private ArrayList<BilliModel> bills;
+    private EditText mEdtAddBill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +103,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
         mEdtAddress = findViewById(R.id.edt_project_location);
         mEdtAddClient = findViewById(R.id.edt_add_client);
         mEdtAddWorkOrder = findViewById(R.id.edt_work_order_form);
+        mEdtAddBill = findViewById(R.id.edt_billing);
         mTvPDuration = findViewById(R.id.tv_project_duration);
         start_date = System.currentTimeMillis();
         end_date = System.currentTimeMillis();
@@ -145,9 +153,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                     alert.dismiss();
                 }
             });
-            builder.setCancelable(false)
-                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-
+            builder.setCancelable(false).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
@@ -174,8 +180,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                 alert.dismiss();
             }
         });
-        builder.setCancelable(false)
-                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+        builder.setCancelable(false).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -197,11 +202,13 @@ public class AddProjectActivity extends BaseAppCompatActivity {
             String PStartDate = mEdtPStartDate.getText().toString();
             String PEndDate = mEdtPEndDate.getText().toString();
             String PDuration = mTvPDuration.getText().toString();
-            String work_order = new Gson().toJson(workOrder);
+            String work_order = new Gson().toJson(workOrders);
+            String billings = new Gson().toJson(bills);
 
-            showLoader();
+            Log.e("Work order",""+work_order);
+            //showLoader();
 
-            RetrofitClient.getApiService().saveProject(ProjectName,ProjectType,ContractType,client.id,Address,PStartDate,PEndDate,PDuration,work_order,user.server_id).enqueue(new Callback<ProjectsModel>() {
+            RetrofitClient.getApiService().saveProject(ProjectName,ProjectType,ContractType,client.id,Address,PStartDate,PEndDate,PDuration,work_order,billings,user.server_id).enqueue(new Callback<ProjectsModel>() {
                 @Override
                 public void onResponse(Call<ProjectsModel> call, Response<ProjectsModel> response) {
                     if (response!= null && response.code() == 201) {
@@ -270,7 +277,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                 if (data.hasExtra("client")) {
                     client = data.getParcelableExtra("client");
                     if(client != null) {
-                        mEdtAddClient.setText(client.fname + " " + client.lname);
+                        mEdtAddClient.setText(client.fname + " " + client.lname+" - "+client.mobile);
                     }
                 }
             } catch (Exception e) {
@@ -279,9 +286,20 @@ public class AddProjectActivity extends BaseAppCompatActivity {
         } else if (requestCode == 121) {
             try {
                 if (data.hasExtra(AppKeys.WORK_ORDER)) {
-                    workOrder = data.getParcelableExtra(AppKeys.WORK_ORDER);
-                    if(workOrder != null) {
-                        mEdtAddWorkOrder.setText(workOrder.work_description);
+                    workOrders = data.getParcelableArrayListExtra(AppKeys.WORK_ORDER);
+                    if(workOrders != null) {
+                        mEdtAddWorkOrder.setText("Work Order Selected");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (requestCode == 122) {
+            try {
+                if (data.hasExtra(AppKeys.BILL)) {
+                    bills = data.getParcelableArrayListExtra(AppKeys.BILL);
+                    if(bills != null) {
+                        mEdtAddBill.setText("Bill Selected");
                     }
                 }
             } catch (Exception e) {
@@ -470,7 +488,11 @@ public class AddProjectActivity extends BaseAppCompatActivity {
             mEdtAddWorkOrder.setError("Please select work order");
             mEdtAddWorkOrder.requestFocus();
             isValid = false;
-        } else if(workOrder == null) {
+        } else if(workOrders == null) {
+            mEdtAddWorkOrder.setError("Please select work order");
+            mEdtAddWorkOrder.requestFocus();
+            isValid = false;
+        }  else if(workOrders.size() <= 0) {
             mEdtAddWorkOrder.setError("Please select work order");
             mEdtAddWorkOrder.requestFocus();
             isValid = false;
@@ -517,5 +539,25 @@ public class AddProjectActivity extends BaseAppCompatActivity {
     public void onClickAddWorkOrder(View view) {
         Intent intent = new Intent(AddProjectActivity.this, WorkOrderActivity.class);
         startActivityForResult(intent,121);
+    }
+
+    public void onClickAddBill(View view) {
+        if (workOrders != null && workOrders.size() > 0) {
+            float tot_work_oerder_amount = getTotalAmount();
+            Intent intent = new Intent(AddProjectActivity.this, BillingDetailsActivity.class);
+            intent.putExtra(AppKeys.TOTAL_WORK_ORDER_AMOUNT,tot_work_oerder_amount);
+            startActivityForResult(intent, 122);
+        } else {
+            Toast.makeText(this, "Please add work order first", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private float getTotalAmount() {
+        float tot_amount = 0;
+        for (int i = 0; i < workOrders.size(); i++) {
+            WorkOrderModel model = workOrders.get(i);
+            tot_amount = tot_amount + model.amount;
+        }
+        return tot_amount;
     }
 }

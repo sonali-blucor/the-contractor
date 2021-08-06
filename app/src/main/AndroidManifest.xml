@@ -2,18 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.blucor.tcthecontractor">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <application
-        android:name="com.blucor.tcthecontractor.project.ContractorApplication"
+        android:name=".project.ContractorApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,107 +11,113 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.blucor.tcthecontractor.project.activity.BillingDetailsDisplayListActivity"
-            android:label="Billing Details List"/>
-        <activity android:name="com.blucor.tcthecontractor.project.activity.WorkOrderDisplayListActivity"
-            android:label="Work Order List"/>
-        <activity android:name="com.blucor.tcthecontractor.project.activity.BillingDetailsActivity"
-            android:label="Add Billing"/>
-        <activity android:name="com.blucor.tcthecontractor.project.activity.WorkOrderActivity"
-            android:label="Add Work Order"/>
-            <activity android:name="com.blucor.tcthecontractor.ClientMenuActivity"
+        <activity android:name=".project.WorkOrderBillingProjectListActivity"></activity>
+        <activity
+            android:name=".project.activity.BillingDetailsDisplayListActivity"
+            android:label="Billing Details List" />
+        <activity
+            android:name=".project.activity.BillingDetailsActivity"
+            android:label="Add Billing" />
+        <activity
+            android:name=".project.activity.WorkOrderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
+            android:label="Add Work Order" />
+        <activity
+            android:name=".ClientMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
-        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SelectSubContractorListActivity" />
+        <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
         <activity
-            android:name="com.blucor.tcthecontractor.client.ClientProjectSubActDetailsActivity"
+            android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
-        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SubContractorDownloadReportActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.BillingActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.AddSubContractorsListToProjectActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.activity.TodaysActivitiesActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.activity.AddSubContractorActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.sub_contractor.SubContractorMgtMenuActivity" />
-        <activity android:name="com.blucor.tcthecontractor.project.ScheduleActivity" />
-        <activity android:name="com.blucor.tcthecontractor.client.ClientAddAndSearchActivity" />
+        <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity" />
+        <activity android:name=".project.sub_contractor.BillingActivity" />
+        <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity" />
+        <activity android:name=".project.activity.TodaysActivitiesActivity" />
+        <activity android:name=".project.activity.AddSubContractorActivity" />
+        <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
+        <activity android:name=".project.ScheduleActivity" />
+        <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.ConfirmPasswordActivity"
+            android:name=".account.ConfirmPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.UserTypeActivity"
+            android:name=".account.UserTypeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name="com.blucor.tcthecontractor.client.ProjectActActivity"
+            android:name=".client.ProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.client.ClientProjectsActivity"
+            android:name=".client.ClientProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.material.AddMaterialDetailsActivity"
+            android:name=".project.material.AddMaterialDetailsActivity"
             android:label="Material"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.activity.AddActivityDetailsActivity"
+            android:name=".project.activity.AddActivityDetailsActivity"
             android:label="Activity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.blucor.tcthecontractor.SuccessFullscreenActivity"
+            android:name=".SuccessFullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_success_fullscreen"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" /> <!-- android:theme="@style/Theme.TheContractor.Fullscreen" /> -->
         <activity
-            android:name="com.blucor.tcthecontractor.project.ProjectMenuActivity"
+            android:name=".project.ProjectMenuActivity"
             android:label="Project" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.ProjectManagementMenuActivity"
+            android:name=".project.ProjectManagementMenuActivity"
             android:label="Project" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.ProjectListActivity"
+            android:name=".project.ProjectListActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.AddProjectActivity"
+            android:name=".project.AddProjectActivity"
             android:label="Add Project"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.ProjectDetailsActivity"
+            android:name=".project.ProjectDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.CompletedProjectsActivity"
+            android:name=".project.CompletedProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.activity.AddProjectActActivity"
+            android:name=".project.activity.AddProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.activity.EditProjectActActivity"
+            android:name=".project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.material.MaterialMenuActivity"
+            android:name=".project.material.MaterialMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.material.AddMaterialActivity"
+            android:name=".project.material.AddMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.project.material.EditMaterialActivity"
+            android:name=".project.material.EditMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.UserProfileActivity"
+            android:name=".account.UserProfileActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name="com.blucor.tcthecontractor.MenuActivity"
+            android:name=".MenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.ForgotPasswordActivity"
+            android:name=".account.ForgotPasswordActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.RegisterActivity"
+            android:name=".account.RegisterActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.blucor.tcthecontractor.account.LoginActivity"
+            android:name=".account.LoginActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name="com.blucor.tcthecontractor.SplashActivity"
+            android:name=".SplashActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -134,5 +130,15 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>

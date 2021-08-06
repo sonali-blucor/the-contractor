@@ -18,6 +18,7 @@ import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.models.SubContractorAddSearchModel;
 import com.blucor.tcthecontractor.models.UnitModal;
+import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.utils.Contants;
 
 import java.util.List;
@@ -150,6 +151,7 @@ public interface ApiService {
                                       @Field("end_date") String end_date,
                                       @Field("duration") String duration,
                                       @Field("work_order") String work_order,
+                                      @Field("billing") String bills,
                                       @Field("contractor_id") int contractor_id);
 
     @FormUrlEncoded
@@ -257,8 +259,9 @@ public interface ApiService {
     @POST(Contants.GET_CONTRACTOR_TODAY_ACTIVITY)
     Call<List<ActivityResponseModel>> getContractorTodaysActivities(@Field("contractor_id") int contractor_id);
 
-    /*@FormUrlEncoded
+    @FormUrlEncoded
     @POST(Contants.SHOW_WORK_ORDERS)
-    Call<List<ScheduleModel>> getScheduleByProjectId(@Field("project_id") int project_id);*/
+    Call<List<WorkOrderModel>> getWorkOrderByProjectId(@Field("client_id") int client_id,
+                                                       @Field("project_id") int project_id);
 }
 

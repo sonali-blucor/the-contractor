@@ -19,6 +19,10 @@ public class WorkOrderModel implements Parcelable {
     @Expose
     public int unit_id;
 
+    @SerializedName("unit")
+    @Expose
+    public String unit;
+
     @SerializedName("quantity")
     @Expose
     public int quantity;
@@ -38,10 +42,12 @@ public class WorkOrderModel implements Parcelable {
     public WorkOrderModel() {
     }
 
+
     protected WorkOrderModel(Parcel in) {
         id = in.readInt();
         work_description = in.readString();
         unit_id = in.readInt();
+        unit = in.readString();
         quantity = in.readInt();
         rate = in.readFloat();
         amount = in.readFloat();
@@ -89,6 +95,14 @@ public class WorkOrderModel implements Parcelable {
         this.unit_id = unit_id;
     }
 
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -130,6 +144,7 @@ public class WorkOrderModel implements Parcelable {
         dest.writeInt(id);
         dest.writeString(work_description);
         dest.writeInt(unit_id);
+        dest.writeString(unit);
         dest.writeInt(quantity);
         dest.writeFloat(rate);
         dest.writeFloat(amount);
