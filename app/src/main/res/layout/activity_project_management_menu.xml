@@ -79,16 +79,16 @@
                         android:background="@drawable/selector_menu"
                         android:clickable="true"
                         android:focusable="true"
-                        android:onClick="onClickToProjects"
+                        android:onClick="onClickToWorkOrderManagement"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_work_order_billing"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="24dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/margin_8dp"
                             android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_8dp"
                             android:layout_weight="1"
                             android:text="Work Order And Billing"
                             android:textAllCaps="true"

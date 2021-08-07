@@ -31,10 +31,10 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
     }
 
     public void onClickToWorkOrder(View view) {
-        Bundle bundle = new Bundle();
+       /* Bundle bundle = new Bundle();
         bundle.putParcelable(AppKeys.PROJECT,project);
         bundle.putBoolean(AppKeys.PROJECT_DETAIL_TYPE,false);
-        ScreenHelper.redirectToClass(this, WorkOrderBillingProjectListActivity.class,bundle);
+        ScreenHelper.redirectToClass(this, WorkOrderBillingProjectListActivity.class,bundle);*/
     }
 
     public void onClickToBilling(View view) {

@@ -11,7 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheContractor"
         android:usesCleartextTraffic="true">
-        <activity android:name=".project.WorkOrderBillingProjectListActivity"></activity>
+
+        <activity android:name=".project.WorkOrderBillingProjectListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
+            />
         <activity
             android:name=".project.activity.BillingDetailsDisplayListActivity"
             android:label="Billing Details List" />
@@ -27,6 +32,7 @@
         <activity
             android:name=".ClientMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarYellow" />
+
         <activity android:name=".project.sub_contractor.SelectSubContractorListActivity" />
         <activity
             android:name=".client.ClientProjectSubActDetailsActivity"
