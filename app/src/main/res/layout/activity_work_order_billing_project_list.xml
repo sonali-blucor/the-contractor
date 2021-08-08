@@ -26,13 +26,62 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_frgament"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#7367"
+        android:visibility="gone">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Work_order" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Billing" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout_fragemnt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp">
+
+    </FrameLayout>
+
+   <!-- <RadioGroup
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_tab_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/ic_tabscreen"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_split_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@drawable/ic_splitscreen"
+            />
+
+    </RadioGroup>-->
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+        android:layout_below="@id/tabLayout">
 
     </FrameLayout>
 
