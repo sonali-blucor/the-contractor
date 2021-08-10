@@ -1,12 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".project.fragments.WorkOrderFragment">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.4"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="No."
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_item"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="2.6"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="Item"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="@string/Unit"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.7"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="Qty"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="@string/Rate"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="@string/Amount"
+                android:textColor="@android:color/black"/>
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:src="@drawable/ic_edit_yellow"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/rv_work_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,18 +102,18 @@
             android:text="Add Work Order"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:visibility="gone"
             android:textColor="@android:color/black"
             android:gravity="center"/>
 
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_below="@id/tv"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
+           &lt;!&ndash; <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_workdesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,7 +281,7 @@
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold">
 
-            </Button>
+            </Button>&ndash;&gt;
 
             <TextView
                 android:id="@+id/tv_view"
@@ -284,10 +366,19 @@
             <ListView
                 android:id="@+id/rv_work_order"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
                 />
         </LinearLayout>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_work_order_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_add"
+        app:maxImageSize="40dp"/>
+
+</RelativeLayout>

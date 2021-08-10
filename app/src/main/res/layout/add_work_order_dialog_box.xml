@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_workdesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/input_margin_5dp"
+        android:background="@drawable/edit_background"
+        app:errorIconDrawable="@drawable/edit_background">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_workdesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_background"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:hint="@string/Work_description"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="150"
+            android:textColor="@color/black"
+            android:nextFocusDown="@id/et_unit"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Unit"
+                    android:imeOptions="actionNext"
+                    android:inputType="none"
+                    android:longClickable="false"
+                    android:focusable="false"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/edt_contract_type"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/img_units"
+                style="@style/Theme.TheContractor.ImageViewTheme"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/drawable_padding"
+                android:src="@drawable/ic_down" />
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_qty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Quantity"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_rate"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Rate"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLength="150"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_amount"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_margin_5dp"
+            android:background="@drawable/edit_background"
+            app:errorIconDrawable="@drawable/edit_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_background"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="@string/Amount"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="150"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:nextFocusDown="@id/et_rate"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Submit"
+        android:background="#DC8209"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold">
+
+    </Button>
+
+</LinearLayout>

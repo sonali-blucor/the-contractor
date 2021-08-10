@@ -39,6 +39,7 @@ import com.blucor.tcthecontractor.project.activity.WorkOrderActivity;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
 import com.blucor.tcthecontractor.rv_adapters.WorkOrderRecyclerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class WorkOrderFragment extends Fragment {
     List<UnitModal> units;
     private boolean is_edit = false;
     private int edit_position;
+    private WorkOrderModel edit_work_order;
     private int unit_id;
     //private ProjectsModel project;
     private ListView rv_work_order;
@@ -76,6 +78,8 @@ public class WorkOrderFragment extends Fragment {
     private BaseAppCompatActivity mActivity;
     private ProjectsModel selected_project;
     private ImageView img_units;
+    private FloatingActionButton fab_add_work_order;
+    private View dialog_view;
 
     public WorkOrderFragment() {
         // Required empty public constructor
@@ -94,12 +98,12 @@ public class WorkOrderFragment extends Fragment {
         // Inflate the layout for this fragment
         fragment_view = inflater.inflate(R.layout.fragment_work_order, container, false);
 
-        et_workdesc = fragment_view.findViewById(R.id.et_workdesc);
+        /*et_workdesc = fragment_view.findViewById(R.id.et_workdesc);
         et_unit = fragment_view.findViewById(R.id.et_unit);
         img_units = fragment_view.findViewById(R.id.img_units);
         et_qty = fragment_view.findViewById(R.id.et_qty);
         et_rate = fragment_view.findViewById(R.id.et_rate);
-        et_amount = fragment_view.findViewById(R.id.et_amount);
+        et_amount = fragment_view.findViewById(R.id.et_amount);*/
         tv_view = fragment_view.findViewById(R.id.tv_view);
         ll_title = fragment_view.findViewById(R.id.ll_title);
         tv_no = fragment_view.findViewById(R.id.tv_no);
@@ -109,8 +113,148 @@ public class WorkOrderFragment extends Fragment {
         tv_rate = fragment_view.findViewById(R.id.tv_rate);
         tv_amount = fragment_view.findViewById(R.id.tv_amount);
         img_edit  = fragment_view.findViewById(R.id.img_edit);
+        fab_add_work_order  = fragment_view.findViewById(R.id.fab_work_order_add);
         mActivity = (BaseAppCompatActivity)getActivity();
 
+        /*et_unit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupViewForUnits(v);
+            }
+        });
+
+        et_rate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    float rate = Float.parseFloat("" + s);
+                    float qty = Float.parseFloat(et_qty.getText().toString());
+                    float amt = rate * qty;
+                    et_amount.setText("" + amt);
+                }catch (Exception exception) {
+                    Log.e("TextWatcher",""+exception.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        et_qty.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    float qty = Float.parseFloat("" + s);
+                    float rate = Float.parseFloat(et_rate.getText().toString());
+                    float amt = rate * qty;
+                    et_amount.setText("" + amt);
+                }catch (Exception exception) {
+                    Log.e("TextWatcher",""+exception.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
+        /*btnsubmit = fragment_view.findViewById(R.id.btnsubmit);*/
+        rv_work_order = fragment_view.findViewById(R.id.rv_work_order);
+
+       /* btnsubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CheckAllFields()) {
+                    setIntentData();
+                }
+            }
+        });*/
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int ten_percent_screen = (int) (dpWidth * 27) / 100;
+
+        tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        tv_item.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        tv_unit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        tv_qty.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        tv_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
+        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));
+
+        getUnits();
+        if (workOrders == null) {
+            workOrders = new ArrayList<>();
+        }else if (workOrders.size() <= 0) {
+            workOrders = new ArrayList<>();
+        } else {
+            setUpRecyclerAdapter();
+        }
+
+        fab_add_work_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddWorkOrderDialog();
+            }
+        });
+
+        return fragment_view;
+    }
+
+    private void showAddWorkOrderDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(mActivity).create();
+        getDialogView();
+        dialog.setContentView(dialog_view);
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void getDialogView() {
+        dialog_view = LayoutInflater.from(mActivity).inflate(R.layout.add_work_order_dialog_box,null);
+        et_workdesc = dialog_view.findViewById(R.id.et_workdesc);
+        et_unit = dialog_view.findViewById(R.id.et_unit);
+        img_units = dialog_view.findViewById(R.id.img_units);
+        et_qty = dialog_view.findViewById(R.id.et_qty);
+        et_rate = dialog_view.findViewById(R.id.et_rate);
+        et_amount = dialog_view.findViewById(R.id.et_amount);
+        btnsubmit = dialog_view.findViewById(R.id.btnsubmit);
+        if (is_edit) {
+            et_workdesc.setText(""+edit_work_order.work_description);
+            et_amount.setText(""+edit_work_order.amount);
+            et_qty.setText(""+edit_work_order.quantity);
+            et_rate.setText(""+edit_work_order.rate);
+            et_unit.setText(""+edit_work_order.unit);
+            unit_id = edit_work_order.unit_id;
+            et_qty.requestFocus();
+
+            et_workdesc.setEnabled(false);
+            et_unit.setEnabled(false);
+        }
+        btnsubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CheckAllFields()) {
+                    setIntentData();
+                }
+            }
+        });
         et_unit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,40 +309,7 @@ public class WorkOrderFragment extends Fragment {
 
             }
         });
-        btnsubmit = fragment_view.findViewById(R.id.btnsubmit);
-        rv_work_order = fragment_view.findViewById(R.id.rv_work_order);
 
-        btnsubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CheckAllFields()) {
-                    setIntentData();
-                }
-            }
-        });
-
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int ten_percent_screen = (int) (dpWidth * 27) / 100;
-
-        tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_item.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_unit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_qty.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));
-
-        getUnits();
-        if (workOrders == null) {
-            workOrders = new ArrayList<>();
-        }else if (workOrders.size() <= 0) {
-            workOrders = new ArrayList<>();
-        } else {
-            setUpRecyclerAdapter();
-        }
-
-        return fragment_view;
     }
 
     private void setUpRecyclerAdapter() {
@@ -250,10 +361,12 @@ public class WorkOrderFragment extends Fragment {
 
     private void setupEditMode(int position) {
         edit_position = position;
-        WorkOrderModel work_order = workOrders.get(position);
+        edit_work_order = workOrders.get(position);
         is_edit = true;
 
-        et_workdesc.setText(""+work_order.work_description);
+        showAddWorkOrderDialog();
+
+        /*et_workdesc.setText(""+work_order.work_description);
         et_amount.setText(""+work_order.amount);
         et_qty.setText(""+work_order.quantity);
         et_rate.setText(""+work_order.rate);
@@ -262,7 +375,7 @@ public class WorkOrderFragment extends Fragment {
         et_qty.requestFocus();
 
         et_workdesc.setEnabled(false);
-        et_unit.setEnabled(false);
+        et_unit.setEnabled(false);*/
     }
 
     private void setIntentData() {
