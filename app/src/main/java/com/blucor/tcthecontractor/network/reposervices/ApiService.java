@@ -1,6 +1,7 @@
 package com.blucor.tcthecontractor.network.reposervices;
 
 import com.blucor.tcthecontractor.models.ActivityResponseModel;
+import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.Client;
 import com.blucor.tcthecontractor.models.ClientAddSearchModel;
 import com.blucor.tcthecontractor.models.ClientProjectActivityModel;
@@ -19,6 +20,7 @@ import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.models.SubContractorAddSearchModel;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
+import com.blucor.tcthecontractor.models.WorkOrderResponseModel;
 import com.blucor.tcthecontractor.network.utils.Contants;
 
 import java.util.List;
@@ -38,35 +40,35 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.STORE_CLIENT)
     Call<Client> storeClient(@Field("fname") String fname,
-                           @Field("lname") String lname,
-                           @Field("mobile") String mobile,
-                           @Field("email") String email,
-                           @Field("password") String password);
+                             @Field("lname") String lname,
+                             @Field("mobile") String mobile,
+                             @Field("email") String email,
+                             @Field("password") String password);
 
     @FormUrlEncoded
     @POST(Contants.UPDATE_CLIENT)
     Call<Client> updateClient(@Field("fname") String fname,
-                           @Field("lname") String lname,
-                           @Field("mobile") String mobile,
-                           @Field("email") String email);
+                              @Field("lname") String lname,
+                              @Field("mobile") String mobile,
+                              @Field("email") String email);
 
     @FormUrlEncoded
     @POST(Contants.STORE_CONTRACTOR)
     Call<Contractor> storeContractor(@Field("fname") String fname,
-                           @Field("lname") String lname,
-                           @Field("company_name") String company_name,
-                           @Field("mobile") String mobile,
-                           @Field("email") String email,
-                           @Field("password") String password);
+                                     @Field("lname") String lname,
+                                     @Field("company_name") String company_name,
+                                     @Field("mobile") String mobile,
+                                     @Field("email") String email,
+                                     @Field("password") String password);
 
     @FormUrlEncoded
     @POST(Contants.UPDATE_CONTRACTOR)
     Call<Contractor> updateContractor(@Field("id") int id,
-                           @Field("fname") String fname,
-                           @Field("lname") String lname,
-                           @Field("company_name") String company_name,
-                           @Field("mobile") String mobile,
-                           @Field("email") String email);
+                                      @Field("fname") String fname,
+                                      @Field("lname") String lname,
+                                      @Field("company_name") String company_name,
+                                      @Field("mobile") String mobile,
+                                      @Field("email") String email);
 
     @FormUrlEncoded
     @POST(Contants.CHECK_CLIENT_LOGIN)
@@ -100,7 +102,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.UPDATE_CONTRACTOR_PASSWORD)
     Call<Contractor> updateContractorPassword(@Field("password") String password,
-                                      @Field("server_id") String server_id);
+                                              @Field("server_id") String server_id);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_CONTRACTOR_BY_ID)
@@ -133,26 +135,26 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.STORE_CLIENT_WITH_ID)
     Call<Client> storeClientWithId(@Field("contractor_id") int contractor_id,
-                             @Field("fname") String fname,
-                             @Field("lname") String lname,
-                             @Field("mobile") String mobile,
-                             @Field("email") String email,
-                             @Field("client_id") String client_id,
-                             @Field("password") String password);
+                                   @Field("fname") String fname,
+                                   @Field("lname") String lname,
+                                   @Field("mobile") String mobile,
+                                   @Field("email") String email,
+                                   @Field("client_id") String client_id,
+                                   @Field("password") String password);
 
     @FormUrlEncoded
     @POST(Contants.SAVE_PROJECT)
     Call<ProjectsModel> saveProject(@Field("project_name") String project_name,
-                                      @Field("project_type") String project_type,
-                                      @Field("contract_type") String contract_type,
-                                      @Field("client_id") int client_id,
-                                      @Field("project_location") String project_location,
-                                      @Field("start_date") String start_date,
-                                      @Field("end_date") String end_date,
-                                      @Field("duration") String duration,
-                                      @Field("work_order") String work_order,
-                                      @Field("billing") String bills,
-                                      @Field("contractor_id") int contractor_id);
+                                    @Field("project_type") String project_type,
+                                    @Field("contract_type") String contract_type,
+                                    @Field("client_id") int client_id,
+                                    @Field("project_location") String project_location,
+                                    @Field("start_date") String start_date,
+                                    @Field("end_date") String end_date,
+                                    @Field("duration") String duration,
+                                    @Field("work_order") String work_order,
+                                    @Field("billing") String bills,
+                                    @Field("contractor_id") int contractor_id);
 
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CONTRACTOR_ID)
@@ -245,7 +247,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.STORE_PROJECT_SUB_CONTRACTORS)
     Call<ServerResponseModel>  storeProjectSubContractor(@Field("project_id") int project_id,
-                                              @Field("sub_contractors") String sub_contractors);
+                                                         @Field("sub_contractors") String sub_contractors);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_PROJECT_SUB_CONTRACTORS)
@@ -263,5 +265,24 @@ public interface ApiService {
     @POST(Contants.SHOW_WORK_ORDERS)
     Call<List<WorkOrderModel>> getWorkOrderByProjectId(@Field("client_id") int client_id,
                                                        @Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.SHOW_WORK_ORDERS_BY_PROJECT_ID)
+    Call<List<WorkOrderModel>> getAllWorkOrderByProjectId(@Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.SHOW_BILL_BY_PROJECT_ID)
+    Call<List<BilliModel>> getAllBillByProjectId(@Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.ADD_WORK_ORDER_BY_PROJECT_ID)
+    Call<WorkOrderResponseModel> storeWorkOrderByProjectId(@Field("is_edit") boolean is_edit,
+                                                           @Field("work_order_id") int work_order_id,
+                                                           @Field("work_description") String work_description,
+                                                           @Field("unit_id") int unit_id,
+                                                           @Field("quantity") int quantity,
+                                                           @Field("rate") float rate,
+                                                           @Field("amount") float amount,
+                                                           @Field("project_id") int project_id);
 }
 

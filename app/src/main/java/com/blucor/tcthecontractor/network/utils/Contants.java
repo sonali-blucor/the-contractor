@@ -54,4 +54,7 @@ public class Contants {
     public static final String SAVE_CLIENT_PROFILE_PICTURE = "save_client_profile_picture";
     public static final String GET_UNIT = "view_unit";
     public static final String SHOW_WORK_ORDERS = "show_work_orders";
+    public static final String SHOW_WORK_ORDERS_BY_PROJECT_ID = "show_work_orders_by_project_id";
+    public static final String SHOW_BILL_BY_PROJECT_ID = "show_biling_data_by_project_id";
+    public static final String ADD_WORK_ORDER_BY_PROJECT_ID = "store_work_order_by_project_id";
 }

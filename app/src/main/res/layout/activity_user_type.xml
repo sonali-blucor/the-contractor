@@ -60,6 +60,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_contractor_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -77,12 +78,13 @@
 
         </LinearLayout>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/img_contractor"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/selector_contractor" />
+            android:button="@null"
+            android:background="@drawable/selector_contractor" />
 
         <LinearLayout
             android:id="@+id/cv_2"
@@ -117,6 +119,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_client_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -135,14 +138,15 @@
 
         </LinearLayout>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/img_client"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/cv_1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/selector_client" />
+            android:button="@null"
+            android:background="@drawable/selector_client" />
     </RelativeLayout>
 
 

@@ -1,14 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp"
     tools:context=".project.fragments.BillingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Billing Fragment" />
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp"
+        tools:context=".project.fragments.BillingFragment">
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Add Billing"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/ll_title_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Total Work Order Amount : "
+                android:textSize="17dp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Rs."
+                android:textSize="17dp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tv_total_work_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="10000.000"
+                android:textSize="17dp"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/ll_title_head"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_work_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_work_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/Work_order"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:maxLength="150"
+                        android:textColor="@color/black"
+                        android:nextFocusDown="@id/et_percentage"
+                        android:onClick="showPopupViewForWorkOrder"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/img_project_type"
+                    style="@style/Theme.TheContractor.ImageViewTheme"
+                    android:onClick="showPopupViewForWorkOrder"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:padding="@dimen/drawable_padding"
+                    android:src="@drawable/ic_down" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_percentage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/percentage"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLength="150"
+                        android:textColor="@color/black"
+                        android:nextFocusDown="@id/et_remark"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/Amount"
+                        android:imeOptions="actionNext"
+                        android:enabled="false"
+                        android:maxLength="150"
+                        android:textColor="@color/black"
+                        android:nextFocusDown="@id/et_amount"
+                        android:onClick="showPopupViewForWorkOrder"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_paid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:visibility="gone"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_paid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Paid"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/edt_contract_type"
+                    android:onClick="showPopupViewForWorkOrder"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Balance"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:enabled="false"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/et_remark"
+                    android:onClick="showPopupViewForWorkOrder"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/Remarks"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLength="150"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/et_billing_date"
+                    android:onClick="showPopupViewForWorkOrder"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_billing_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_billing_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="Billing Date"
+                    android:imeOptions="actionNext"
+                    android:inputType="none"
+                    android:maxLength="150"
+                    android:longClickable="false"
+                    android:focusable="false"
+                    android:drawableRight="@drawable/ic_date"
+                    android:textColor="@color/black"
+                    android:nextFocusDown="@id/btn_submit"
+                    android:onClick="showPopupForDate"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- date -->
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Submit"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Bills"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:gravity="center"/>
+
+            <LinearLayout
+                android:id="@+id/ll_title"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.4"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:text="No."
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="2.6"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:text="%"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:text="@string/Amount"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:text="@string/Remarks"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_billing_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:text="Billing Date"
+                    android:textColor="@android:color/black"/>
+
+                <ImageView
+                    android:id="@+id/img_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@drawable/table_content_cell_bg_yellow"
+                    android:src="@drawable/ic_edit_yellow"/>
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lst_billing"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
