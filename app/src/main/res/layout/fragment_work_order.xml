@@ -4,373 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".project.fragments.WorkOrderFragment">
+    tools:context=".project.fragments.WorkOrderFragment"
+    android:padding="10dp">
 
     <LinearLayout
+        android:id="@+id/ll_title"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
 
-        <LinearLayout
-            android:id="@+id/ll_title"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="0.4"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="No."
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_no"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="No."
-                android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_item"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="2.6"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="Item"
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_item"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="2.6"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="Item"
-                android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="0.6"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="@string/Unit"
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_unit"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.6"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Unit"
-                android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="0.7"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="Qty"
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_qty"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.7"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="Qty"
-                android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="@string/Rate"
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Rate"
-                android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:text="@string/Amount"
+            android:textColor="@android:color/black"/>
 
-            <TextView
-                android:id="@+id/tv_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Amount"
-                android:textColor="@android:color/black"/>
-
-            <ImageView
-                android:id="@+id/img_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:src="@drawable/ic_edit_yellow"/>
-
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/rv_work_order"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/table_content_cell_bg_yellow"
+            android:src="@drawable/ic_edit_yellow"/>
 
     </LinearLayout>
 
-    <!--<RelativeLayout
+    <ListView
+        android:id="@+id/rv_work_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp">
-
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="Add Work Order"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:visibility="gone"
-            android:textColor="@android:color/black"
-            android:gravity="center"/>
-
-        <LinearLayout
-            android:id="@+id/ll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-           &lt;!&ndash; <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_workdesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_workdesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="@string/Work_description"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="150"
-                    android:textColor="@color/black"
-                    android:nextFocusDown="@id/et_unit"
-                    android:singleLine="true" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/input_margin_5dp"
-                        android:background="@drawable/edit_background"
-                        app:errorIconDrawable="@drawable/edit_background">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_unit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/edit_background"
-                            android:drawablePadding="@dimen/drawable_padding"
-                            android:hint="@string/Unit"
-                            android:imeOptions="actionNext"
-                            android:inputType="none"
-                            android:longClickable="false"
-                            android:focusable="false"
-                            android:maxLength="150"
-                            android:textColor="@color/black"
-                            android:nextFocusDown="@id/edt_contract_type"
-                            android:singleLine="true" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/img_units"
-                        style="@style/Theme.TheContractor.ImageViewTheme"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:padding="@dimen/drawable_padding"
-                        android:src="@drawable/ic_down" />
-                </RelativeLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_qty"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/input_margin_5dp"
-                    android:background="@drawable/edit_background"
-                    app:errorIconDrawable="@drawable/edit_background">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_qty"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_background"
-                        android:drawablePadding="@dimen/drawable_padding"
-                        android:hint="@string/Quantity"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:maxLength="150"
-                        android:textColor="@color/black"
-                        android:nextFocusDown="@id/et_rate"
-                        android:singleLine="true" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_rate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/input_margin_5dp"
-                    android:background="@drawable/edit_background"
-                    app:errorIconDrawable="@drawable/edit_background">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_rate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_background"
-                        android:drawablePadding="@dimen/drawable_padding"
-                        android:hint="@string/Rate"
-                        android:imeOptions="actionNext"
-                        android:inputType="numberDecimal"
-                        android:maxLength="150"
-                        android:textColor="@color/black"
-                        android:nextFocusDown="@id/et_amount"
-                        android:singleLine="true" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_amount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/input_margin_5dp"
-                    android:background="@drawable/edit_background"
-                    app:errorIconDrawable="@drawable/edit_background">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_background"
-                        android:drawablePadding="@dimen/drawable_padding"
-                        android:hint="@string/Amount"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:maxLength="150"
-                        android:enabled="false"
-                        android:textColor="@color/black"
-                        android:nextFocusDown="@id/et_rate"
-                        android:singleLine="true" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnsubmit"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:text="Submit"
-                android:background="#DC8209"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold">
-
-            </Button>&ndash;&gt;
-
-            <TextView
-                android:id="@+id/tv_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:text="View Work Order"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@android:color/black"
-                android:gravity="center"/>
-
-            <LinearLayout
-                android:id="@+id/ll_title"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tv_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="0.4"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="No."
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tv_item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="2.6"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="Item"
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tv_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="0.6"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="@string/Unit"
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tv_qty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="0.7"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="Qty"
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tv_rate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="@string/Rate"
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tv_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:text="@string/Amount"
-                    android:textColor="@android:color/black"/>
-
-                <ImageView
-                    android:id="@+id/img_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:background="@drawable/table_content_cell_bg_yellow"
-                    android:src="@drawable/ic_edit_yellow"/>
-
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/rv_work_order"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-        </LinearLayout>
-
-    </RelativeLayout>-->
+        android:layout_below="@id/ll_title"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_work_order_add"

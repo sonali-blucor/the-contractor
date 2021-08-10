@@ -80,6 +80,7 @@ public class WorkOrderFragment extends Fragment {
     private ImageView img_units;
     private FloatingActionButton fab_add_work_order;
     private View dialog_view;
+    private AlertDialog dialog;
 
     public WorkOrderFragment() {
         // Required empty public constructor
@@ -214,9 +215,14 @@ public class WorkOrderFragment extends Fragment {
     }
 
     private void showAddWorkOrderDialog() {
-        AlertDialog dialog = new AlertDialog.Builder(mActivity).create();
+        dialog = new AlertDialog.Builder(mActivity).create();
         getDialogView();
-        dialog.setContentView(dialog_view);
+        if (is_edit) {
+            dialog.setTitle("Edit Work Order");
+        } else {
+            dialog.setTitle("Add Work Order");
+        }
+        dialog.setView(dialog_view);
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -400,6 +406,8 @@ public class WorkOrderFragment extends Fragment {
 
             addWorkOrder(workOrder);
         }
+
+        dialog.dismiss();
     }
 
     private void addWorkOrder(WorkOrderModel workOrder) {

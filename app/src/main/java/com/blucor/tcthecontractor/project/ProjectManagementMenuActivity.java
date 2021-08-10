@@ -36,6 +36,6 @@ public class ProjectManagementMenuActivity extends AppCompatActivity {
     }
 
     public void onClickToWorkOrderManagement(View view) {
-        ScreenHelper.redirectToClass(this, WorkOrderBillingProjectListActivity.class);
+        //ScreenHelper.redirectToClass(this, WorkOrderBillingProjectListActivity.class);
     }
 }

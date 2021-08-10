@@ -97,10 +97,8 @@
            android:id="@+id/tv_view"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Bill List"
-           android:textStyle="bold"
+           android:text="Billing Stages"
            android:textSize="20dp"
-           android:layout_gravity="center"
            android:textColor="@android:color/black"
            android:gravity="center"/>
 
