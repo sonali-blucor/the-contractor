@@ -1,7 +1,6 @@
-package com.blucor.tcthecontractor.project.fragments;
+package com.blucor.tcthecontractor.project.workorderbilling.fragments;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,14 +27,11 @@ import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
-import com.blucor.tcthecontractor.helper.AppKeys;
-import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.models.WorkOrderResponseModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
-import com.blucor.tcthecontractor.project.activity.WorkOrderActivity;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
 import com.blucor.tcthecontractor.rv_adapters.WorkOrderRecyclerAdapter;

@@ -25,7 +25,7 @@ import com.blucor.tcthecontractor.models.User;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.network.utils.Contants;
 import com.blucor.tcthecontractor.project.ProjectManagementMenuActivity;
-import com.blucor.tcthecontractor.project.WorkOrderBillingProjectListActivity;
+import com.blucor.tcthecontractor.project.workorderbilling.WorkOrderBillingProjectListActivity;
 import com.blucor.tcthecontractor.project.activity.TodaysActivitiesActivity;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 

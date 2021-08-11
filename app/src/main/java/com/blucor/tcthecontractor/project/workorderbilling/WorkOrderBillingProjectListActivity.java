@@ -1,4 +1,4 @@
-package com.blucor.tcthecontractor.project;
+package com.blucor.tcthecontractor.project.workorderbilling;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
@@ -24,9 +23,9 @@ import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.User;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
-import com.blucor.tcthecontractor.project.fragments.BillingFragment;
-import com.blucor.tcthecontractor.project.fragments.SplitViewFragment;
-import com.blucor.tcthecontractor.project.fragments.WorkOrderFragment;
+import com.blucor.tcthecontractor.project.workorderbilling.fragments.BillingFragment;
+import com.blucor.tcthecontractor.project.workorderbilling.fragments.SplitViewFragment;
+import com.blucor.tcthecontractor.project.workorderbilling.fragments.WorkOrderFragment;
 import com.blucor.tcthecontractor.rv_adapters.ProjectSpinnerAdapter;
 import com.google.android.material.tabs.TabLayout;
 

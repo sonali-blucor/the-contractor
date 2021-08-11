@@ -9,8 +9,6 @@ import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.project.ProjectMenuActivity;
-import com.blucor.tcthecontractor.project.WorkOrderBillingProjectListActivity;
-import com.blucor.tcthecontractor.project.activity.BillingDetailsDisplayListActivity;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 
 public class SubContractorMgtMenuActivity extends AppCompatActivity {

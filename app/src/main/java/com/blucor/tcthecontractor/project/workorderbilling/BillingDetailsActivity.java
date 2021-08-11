@@ -1,4 +1,4 @@
-package com.blucor.tcthecontractor.project.activity;
+package com.blucor.tcthecontractor.project.workorderbilling;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,11 +24,8 @@ import android.widget.Toast;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.BilliModel;
-import com.blucor.tcthecontractor.models.ProjectsModel;
-import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.rv_adapters.BillRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
-import com.blucor.tcthecontractor.rv_adapters.WorkOrderRecyclerAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

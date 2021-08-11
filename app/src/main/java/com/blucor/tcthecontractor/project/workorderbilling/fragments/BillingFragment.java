@@ -1,9 +1,8 @@
-package com.blucor.tcthecontractor.project.fragments;
+package com.blucor.tcthecontractor.project.workorderbilling.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,7 +28,6 @@ import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.BilliModel;
-import com.blucor.tcthecontractor.project.activity.BillingDetailsActivity;
 import com.blucor.tcthecontractor.rv_adapters.BillRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
