@@ -1,6 +1,7 @@
 package com.blucor.tcthecontractor.network.reposervices;
 
 import com.blucor.tcthecontractor.models.ActivityResponseModel;
+import com.blucor.tcthecontractor.models.BillResponseModel;
 import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.Client;
 import com.blucor.tcthecontractor.models.ClientAddSearchModel;
@@ -284,5 +285,18 @@ public interface ApiService {
                                                            @Field("rate") float rate,
                                                            @Field("amount") float amount,
                                                            @Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.ADD_BILL_BY_PROJECT_ID)
+    Call<BillResponseModel> storeBillByProjectId(@Field("is_edit") boolean is_edit,
+                                                      @Field("bill_id") int bill_id,
+                                                      @Field("percentage") float percentage,
+                                                      @Field("amount") float amount,
+                                                      @Field("remark") String remark,
+                                                      @Field("balance") float balance,
+                                                      @Field("paid") float paid,
+                                                      @Field("payment_date") String payment_date,
+                                                      @Field("billing_date") String billing_date,
+                                                      @Field("project_id") int project_id);
 }
 

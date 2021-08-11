@@ -190,7 +190,7 @@ public class WorkOrderBillingProjectListActivity extends BaseAppCompatActivity {
                         bills = new ArrayList<>();
                         assert response.body() != null;
                         bills.addAll(response.body());
-                        fragment = new BillingFragment(total_work_order,bills);
+                        fragment = new BillingFragment(total_work_order,bills,selected_project);
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.replace(R.id.frameLayout_fragemnt, fragment);

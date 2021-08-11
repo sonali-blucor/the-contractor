@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,7 +30,11 @@ import android.widget.Toast;
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
+import com.blucor.tcthecontractor.models.BillResponseModel;
 import com.blucor.tcthecontractor.models.BilliModel;
+import com.blucor.tcthecontractor.models.ProjectsModel;
+import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.rv_adapters.BillPaymentRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.BillRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,11 +50,12 @@ import java.util.Date;
  */
 public class BillingFragment extends Fragment {
 
-    EditText et_percentage,et_amount,et_remark,et_billing_date;
+    EditText et_percentage,et_amount,et_remark,et_billing_date,et_balance,et_paid,et_payment_date;
     Button btnsubmit;
     private boolean is_edit = false;
     private int edit_position;
     private String billing_date;
+    private String payment_date;
     private ListView lst_billing;
     private ArrayList<BilliModel> bills;
     private TextView tv_footer_total;
@@ -55,7 +63,7 @@ public class BillingFragment extends Fragment {
     private View footer_view;
     private TextView tv_view;
     private LinearLayout ll_title;
-    private BillRecyclerAdapter mAdapter;
+    private BillPaymentRecyclerAdapter mAdapter;
     private float total_work_order_amount;
     private TextView tv_total_work_order;
     private TextView tv_no;
@@ -70,14 +78,19 @@ public class BillingFragment extends Fragment {
     private View dialog_view;
     private BilliModel edit_bill;
     private AlertDialog dialog;
+    private TextView tv_balance;
+    private TextView tv_paid;
+    private TextView tv_payment_date;
+    private ProjectsModel selected_project;
 
     public BillingFragment() {
         // Required empty public constructor
     }
 
-    public BillingFragment(float total_work_order_amount,ArrayList<BilliModel> bills) {
+    public BillingFragment(float total_work_order_amount,ArrayList<BilliModel> bills,ProjectsModel selected_project) {
         this.total_work_order_amount = total_work_order_amount;
         this.bills = bills;
+        this.selected_project = selected_project;
     }
 
     @Override
@@ -99,6 +112,9 @@ public class BillingFragment extends Fragment {
         tv_amount = fragment_view.findViewById(R.id.tv_amount);
         tv_remark = fragment_view.findViewById(R.id.tv_remark);
         tv_billing_date = fragment_view.findViewById(R.id.tv_billing_date);
+        tv_balance = fragment_view.findViewById(R.id.tv_balance);
+        tv_paid = fragment_view.findViewById(R.id.tv_paid);
+        tv_payment_date = fragment_view.findViewById(R.id.tv_payment_date);
         img_edit = fragment_view.findViewById(R.id.img_edit);
         /*btnsubmit = fragment_view.findViewById(R.id.btn_submit);*/
         fab_add_billing = fragment_view.findViewById(R.id.fab_billing_add);
@@ -162,6 +178,9 @@ public class BillingFragment extends Fragment {
         tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         tv_remark.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         tv_billing_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+        tv_balance.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+        tv_paid.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+        tv_payment_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
 
         return fragment_view;
@@ -191,7 +210,35 @@ public class BillingFragment extends Fragment {
         et_amount = dialog_view.findViewById(R.id.et_amount);
         et_remark = dialog_view.findViewById(R.id.et_remark);
         et_billing_date = dialog_view.findViewById(R.id.et_billing_date);
+        et_balance = dialog_view.findViewById(R.id.et_balance);
+        et_paid = dialog_view.findViewById(R.id.et_paid);
+        et_payment_date = dialog_view.findViewById(R.id.et_payment_date);
         btnsubmit = dialog_view.findViewById(R.id.btn_submit);
+
+        if (is_edit) {
+            tv_percentage.setText("" + edit_bill.getPercentage());
+            tv_amount.setText("" + edit_bill.getAmount());
+            tv_remark.setText("" + edit_bill.getRemark());
+            tv_billing_date.setText("" + edit_bill.getBilling_date());
+            billing_date = edit_bill.getBilling_date();
+            tv_amount.setText("" + edit_bill.amount);
+            tv_paid.setText(""+edit_bill.paid);
+            tv_balance.setText(""+edit_bill.balance);
+            tv_payment_date.setText(""+edit_bill.payment_date);
+        }
+        et_billing_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupForDate(v);
+            }
+        });
+
+        et_payment_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupForPayDate(v);
+            }
+        });
 
         if (is_edit) {
             et_percentage.setText(""+edit_bill.getPercentage());
@@ -213,6 +260,35 @@ public class BillingFragment extends Fragment {
                     float percent = Float.parseFloat(""+s);
                     float amount = (total_work_order_amount * percent) / 100;
                     et_amount.setText(""+amount);
+                } catch (Exception exception) {
+                    Log.e("Error",""+exception.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        et_paid.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Calcuate amount according to percentage using total_work_order_amount
+                try {
+                    float paid_amount = Float.parseFloat(""+s);
+                    float bill_amount = Float.parseFloat(""+et_amount.getText().toString());
+                    if(bill_amount >= paid_amount) {
+                        float balance_amount = bill_amount - paid_amount;
+                        et_balance.setText("" + balance_amount);
+                    } else {
+                        Toast.makeText(mActivity, "Please add proper amount", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception exception) {
                     Log.e("Error",""+exception.getMessage());
                 }
@@ -248,7 +324,31 @@ public class BillingFragment extends Fragment {
             return false;
         }
 
-        if(getTotalPercentage() > 100) {
+        if (et_balance.getText().toString().length() == 0) {
+            et_balance.setError("All Fields are mendatory");
+            et_balance.requestFocus();
+            return false;
+        }
+
+        if (et_paid.getText().toString().length() == 0) {
+            et_paid.setError("All Fields are mendatory");
+            et_paid.requestFocus();
+            return false;
+        }
+
+        if (et_payment_date.getText().toString().length() == 0) {
+            et_payment_date.setError("All Fields are mendatory");
+            et_payment_date.requestFocus();
+            return false;
+        }
+
+        if (et_billing_date.getText().toString().length() == 0) {
+            et_billing_date.setError("All Fields are mendatory");
+            et_billing_date.requestFocus();
+            return false;
+        }
+
+        if(!is_edit && getTotalPercentage() > 100) {
             et_percentage.setError("Please add proper percentage");
             et_percentage.requestFocus();
             return false;
@@ -278,32 +378,102 @@ public class BillingFragment extends Fragment {
         dialog.show();
     }
 
+    public void showPopupForPayDate(View view) {
+        DatePickerDialog dialog = new DatePickerDialog(mActivity, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR,year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
+                payment_date = sdf.format(new Date(calendar.getTimeInMillis()));
+                et_payment_date.setText(payment_date);
+            }
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+        dialog.show();
+    }
+
     private void setIntentData() {
-        tv_view.setVisibility(View.VISIBLE);
+        /*tv_view.setVisibility(View.VISIBLE);
         ll_title.setVisibility(View.VISIBLE);
-        lst_billing.setVisibility(View.VISIBLE);
+        lst_billing.setVisibility(View.VISIBLE);*/
 
         if (is_edit) {
-            //edit_bill = bills.get(edit_position);
-            bills.get(edit_position).setAmount(Float.parseFloat(et_amount.getText().toString()));
-            bills.get(edit_position).setBilling_date(billing_date);
-            bills.get(edit_position).setPercentage(Float.parseFloat(et_percentage.getText().toString()));
-            bills.get(edit_position).setRemark(et_remark.getText().toString());
-            setUpRecyclerAdapter();
-            clearEdit();
-            Toast.makeText(mActivity, "Successfully edited bill", Toast.LENGTH_SHORT).show();
+            BilliModel edit_bill = bills.get(edit_position);
+            edit_bill.setAmount(Float.parseFloat(et_amount.getText().toString()));
+            edit_bill.setBilling_date(billing_date);
+            edit_bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
+            edit_bill.setRemark(et_remark.getText().toString());
+            edit_bill.setBalance(Float.parseFloat(et_balance.getText().toString()));
+            edit_bill.setPaid(Float.parseFloat(et_paid.getText().toString()));
+            edit_bill.setPayment_date(et_payment_date.getText().toString());
+
+            editBill(edit_bill);
         } else {
             BilliModel bill = new BilliModel();
             bill.setAmount(Float.parseFloat(et_amount.getText().toString()));
             bill.setBilling_date(billing_date);
             bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
             bill.setRemark(et_remark.getText().toString());
+            bill.setBalance(Float.parseFloat(et_balance.getText().toString()));
+            bill.setPaid(Float.parseFloat(et_paid.getText().toString()));
+            bill.setPayment_date(et_payment_date.getText().toString());
 
-            bills.add(bill);
-            setUpRecyclerAdapter();
-            clearEdit();
-            Toast.makeText(mActivity, "Successfully added bill", Toast.LENGTH_SHORT).show();
+            addBill(bill);
         }
+
+        dialog.dismiss();
+    }
+
+    private void addBill(BilliModel bill) {
+        mActivity.showLoader();
+        RetrofitClient.getApiService().storeBillByProjectId(false,0,bill.percentage,bill.amount,bill.remark,bill.balance,bill.paid,bill.payment_date,bill.billing_date,selected_project.id).enqueue(new Callback<BillResponseModel>() {
+            @Override
+            public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
+                if (response.code() == 200) {
+                    bills.add(bill);
+                    setUpRecyclerAdapter();
+                    clearEdit();
+                    Toast.makeText(mActivity, "Successfully added bill", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mActivity, "Error to add bill", Toast.LENGTH_SHORT).show();
+                }
+                mActivity.stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<BillResponseModel> call, Throwable t) {
+                Toast.makeText(mActivity, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                mActivity.stopLoader();
+            }
+        });
+
+        dialog.dismiss();
+    }
+
+    private void editBill(BilliModel bill) {
+        mActivity.showLoader();
+        RetrofitClient.getApiService().storeBillByProjectId(true,bill.id,bill.percentage,bill.amount,bill.remark,bill.balance,bill.paid,bill.payment_date,bill.billing_date,selected_project.id).enqueue(new Callback<BillResponseModel>() {
+            @Override
+            public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
+                if (response.code() == 200) {
+                    setUpRecyclerAdapter();
+                    clearEdit();
+                    Toast.makeText(mActivity, "Successfully edited bill", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mActivity, "Error to edit bill", Toast.LENGTH_SHORT).show();
+                }
+                mActivity.stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<BillResponseModel> call, Throwable t) {
+                Toast.makeText(mActivity, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                mActivity.stopLoader();
+            }
+        });
 
         dialog.dismiss();
     }
@@ -324,7 +494,11 @@ public class BillingFragment extends Fragment {
     }
 
     private void setUpRecyclerAdapter() {
-        mAdapter = new BillRecyclerAdapter(mActivity,bills);
+        BilliModel model = new BilliModel();
+        ArrayList<BilliModel> billList = new ArrayList<>();
+        billList.add(model);
+        billList.addAll(bills);
+        mAdapter = new BillPaymentRecyclerAdapter(mActivity,billList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {

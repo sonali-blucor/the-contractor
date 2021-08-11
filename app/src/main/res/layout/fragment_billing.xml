@@ -69,7 +69,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_no"
@@ -116,6 +117,33 @@
                 android:text="Billing Date"
                 android:textColor="@android:color/black"/>
 
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.6"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="@string/Balance"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.7"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="@string/Paid"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/tv_payment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/table_content_cell_bg_yellow"
+                android:text="Payment Date"
+                android:textColor="@android:color/black"/>
+
             <ImageView
                 android:id="@+id/img_edit"
                 android:layout_width="wrap_content"
@@ -125,11 +153,18 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lst_billing"
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lst_billing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </HorizontalScrollView>
+
 
     </LinearLayout>
 
