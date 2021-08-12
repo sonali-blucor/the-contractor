@@ -22,6 +22,7 @@ import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.rv_adapters.BillPaymentRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.BillRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.WorkOrderRecyclerAdapter;
 
@@ -41,7 +42,7 @@ public class SplitViewFragment extends Fragment {
     private ListView rv_work_order;
     private ListView lst_billing;
     private WorkOrderRecyclerAdapter mWorkAdapter;
-    private BillRecyclerAdapter mBillAdapter;
+    private BillPaymentRecyclerAdapter mBillAdapter;
 
     private TextView tv_no;
     private TextView tv_item;
@@ -164,7 +165,7 @@ public class SplitViewFragment extends Fragment {
         img_edit_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
 
         mWorkAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrders);
-        mBillAdapter = new BillRecyclerAdapter(mActivity,bills);
+        mBillAdapter = new BillPaymentRecyclerAdapter(mActivity,bills);
         rv_work_order.setAdapter(mWorkAdapter);
         lst_billing.setAdapter(mBillAdapter);
     }
