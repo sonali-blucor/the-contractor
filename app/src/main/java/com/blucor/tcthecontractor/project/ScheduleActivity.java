@@ -26,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ScheduleActivity extends BaseAppCompatActivity {
-    private WeekDaysCheckBox wd_schedule;
+    //private WeekDaysCheckBox wd_schedule;
     private EditText edt_project_name;
     private EditText edt_project_status;
     private EditText edt_no_of_days;
@@ -43,7 +43,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        wd_schedule = findViewById(R.id.wd_schedule);
+        //wd_schedule = findViewById(R.id.wd_schedule);
         edt_project_name = findViewById(R.id.edt_project_name);
         edt_project_status = findViewById(R.id.edt_project_status);
         edt_no_of_days = findViewById(R.id.edt_no_of_days);
@@ -131,7 +131,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
                 edt_project_status.setText(on_going);
             }*/
             edt_project_status.setText(""+schedule.project_status);
-            wd_schedule.setSelectedWeekDays(schedule.week_days);
+            //wd_schedule.setSelectedWeekDays(schedule.week_days);
             rt_bar_schedule.setRating(schedule.rating);
         } else {
             edt_project_name.setText(""+project.project_name);
@@ -146,7 +146,8 @@ public class ScheduleActivity extends BaseAppCompatActivity {
 
     private void saveScheduleToDb() {
         String project_status = edt_project_status.getText().toString();
-        String week_days = wd_schedule.selectedWeekDays().toString();
+        //String week_days = wd_schedule.selectedWeekDays().toString();
+        String week_days = "";
         int num_of_days = Integer.parseInt(edt_no_of_days.getText().toString());
         float ratings = rt_bar_schedule.getRating();
         int project_status_integer = 0;
@@ -192,10 +193,10 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             edt_no_of_days.setError(emptyField);
             edt_no_of_days.requestFocus();
             return false;
-        } else if (wd_schedule.selectedWeekDays().size() <= 0) {
+        } /*else if (wd_schedule.selectedWeekDays().size() <= 0) {
             Toast.makeText(this, "Please Select Holidays", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (rt_bar_schedule.getRating() <= 0) {
+        } */else if (rt_bar_schedule.getRating() <= 0) {
             Toast.makeText(this, "Please Rate for project", Toast.LENGTH_SHORT).show();
             return false;
         } else {

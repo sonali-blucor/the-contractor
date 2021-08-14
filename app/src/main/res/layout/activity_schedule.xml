@@ -83,12 +83,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>-->
 
-       <com.blucor.tcthecontractor.custom.WeekDaysCheckBox
+      <!-- <com.blucor.tcthecontractor.custom.WeekDaysCheckBox
            android:id="@+id/wd_schedule"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_margin="10dp"/>
-
+           android:layout_margin="10dp"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +98,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_margin="@dimen/input_margin_5dp"
                 app:errorIconDrawable="@drawable/edit_background">
 
@@ -148,7 +148,6 @@
                     android:isIndicator="false" />
             </LinearLayout>
         </LinearLayout>
-
 
     </LinearLayout>
 
