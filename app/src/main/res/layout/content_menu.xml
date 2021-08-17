@@ -377,7 +377,7 @@
                                 android:id="@+id/tv_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Billing stage"
+                                android:text="@string/Billing_stages"
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/_12sdp"
                                 android:gravity="center"
