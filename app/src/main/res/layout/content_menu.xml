@@ -58,8 +58,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Contractor Name"
-                        android:textColor="@color/white"
                         android:textAllCaps="true"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
@@ -73,8 +73,8 @@
                         android:paddingLeft="@dimen/padding_5dp"
                         android:text="986655444667"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp"
                         android:textColorLink="@color/black"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </RelativeLayout>
@@ -349,7 +349,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_bill"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
                         android:layout_weight="1">
 
@@ -377,7 +377,7 @@
                                 android:id="@+id/tv_bill"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Bill"
+                                android:text="Billing stage"
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/_12sdp"
                                 android:gravity="center"
@@ -416,7 +416,8 @@
                                 android:id="@+id/tv_upgrade_to_premium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Upgrade to Premium"
+                                android:text="Upgrade to \n Premium"
+                                android:maxLines="2"
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/_12sdp"
                                 android:gravity="center"

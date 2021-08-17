@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:gravity="center"
         android:text="Add Work Order"
-        android:textStyle="bold"
-        android:textSize="20dp"
         android:textColor="@android:color/black"
-        android:gravity="center"/>
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/ll"
