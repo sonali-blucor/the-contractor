@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:paddingBottom="10dp"
+    tools:context=".project.activity.FeedbackActivity">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/TextView_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Feedback Is Important For Us!"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="10pt">
+        </TextView>
+
+        <EditText
+            android:id="@+id/EditText_Enter_your_name"
+            android:layout_height="wrap_content"
+            android:hint="Enter your name here"
+            android:inputType="textPersonName"
+            android:textColorHint="#00E676"
+            android:layout_marginTop="25dp"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center">
+        </EditText>
+
+        <EditText
+            android:id="@+id/EditText_Enter_your_Email"
+            android:layout_height="wrap_content"
+            android:hint="Please enter your email here"
+            android:textColorHint="#00E676"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="8dp"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            >
+        </EditText>
+
+        <EditText
+            android:id="@+id/urexp"
+            android:layout_height="wrap_content"
+            android:hint="Please enter your email here"
+            android:textColorHint="#00E676"
+            android:layout_marginTop="8dp"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            >
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/CheckBoxResponse"
+            android:layout_height="wrap_content"
+            android:text="Are you sure you want to submit? Check the box then!"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            >
+        </CheckBox>
+
+        <Button
+            android:id="@+id/ButtonSendFeedback"
+            android:layout_height="40dp"
+            android:text="Submit"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            >
+        </Button>
+    </LinearLayout>
+
+</ScrollView>

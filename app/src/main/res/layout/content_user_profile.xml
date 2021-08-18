@@ -24,8 +24,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:scaleType="fitXY"
-                android:padding="@dimen/padding_5dp" />
+                android:padding="@dimen/padding_5dp"
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/img_camera"
@@ -35,8 +35,8 @@
                 android:layout_alignEnd="@+id/img_logo"
                 android:layout_alignRight="@+id/img_logo"
                 android:layout_marginTop="-20dp"
-                android:onClick="onClickGallery"
                 android:background="@color/white"
+                android:onClick="onClickGallery"
                 android:padding="@dimen/padding_5dp"
                 android:src="@drawable/ic_camera" />
 
@@ -44,11 +44,11 @@
                 android:id="@+id/img_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:onClick="onClickEditUserProfile"
                 android:padding="@dimen/padding_5dp"
-                android:src="@drawable/ic_edit"
-                android:layout_alignParentEnd="true" />
+                android:src="@drawable/ic_edit" />
 
 
         </RelativeLayout>
