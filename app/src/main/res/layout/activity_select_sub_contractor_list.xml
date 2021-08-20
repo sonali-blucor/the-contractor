@@ -113,6 +113,7 @@
                 android:layout_margin="@dimen/input_margin_5dp"
                 app:errorIconDrawable="@drawable/edit_background">
 
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_first_name"
                     android:layout_width="match_parent"
