@@ -39,6 +39,7 @@ public class ClientMenuActivity extends BaseAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_menu);
+
         mRlUserProfile = findViewById(R.id.rl_user_details);
         mImgProfile = findViewById(R.id.img_logo);
         mUserName = findViewById(R.id.tv_user_name);
