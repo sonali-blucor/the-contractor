@@ -32,9 +32,9 @@
         android:id="@+id/recycler_view_sub_contractor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox"
+        android:layout_above="@id/btn_submit_sub_contractor_list"
         android:layout_below="@id/ll_search"
-        android:layout_above="@id/btn_submit_sub_contractor_list"/>
+        tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox" />
 
     <RelativeLayout
         android:id="@+id/rl_add_sub_contractor"
