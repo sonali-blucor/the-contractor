@@ -6,41 +6,88 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/ll_search"
+    <!--  <LinearLayout
+          android:id="@+id/ll_search"
+          android:layout_width="match_parent"
+          android:layout_height="?actionBarSize"
+          android:background="@drawable/search_background"
+          android:layout_alignParentTop="true"
+          android:gravity="center_vertical">
+          <EditText
+              android:id="@+id/edt_search_sub_contractor_work_form"
+              android:drawableStart="@drawable/ic_search"
+              android:drawableLeft="@drawable/ic_search"
+              android:drawablePadding="@dimen/drawable_padding"
+              android:textColorHint="@color/gray"
+              android:layout_marginStart="@dimen/margin_5dp"
+              android:layout_marginLeft="@dimen/margin_5dp"
+              android:background="@color/light_gray"
+              android:hint="Search sub contractor"
+              android:textColor="@color/black"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+      </LinearLayout>-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/al_search"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@drawable/search_background"
-        android:layout_alignParentTop="true"
-        android:gravity="center_vertical">
-        <EditText
-            android:id="@+id/edt_search_sub_contractor_work_form"
-            android:drawableStart="@drawable/ic_search"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="@dimen/drawable_padding"
-            android:textColorHint="@color/gray"
-            android:layout_marginStart="@dimen/margin_5dp"
-            android:layout_marginLeft="@dimen/margin_5dp"
-            android:background="@color/light_gray"
-            android:hint="Search sub contractor"
-            android:textColor="@color/black"
+        android:visibility="visible"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:padding="@dimen/padding_5dp">
+        <!--        android:theme="@style/Theme.TheContractor.AppBarOverlay">-->
+
+        <LinearLayout
+            android:id="@+id/ll_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="@drawable/search_background">
+
+            <EditText
+                android:id="@+id/edt_search_sub_contractor_work_form"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_5dp"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@color/light_gray"
+                android:drawableStart="@drawable/ic_search"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="@dimen/drawable_padding"
+                android:hint="Search sub contractor"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <!--    <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.TheContractor.PopupOverlay" />
+    -->
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_sub_contractor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox"
-        android:layout_below="@id/ll_search"
-        android:layout_above="@id/btn_submit_sub_contractor_list"/>
+        android:layout_above="@id/btn_submit_sub_contractor_list"
+        android:layout_below="@id/al_search"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox" />
 
     <RelativeLayout
         android:id="@+id/rl_add_sub_contractor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_search"
+        android:layout_below="@id/al_search"
         android:visibility="gone"
         android:layout_above="@id/btn_submit_sub_contractor_list">
 
