@@ -23,6 +23,7 @@ import com.blucor.tcthecontractor.utility.ScreenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,16 @@ public class ProjectListActivity extends BaseAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
+
+        String toolBarTitle = "Completed Projects";
+
+        //Start of dynamic title code-------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
 
         mRvView = findViewById(R.id.recycler_view_list);
         mEdtProjectSearch = findViewById(R.id.edt_project_search);

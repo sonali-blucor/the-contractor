@@ -1,5 +1,6 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -52,6 +53,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sub_contractor_list);
+        String toolBarTitle ="Sub Contractor";
 
         edt_first_name = findViewById(R.id.edt_first_name);
         edt_last_name = findViewById(R.id.edt_last_name);
@@ -63,7 +65,19 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         btn_submit_list = findViewById(R.id.btn_submit_sub_contractor_list);
         btn_register = findViewById(R.id.btn_register);
 
+
+        //Start of dynamic title code---------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
+
+
         btn_register.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 registerSubContractor();

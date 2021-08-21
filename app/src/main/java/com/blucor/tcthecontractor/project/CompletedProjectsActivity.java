@@ -18,6 +18,7 @@ import com.blucor.tcthecontractor.utility.ScreenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
@@ -39,6 +40,17 @@ public class CompletedProjectsActivity extends BaseAppCompatActivity {
 
         mRvView = findViewById(R.id.recycler_view_list);
         mEdtSearch = findViewById(R.id.edt_completed_project_search);
+
+        String toolBarTitle = "Completed Projects";
+
+        //Start of dynamic title code-------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
+
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);

@@ -1,5 +1,6 @@
 package com.blucor.tcthecontractor.project.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,6 +21,17 @@ public class FeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+        String toolBarTitle ="Leave Feedback";
+
+        //toolBarTitle = project.project_name+"-"+project.id;
+
+        //Start of dynamic title code---------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
 
         final EditText nameField = (EditText) findViewById(R.id.EditText_Enter_your_name);
         String name = nameField.getText().toString();

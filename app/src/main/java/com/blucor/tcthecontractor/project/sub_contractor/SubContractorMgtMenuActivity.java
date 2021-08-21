@@ -1,5 +1,6 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -17,15 +18,26 @@ public class SubContractorMgtMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_contractor_mgt_menu);
+        String toolBarTitle ="Sub Contractor Management";
 
         try {
             Bundle bundle = getIntent().getExtras();
             if (bundle.containsKey(AppKeys.PROJECT)) {
                 project = bundle.getParcelable(AppKeys.PROJECT);
+                //toolBarTitle = project.project_name+"-"+project.id;
             }
         } catch (Exception e) {
 
         }
+
+        //Start of dynamic title code---------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
+
     }
 
     public void onClickToWorkOrder(View view) {

@@ -1,5 +1,6 @@
 package com.blucor.tcthecontractor.project.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.ViewPager;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,6 +52,17 @@ public class TodaysActivitiesActivity extends BaseAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todays_activities);
+        String toolBarTitle ="Today's Activity";
+
+        //toolBarTitle = project.project_name+"-"+project.id;
+
+        //Start of dynamic title code---------------------
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle(toolBarTitle);
+        }
+        //End of dynamic title code----------------------
 
         exp_lst_main_activity = findViewById(R.id.exp_lst_main_activity);
         vp_slider = findViewById(R.id.vp_slider);
