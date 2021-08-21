@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="Sub Contractor"
-        android:textSize="20sp"
-        android:layout_margin="10dp"/>
+        android:textSize="@dimen/_15sdp"
+        android:layout_margin="@dimen/_2sdp"/>
 
 </LinearLayout>
