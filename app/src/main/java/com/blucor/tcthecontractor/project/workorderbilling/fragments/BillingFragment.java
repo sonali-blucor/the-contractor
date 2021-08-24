@@ -66,21 +66,21 @@ public class BillingFragment extends Fragment {
     private BillPaymentRecyclerAdapter mAdapter;
     private float total_work_order_amount;
     private TextView tv_total_work_order;
-    private TextView tv_no;
+   /* private TextView tv_no;
     private TextView tv_percentage;
     private TextView tv_remark;
     private TextView tv_billing_date;
     private TextView tv_amount;
-    private ImageView img_edit;
+    private ImageView img_edit;*/
     private View fragment_view;
     private BaseAppCompatActivity mActivity;
     private FloatingActionButton fab_add_billing;
     private View dialog_view;
     private BilliModel edit_bill;
-    private AlertDialog dialog;
+    private AlertDialog dialog;/*
     private TextView tv_balance;
     private TextView tv_paid;
-    private TextView tv_payment_date;
+    private TextView tv_payment_date;*/
     private ProjectsModel selected_project;
 
     public BillingFragment() {
@@ -107,7 +107,7 @@ public class BillingFragment extends Fragment {
         tv_view =fragment_view.findViewById(R.id.tv_view);
         ll_title =fragment_view.findViewById(R.id.ll_title);
         tv_total_work_order = fragment_view.findViewById(R.id.tv_total_work_order);
-        tv_no = fragment_view.findViewById(R.id.tv_no);
+        /*tv_no = fragment_view.findViewById(R.id.tv_no);
         tv_percentage = fragment_view.findViewById(R.id.tv_percentage);
         tv_amount = fragment_view.findViewById(R.id.tv_amount);
         tv_remark = fragment_view.findViewById(R.id.tv_remark);
@@ -115,7 +115,7 @@ public class BillingFragment extends Fragment {
         tv_balance = fragment_view.findViewById(R.id.tv_balance);
         tv_paid = fragment_view.findViewById(R.id.tv_paid);
         tv_payment_date = fragment_view.findViewById(R.id.tv_payment_date);
-        img_edit = fragment_view.findViewById(R.id.img_edit);
+        img_edit = fragment_view.findViewById(R.id.img_edit);*/
         /*btnsubmit = fragment_view.findViewById(R.id.btn_submit);*/
         fab_add_billing = fragment_view.findViewById(R.id.fab_billing_add);
         fab_add_billing.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +168,7 @@ public class BillingFragment extends Fragment {
         } else {
             setUpRecyclerAdapter();
         }
-
+/*
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int ten_percent_screen = (int) (dpWidth * 30) / 100;
@@ -181,7 +181,7 @@ public class BillingFragment extends Fragment {
         tv_balance.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         tv_paid.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         tv_payment_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));*/
 
         return fragment_view;
     }
@@ -216,15 +216,15 @@ public class BillingFragment extends Fragment {
         btnsubmit = dialog_view.findViewById(R.id.btn_submit);
 
         if (is_edit) {
-            tv_percentage.setText("" + edit_bill.getPercentage());
+            /*tv_percentage.setText("" + edit_bill.getPercentage());
             tv_amount.setText("" + edit_bill.getAmount());
             tv_remark.setText("" + edit_bill.getRemark());
-            tv_billing_date.setText("" + edit_bill.getBilling_date());
+            tv_billing_date.setText("" + edit_bill.getBilling_date());*/
             billing_date = edit_bill.getBilling_date();
-            tv_amount.setText("" + edit_bill.amount);
+            /*tv_amount.setText("" + edit_bill.amount);
             tv_paid.setText(""+edit_bill.paid);
             tv_balance.setText(""+edit_bill.balance);
-            tv_payment_date.setText(""+edit_bill.payment_date);
+            tv_payment_date.setText(""+edit_bill.payment_date);*/
         }
         et_billing_date.setOnClickListener(new View.OnClickListener() {
             @Override

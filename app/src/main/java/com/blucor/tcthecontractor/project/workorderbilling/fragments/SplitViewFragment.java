@@ -44,19 +44,6 @@ public class SplitViewFragment extends Fragment {
     private WorkOrderRecyclerAdapter mWorkAdapter;
     private BillPaymentRecyclerAdapter mBillAdapter;
 
-    private TextView tv_no;
-    private TextView tv_item;
-    private TextView tv_unit;
-    private TextView tv_qty;
-    private TextView tv_rate;
-    private TextView tv_amount;
-    private TextView tv_no_bill;
-    private TextView tv_percentage_bill;
-    private TextView tv_amount_bill;
-    private TextView tv_remark_bill;
-    private TextView tv_billing_date_bill;
-    private ImageView img_edit;
-    private ImageView img_edit_bill;
 
     public SplitViewFragment(ProjectsModel selected_project) {
         this.selected_project = selected_project;
@@ -69,19 +56,6 @@ public class SplitViewFragment extends Fragment {
         fragement_view =  inflater.inflate(R.layout.fragment_split_view, container, false);
         rv_work_order = fragement_view.findViewById(R.id.rv_work_order);
         lst_billing = fragement_view.findViewById(R.id.lst_billing);
-        tv_no = fragement_view.findViewById(R.id.tv_no);
-        tv_item = fragement_view.findViewById(R.id.tv_item);
-        tv_unit = fragement_view.findViewById(R.id.tv_unit);
-        tv_qty = fragement_view.findViewById(R.id.tv_qty);
-        tv_rate = fragement_view.findViewById(R.id.tv_rate);
-        tv_amount = fragement_view.findViewById(R.id.tv_amount);
-        img_edit = fragement_view.findViewById(R.id.img_edit);
-        tv_no_bill = fragement_view.findViewById(R.id.tv_no_bill);
-        tv_percentage_bill = fragement_view.findViewById(R.id.tv_percentage);
-        tv_amount_bill = fragement_view.findViewById(R.id.tv_amount_bill);
-        tv_remark_bill = fragement_view.findViewById(R.id.tv_remark);
-        tv_billing_date_bill = fragement_view.findViewById(R.id.tv_billing_date);
-        img_edit_bill = fragement_view.findViewById(R.id.img_edit_bill);
 
         mActivity = (BaseAppCompatActivity)getActivity();
 
@@ -140,32 +114,17 @@ public class SplitViewFragment extends Fragment {
     }
 
     private void setUpAdapter() {
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        WorkOrderModel workOrderModel = new WorkOrderModel();
+        ArrayList<WorkOrderModel> workOrderList = new ArrayList<>();
+        workOrderList.add(workOrderModel);
+        workOrderList.addAll(workOrders);
+        mWorkAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrderList);
 
-        //screen size for work order
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int ten_percent_screen = (int) (dpWidth * 27) / 100;
-
-        tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_item.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_unit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_qty.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));
-
-        float dpWidth_bill = displayMetrics.widthPixels / displayMetrics.density;
-        int ten_percent_screen_bill = (int) (dpWidth_bill * 30) / 100;
-
-        tv_no_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-        tv_percentage_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-        tv_amount_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-        tv_remark_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-        tv_billing_date_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-        img_edit_bill.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_bill,ten_percent_screen_bill));
-
-        mWorkAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrders);
-        mBillAdapter = new BillPaymentRecyclerAdapter(mActivity,bills);
+        BilliModel model = new BilliModel();
+        ArrayList<BilliModel> billList = new ArrayList<>();
+        billList.add(model);
+        billList.addAll(bills);
+        mBillAdapter = new BillPaymentRecyclerAdapter(mActivity,billList);
         rv_work_order.setAdapter(mWorkAdapter);
         lst_billing.setAdapter(mBillAdapter);
     }

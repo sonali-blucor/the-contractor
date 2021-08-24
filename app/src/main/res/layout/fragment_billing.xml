@@ -56,117 +56,19 @@
             android:gravity="center"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/ll_title_head"
-        android:orientation="vertical">
+        android:layout_below="@id/ll_title_head">
 
-        <LinearLayout
-            android:id="@+id/ll_title"
-            android:orientation="horizontal"
+        <ListView
+            android:id="@+id/lst_billing"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:visibility="gone">
+            android:layout_height="match_parent"
+            />
 
-            <TextView
-                android:id="@+id/tv_no"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.4"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="No."
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_percentage"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="2.6"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="%"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.6"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Amount"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_remark"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.7"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Remarks"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_billing_date"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="Billing Date"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_balance"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.6"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Balance"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_paid"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.7"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="@string/Paid"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/tv_payment_date"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:text="Payment Date"
-                android:textColor="@android:color/black"/>
-
-            <ImageView
-                android:id="@+id/img_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/table_content_cell_bg_yellow"
-                android:src="@drawable/ic_edit_yellow"/>
-
-        </LinearLayout>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ListView
-                android:id="@+id/lst_billing"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
-        </HorizontalScrollView>
-
-
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_billing_add"

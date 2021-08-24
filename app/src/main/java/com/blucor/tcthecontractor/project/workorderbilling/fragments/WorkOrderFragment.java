@@ -63,13 +63,13 @@ public class WorkOrderFragment extends Fragment {
     private View footer_view;
     private TextView tv_view;
     private LinearLayout ll_title;
-    private TextView tv_no;
+    /*private TextView tv_no;
     private TextView tv_item;
     private TextView tv_unit;
     private TextView tv_qty;
     private TextView tv_rate;
     private TextView tv_amount;
-    private ImageView img_edit;
+    private ImageView img_edit;*/
     private View fragment_view;
     private BaseAppCompatActivity mActivity;
     private ProjectsModel selected_project;
@@ -103,13 +103,13 @@ public class WorkOrderFragment extends Fragment {
         et_amount = fragment_view.findViewById(R.id.et_amount);*/
         tv_view = fragment_view.findViewById(R.id.tv_view);
         ll_title = fragment_view.findViewById(R.id.ll_title);
-        tv_no = fragment_view.findViewById(R.id.tv_no);
+        /*tv_no = fragment_view.findViewById(R.id.tv_no);
         tv_item = fragment_view.findViewById(R.id.tv_item);
         tv_unit = fragment_view.findViewById(R.id.tv_unit);
         tv_qty = fragment_view.findViewById(R.id.tv_qty);
         tv_rate = fragment_view.findViewById(R.id.tv_rate);
         tv_amount = fragment_view.findViewById(R.id.tv_amount);
-        img_edit  = fragment_view.findViewById(R.id.img_edit);
+        img_edit  = fragment_view.findViewById(R.id.img_edit);*/
         fab_add_work_order  = fragment_view.findViewById(R.id.fab_work_order_add);
         mActivity = (BaseAppCompatActivity)getActivity();
 
@@ -179,7 +179,7 @@ public class WorkOrderFragment extends Fragment {
             }
         });*/
 
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+       /* DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int ten_percent_screen = (int) (dpWidth * 27) / 100;
 
@@ -189,7 +189,7 @@ public class WorkOrderFragment extends Fragment {
         tv_qty.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
         tv_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
         tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));
+        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));*/
 
         getUnits();
         if (workOrders == null) {
@@ -315,8 +315,12 @@ public class WorkOrderFragment extends Fragment {
     }
 
     private void setUpRecyclerAdapter() {
+        WorkOrderModel workOrderModel = new WorkOrderModel();
+        ArrayList<WorkOrderModel> workOrderList = new ArrayList<>();
+        workOrderList.add(workOrderModel);
+        workOrderList.addAll(workOrders);
 
-        mAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrders);
+        mAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrderList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
