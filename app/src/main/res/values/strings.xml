@@ -67,5 +67,7 @@
     <string name="Work_order">Work Order</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="work_order_list">Work Order List</string>
+    <string name="billing_stages">Billing Stages</string>
 
 </resources>
