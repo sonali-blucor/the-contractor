@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.blucor.tcthecontractor.utility.ScreenHelper;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +39,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     private boolean is_scheduled;
     private String on_going = "On Going";
     private String complete = "Complete";
+    private CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         edt_project_status = findViewById(R.id.edt_project_status);
         edt_no_of_days = findViewById(R.id.edt_no_of_days);
         rt_bar_schedule = findViewById(R.id.rt_bar_schedule);
+        calendarView = findViewById(R.id.calendar_view);
         btn_schedule = findViewById(R.id.btn_schedule);
 
         Intent intent = getIntent();
@@ -68,6 +72,13 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 popupProjectStatusDialog();
+            }
+        });
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
             }
         });
 

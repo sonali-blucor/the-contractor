@@ -8,14 +8,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total : "
+        android:text="Grand Total : "
         android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/tv_work_order_list_total_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total : "
+        android:text="10000"
         android:textColor="@color/black"/>
 
 </LinearLayout>

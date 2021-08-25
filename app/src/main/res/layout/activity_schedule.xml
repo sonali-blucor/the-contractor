@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_background"
                 android:drawablePadding="@dimen/drawable_padding"
-                android:hint="Project Name"
+                android:hint="@string/project_name"
                 android:enabled="false"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
                     android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="Number of Days"
+                    android:hint="@string/number_of_days"
                     android:imeOptions="actionNext"
                     android:digits="0123456789"
                     android:inputType="number"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold"
-                    android:text="Rate for project" />
+                    android:text="@string/rate_for_project" />
 
                 <RatingBar
                     android:id="@+id/rt_bar_schedule"
@@ -149,7 +149,8 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.blucor.tcthecontractor.custom.CalendarView
+        <CalendarView
+            android:id="@+id/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -161,6 +162,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:textColor="@color/white"
-        android:text="Schedule" />
+        android:text="@string/schedule" />
 
 </RelativeLayout>

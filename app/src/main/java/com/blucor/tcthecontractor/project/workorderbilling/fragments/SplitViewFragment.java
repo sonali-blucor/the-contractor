@@ -114,11 +114,11 @@ public class SplitViewFragment extends Fragment {
     }
 
     private void setUpAdapter() {
-        WorkOrderModel workOrderModel = new WorkOrderModel();
+       /* WorkOrderModel workOrderModel = new WorkOrderModel();
         ArrayList<WorkOrderModel> workOrderList = new ArrayList<>();
         workOrderList.add(workOrderModel);
-        workOrderList.addAll(workOrders);
-        mWorkAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrderList);
+        workOrderList.addAll(workOrders);*/
+        mWorkAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrders);
 
         BilliModel model = new BilliModel();
         ArrayList<BilliModel> billList = new ArrayList<>();

@@ -315,12 +315,12 @@ public class WorkOrderFragment extends Fragment {
     }
 
     private void setUpRecyclerAdapter() {
-        WorkOrderModel workOrderModel = new WorkOrderModel();
+        /*WorkOrderModel workOrderModel = new WorkOrderModel();
         ArrayList<WorkOrderModel> workOrderList = new ArrayList<>();
         workOrderList.add(workOrderModel);
-        workOrderList.addAll(workOrders);
+        workOrderList.addAll(workOrders);*/
 
-        mAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrderList);
+        mAdapter = new WorkOrderRecyclerAdapter(mActivity,workOrders);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
@@ -341,7 +341,7 @@ public class WorkOrderFragment extends Fragment {
         rv_work_order.setAdapter(mAdapter);
         if (tv_footer_total == null) {
             footer_view = getFooterViewForTotalAmount();
-            rv_work_order.addFooterView(footer_view);
+            rv_work_order.addHeaderView(footer_view);
         } else {
             float tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);

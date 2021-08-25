@@ -140,7 +140,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
                 }
             }
         });
-
+/*
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int ten_percent_screen = (int) (dpWidth * 27) / 100;
@@ -151,7 +151,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
         tv_qty.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
         tv_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
         tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen, ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));
+        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen-5, ten_percent_screen));*/
 
         getUnits();
         workOrders = new ArrayList<>();
@@ -179,7 +179,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
         rv_work_order.setAdapter(mAdapter);
         if (tv_footer_total == null) {
             footer_view = getFooterViewForTotalAmount();
-            rv_work_order.addFooterView(footer_view);
+            rv_work_order.addHeaderView(footer_view);
         } else {
             float tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);
@@ -222,7 +222,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
 
     private void setIntentData() {
         tv_view.setVisibility(View.VISIBLE);
-        ll_title.setVisibility(View.VISIBLE);
+       // ll_title.setVisibility(View.VISIBLE);
         rv_work_order.setVisibility(View.VISIBLE);
 
         if (is_edit) {

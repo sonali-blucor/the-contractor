@@ -58,7 +58,7 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.work_order_list_item,null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.work_order_adapter_item_new,null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -75,7 +75,7 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
         return position;
     }
 
-    public class ViewHolder {
+   /* public class ViewHolder {
 
         private final View viewHolder;
         private WorkOrderModel item;
@@ -151,6 +151,69 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
                     }
                 });
             }
+        }
+    }*/
+
+    public class ViewHolder {
+
+        private final View viewHolder;
+        private WorkOrderModel item;
+        private TextView tv_work_order_no;
+        private ImageView img_work_order_edit;
+        private TextView tv_work_order_description;
+        //private TextView tv_work_order_read_more;
+        private TextView tv_work_order_total;
+        private TextView tv_work_order_unit;
+        private TextView tv_work_order_quantity;
+        private TextView tv_work_order_rate;
+
+        ViewHolder(final View itemView) {
+            viewHolder = itemView;
+            tv_work_order_no = itemView.findViewById(R.id.tv_work_order_no);
+            img_work_order_edit = itemView.findViewById(R.id.img_work_order_edit);
+            tv_work_order_description = itemView.findViewById(R.id.tv_work_order_description);
+//            tv_work_order_read_more = itemView.findViewById(R.id.tv_work_order_read_more);
+            tv_work_order_total = itemView.findViewById(R.id.tv_work_order_total);
+            tv_work_order_unit = itemView.findViewById(R.id.tv_work_order_unit);
+            tv_work_order_quantity = itemView.findViewById(R.id.tv_work_order_quantity);
+            tv_work_order_rate = itemView.findViewById(R.id.tv_work_order_rate);
+
+           /* DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
+            float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+            int ten_percent_screen_w = (int) (dpWidth * 40) / 100;
+            int ten_percent_screen_h = (int) (dpWidth * 30) / 100;
+
+            tv_work_order_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            //img_work_order_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            tv_work_order_description.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            //tv_work_order_read_more.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            tv_work_order_total.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            tv_work_order_unit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            tv_work_order_quantity.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));
+            tv_work_order_rate.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen_w, ten_percent_screen_h));*/
+        }
+
+        protected void clear() {
+        }
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        public void onBind(int position) {
+            item = (WorkOrderModel) mList.get(position);
+            String no = String.valueOf(position + 1);
+            tv_work_order_no.setText("" + no);
+            tv_work_order_description.setText("" + item.work_description);
+            tv_work_order_unit.setText("" + item.unit);
+            tv_work_order_quantity.setText("" + item.quantity);
+            tv_work_order_rate.setText("" + item.rate);
+            tv_work_order_total.setText("" + item.amount);
+            img_work_order_edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        mListener.editViewListClicked(viewHolder, position);
+                    }
+                }
+            });
         }
     }
 
