@@ -5,14 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CalendarView;
+import com.blucor.tcthecontractor.custom.CalendarView;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.custom.OnCalenderClick;
 import com.blucor.tcthecontractor.custom.WeekDaysCheckBox;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.ProjectsModel;
@@ -20,6 +22,9 @@ import com.blucor.tcthecontractor.models.ScheduleModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -75,9 +80,19 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             }
         });
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        ArrayList<Date> selectedDate = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH,i);
+            Date date = new Date(calendar.getTimeInMillis());
+            selectedDate.add(date);
+        }
+
+        calendarView.setSelectedDayArray(selectedDate);
+        calendarView.setOnCalenderClickListener(new OnCalenderClick() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
