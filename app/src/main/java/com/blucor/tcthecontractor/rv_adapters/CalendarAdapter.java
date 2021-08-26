@@ -16,6 +16,7 @@ import com.blucor.tcthecontractor.custom.DateManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -28,20 +29,17 @@ public class CalendarAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
     private ArrayList<Date> selectedDays;
 
-    public void setSelectedDayArray(ArrayList<Date> selectedDays) {
-        this.selectedDays = selectedDays;
-    }
-
     //After expanding the custom cell, define Wiget here
     private static class ViewHolder {
         public TextView dateText;
     }
 
-    public CalendarAdapter(Context context){
+    public CalendarAdapter(Context context,ArrayList<Date> selectedDays){
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mDateManager = new DateManager();
         dateArray = mDateManager.getDays();
+        this.selectedDays = selectedDays;
     }
 
     @Override
@@ -72,8 +70,12 @@ public class CalendarAdapter extends BaseAdapter {
 
         //Gray out cells other than this month
         if (mDateManager.isCurrentMonth(dateArray.get(position))){
-            convertView.setBackgroundColor(Color.WHITE);
-        }else {
+            if(isPresentInSelectedDays(dateArray.get(position))) {
+                convertView.setBackgroundColor(Color.CYAN);
+            } else {
+                convertView.setBackgroundColor(Color.WHITE);
+            }
+        } else {
             convertView.setBackgroundColor(Color.LTGRAY);
         }
 
@@ -100,6 +102,31 @@ public class CalendarAdapter extends BaseAdapter {
         }*/
 
         return convertView;
+    }
+
+    private boolean isPresentInSelectedDays(Date selectedDate) {
+        Calendar cal_selected_date = Calendar.getInstance();
+        cal_selected_date.setTimeInMillis(selectedDate.getTime());
+
+        if(selectedDays == null) {
+            return false;
+        } else if(selectedDays.size() <= 0) {
+            return false;
+        } else {
+            boolean isPresent = false;
+            for (int i = 0; i < selectedDays.size(); i++) {
+                Date date = selectedDays.get(i);
+
+                Calendar cal_date = Calendar.getInstance();
+                cal_date.setTimeInMillis(date.getTime());
+
+                if (cal_date.get(Calendar.DAY_OF_MONTH) == cal_selected_date.get(Calendar.DAY_OF_MONTH) && cal_date.get(Calendar.MONTH) == cal_selected_date.get(Calendar.MONTH) && cal_date.get(Calendar.YEAR) == cal_selected_date.get(Calendar.YEAR)) {
+                    isPresent = true;
+                }
+            }
+
+            return isPresent;
+        }
     }
 
     @Override

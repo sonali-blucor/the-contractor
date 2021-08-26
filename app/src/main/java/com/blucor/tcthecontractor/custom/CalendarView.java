@@ -61,7 +61,7 @@ public class CalendarView extends LinearLayout {
         btnNext = findViewById(R.id.calendar_next_button);
         txtDate = findViewById(R.id.calendar_date_display);
         grid = findViewById(R.id.calendar_grid);
-        mCalendarAdapter = new CalendarAdapter(context);
+        mCalendarAdapter = new CalendarAdapter(context,null);
         grid.setAdapter(mCalendarAdapter);
 
         txtDate.setText(mCalendarAdapter.getTitle());
@@ -99,12 +99,11 @@ public class CalendarView extends LinearLayout {
 
     public void setSelectedDayArray(ArrayList<Date> selectedDays) {
         this.selectedDays = selectedDays;
-        //updateCalender();
+        updateCalender();
     }
 
     private void updateCalender() {
-        mCalendarAdapter = new CalendarAdapter(getContext());
-        mCalendarAdapter.setSelectedDayArray(selectedDays);
+        mCalendarAdapter = new CalendarAdapter(getContext(),selectedDays);
         grid.setAdapter(mCalendarAdapter);
     }
 
