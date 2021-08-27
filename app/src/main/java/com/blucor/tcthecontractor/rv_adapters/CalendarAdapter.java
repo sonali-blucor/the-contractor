@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.custom.DateManager;
+import com.blucor.tcthecontractor.custom.OnCalenderClick;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,11 +73,14 @@ public class CalendarAdapter extends BaseAdapter {
         if (mDateManager.isCurrentMonth(dateArray.get(position))){
             if(isPresentInSelectedDays(dateArray.get(position))) {
                 convertView.setBackgroundColor(Color.CYAN);
+                convertView.setClickable(false);
             } else {
                 convertView.setBackgroundColor(Color.WHITE);
+                convertView.setClickable(true);
             }
         } else {
             convertView.setBackgroundColor(Color.LTGRAY);
+            convertView.setClickable(true);
         }
 
         //Sunday to red, Saturday to blue

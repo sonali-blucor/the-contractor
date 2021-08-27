@@ -93,7 +93,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         calendarView.setOnCalenderClickListener(new OnCalenderClick() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Toast.makeText(ScheduleActivity.this, "Item Clicked : "+position, Toast.LENGTH_SHORT).show();
             }
         });
 
