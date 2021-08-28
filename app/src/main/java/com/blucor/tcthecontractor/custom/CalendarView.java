@@ -69,7 +69,8 @@ public class CalendarView extends LinearLayout {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (mListener != null) {
-                    mListener.onItemClick(parent,view,position,id);
+                    Date date = mCalendarAdapter.getItem(position);
+                    mListener.onItemClick(position,date.getTime());
                 }
             }
         });

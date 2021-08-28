@@ -45,6 +45,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     private String on_going = "On Going";
     private String complete = "Complete";
     private CalendarView calendarView;
+    private ArrayList<Date> selectedDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,24 +81,77 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             }
         });
 
-        ArrayList<Date> selectedDate = new ArrayList<>();
+        selectedDays = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH,i);
             Date date = new Date(calendar.getTimeInMillis());
-            selectedDate.add(date);
+            selectedDays.add(date);
         }
 
-        calendarView.setSelectedDayArray(selectedDate);
+        calendarView.setSelectedDayArray(selectedDays);
         calendarView.setOnCalenderClickListener(new OnCalenderClick() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(int position, long date) {
                 Toast.makeText(ScheduleActivity.this, "Item Clicked : "+position, Toast.LENGTH_SHORT).show();
+                addToHoliday(date);
             }
         });
 
         getScheduleDetails();
+    }
+
+    private void addToHoliday(long date) {
+        Date selected_date = new Date();
+        selected_date.setTime(date);
+
+        if (isPresentInSelectedDays(selected_date)) {
+            Toast.makeText(this, "Is Already Present in holidays", Toast.LENGTH_SHORT).show();
+        } else {
+            AlertDialog dialog = new AlertDialog.Builder(ScheduleActivity.this).create();
+            dialog.setTitle("Do you want to add this day to holiday?");
+            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selectedDays.add(selected_date);
+                    calendarView.setSelectedDayArray(selectedDays);
+                    dialog.dismiss();
+                }
+            });
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+    }
+
+    private boolean isPresentInSelectedDays(Date selectedDate) {
+        Calendar cal_selected_date = Calendar.getInstance();
+        cal_selected_date.setTimeInMillis(selectedDate.getTime());
+
+        if(selectedDays == null) {
+            return false;
+        } else if(selectedDays.size() <= 0) {
+            return false;
+        } else {
+            boolean isPresent = false;
+            for (int i = 0; i < selectedDays.size(); i++) {
+                Date date = selectedDays.get(i);
+
+                Calendar cal_date = Calendar.getInstance();
+                cal_date.setTimeInMillis(date.getTime());
+
+                if (cal_date.get(Calendar.DAY_OF_MONTH) == cal_selected_date.get(Calendar.DAY_OF_MONTH) && cal_date.get(Calendar.MONTH) == cal_selected_date.get(Calendar.MONTH) && cal_date.get(Calendar.YEAR) == cal_selected_date.get(Calendar.YEAR)) {
+                    isPresent = true;
+                }
+            }
+
+            return isPresent;
+        }
     }
 
     private void popupProjectStatusDialog() {

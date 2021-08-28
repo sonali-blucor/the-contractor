@@ -135,12 +135,12 @@ public class CalendarAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Date getItem(int position) {
+        return dateArray.get(position);
     }
 
     //Get display month
