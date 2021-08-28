@@ -2,6 +2,12 @@ plugins {
     id 'com.android.application'
 }
 
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -73,4 +79,5 @@ dependencies {
     implementation 'com.github.bassaer:materialdesigncolors:1.0.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.github.AhmMhd:SeeMoreTextView-Android:1.0.0'
 }

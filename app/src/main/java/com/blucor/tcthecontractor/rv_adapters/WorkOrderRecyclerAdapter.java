@@ -2,7 +2,15 @@ package com.blucor.tcthecontractor.rv_adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.abdulhakeem.seemoretextview.SeeMoreTextView;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.models.ClientProjectActivityModel;
 import com.blucor.tcthecontractor.models.Material;
@@ -201,7 +210,50 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
             item = (WorkOrderModel) mList.get(position);
             String no = String.valueOf(position + 1);
             tv_work_order_no.setText("" + no);
-            tv_work_order_description.setText("" + item.work_description);
+
+            String inputText = "" + item.work_description;
+            if(inputText.length()>50)
+            {
+                String text=inputText.substring(0,50)+"...";
+                final String fulltext=inputText;
+
+                final SpannableString ss = new SpannableString(text+"View More");
+
+                ClickableSpan span1 = new ClickableSpan() {
+                    @Override
+                    public void onClick(View textView) {
+                        // do some thing
+                        SpannableString ss1 = new SpannableString(fulltext+"Show Less");
+                        ClickableSpan span2 = new ClickableSpan() {
+                            @Override
+                            public void onClick(View textView) {
+                                // do some thing
+                                tv_work_order_description.setText(ss);
+                                tv_work_order_description.setMovementMethod(LinkMovementMethod.getInstance());
+
+                            }
+                        };
+                        ss1.setSpan(span2, fulltext.length(), ss1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        ss1.setSpan(new ForegroundColorSpan(Color.BLUE), fulltext.length(), ss1.length(),
+                                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+                        tv_work_order_description.setText(ss1);
+                        tv_work_order_description.setMovementMethod(LinkMovementMethod.getInstance());
+                    }
+                };
+                ss.setSpan(span1, 53, 62, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ss.setSpan(new ForegroundColorSpan(Color.BLUE), 53,62,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                tv_work_order_description.setText(ss);
+                tv_work_order_description.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+            else
+            {
+                tv_work_order_description.setText(inputText);
+            }
+
             tv_work_order_unit.setText("" + item.unit);
             tv_work_order_quantity.setText("" + item.quantity);
             tv_work_order_rate.setText("" + item.rate);
