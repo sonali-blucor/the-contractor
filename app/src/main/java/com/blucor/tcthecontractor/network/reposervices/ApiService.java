@@ -9,6 +9,7 @@ import com.blucor.tcthecontractor.models.ClientProjectActivityModel;
 import com.blucor.tcthecontractor.models.Contract_Type;
 import com.blucor.tcthecontractor.models.Contractor;
 import com.blucor.tcthecontractor.models.ForgotPasswordModel;
+import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.models.InsertActivityResponseModel;
 import com.blucor.tcthecontractor.models.InsertSubActivityResponseModel;
 import com.blucor.tcthecontractor.models.Material;
@@ -298,5 +299,10 @@ public interface ApiService {
                                                       @Field("payment_date") String payment_date,
                                                       @Field("billing_date") String billing_date,
                                                       @Field("project_id") int project_id);
+
+    @FormUrlEncoded
+    @POST(Contants.FETCH_HOLIDAYS)
+    Call<HolidayModel> getHolidays();
+
 }
 

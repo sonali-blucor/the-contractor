@@ -73,14 +73,14 @@ public class CalendarAdapter extends BaseAdapter {
         if (mDateManager.isCurrentMonth(dateArray.get(position))){
             if(isPresentInSelectedDays(dateArray.get(position))) {
                 convertView.setBackgroundColor(Color.CYAN);
-                convertView.setClickable(false);
+                //convertView.setClickable(false);
             } else {
                 convertView.setBackgroundColor(Color.WHITE);
-                convertView.setClickable(true);
+                //convertView.setClickable(true);
             }
         } else {
             convertView.setBackgroundColor(Color.LTGRAY);
-            convertView.setClickable(true);
+            //convertView.setClickable(true);
         }
 
         //Sunday to red, Saturday to blue
