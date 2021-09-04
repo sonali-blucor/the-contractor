@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/dateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="15"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/explainationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textColor="@color/red"
         android:gravity="center_horizontal" />
 
     <!--Expandable here-->
 
-</RelativeLayout>
+</LinearLayout>

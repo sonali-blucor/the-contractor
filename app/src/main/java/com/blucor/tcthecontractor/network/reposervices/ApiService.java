@@ -25,6 +25,7 @@ import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.models.WorkOrderResponseModel;
 import com.blucor.tcthecontractor.network.utils.Contants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -300,9 +301,8 @@ public interface ApiService {
                                                       @Field("billing_date") String billing_date,
                                                       @Field("project_id") int project_id);
 
-    @FormUrlEncoded
     @POST(Contants.FETCH_HOLIDAYS)
-    Call<HolidayModel> getHolidays();
+    Call<ArrayList<HolidayModel>> getHolidays();
 
 }
 

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.rv_adapters.CalendarAdapter;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class CalendarView extends LinearLayout {
     private GridView grid;
     private CalendarAdapter mCalendarAdapter;
     private OnCalenderClick mListener;
-    private ArrayList<Date> selectedDays;
+    private ArrayList<HolidayModel> selectedDays;
     private Context context;
 
     public CalendarView(Context context)
@@ -98,7 +99,7 @@ public class CalendarView extends LinearLayout {
         this.mListener = mListener;
     }
 
-    public void setSelectedDayArray(ArrayList<Date> selectedDays) {
+    public void setSelectedDayArray(ArrayList<HolidayModel> selectedDays) {
         this.selectedDays = selectedDays;
         updateCalender();
     }
@@ -106,6 +107,10 @@ public class CalendarView extends LinearLayout {
     private void updateCalender() {
         mCalendarAdapter = new CalendarAdapter(getContext(),selectedDays);
         grid.setAdapter(mCalendarAdapter);
+    }
+
+    public DateManager getDateManager() {
+        return mCalendarAdapter.getDateManager();
     }
 
 }

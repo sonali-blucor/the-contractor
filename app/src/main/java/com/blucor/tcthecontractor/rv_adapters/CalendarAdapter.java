@@ -1,6 +1,7 @@
 package com.blucor.tcthecontractor.rv_adapters;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.custom.DateManager;
 import com.blucor.tcthecontractor.custom.OnCalenderClick;
+import com.blucor.tcthecontractor.models.HolidayModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,14 +31,15 @@ public class CalendarAdapter extends BaseAdapter {
     private Context mContext;
     private DateManager mDateManager;
     private LayoutInflater mLayoutInflater;
-    private ArrayList<Date> selectedDays;
+    private ArrayList<HolidayModel> selectedDays;
 
     //After expanding the custom cell, define Wiget here
     private static class ViewHolder {
         public TextView dateText;
+        public TextView explainationText;
     }
 
-    public CalendarAdapter(Context context,ArrayList<Date> selectedDays){
+    public CalendarAdapter(Context context,ArrayList<HolidayModel> selectedDays){
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mDateManager = new DateManager();
@@ -55,6 +59,7 @@ public class CalendarAdapter extends BaseAdapter {
             convertView = mLayoutInflater.inflate(R.layout.calendar_cell, null);
             holder = new ViewHolder();
             holder.dateText = convertView.findViewById(R.id.dateText);
+            holder.explainationText = convertView.findViewById(R.id.explainationText);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
@@ -71,15 +76,20 @@ public class CalendarAdapter extends BaseAdapter {
 
         //Gray out cells other than this month
         if (mDateManager.isCurrentMonth(dateArray.get(position))){
-            if(isPresentInSelectedDays(dateArray.get(position))) {
+            int present = isPresentInSelectedDays(dateArray.get(position));
+            if( present != 0) {
                 convertView.setBackgroundColor(Color.CYAN);
-                //convertView.setClickable(false);
+                convertView.setClickable(false);
+                holder.dateText.setClickable(false);
+                holder.explainationText.setText(""+selectedDays.get(present).title);
             } else {
                 convertView.setBackgroundColor(Color.WHITE);
                 //convertView.setClickable(true);
+                holder.explainationText.setText("");
             }
         } else {
             convertView.setBackgroundColor(Color.LTGRAY);
+            holder.explainationText.setText("");
             //convertView.setClickable(true);
         }
 
@@ -108,24 +118,34 @@ public class CalendarAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private boolean isPresentInSelectedDays(Date selectedDate) {
+    private int isPresentInSelectedDays(Date selectedDate) {
         Calendar cal_selected_date = Calendar.getInstance();
         cal_selected_date.setTimeInMillis(selectedDate.getTime());
 
         if(selectedDays == null) {
-            return false;
+            return 0;
         } else if(selectedDays.size() <= 0) {
-            return false;
+            return 0;
         } else {
-            boolean isPresent = false;
+            int isPresent = 0;
             for (int i = 0; i < selectedDays.size(); i++) {
-                Date date = selectedDays.get(i);
+                String str = selectedDays.get(i).start;
+                Date date = null;
+
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    date = format.parse(str);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 Calendar cal_date = Calendar.getInstance();
+                assert date != null;
                 cal_date.setTimeInMillis(date.getTime());
 
                 if (cal_date.get(Calendar.DAY_OF_MONTH) == cal_selected_date.get(Calendar.DAY_OF_MONTH) && cal_date.get(Calendar.MONTH) == cal_selected_date.get(Calendar.MONTH) && cal_date.get(Calendar.YEAR) == cal_selected_date.get(Calendar.YEAR)) {
-                    isPresent = true;
+                    isPresent = i;
                 }
             }
 
@@ -145,7 +165,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     //Get display month
     public String getTitle(){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM", Locale.US);
+        SimpleDateFormat format = new SimpleDateFormat("MMM yyyy", Locale.US);
         return format.format(mDateManager.mCalendar.getTime());
     }
 
@@ -161,5 +181,9 @@ public class CalendarAdapter extends BaseAdapter {
         mDateManager.prevMonth();
         dateArray = mDateManager.getDays();
         this.notifyDataSetChanged();
+    }
+
+    public DateManager getDateManager() {
+        return mDateManager;
     }
 }

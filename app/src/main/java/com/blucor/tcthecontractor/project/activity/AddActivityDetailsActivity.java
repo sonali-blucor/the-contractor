@@ -1,6 +1,7 @@
 package com.blucor.tcthecontractor.project.activity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,15 +22,20 @@ import retrofit2.Response;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.custom.CalendarView;
+import com.blucor.tcthecontractor.custom.CustomCalenderDatePickerDialog;
+import com.blucor.tcthecontractor.custom.OnCustomCalenderDateSetListener;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.Activity;
 import com.blucor.tcthecontractor.models.ActivityResponseModel;
+import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.models.InsertSubActivityResponseModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.InsertActivityResponseModel;
 import com.blucor.tcthecontractor.models.SubActivityModel;
 import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.project.ScheduleActivity;
 import com.blucor.tcthecontractor.rv_adapters.SubActivityAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,6 +68,8 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     private List<SubActivityModel> subActivities;
     private SubContractor subContractor;
     private SubActivityAdapter adapter;
+    private ArrayList<HolidayModel> selectedDays;
+    private CustomCalenderDatePickerDialog dialog_end_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +93,30 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
            // setProjectSubActivity();
         }
 
-        getProjectActivityDetails();
+        getProjectHolidays();
+
+    }
+
+    private void getProjectHolidays() {
+        showLoader();
+        RetrofitClient.getApiService().getHolidays().enqueue(new Callback<ArrayList<HolidayModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<HolidayModel>> call, Response<ArrayList<HolidayModel>> response) {
+                if (response.code() == 200) {
+                    selectedDays = response.body();
+                    //createDate();
+                    stopLoader();
+                    getProjectActivityDetails();
+                } else {
+                    stopLoader();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<HolidayModel>> call, Throwable t) {
+                stopLoader();
+            }
+        });
 
     }
 
@@ -278,7 +310,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
     }
 
     public void onClickActivityEndDate(View view) {
-        Calendar calendar = Calendar.getInstance();
+        /*Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(start_date);
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -299,11 +331,104 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
             }
         }, year, month, day);
         datePickerDialog.getDatePicker().setMinDate(start_date);
-        datePickerDialog.show();
+        datePickerDialog.show();*/
+        endDateDialog();
+    }
+
+    private void startDateDialog() {
+        CustomCalenderDatePickerDialog dialog = new CustomCalenderDatePickerDialog(AddActivityDetailsActivity.this, new OnCustomCalenderDateSetListener() {
+            @Override
+            public void onCustomCalenderDateSet(int position, long date) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(date);
+                start_date = cal.getTimeInMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
+                String date_str = sdf.format(cal.getTimeInMillis());
+                edt_sub_activity_start_date.setText(date_str);
+            }
+        });
+        dialog.setSelectedDayArray(selectedDays);
+        dialog.show();
+    }
+
+    private void endDateDialog() {
+        dialog_end_date = new CustomCalenderDatePickerDialog(AddActivityDetailsActivity.this, new OnCustomCalenderDateSetListener() {
+            @Override
+            public void onCustomCalenderDateSet(int position, long date) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(date);
+
+                end_date = cal.getTimeInMillis();
+
+                SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
+                String date_str = sdf.format(cal.getTimeInMillis());
+                edt_sub_activity_end_date.setText(date_str);
+                long days = TimeUnit.MILLISECONDS.toDays(Math.abs(cal.getTimeInMillis() - start_date));
+                int num_of_holidays = getNumberOfHolidays(dialog_end_date,days);
+                tv_total_sub_activity_days.append(""+num_of_holidays);
+            }
+        });
+        dialog_end_date.setSelectedDayArray(selectedDays);
+        dialog_end_date.show();
+    }
+
+    /*private void getDateDetails() {
+        showLoader();
+        RetrofitClient.getApiService().getHolidays().enqueue(new Callback<ArrayList<HolidayModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<HolidayModel>> call, Response<ArrayList<HolidayModel>> response) {
+                if (response.code() == 200) {
+                    selectedDays = response.body();
+                    //createDate();
+                    stopLoader();
+                } else {
+                    stopLoader();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<HolidayModel>> call, Throwable t) {
+                stopLoader();
+            }
+        });
+    }*/
+
+    private int getNumberOfHolidays(CustomCalenderDatePickerDialog dialog,long days) {
+        int numberOfHolidays = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(start_date);
+
+        Calendar calendar_end_date = Calendar.getInstance();
+        calendar_end_date.setTimeInMillis(end_date);
+
+        /*do {
+           calendar.add(Calendar.DAY_OF_MONTH,1);
+           numberOfHolidays++;
+        } while(calendar.get(Calendar.DAY_OF_MONTH) == calendar_end_date.get(Calendar.DAY_OF_MONTH) && calendar.get(Calendar.MONTH) == calendar_end_date.get(Calendar.MONTH) && calendar.get(Calendar.YEAR) == calendar_end_date.get(Calendar.YEAR));
+        */
+
+        for (int i = 0; i < days; i++) {
+
+            calendar.add(Calendar.DAY_OF_MONTH,1);
+
+            if(dialog.isPresentInSelectedDays(new Date(calendar.getTimeInMillis())) != 0) {
+                continue;
+            }
+
+            numberOfHolidays++;
+
+            if(calendar.get(Calendar.DAY_OF_MONTH) == calendar_end_date.get(Calendar.DAY_OF_MONTH) && calendar.get(Calendar.MONTH) == calendar_end_date.get(Calendar.MONTH) && calendar.get(Calendar.YEAR) == calendar_end_date.get(Calendar.YEAR)) {
+                break;
+            }
+        }
+
+
+        return numberOfHolidays;
     }
 
     public void onClickActivityStartDate(View view) {
-        Calendar calendar = Calendar.getInstance();
+        /*Calendar calendar = Calendar.getInstance();
         if (start_date != 0) {
             calendar.setTimeInMillis(start_date);
         }
@@ -323,7 +448,8 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
             }
         }, year, month, day);
         datePickerDialog.getDatePicker().setMinDate(start_date);
-        datePickerDialog.show();
+        datePickerDialog.show();*/
+        startDateDialog();
     }
 
     @Override
