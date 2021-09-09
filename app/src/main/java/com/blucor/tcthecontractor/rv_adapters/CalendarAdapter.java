@@ -81,7 +81,7 @@ public class CalendarAdapter extends BaseAdapter {
                 convertView.setBackgroundColor(Color.CYAN);
                 convertView.setClickable(false);
                 holder.dateText.setClickable(false);
-                holder.explainationText.setText(""+selectedDays.get(present).title);
+                holder.explainationText.setText(""+selectedDays.get(present).note);
             } else {
                 convertView.setBackgroundColor(Color.WHITE);
                 //convertView.setClickable(true);
@@ -129,7 +129,7 @@ public class CalendarAdapter extends BaseAdapter {
         } else {
             int isPresent = 0;
             for (int i = 0; i < selectedDays.size(); i++) {
-                String str = selectedDays.get(i).start;
+                String str = selectedDays.get(i).date;
                 Date date = null;
 
                 @SuppressLint("SimpleDateFormat")

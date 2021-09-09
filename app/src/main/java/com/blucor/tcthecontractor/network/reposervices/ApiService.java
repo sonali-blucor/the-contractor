@@ -175,7 +175,8 @@ public interface ApiService {
             @Field("no_of_days") int no_of_days,
             @Field("week_days") String week_days,
             @Field("project_status_integer") int project_status_integer,
-            @Field("rating") float rating);
+            @Field("rating") float rating,
+            @Field("schedule_dates") String schedule_dates);
 
     @FormUrlEncoded
     @POST(Contants.GET_ACTIVITY_BY_PROJECT_ID)
@@ -301,8 +302,12 @@ public interface ApiService {
                                                       @Field("billing_date") String billing_date,
                                                       @Field("project_id") int project_id);
 
-    @POST(Contants.FETCH_HOLIDAYS)
-    Call<ArrayList<HolidayModel>> getHolidays();
+    /*@POST(Contants.FETCH_HOLIDAYS)
+    Call<ArrayList<HolidayModel>> getHolidays();*/
+
+    @FormUrlEncoded
+    @POST(Contants.FETCH_HOLIDAYS_BY_PROJECT)
+    Call<ArrayList<HolidayModel>> getHolidaysByProjectId(@Field("project_id") int project_id);
 
 }
 

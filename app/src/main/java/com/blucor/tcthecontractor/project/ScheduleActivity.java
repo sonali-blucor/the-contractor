@@ -25,6 +25,7 @@ import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.ScheduleModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -108,7 +109,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         String str_date = sdf.format(selected_date);
 
         HolidayModel date_model = new HolidayModel();
-        date_model.start = str_date;
+        date_model.date = str_date;
 
         if (calendarView.getDateManager().isCurrentMonth(selected_date)){
             int present = isPresentInSelectedDays(selected_date);
@@ -142,7 +143,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (edt_event_name.getText().toString().trim().length() > 0) {
                             edt_event_name.setError(null);
-                            date_model.title = edt_event_name.getText().toString();
+                            date_model.note = edt_event_name.getText().toString();
                             selectedDays.add(date_model);
                             calendarView.setSelectedDayArray(selectedDays);
                             dialog.dismiss();
@@ -176,7 +177,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         } else {
             int isPresent = 0;
             for (int i = 0; i < selectedDays.size(); i++) {
-                String str = selectedDays.get(i).start;
+                String str = selectedDays.get(i).date;
                 Date date = null;
 
                 @SuppressLint("SimpleDateFormat")
@@ -243,7 +244,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             });
         } else {
             stopLoader();
-            Toast.makeText(this, "Project not recived ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Project not received", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -283,8 +284,10 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             project_status_integer = 1;
         }
 
+        String schedule_dates = new Gson().toJson(selectedDays);
+
         showLoader();
-        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,project_status_integer,ratings).enqueue(new Callback<ScheduleModel>() {
+        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,project_status_integer,ratings,schedule_dates).enqueue(new Callback<ScheduleModel>() {
             @Override
             public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
                 if (response.code() == 200 && response.body() != null) {
@@ -337,7 +340,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
 
     private void getDateDetails() {
         showLoader();
-        RetrofitClient.getApiService().getHolidays().enqueue(new Callback<ArrayList<HolidayModel>>() {
+        RetrofitClient.getApiService().getHolidaysByProjectId(project.id).enqueue(new Callback<ArrayList<HolidayModel>>() {
             @Override
             public void onResponse(Call<ArrayList<HolidayModel>> call, Response<ArrayList<HolidayModel>> response) {
                 if (response.code() == 200) {

@@ -99,7 +99,7 @@ public class AddActivityDetailsActivity extends BaseAppCompatActivity {
 
     private void getProjectHolidays() {
         showLoader();
-        RetrofitClient.getApiService().getHolidays().enqueue(new Callback<ArrayList<HolidayModel>>() {
+        RetrofitClient.getApiService().getHolidaysByProjectId(project.id).enqueue(new Callback<ArrayList<HolidayModel>>() {
             @Override
             public void onResponse(Call<ArrayList<HolidayModel>> call, Response<ArrayList<HolidayModel>> response) {
                 if (response.code() == 200) {

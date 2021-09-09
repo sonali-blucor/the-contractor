@@ -73,7 +73,7 @@ public class CustomCalenderDatePickerDialog extends AlertDialog {
         } else {
             int isPresent = 0;
             for (int i = 0; i < selectedDays.size(); i++) {
-                String str = selectedDays.get(i).start;
+                String str = selectedDays.get(i).date;
                 Date date = null;
 
                 @SuppressLint("SimpleDateFormat")
@@ -105,7 +105,7 @@ public class CustomCalenderDatePickerDialog extends AlertDialog {
         String str_date = sdf.format(selected_date);
 
         HolidayModel date_model = new HolidayModel();
-        date_model.start = str_date;
+        date_model.date = str_date;
 
         if (calendarView.getDateManager().isCurrentMonth(selected_date)){
             int present = isPresentInSelectedDays(selected_date);

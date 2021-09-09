@@ -10,13 +10,13 @@ public class HolidayModel {
     @Expose
     public int id;
 
-    @SerializedName("start")
+    @SerializedName("date")
     @Expose
-    public String start;
+    public String date;
 
-    @SerializedName("title")
+    @SerializedName("note")
     @Expose
-    public String title;
+    public String note;
 
     @SerializedName("project_id")
     @Expose
