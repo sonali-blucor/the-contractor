@@ -223,7 +223,7 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View textView) {
                         // do some thing
-                        SpannableString ss1 = new SpannableString(fulltext+"Show Less");
+                        SpannableString ss1 = new SpannableString(fulltext+" Show Less");
                         ClickableSpan span2 = new ClickableSpan() {
                             @Override
                             public void onClick(View textView) {
