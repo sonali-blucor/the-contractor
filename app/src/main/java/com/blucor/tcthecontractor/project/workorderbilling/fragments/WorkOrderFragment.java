@@ -329,7 +329,7 @@ public class WorkOrderFragment extends Fragment {
 
             @Override
             public void addViewListClicked(View v, int position) {
-
+                setupDeleteMode(position);
             }
 
             @Override
@@ -346,6 +346,29 @@ public class WorkOrderFragment extends Fragment {
             long tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);
         }
+    }
+    private void setupDeleteMode(int position) {
+        AlertDialog.Builder  builder = new AlertDialog.Builder(mActivity);
+//        builder.setMessage("Do you wan't to delete").setTitle("Delete Work Order");
+        builder.setMessage("Do you want to delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        workOrders.remove(position);
+                        setUpRecyclerAdapter();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("Delete Work Order");
+        alert.show();
+
     }
 
     private View getFooterViewForTotalAmount() {

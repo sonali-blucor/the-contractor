@@ -169,6 +169,7 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
         private WorkOrderModel item;
         private TextView tv_work_order_no;
         private ImageView img_work_order_edit;
+        private  ImageView img_work_order_delete;
         private TextView tv_work_order_description;
         //private TextView tv_work_order_read_more;
         private TextView tv_work_order_total;
@@ -180,6 +181,7 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
             viewHolder = itemView;
             tv_work_order_no = itemView.findViewById(R.id.tv_work_order_no);
             img_work_order_edit = itemView.findViewById(R.id.img_work_order_edit);
+            img_work_order_delete = itemView.findViewById(R.id.img_work_order_delete);
             tv_work_order_description = itemView.findViewById(R.id.tv_work_order_description);
 //            tv_work_order_read_more = itemView.findViewById(R.id.tv_work_order_read_more);
             tv_work_order_total = itemView.findViewById(R.id.tv_work_order_total);
@@ -263,6 +265,14 @@ public class WorkOrderRecyclerAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     if (mListener != null) {
                         mListener.editViewListClicked(viewHolder, position);
+                    }
+                }
+            });
+            img_work_order_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        mListener.addViewListClicked(viewHolder, position);
                     }
                 }
             });

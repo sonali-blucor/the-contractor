@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -167,7 +169,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
 
             @Override
             public void addViewListClicked(View v, int position) {
-
+                setupDeleteMode(position);
             }
 
             @Override
@@ -184,6 +186,30 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
             long tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);
         }
+    }
+
+    private void setupDeleteMode(int position) {
+        AlertDialog.Builder  builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Do you wan't to delete").setTitle("Delete Work Order");
+        builder.setMessage("Do you want to delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        workOrders.remove(position);
+                        setUpRecyclerAdapter();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle("Delete Work Order");
+        alert.show();
+
     }
 
     private View getFooterViewForTotalAmount() {
