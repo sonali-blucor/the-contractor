@@ -87,7 +87,7 @@
             android:label="Project" />
         <activity
             android:name=".project.ProjectManagementMenuActivity"
-            android:label="Project" />
+            android:label="Project Management " />
         <activity
             android:name=".project.ProjectListActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
