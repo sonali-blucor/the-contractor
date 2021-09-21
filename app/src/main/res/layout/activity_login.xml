@@ -273,6 +273,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:visibility="gone"
             android:text="Design and  Developed by BluCor System Pvt. Ltd."
             android:textSize="10sp" />
     </LinearLayout>
