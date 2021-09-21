@@ -21,7 +21,8 @@
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="create_account">Create \n Account</string>
-    <string name="forgot_password">Forgot \n Password?</string>
+    <string name="forgot_password">Forgot</string>
+    <string name="fpassword">Password?</string>
     <string name="already_have_a_account">Already have a account?</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
