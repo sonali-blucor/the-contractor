@@ -60,6 +60,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_contractor_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,6 +129,7 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@color/white"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:padding="@dimen/_5sdp"
                     android:text="The Contractor Application"
                     android:textColor="@color/black"
