@@ -543,7 +543,7 @@ public class AddProjectActivity extends BaseAppCompatActivity {
 
     public void onClickAddBill(View view) {
         if (workOrders != null && workOrders.size() > 0) {
-            float tot_work_oerder_amount = getTotalAmount();
+            long tot_work_oerder_amount = getTotalAmount();
             Intent intent = new Intent(AddProjectActivity.this, BillingDetailsActivity.class);
             intent.putExtra(AppKeys.TOTAL_WORK_ORDER_AMOUNT,tot_work_oerder_amount);
             startActivityForResult(intent, 122);
@@ -552,8 +552,8 @@ public class AddProjectActivity extends BaseAppCompatActivity {
         }
     }
 
-    private float getTotalAmount() {
-        float tot_amount = 0;
+    private long getTotalAmount() {
+        long tot_amount = 0;
         for (int i = 0; i < workOrders.size(); i++) {
             WorkOrderModel model = workOrders.get(i);
             tot_amount = tot_amount + model.amount;
