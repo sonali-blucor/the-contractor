@@ -91,9 +91,9 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    float rate = Float.parseFloat("" + s);
-                    float qty = Float.parseFloat(et_qty.getText().toString());
-                    float amt = rate * qty;
+                    long rate = Long.parseLong("" + s);
+                    long qty = Long.parseLong(et_qty.getText().toString());
+                    long amt = rate * qty;
                     et_amount.setText("" + amt);
                 }catch (Exception exception) {
                     Log.e("TextWatcher",""+exception.getMessage());
@@ -115,9 +115,9 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    float qty = Float.parseFloat("" + s);
-                    float rate = Float.parseFloat(et_rate.getText().toString());
-                    float amt = rate * qty;
+                    long qty = Long.parseLong("" + s);
+                    long rate = Long.parseLong(et_rate.getText().toString());
+                    long amt = rate * qty;
                     et_amount.setText("" + amt);
                 }catch (Exception exception) {
                     Log.e("TextWatcher",""+exception.getMessage());
@@ -181,7 +181,7 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
             footer_view = getFooterViewForTotalAmount();
             rv_work_order.addHeaderView(footer_view);
         } else {
-            float tot_amount = getTotalAmount();
+            long tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);
         }
     }
@@ -189,13 +189,13 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
     private View getFooterViewForTotalAmount() {
         View footer_view = LayoutInflater.from(this).inflate(R.layout.work_order_list_total_item,null);
         tv_footer_total = footer_view.findViewById(R.id.tv_work_order_list_total_item);
-        float tot_amount = getTotalAmount();
+        long tot_amount = getTotalAmount();
         tv_footer_total.setText(""+tot_amount);
         return footer_view;
     }
 
-    private float getTotalAmount() {
-        float tot_amount = 0;
+    private long getTotalAmount() {
+        long tot_amount = 0;
         for (int i = 0; i < workOrders.size(); i++) {
             WorkOrderModel model = (WorkOrderModel) workOrders.get(i);
             tot_amount = tot_amount + model.amount;
@@ -226,9 +226,9 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
         rv_work_order.setVisibility(View.VISIBLE);
 
         if (is_edit) {
-            workOrders.get(edit_position).setAmount(Float.parseFloat(et_amount.getText().toString()));
-            workOrders.get(edit_position).setQuantity(Integer.parseInt(et_qty.getText().toString()));
-            workOrders.get(edit_position).setRate(Float.parseFloat(et_rate.getText().toString()));
+            workOrders.get(edit_position).setAmount(Long.parseLong(et_amount.getText().toString()));
+            workOrders.get(edit_position).setQuantity(Long.parseLong(et_qty.getText().toString()));
+            workOrders.get(edit_position).setRate(Long.parseLong(et_rate.getText().toString()));
             workOrders.get(edit_position).setUnit_id(unit_id);
             workOrders.get(edit_position).setUnit(et_unit.getText().toString());
             workOrders.get(edit_position).setWork_description(et_workdesc.getText().toString());
@@ -237,9 +237,9 @@ public class WorkOrderActivity extends BaseAppCompatActivity {
             Toast.makeText(WorkOrderActivity.this, "Successfully edited work order", Toast.LENGTH_SHORT).show();
         } else {
             WorkOrderModel workOrder = new WorkOrderModel();
-            workOrder.setAmount(Float.parseFloat(et_amount.getText().toString()));
-            workOrder.setQuantity(Integer.parseInt(et_qty.getText().toString()));
-            workOrder.setRate(Float.parseFloat(et_rate.getText().toString()));
+            workOrder.setAmount(Long.parseLong(et_amount.getText().toString()));
+            workOrder.setQuantity(Long.parseLong(et_qty.getText().toString()));
+            workOrder.setRate(Long.parseLong(et_rate.getText().toString()));
             workOrder.setUnit_id(unit_id);
             workOrder.setUnit(et_unit.getText().toString());
             workOrder.setWork_description(et_workdesc.getText().toString());

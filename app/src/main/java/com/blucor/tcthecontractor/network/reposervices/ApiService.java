@@ -284,9 +284,9 @@ public interface ApiService {
                                                            @Field("work_order_id") int work_order_id,
                                                            @Field("work_description") String work_description,
                                                            @Field("unit_id") int unit_id,
-                                                           @Field("quantity") int quantity,
-                                                           @Field("rate") float rate,
-                                                           @Field("amount") float amount,
+                                                           @Field("quantity") long quantity,
+                                                           @Field("rate") long rate,
+                                                           @Field("amount") long amount,
                                                            @Field("project_id") int project_id);
 
     @FormUrlEncoded

@@ -25,15 +25,15 @@ public class WorkOrderModel implements Parcelable {
 
     @SerializedName("quantity")
     @Expose
-    public int quantity;
+    public long quantity;
 
     @SerializedName("rate")
     @Expose
-    public float rate;
+    public long rate;
 
     @SerializedName("amount")
     @Expose
-    public float amount;
+    public long amount;
 
     @SerializedName("project_id")
     @Expose
@@ -48,9 +48,9 @@ public class WorkOrderModel implements Parcelable {
         work_description = in.readString();
         unit_id = in.readInt();
         unit = in.readString();
-        quantity = in.readInt();
-        rate = in.readFloat();
-        amount = in.readFloat();
+        quantity = in.readLong();
+        rate = in.readLong();
+        amount = in.readLong();
         project_id = in.readInt();
     }
 
@@ -103,11 +103,11 @@ public class WorkOrderModel implements Parcelable {
         this.unit = unit;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
@@ -115,15 +115,15 @@ public class WorkOrderModel implements Parcelable {
         return rate;
     }
 
-    public void setRate(float rate) {
+    public void setRate(long rate) {
         this.rate = rate;
     }
 
-    public float getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 
@@ -145,9 +145,9 @@ public class WorkOrderModel implements Parcelable {
         dest.writeString(work_description);
         dest.writeInt(unit_id);
         dest.writeString(unit);
-        dest.writeInt(quantity);
-        dest.writeFloat(rate);
-        dest.writeFloat(amount);
+        dest.writeLong(quantity);
+        dest.writeLong(rate);
+        dest.writeLong(amount);
         dest.writeInt(project_id);
     }
 }
