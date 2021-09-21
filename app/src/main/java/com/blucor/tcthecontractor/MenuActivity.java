@@ -86,7 +86,7 @@ public class MenuActivity extends BaseAppCompatActivity {
         params1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         params1.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
 //        params1.addRule(RelativeLayout.ABOVE, R.id.img_logo);
-        mImgProfile.setLayoutParams(params1);
+//        mImgProfile.setLayoutParams(params1);
 
         sharedPreferences = getSharedPreferences(Contants.USER_PREFERNCE_NAME,MODE_PRIVATE);
         is_client = sharedPreferences.getInt(Contants.USER_TYPE_KEY,-1);

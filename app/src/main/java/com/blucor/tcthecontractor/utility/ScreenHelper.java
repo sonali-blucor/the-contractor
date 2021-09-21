@@ -149,7 +149,7 @@ public class ScreenHelper {
         String imageUrl = Contants.IMAGE_URL + imageUri;
         RequestOptions options = new RequestOptions();
         options.placeholder(R.drawable.ic_user);
-        options.error(R.drawable.ic_camera);
+        options.error(R.drawable.ic_user);
 
         Glide.with(imageView)
                 .load(imageUrl)
