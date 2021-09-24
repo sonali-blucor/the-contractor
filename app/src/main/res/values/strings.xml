@@ -74,5 +74,7 @@
     <string name="schedule">Schedule</string>
     <string name="number_of_days">Number of Days</string>
     <string name="project_name">Project Name</string>
+    <string name="client_work_order">Client Work Order</string>
+    <string name="client_billing">Client Billing</string>
 
 </resources>

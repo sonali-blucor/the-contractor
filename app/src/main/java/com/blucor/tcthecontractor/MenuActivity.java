@@ -219,6 +219,9 @@ public class MenuActivity extends BaseAppCompatActivity {
         ScreenHelper.exitApp(MenuActivity.this);
     }
     public void onClickToViewBill(View view) {
+//        ScreenHelper.redirectToClass(MenuActivity.this, WorkOrderBillingProjectListActivity.class);
+    }
+    public void onClickToViewWorkOrder(View view) {
         ScreenHelper.redirectToClass(MenuActivity.this, WorkOrderBillingProjectListActivity.class);
     }
 }

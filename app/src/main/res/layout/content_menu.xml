@@ -358,14 +358,14 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_bill"
+                        android:id="@+id/cv_work_order"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
                         android:layout_weight="1">
 
                         <LinearLayout
-                            android:id="@+id/llv_bill"
+                            android:id="@+id/llv_work_order"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_5sdp"
@@ -373,11 +373,11 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:gravity="center"
-                            android:onClick="onClickToViewBill"
+                            android:onClick="onClickToViewWorkOrder"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/img_bill"
+                                android:id="@+id/img_work_order"
                                 android:layout_width="@dimen/_60sdp"
                                 android:layout_height="@dimen/_60sdp"
                                 android:layout_margin="@dimen/_5sdp"
@@ -385,11 +385,11 @@
                                 android:src="@drawable/bill" />
 
                             <TextView
-                                android:id="@+id/tv_bill"
+                                android:id="@+id/tv_work_order"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/Billing_stages"
+                                android:text="@string/client_work_order"
                                 android:textAllCaps="true"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
@@ -481,12 +481,51 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_bill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_5dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/llv_bill"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@drawable/selector_menu"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:onClick="onClickToViewBill"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/img_bill"
+                                android:layout_width="@dimen/_60sdp"
+                                android:layout_height="@dimen/_60sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:padding="@dimen/_5sdp"
+                                android:src="@drawable/bill" />
+
+                            <TextView
+                                android:id="@+id/tv_bill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/client_billing"
+                                android:textAllCaps="true"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cv_logout_menu1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/margin_5dp"
                         android:layout_weight="1"
-                        android:visibility="invisible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:id="@+id/llv_logout_menu1"
