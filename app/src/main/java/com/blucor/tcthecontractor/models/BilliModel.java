@@ -18,7 +18,7 @@ public class BilliModel implements Parcelable {
 
     @SerializedName("amount")
     @Expose
-    public float amount;
+    public long amount;
 
     @SerializedName("remark")
     @Expose
@@ -26,11 +26,11 @@ public class BilliModel implements Parcelable {
 
     @SerializedName("balance")
     @Expose
-    public float balance;
+    public long balance;
 
     @SerializedName("paid")
     @Expose
-    public float paid;
+    public long paid;
 
     @SerializedName("payment_date")
     @Expose
@@ -50,10 +50,10 @@ public class BilliModel implements Parcelable {
     protected BilliModel(Parcel in) {
         id = in.readInt();
         percentage = in.readFloat();
-        amount = in.readFloat();
+        amount = in.readLong();
         remark = in.readString();
-        balance = in.readFloat();
-        paid = in.readFloat();
+        balance = in.readLong();
+        paid = in.readLong();
         payment_date = in.readString();
         billing_date = in.readString();
         project_id = in.readInt();
@@ -96,7 +96,7 @@ public class BilliModel implements Parcelable {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 
@@ -108,19 +108,19 @@ public class BilliModel implements Parcelable {
         this.remark = remark;
     }
 
-    public float getBalance() {
+    public long getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(long balance) {
         this.balance = balance;
     }
 
-    public float getPaid() {
+    public long getPaid() {
         return paid;
     }
 
-    public void setPaid(float paid) {
+    public void setPaid(long paid) {
         this.paid = paid;
     }
 
@@ -156,10 +156,10 @@ public class BilliModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeFloat(percentage);
-        dest.writeFloat(amount);
+        dest.writeLong(amount);
         dest.writeString(remark);
-        dest.writeFloat(balance);
-        dest.writeFloat(paid);
+        dest.writeLong(balance);
+        dest.writeLong(paid);
         dest.writeString(payment_date);
         dest.writeString(billing_date);
         dest.writeInt(project_id);

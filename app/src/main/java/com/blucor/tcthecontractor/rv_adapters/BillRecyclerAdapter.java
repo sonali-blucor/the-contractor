@@ -76,6 +76,7 @@ public class BillRecyclerAdapter extends BaseAdapter {
         private TextView tv_billing_date;
         private TextView tv_amount;
         private ImageView img_edit;
+        private ImageView img_delete;
 
         ViewHolder(final View itemView) {
             viewHolder = itemView;
@@ -85,17 +86,18 @@ public class BillRecyclerAdapter extends BaseAdapter {
             tv_remark = itemView.findViewById(R.id.tv_remark_billing_list_item);
             tv_billing_date = itemView.findViewById(R.id.tv_billing_date_billing_list_item);
             img_edit = itemView.findViewById(R.id.img_edit_billing_list_item);
+            img_delete = itemView.findViewById(R.id.img_delete_billing_list_item);
 
             DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
             float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
             int ten_percent_screen = (int) (dpWidth * 30) / 100;
 
-            tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-            tv_percentage.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-            tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-            tv_remark.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-            tv_billing_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-            img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            tv_percentage.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            tv_remark.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            tv_billing_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//            img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
         }
 
         protected void clear() {
@@ -117,6 +119,14 @@ public class BillRecyclerAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     if (mListener != null) {
                         mListener.editViewListClicked(viewHolder, position);
+                    }
+                }
+            });
+            img_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        mListener.addViewListClicked(viewHolder, position);
                     }
                 }
             });

@@ -402,23 +402,23 @@ public class BillingFragment extends Fragment {
 
         if (is_edit) {
             BilliModel edit_bill = bills.get(edit_position);
-            edit_bill.setAmount(Float.parseFloat(et_amount.getText().toString()));
+            edit_bill.setAmount(Long.parseLong(et_amount.getText().toString()));
             edit_bill.setBilling_date(billing_date);
             edit_bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
             edit_bill.setRemark(et_remark.getText().toString());
-            edit_bill.setBalance(Float.parseFloat(et_balance.getText().toString()));
-            edit_bill.setPaid(Float.parseFloat(et_paid.getText().toString()));
+            edit_bill.setBalance(Long.parseLong(et_balance.getText().toString()));
+            edit_bill.setPaid(Long.parseLong(et_paid.getText().toString()));
             edit_bill.setPayment_date(et_payment_date.getText().toString());
 
             editBill(edit_bill);
         } else {
             BilliModel bill = new BilliModel();
-            bill.setAmount(Float.parseFloat(et_amount.getText().toString()));
+            bill.setAmount(Long.parseLong(et_amount.getText().toString()));
             bill.setBilling_date(billing_date);
             bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
             bill.setRemark(et_remark.getText().toString());
-            bill.setBalance(Float.parseFloat(et_balance.getText().toString()));
-            bill.setPaid(Float.parseFloat(et_paid.getText().toString()));
+            bill.setBalance(Long.parseLong(et_balance.getText().toString()));
+            bill.setPaid(Long.parseLong(et_paid.getText().toString()));
             bill.setPayment_date(et_payment_date.getText().toString());
 
             addBill(bill);

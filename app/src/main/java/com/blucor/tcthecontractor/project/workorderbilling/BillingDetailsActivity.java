@@ -47,14 +47,20 @@ public class BillingDetailsActivity extends AppCompatActivity {
     private TextView tv_view;
     private LinearLayout ll_title;
     private BillRecyclerAdapter mAdapter;
-    private float total_work_order_amount;
+    private long total_work_order_amount = 0;
     private TextView tv_total_work_order;
-    private TextView tv_no;
-    private TextView tv_percentage;
-    private TextView tv_remark;
-    private TextView tv_billing_date;
-    private TextView tv_amount;
-    private ImageView img_edit;
+//    private TextView tv_no;
+//    private TextView tv_percentage;
+//    private TextView tv_remark;
+//    private TextView tv_billing_date;
+//    private TextView tv_amount;
+//    private ImageView img_edit;
+
+    private TextView tv_bill_percentage;
+    private TextView tv_bill_c_percentage;
+    private TextView tv_bill_amount;
+    private TextView tv_bill_c_amount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +75,22 @@ public class BillingDetailsActivity extends AppCompatActivity {
         tv_view =findViewById(R.id.tv_view);
         ll_title =findViewById(R.id.ll_title);
         tv_total_work_order = findViewById(R.id.tv_total_work_order);
-        tv_no = findViewById(R.id.tv_no);
-        tv_percentage = findViewById(R.id.tv_percentage);
-        tv_amount = findViewById(R.id.tv_amount);
-        tv_remark = findViewById(R.id.tv_remark);
-        tv_billing_date = findViewById(R.id.tv_billing_date);
-        img_edit = findViewById(R.id.img_edit);
+//        tv_no = findViewById(R.id.tv_no);
+//        tv_percentage = findViewById(R.id.tv_percentage);
+//        tv_amount = findViewById(R.id.tv_amount);
+//        tv_remark = findViewById(R.id.tv_remark);
+//        tv_billing_date = findViewById(R.id.tv_billing_date);
+//        img_edit = findViewById(R.id.img_edit);
         btnsubmit = findViewById(R.id.btn_submit);
+
+        tv_bill_percentage = findViewById(R.id.tv_bill_percentage);
+        tv_bill_c_percentage = findViewById(R.id.tv_bill_c_percentage);
+        tv_bill_amount = findViewById(R.id.tv_bill_amount);
+        tv_bill_c_amount = findViewById(R.id.tv_bill_c_amount);
 
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.TOTAL_WORK_ORDER_AMOUNT)) {
-            total_work_order_amount = intent.getFloatExtra(AppKeys.TOTAL_WORK_ORDER_AMOUNT,0);
+            total_work_order_amount = intent.getLongExtra(AppKeys.TOTAL_WORK_ORDER_AMOUNT,0);
             tv_total_work_order.setText(""+total_work_order_amount);
         }
 
@@ -93,8 +104,8 @@ public class BillingDetailsActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Calcuate amount according to percentage using total_work_order_amount
                 try {
-                    float percent = Float.parseFloat(""+s);
-                    float amount = (total_work_order_amount * percent) / 100;
+                    long percent = Long.parseLong(""+s);
+                    long amount = (total_work_order_amount * percent) / 100;
                     et_amount.setText(""+amount);
                 } catch (Exception exception) {
                     Log.e("Error",""+exception.getMessage());
@@ -122,12 +133,12 @@ public class BillingDetailsActivity extends AppCompatActivity {
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int ten_percent_screen = (int) (dpWidth * 30) / 100;
 
-        tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        tv_percentage.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        tv_remark.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        tv_billing_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
-        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        tv_no.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        tv_percentage.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        tv_amount.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        tv_remark.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        tv_billing_date.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
+//        img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));
 
     }
 
@@ -184,18 +195,18 @@ public class BillingDetailsActivity extends AppCompatActivity {
         lst_billing.setVisibility(View.VISIBLE);
 
         if (is_edit) {
-            bills.get(edit_position).setAmount(Float.parseFloat(et_amount.getText().toString()));
+            bills.get(edit_position).setAmount(Long.parseLong(et_amount.getText().toString()));
             bills.get(edit_position).setBilling_date(billing_date);
-            bills.get(edit_position).setPercentage(Float.parseFloat(et_percentage.getText().toString()));
+            bills.get(edit_position).setPercentage(Long.parseLong(et_percentage.getText().toString()));
             bills.get(edit_position).setRemark(et_remark.getText().toString());
             setUpRecyclerAdapter();
             clearEdit();
             Toast.makeText(BillingDetailsActivity.this, "Successfully edited bill", Toast.LENGTH_SHORT).show();
         } else {
             BilliModel bill = new BilliModel();
-            bill.setAmount(Float.parseFloat(et_amount.getText().toString()));
+            bill.setAmount(Long.parseLong(et_amount.getText().toString()));
             bill.setBilling_date(billing_date);
-            bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
+            bill.setPercentage(Long.parseLong(et_percentage.getText().toString()));
             bill.setRemark(et_remark.getText().toString());
 
             bills.add(bill);
@@ -203,6 +214,20 @@ public class BillingDetailsActivity extends AppCompatActivity {
             clearEdit();
             Toast.makeText(BillingDetailsActivity.this, "Successfully added bill", Toast.LENGTH_SHORT).show();
         }
+        long amounts=0;
+        long percents=0;
+        for (BilliModel billiModel :
+                bills) {
+            amounts +=billiModel.getAmount();
+            percents +=billiModel.getPercentage();
+        }
+
+
+        tv_bill_amount.setText(String.valueOf(total_work_order_amount- amounts));
+        tv_bill_c_amount.setText(String.valueOf(amounts));
+        tv_bill_percentage.setText(String.valueOf(percents)+"%");
+        tv_bill_c_percentage.setText(String.valueOf(100- percents)+"%");
+
     }
 
     private void clearEdit() {
@@ -241,11 +266,11 @@ public class BillingDetailsActivity extends AppCompatActivity {
 
         lst_billing.setAdapter(mAdapter);
         if (tv_footer_total == null) {
-            footer_view = getFooterViewForTotalAmount();
-            lst_billing.addFooterView(footer_view);
+//            footer_view = getFooterViewForTotalAmount();
+//            lst_billing.addFooterView(footer_view);
 
         } else {
-            float tot_amount = getTotalAmount();
+            long tot_amount = getTotalAmount();
             tv_footer_total.setText(""+tot_amount);
 
             float tot_percentage = getRemaining();
@@ -257,15 +282,15 @@ public class BillingDetailsActivity extends AppCompatActivity {
         View footer_view = LayoutInflater.from(this).inflate(R.layout.bill_list_total_item,null);
         tv_footer_total = footer_view.findViewById(R.id.tv_bill_list_total_item);
         tv_footer_total_percentage = footer_view.findViewById(R.id.tv_percentage_bill_list_total_item);
-        float tot_amount = getTotalAmount();
+        long tot_amount = getTotalAmount();
         tv_footer_total.setText(""+tot_amount);
         float tot_percentage = getRemaining();
         tv_footer_total_percentage.setText(""+tot_percentage);
         return footer_view;
     }
 
-    private float getTotalAmount() {
-        float tot_amount = 0;
+    private long getTotalAmount() {
+        long tot_amount = 0;
         for (int i = 0; i < bills.size(); i++) {
             BilliModel model = (BilliModel) bills.get(i);
             tot_amount = tot_amount + model.amount;
