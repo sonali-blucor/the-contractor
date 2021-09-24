@@ -4,21 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import com.blucor.tcthecontractor.custom.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.custom.CalendarView;
 import com.blucor.tcthecontractor.custom.OnCalenderClick;
-import com.blucor.tcthecontractor.custom.WeekDaysCheckBox;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
@@ -34,8 +32,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +41,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     private EditText edt_project_name;
     private EditText edt_project_status;
     private EditText edt_no_of_days;
+    private EditText edt_project_week;
     private RatingBar rt_bar_schedule;
     private Button btn_schedule;
     private ProjectsModel project;
@@ -53,6 +50,8 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     private String on_going = "On Going";
     private String complete = "Complete";
     private CalendarView calendarView;
+    private LinearLayout llv_calender;
+    private ImageView img_close;
     private ArrayList<HolidayModel> selectedDays;
 
     @Override
@@ -64,9 +63,12 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         edt_project_name = findViewById(R.id.edt_project_name);
         edt_project_status = findViewById(R.id.edt_project_status);
         edt_no_of_days = findViewById(R.id.edt_no_of_days);
+        edt_project_week = findViewById(R.id.edt_project_week);
         rt_bar_schedule = findViewById(R.id.rt_bar_schedule);
         calendarView = findViewById(R.id.calendar_view);
         btn_schedule = findViewById(R.id.btn_schedule);
+        llv_calender = findViewById(R.id.llv_calender);
+        img_close = findViewById(R.id.img_close);
 
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PROJECT)) {
@@ -86,6 +88,19 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 popupProjectStatusDialog();
+            }
+        });
+
+        edt_project_week.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llv_calender.setVisibility(View.VISIBLE);
+            }
+        });
+        img_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llv_calender.setVisibility(View.GONE);
             }
         });
 
@@ -111,9 +126,9 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         HolidayModel date_model = new HolidayModel();
         date_model.date = str_date;
 
-        if (calendarView.getDateManager().isCurrentMonth(selected_date)){
+        if (calendarView.getDateManager().isCurrentMonth(selected_date)) {
             int present = isPresentInSelectedDays(selected_date);
-            if(present != 0) {
+            if (present != 0) {
                 // Toast.makeText(this, "Is Already Present in holidays", Toast.LENGTH_SHORT).show();
                 AlertDialog dialog = new AlertDialog.Builder(ScheduleActivity.this).create();
                 dialog.setTitle("Do you want to remove this day from holiday?");
@@ -170,9 +185,9 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         Calendar cal_selected_date = Calendar.getInstance();
         cal_selected_date.setTimeInMillis(selectedDate.getTime());
 
-        if(selectedDays == null) {
+        if (selectedDays == null) {
             return 0;
-        } else if(selectedDays.size() <= 0) {
+        } else if (selectedDays.size() <= 0) {
             return 0;
         } else {
             int isPresent = 0;
@@ -202,14 +217,14 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     }
 
     private void popupProjectStatusDialog() {
-        String[] status_list = new String[]{on_going,complete};
+        String[] status_list = new String[]{on_going, complete};
         AlertDialog.Builder builder = new AlertDialog.Builder(ScheduleActivity.this);
         builder.setTitle("Select Project Status");
         builder.setItems(status_list, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String status = status_list[which];
-                edt_project_status.setText(""+status);
+                edt_project_status.setText("" + status);
             }
         });
         AlertDialog dialog = builder.create();
@@ -250,24 +265,24 @@ public class ScheduleActivity extends BaseAppCompatActivity {
 
     private void setupSchedule() {
         if (is_scheduled) {
-            edt_project_name.setText(""+schedule.project_name);
-            edt_no_of_days.setText(""+schedule.no_of_days);
+            edt_project_name.setText("" + schedule.project_name);
+            edt_no_of_days.setText("" + schedule.no_of_days);
             /*if (schedule.project_status == 1) {
                 edt_project_status.setText(complete);
             } else {
                 edt_project_status.setText(on_going);
             }*/
-            edt_project_status.setText(""+schedule.project_status);
+            edt_project_status.setText("" + schedule.project_status);
             //wd_schedule.setSelectedWeekDays(schedule.week_days);
             rt_bar_schedule.setRating(schedule.rating);
         } else {
-            edt_project_name.setText(""+project.project_name);
-            String num_days = project.duration.toLowerCase().replace("days","").trim();
+            edt_project_name.setText("" + project.project_name);
+            String num_days = project.duration.toLowerCase().replace("days", "").trim();
             if (num_days.toLowerCase().contains("day")) {
-                num_days = num_days.toLowerCase().replace("day","").trim();
+                num_days = num_days.toLowerCase().replace("day", "").trim();
             }
             int numDays = Integer.parseInt(num_days);
-            edt_no_of_days.setText(""+numDays);
+            edt_no_of_days.setText("" + numDays);
         }
 
         getDateDetails();
@@ -287,13 +302,13 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         String schedule_dates = new Gson().toJson(selectedDays);
 
         showLoader();
-        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id,project_status,num_of_days,week_days,project_status_integer,ratings,schedule_dates).enqueue(new Callback<ScheduleModel>() {
+        RetrofitClient.getApiService().saveOrUpdateSchedule(project.id, project_status, num_of_days, week_days, project_status_integer, ratings, schedule_dates).enqueue(new Callback<ScheduleModel>() {
             @Override
             public void onResponse(Call<ScheduleModel> call, Response<ScheduleModel> response) {
                 if (response.code() == 200 && response.body() != null) {
-                    schedule  = response.body();
+                    schedule = response.body();
                     Toast.makeText(ScheduleActivity.this, "Project Scheduled Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ScheduleActivity.this,ProjectListActivity.class);
+                    Intent intent = new Intent(ScheduleActivity.this, ProjectListActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else {
@@ -305,7 +320,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
             @Override
             public void onFailure(Call<ScheduleModel> call, Throwable t) {
                 stopLoader();
-                Toast.makeText(ScheduleActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScheduleActivity.this, "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -327,7 +342,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
         } /*else if (wd_schedule.selectedWeekDays().size() <= 0) {
             Toast.makeText(this, "Please Select Holidays", Toast.LENGTH_SHORT).show();
             return false;
-        } */else if (rt_bar_schedule.getRating() <= 0) {
+        } */ else if (rt_bar_schedule.getRating() <= 0) {
             Toast.makeText(this, "Please Rate for project", Toast.LENGTH_SHORT).show();
             return false;
         } else {
@@ -389,7 +404,7 @@ public class ScheduleActivity extends BaseAppCompatActivity {
     @Override
     public void onBackPressed() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppKeys.PROJECT,project);
-        ScreenHelper.redirectToClass(this,ProjectMenuActivity.class,bundle);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(this, ProjectMenuActivity.class, bundle);
     }
 }

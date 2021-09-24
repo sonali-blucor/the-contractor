@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".project.ScheduleActivity">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/scv_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".project.ScheduleActivity">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_schedule">
 
         <LinearLayout
             android:id="@+id/ll_main"
@@ -31,8 +32,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
                     android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="@string/project_name"
                     android:enabled="false"
+                    android:hint="@string/project_name"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLength="140"
@@ -53,16 +54,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
+                    android:drawableRight="@drawable/ic_down"
                     android:drawablePadding="@dimen/drawable_padding"
+                    android:editable="false"
+                    android:focusable="false"
                     android:hint="Project Status"
                     android:imeOptions="actionNext"
                     android:inputType="none"
-                    android:focusable="false"
-                    android:editable="false"
                     android:longClickable="false"
-                    android:drawableRight="@drawable/ic_down"
                     android:maxLength="140"
-                    android:nextFocusDown="@id/edt_project_type"
+                    android:nextFocusDown="@id/edt_project_week"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -102,10 +103,10 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_no_of_days"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_margin="@dimen/input_margin_5dp"
+                    android:layout_weight="1"
+                    android:visibility="gone"
                     app:errorIconDrawable="@drawable/edit_background">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -113,10 +114,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edit_background"
+                        android:digits="0123456789"
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/number_of_days"
                         android:imeOptions="actionNext"
-                        android:digits="0123456789"
                         android:inputType="number"
                         android:maxLength="140"
                         android:nextFocusDown="@id/edt_project_type"
@@ -126,51 +127,97 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:padding="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/rate_for_project"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textStyle="bold"
-                        android:text="@string/rate_for_project" />
+                        android:textStyle="bold" />
 
                     <RatingBar
                         android:id="@+id/rt_bar_schedule"
+                        style="?android:attr/ratingBarStyleIndicator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
+                        android:isIndicator="false"
                         android:numStars="5"
-                        android:stepSize="0.1"
+                        android:rating="1"
                         android:scaleX=".5"
                         android:scaleY=".5"
+                        android:stepSize="0.1"
                         android:transformPivotX="0dp"
-                        android:transformPivotY="0dp"
-                        style="?android:attr/ratingBarStyleIndicator"
-                        android:isIndicator="false" />
+                        android:transformPivotY="0dp" />
                 </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_project_week"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_project_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawableRight="@drawable/ic_down"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint="Weekly Holidays"
+                        android:imeOptions="actionNext"
+                        android:inputType="none"
+                        android:longClickable="false"
+                        android:maxLength="140"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
-            <com.blucor.tcthecontractor.custom.CalendarView
-                android:id="@+id/calendar_view"
+            <LinearLayout
+                android:id="@+id/llv_calender"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:rotation="50"
+                    android:src="@drawable/ic_close" />
+
+                <com.blucor.tcthecontractor.custom.CalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:layout_below="@id/ll_main"
-            android:text="@string/schedule" />
+    </ScrollView>
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/schedule"
+        android:textColor="@color/white" />
 
-</ScrollView>
+</RelativeLayout>
