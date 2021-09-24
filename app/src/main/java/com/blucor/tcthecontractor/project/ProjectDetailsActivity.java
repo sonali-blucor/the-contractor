@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,8 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
     private TextView tv_project_start_end_date;
     private TextView tv_project_duration;
 
+    private CheckBox chk_password_show;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         tv_project_location = findViewById(R.id.tv_project_location);
         tv_project_start_end_date = findViewById(R.id.tv_project_start_end_date);
         tv_project_duration = findViewById(R.id.tv_project_duration);
+        chk_password_show = findViewById(R.id.chk_password_show);
 
         try {
             Bundle bundle = getIntent().getExtras();
@@ -78,6 +84,17 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         tv_project_location.setText(""+project.project_location);
         tv_project_start_end_date.setText(""+project.start_date+" to "+project.end_date);
         tv_project_duration.setText(""+project.duration);
+
+        chk_password_show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked){
+                    tv_client_password.setTransformationMethod(new PasswordTransformationMethod());
+                }else{
+                    tv_client_password.setTransformationMethod(null);
+                }
+            }
+        });
     }
 
 

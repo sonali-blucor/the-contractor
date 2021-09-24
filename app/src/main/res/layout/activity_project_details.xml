@@ -268,6 +268,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_5dp">
 
+
+
                             <TextView
                                 android:id="@+id/tv_client_password"
                                 android:layout_width="match_parent"
@@ -280,14 +282,23 @@
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/label_text_size"
                                 android:visibility="visible" />
-
+                            <CheckBox
+                                android:id="@+id/chk_password_show"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_below="@+id/tv_t_client_password"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:checked="false"
+                                android:background="@android:color/transparent"
+                                android:button="@drawable/toggle_password"
+                                android:padding="@dimen/padding_5dp" />
                             <TextView
                                 android:id="@+id/tv_t_client_password"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/margin_5dp"
                                 android:layout_marginLeft="@dimen/margin_5dp"
-                                android:layout_marginBottom="-5dp"
                                 android:background="@color/white"
                                 android:text="Client Password"
                                 android:textColor="@color/yellow"
