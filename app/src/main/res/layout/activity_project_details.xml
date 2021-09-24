@@ -412,6 +412,35 @@
                         android:textStyle="bold" />
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5dp">
+
+                    <TextView
+                        android:id="@+id/tv_project_work_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_t_project_work_order"
+                        android:background="@drawable/edit_box_background"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="0 Rs."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_size" />
+
+                    <TextView
+                        android:id="@+id/tv_t_project_work_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginLeft="@dimen/margin_5dp"
+                        android:layout_marginBottom="-5dp"
+                        android:background="@color/white"
+                        android:text="Work Order Amount"
+                        android:textColor="@color/yellow"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

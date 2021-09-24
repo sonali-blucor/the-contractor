@@ -39,6 +39,7 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
     private TextView tv_project_location;
     private TextView tv_project_start_end_date;
     private TextView tv_project_duration;
+    private TextView tv_project_work_order;
 
     private CheckBox chk_password_show;
 
@@ -59,6 +60,7 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         tv_project_location = findViewById(R.id.tv_project_location);
         tv_project_start_end_date = findViewById(R.id.tv_project_start_end_date);
         tv_project_duration = findViewById(R.id.tv_project_duration);
+        tv_project_work_order = findViewById(R.id.tv_project_work_order);
         chk_password_show = findViewById(R.id.chk_password_show);
 
         try {
@@ -84,6 +86,8 @@ public class ProjectDetailsActivity extends BaseAppCompatActivity {
         tv_project_location.setText(""+project.project_location);
         tv_project_start_end_date.setText(""+project.start_date+" to "+project.end_date);
         tv_project_duration.setText(""+project.duration);
+        tv_project_work_order.setText("0 Rs.");
+
 
         chk_password_show.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
