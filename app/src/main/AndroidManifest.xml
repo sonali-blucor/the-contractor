@@ -34,7 +34,9 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".project.workorderbilling.BillingDetailsActivity"
-            android:label="Add Billing" />
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name=".project.workorderbilling.WorkOrderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -54,7 +56,8 @@
         <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.activity.AddSubContractorActivity" />
         <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />
-        <activity android:name=".project.ScheduleActivity" />
+        <activity android:name=".project.ScheduleActivity"
+            android:label="Calender Management"/>
         <activity android:name=".client.ClientAddAndSearchActivity" />
         <activity
             android:name=".account.ConfirmPasswordActivity"
