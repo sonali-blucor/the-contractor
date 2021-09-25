@@ -17,4 +17,5 @@ public class AppKeys {
     public static final String WORK_ORDER = "work_order";
     public static final String TOTAL_WORK_ORDER_AMOUNT = "total_work_order_amount";
     public static final String BILL = "bill";
+    public static final String PROJECTS = "projects";
 }

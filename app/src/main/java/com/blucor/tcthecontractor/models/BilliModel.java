@@ -18,7 +18,7 @@ public class BilliModel implements Parcelable {
 
     @SerializedName("amount")
     @Expose
-    public long amount;
+    public double amount;
 
     @SerializedName("remark")
     @Expose
@@ -26,11 +26,11 @@ public class BilliModel implements Parcelable {
 
     @SerializedName("balance")
     @Expose
-    public long balance;
+    public double balance;
 
     @SerializedName("paid")
     @Expose
-    public long paid;
+    public double paid;
 
     @SerializedName("payment_date")
     @Expose
@@ -92,11 +92,11 @@ public class BilliModel implements Parcelable {
         this.percentage = percentage;
     }
 
-    public float getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -108,19 +108,19 @@ public class BilliModel implements Parcelable {
         this.remark = remark;
     }
 
-    public long getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public long getPaid() {
+    public double getPaid() {
         return paid;
     }
 
-    public void setPaid(long paid) {
+    public void setPaid(double paid) {
         this.paid = paid;
     }
 
@@ -156,10 +156,10 @@ public class BilliModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeFloat(percentage);
-        dest.writeLong(amount);
+        dest.writeDouble(amount);
         dest.writeString(remark);
-        dest.writeLong(balance);
-        dest.writeLong(paid);
+        dest.writeDouble(balance);
+        dest.writeDouble(paid);
         dest.writeString(payment_date);
         dest.writeString(billing_date);
         dest.writeInt(project_id);

@@ -195,7 +195,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
         lst_billing.setVisibility(View.VISIBLE);
 
         if (is_edit) {
-            bills.get(edit_position).setAmount(Long.parseLong(et_amount.getText().toString()));
+            bills.get(edit_position).setAmount(Double.parseDouble(et_amount.getText().toString()));
             bills.get(edit_position).setBilling_date(billing_date);
             bills.get(edit_position).setPercentage(Long.parseLong(et_percentage.getText().toString()));
             bills.get(edit_position).setRemark(et_remark.getText().toString());
@@ -204,7 +204,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
             Toast.makeText(BillingDetailsActivity.this, "Successfully edited bill", Toast.LENGTH_SHORT).show();
         } else {
             BilliModel bill = new BilliModel();
-            bill.setAmount(Long.parseLong(et_amount.getText().toString()));
+            bill.setAmount(Double.parseDouble(et_amount.getText().toString()));
             bill.setBilling_date(billing_date);
             bill.setPercentage(Long.parseLong(et_percentage.getText().toString()));
             bill.setRemark(et_remark.getText().toString());
@@ -293,7 +293,7 @@ public class BillingDetailsActivity extends AppCompatActivity {
         long tot_amount = 0;
         for (int i = 0; i < bills.size(); i++) {
             BilliModel model = (BilliModel) bills.get(i);
-            tot_amount = tot_amount + model.amount;
+            tot_amount = tot_amount + Long.parseLong(String.valueOf(model.amount));
         }
         return tot_amount;
     }

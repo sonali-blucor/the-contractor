@@ -134,17 +134,8 @@ public class BillingFragment extends Fragment {
         mActivity = (BaseAppCompatActivity) getActivity();
 
         tv_total_work_order.setText("" + total_work_order_amount);
-        long amounts = 0;
-        long percents = 0;
-        for (BilliModel billiModel :
-                bills) {
-            amounts += billiModel.getAmount();
-            percents += billiModel.getPercentage();
-        }
-        tv_bill_amount.setText(String.valueOf(total_work_order_amount - amounts));
-        tv_bill_c_amount.setText(String.valueOf(amounts));
-        tv_bill_percentage.setText(String.valueOf(percents) + "%");
-        tv_bill_c_percentage.setText(String.valueOf(100 - percents) + "%");
+
+        setGrandTotal();
 
        /* et_percentage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -202,6 +193,20 @@ public class BillingFragment extends Fragment {
         img_edit.setLayoutParams(new LinearLayout.LayoutParams(ten_percent_screen,ten_percent_screen));*/
 
         return fragment_view;
+    }
+
+    private void setGrandTotal() {
+        long amounts = 0;
+        long percents = 0;
+        for (BilliModel billiModel :
+                bills) {
+            amounts += billiModel.getAmount();
+            percents += billiModel.getPercentage();
+        }
+        tv_bill_amount.setText(String.valueOf(total_work_order_amount - amounts));
+        tv_bill_c_amount.setText(String.valueOf(amounts));
+        tv_bill_percentage.setText(String.valueOf(percents) + "%");
+        tv_bill_c_percentage.setText(String.valueOf(100 - percents) + "%");
     }
 
     private void showAddBillDialog() {
@@ -420,23 +425,23 @@ public class BillingFragment extends Fragment {
 
         if (is_edit) {
             BilliModel edit_bill = bills.get(edit_position);
-            edit_bill.setAmount(Long.parseLong(et_amount.getText().toString()));
+            edit_bill.setAmount(Double.parseDouble(et_amount.getText().toString()));
             edit_bill.setBilling_date(billing_date);
             edit_bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
             edit_bill.setRemark(et_remark.getText().toString());
-            edit_bill.setBalance(Long.parseLong(et_balance.getText().toString()));
-            edit_bill.setPaid(Long.parseLong(et_paid.getText().toString()));
+            edit_bill.setBalance(Double.parseDouble(et_balance.getText().toString()));
+            edit_bill.setPaid(Double.parseDouble(et_paid.getText().toString()));
             edit_bill.setPayment_date(et_payment_date.getText().toString());
 
             editBill(edit_bill);
         } else {
             BilliModel bill = new BilliModel();
-            bill.setAmount(Long.parseLong(et_amount.getText().toString()));
+            bill.setAmount(Double.parseDouble(et_amount.getText().toString()));
             bill.setBilling_date(billing_date);
             bill.setPercentage(Float.parseFloat(et_percentage.getText().toString()));
             bill.setRemark(et_remark.getText().toString());
-            bill.setBalance(Long.parseLong(et_balance.getText().toString()));
-            bill.setPaid(Long.parseLong(et_paid.getText().toString()));
+            bill.setBalance(Double.parseDouble(et_balance.getText().toString()));
+            bill.setPaid(Double.parseDouble(et_paid.getText().toString()));
             bill.setPayment_date(et_payment_date.getText().toString());
 
             addBill(bill);
@@ -452,6 +457,7 @@ public class BillingFragment extends Fragment {
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {
                     bills.add(bill);
+                    setGrandTotal();
                     setUpRecyclerAdapter();
                     clearEdit();
                     Toast.makeText(mActivity, "Successfully added bill", Toast.LENGTH_SHORT).show();
@@ -563,7 +569,7 @@ public class BillingFragment extends Fragment {
         float tot_amount = 0;
         for (int i = 0; i < bills.size(); i++) {
             BilliModel model = (BilliModel) bills.get(i);
-            tot_amount = tot_amount + model.amount;
+            tot_amount = tot_amount + Long.parseLong(String.valueOf(model.amount));
         }
         return tot_amount;
     }

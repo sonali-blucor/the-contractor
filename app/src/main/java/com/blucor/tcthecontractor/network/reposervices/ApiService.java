@@ -294,10 +294,10 @@ public interface ApiService {
     Call<BillResponseModel> storeBillByProjectId(@Field("is_edit") boolean is_edit,
                                                       @Field("bill_id") int bill_id,
                                                       @Field("percentage") float percentage,
-                                                      @Field("amount") float amount,
+                                                      @Field("amount") double amount,
                                                       @Field("remark") String remark,
-                                                      @Field("balance") float balance,
-                                                      @Field("paid") float paid,
+                                                      @Field("balance") double balance,
+                                                      @Field("paid") double paid,
                                                       @Field("payment_date") String payment_date,
                                                       @Field("billing_date") String billing_date,
                                                       @Field("project_id") int project_id);
