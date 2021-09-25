@@ -27,6 +27,7 @@ import com.blucor.tcthecontractor.network.utils.Contants;
 import com.blucor.tcthecontractor.project.ProjectManagementMenuActivity;
 import com.blucor.tcthecontractor.project.activity.AboutUsActivity;
 import com.blucor.tcthecontractor.project.activity.FeedbackActivity;
+import com.blucor.tcthecontractor.project.workorderbilling.ClientBillingActivity;
 import com.blucor.tcthecontractor.project.workorderbilling.WorkOrderBillingProjectListActivity;
 import com.blucor.tcthecontractor.project.activity.TodaysActivitiesActivity;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
@@ -219,7 +220,7 @@ public class MenuActivity extends BaseAppCompatActivity {
         ScreenHelper.exitApp(MenuActivity.this);
     }
     public void onClickToViewBill(View view) {
-//        ScreenHelper.redirectToClass(MenuActivity.this, WorkOrderBillingProjectListActivity.class);
+        ScreenHelper.redirectToClass(MenuActivity.this, ClientBillingActivity.class);
     }
     public void onClickToViewWorkOrder(View view) {
         ScreenHelper.redirectToClass(MenuActivity.this, WorkOrderBillingProjectListActivity.class);
