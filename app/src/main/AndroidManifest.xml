@@ -23,6 +23,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".project.workorderbilling.ClientBillingActivity"
+            android:label="Client Billing"
             android:exported="true" />
         <activity
             android:name=".project.activity.AboutUsActivity"
