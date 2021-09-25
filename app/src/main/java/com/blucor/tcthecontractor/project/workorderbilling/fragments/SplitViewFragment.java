@@ -122,7 +122,7 @@ public class SplitViewFragment extends Fragment {
 
         BilliModel model = new BilliModel();
         ArrayList<BilliModel> billList = new ArrayList<>();
-        billList.add(model);
+//        billList.add(model);
         billList.addAll(bills);
         mBillAdapter = new BillPaymentRecyclerAdapter(mActivity,billList);
         rv_work_order.setAdapter(mWorkAdapter);

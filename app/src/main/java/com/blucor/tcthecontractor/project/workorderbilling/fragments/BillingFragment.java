@@ -4,16 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
@@ -35,7 +29,6 @@ import com.blucor.tcthecontractor.models.BilliModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.BillPaymentRecyclerAdapter;
-import com.blucor.tcthecontractor.rv_adapters.BillRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -44,13 +37,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * A simple {@link Fragment} subclass.
  * create an instance of this fragment.
  */
 public class BillingFragment extends Fragment {
 
-    EditText et_percentage,et_amount,et_remark,et_billing_date,et_balance,et_paid,et_payment_date;
+    EditText et_percentage, et_amount, et_remark, et_billing_date, et_balance, et_paid, et_payment_date;
     Button btnsubmit;
     private boolean is_edit = false;
     private int edit_position;
@@ -66,12 +63,12 @@ public class BillingFragment extends Fragment {
     private BillPaymentRecyclerAdapter mAdapter;
     private float total_work_order_amount;
     private TextView tv_total_work_order;
-   /* private TextView tv_no;
-    private TextView tv_percentage;
-    private TextView tv_remark;
-    private TextView tv_billing_date;
-    private TextView tv_amount;
-    private ImageView img_edit;*/
+    /* private TextView tv_no;
+     private TextView tv_percentage;
+     private TextView tv_remark;
+     private TextView tv_billing_date;
+     private TextView tv_amount;
+     private ImageView img_edit;*/
     private View fragment_view;
     private BaseAppCompatActivity mActivity;
     private FloatingActionButton fab_add_billing;
@@ -83,11 +80,16 @@ public class BillingFragment extends Fragment {
     private TextView tv_payment_date;*/
     private ProjectsModel selected_project;
 
+    private TextView tv_bill_percentage;
+    private TextView tv_bill_c_percentage;
+    private TextView tv_bill_amount;
+    private TextView tv_bill_c_amount;
+
     public BillingFragment() {
         // Required empty public constructor
     }
 
-    public BillingFragment(float total_work_order_amount,ArrayList<BilliModel> bills,ProjectsModel selected_project) {
+    public BillingFragment(float total_work_order_amount, ArrayList<BilliModel> bills, ProjectsModel selected_project) {
         this.total_work_order_amount = total_work_order_amount;
         this.bills = bills;
         this.selected_project = selected_project;
@@ -103,9 +105,9 @@ public class BillingFragment extends Fragment {
         et_amount=fragment_view.findViewById(R.id.et_amount);
         et_remark=fragment_view.findViewById(R.id.et_remark);
         et_billing_date=fragment_view.findViewById(R.id.et_billing_date);*/
-        lst_billing =fragment_view.findViewById(R.id.lst_billing);
-        tv_view =fragment_view.findViewById(R.id.tv_view);
-        ll_title =fragment_view.findViewById(R.id.ll_title);
+        lst_billing = fragment_view.findViewById(R.id.lst_billing);
+        tv_view = fragment_view.findViewById(R.id.tv_view);
+        ll_title = fragment_view.findViewById(R.id.ll_title);
         tv_total_work_order = fragment_view.findViewById(R.id.tv_total_work_order);
         /*tv_no = fragment_view.findViewById(R.id.tv_no);
         tv_percentage = fragment_view.findViewById(R.id.tv_percentage);
@@ -118,15 +120,31 @@ public class BillingFragment extends Fragment {
         img_edit = fragment_view.findViewById(R.id.img_edit);*/
         /*btnsubmit = fragment_view.findViewById(R.id.btn_submit);*/
         fab_add_billing = fragment_view.findViewById(R.id.fab_billing_add);
+        tv_bill_percentage = fragment_view.findViewById(R.id.tv_bill_percentage);
+        tv_bill_c_percentage = fragment_view.findViewById(R.id.tv_bill_c_percentage);
+        tv_bill_amount = fragment_view.findViewById(R.id.tv_bill_amount);
+        tv_bill_c_amount = fragment_view.findViewById(R.id.tv_bill_c_amount);
+
         fab_add_billing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAddBillDialog();
             }
         });
-        mActivity = (BaseAppCompatActivity)getActivity();
+        mActivity = (BaseAppCompatActivity) getActivity();
 
-        tv_total_work_order.setText(""+total_work_order_amount);
+        tv_total_work_order.setText("" + total_work_order_amount);
+        long amounts = 0;
+        long percents = 0;
+        for (BilliModel billiModel :
+                bills) {
+            amounts += billiModel.getAmount();
+            percents += billiModel.getPercentage();
+        }
+        tv_bill_amount.setText(String.valueOf(total_work_order_amount - amounts));
+        tv_bill_c_amount.setText(String.valueOf(amounts));
+        tv_bill_percentage.setText(String.valueOf(percents) + "%");
+        tv_bill_c_percentage.setText(String.valueOf(100 - percents) + "%");
 
        /* et_percentage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -205,7 +223,7 @@ public class BillingFragment extends Fragment {
     }
 
     private void getDialogView() {
-        dialog_view = LayoutInflater.from(mActivity).inflate(R.layout.add_bill_dialog_box,null);
+        dialog_view = LayoutInflater.from(mActivity).inflate(R.layout.add_bill_dialog_box, null);
         et_percentage = dialog_view.findViewById(R.id.et_percentage);
         et_amount = dialog_view.findViewById(R.id.et_amount);
         et_remark = dialog_view.findViewById(R.id.et_remark);
@@ -241,10 +259,10 @@ public class BillingFragment extends Fragment {
         });
 
         if (is_edit) {
-            et_percentage.setText(""+edit_bill.getPercentage());
-            et_amount.setText(""+edit_bill.getAmount());
-            et_remark.setText(""+edit_bill.getRemark());
-            et_billing_date.setText(""+edit_bill.getBilling_date());
+            et_percentage.setText("" + edit_bill.getPercentage());
+            et_amount.setText("" + edit_bill.getAmount());
+            et_remark.setText("" + edit_bill.getRemark());
+            et_billing_date.setText("" + edit_bill.getBilling_date());
         }
 
         et_percentage.addTextChangedListener(new TextWatcher() {
@@ -257,11 +275,11 @@ public class BillingFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Calcuate amount according to percentage using total_work_order_amount
                 try {
-                    float percent = Float.parseFloat(""+s);
+                    float percent = Float.parseFloat("" + s);
                     float amount = (total_work_order_amount * percent) / 100;
-                    et_amount.setText(""+amount);
+                    et_amount.setText("" + amount);
                 } catch (Exception exception) {
-                    Log.e("Error",""+exception.getMessage());
+                    Log.e("Error", "" + exception.getMessage());
                 }
             }
 
@@ -281,16 +299,16 @@ public class BillingFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //Calcuate amount according to percentage using total_work_order_amount
                 try {
-                    float paid_amount = Float.parseFloat(""+s);
-                    float bill_amount = Float.parseFloat(""+et_amount.getText().toString());
-                    if(bill_amount >= paid_amount) {
+                    float paid_amount = Float.parseFloat("" + s);
+                    float bill_amount = Float.parseFloat("" + et_amount.getText().toString());
+                    if (bill_amount >= paid_amount) {
                         float balance_amount = bill_amount - paid_amount;
                         et_balance.setText("" + balance_amount);
                     } else {
                         Toast.makeText(mActivity, "Please add proper amount", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception exception) {
-                    Log.e("Error",""+exception.getMessage());
+                    Log.e("Error", "" + exception.getMessage());
                 }
             }
 
@@ -348,7 +366,7 @@ public class BillingFragment extends Fragment {
             return false;
         }
 
-        if(!is_edit && getTotalPercentage() > 100) {
+        if (!is_edit && getTotalPercentage() > 100) {
             et_percentage.setError("Please add proper percentage");
             et_percentage.requestFocus();
             return false;
@@ -366,9 +384,9 @@ public class BillingFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR,year);
-                calendar.set(Calendar.MONTH,month);
-                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 billing_date = sdf.format(new Date(calendar.getTimeInMillis()));
                 et_billing_date.setText(billing_date);
@@ -383,9 +401,9 @@ public class BillingFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR,year);
-                calendar.set(Calendar.MONTH,month);
-                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 SimpleDateFormat sdf = new SimpleDateFormat(AppKeys.DATE_FORMAT);
                 payment_date = sdf.format(new Date(calendar.getTimeInMillis()));
                 et_payment_date.setText(payment_date);
@@ -429,7 +447,7 @@ public class BillingFragment extends Fragment {
 
     private void addBill(BilliModel bill) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeBillByProjectId(false,0,bill.percentage,bill.amount,bill.remark,bill.balance,bill.paid,bill.payment_date,bill.billing_date,selected_project.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeBillByProjectId(false, 0, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {
@@ -445,7 +463,7 @@ public class BillingFragment extends Fragment {
 
             @Override
             public void onFailure(Call<BillResponseModel> call, Throwable t) {
-                Toast.makeText(mActivity, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 mActivity.stopLoader();
             }
         });
@@ -455,7 +473,7 @@ public class BillingFragment extends Fragment {
 
     private void editBill(BilliModel bill) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeBillByProjectId(true,bill.id,bill.percentage,bill.amount,bill.remark,bill.balance,bill.paid,bill.payment_date,bill.billing_date,selected_project.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeBillByProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {
@@ -470,7 +488,7 @@ public class BillingFragment extends Fragment {
 
             @Override
             public void onFailure(Call<BillResponseModel> call, Throwable t) {
-                Toast.makeText(mActivity, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 mActivity.stopLoader();
             }
         });
@@ -496,9 +514,9 @@ public class BillingFragment extends Fragment {
     private void setUpRecyclerAdapter() {
         BilliModel model = new BilliModel();
         ArrayList<BilliModel> billList = new ArrayList<>();
-        billList.add(model);
+//        billList.add(model);
         billList.addAll(bills);
-        mAdapter = new BillPaymentRecyclerAdapter(mActivity,billList);
+        mAdapter = new BillPaymentRecyclerAdapter(mActivity, billList);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked(View v, int position) {
@@ -518,26 +536,26 @@ public class BillingFragment extends Fragment {
 
         lst_billing.setAdapter(mAdapter);
         if (tv_footer_total == null) {
-            footer_view = getFooterViewForTotalAmount();
-            lst_billing.addFooterView(footer_view);
+//            footer_view = getFooterViewForTotalAmount();
+//            lst_billing.addFooterView(footer_view);
 
         } else {
             float tot_amount = getTotalAmount();
-            tv_footer_total.setText(""+tot_amount);
+            tv_footer_total.setText("" + tot_amount);
 
             float tot_percentage = getRemaining();
-            tv_footer_total_percentage.setText(""+tot_percentage);
+            tv_footer_total_percentage.setText("" + tot_percentage);
         }
     }
 
     private View getFooterViewForTotalAmount() {
-        View footer_view = LayoutInflater.from(mActivity).inflate(R.layout.bill_list_total_item,null);
+        View footer_view = LayoutInflater.from(mActivity).inflate(R.layout.bill_list_total_item, null);
         tv_footer_total = footer_view.findViewById(R.id.tv_bill_list_total_item);
         tv_footer_total_percentage = footer_view.findViewById(R.id.tv_percentage_bill_list_total_item);
         float tot_amount = getTotalAmount();
-        tv_footer_total.setText(""+tot_amount);
+        tv_footer_total.setText("" + tot_amount);
         float tot_percentage = getRemaining();
-        tv_footer_total_percentage.setText(""+tot_percentage);
+        tv_footer_total_percentage.setText("" + tot_percentage);
         return footer_view;
     }
 
