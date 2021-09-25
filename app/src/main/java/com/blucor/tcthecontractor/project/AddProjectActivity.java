@@ -217,7 +217,10 @@ public class AddProjectActivity extends BaseAppCompatActivity {
                             Toast.makeText(AddProjectActivity.this, "Project added with id : " + project.id, Toast.LENGTH_SHORT).show();
                             Bundle bundle = new Bundle();
                             bundle.putParcelable(AppKeys.PROJECT,project);
-                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class,bundle);
+                            bundle.putInt(AppKeys.PROJECTS,1);
+                            //sonali lawande 24.9.2021
+//                            ScreenHelper.redirectToClass(AddProjectActivity.this,ScheduleActivity.class,bundle);
+                            ScreenHelper.redirectToClass(AddProjectActivity.this,ProjectManagementMenuActivity.class,bundle);
                             finish();
                         }else {
                             Toast.makeText(AddProjectActivity.this, "Unable to add project", Toast.LENGTH_SHORT).show();
