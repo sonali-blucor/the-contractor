@@ -45,7 +45,7 @@ public class WorkOrderBillingProjectListActivity extends BaseAppCompatActivity {
     private ProjectsModel selected_project;
     private ArrayList<WorkOrderModel> workOrders;
     private ArrayList<BilliModel> bills;
-    private float total_work_order;
+    private long total_work_order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,8 +210,8 @@ public class WorkOrderBillingProjectListActivity extends BaseAppCompatActivity {
         }
     }
 
-    private float getTotalWorkOrder() {
-        float tot_amount = 0;
+    private long getTotalWorkOrder() {
+        long tot_amount = 0;
         for (int i = 0; i < workOrders.size(); i++) {
             WorkOrderModel model = (WorkOrderModel) workOrders.get(i);
             tot_amount = tot_amount + model.amount;
