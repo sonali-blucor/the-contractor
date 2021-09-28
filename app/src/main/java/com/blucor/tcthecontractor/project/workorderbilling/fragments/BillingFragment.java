@@ -31,6 +31,7 @@ import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.BillPaymentRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -227,6 +228,8 @@ public class BillingFragment extends Fragment {
         dialog.show();
     }
 
+    private TextInputLayout til_payment_date, til_paid, til_balance;
+
     private void getDialogView() {
         dialog_view = LayoutInflater.from(mActivity).inflate(R.layout.add_bill_dialog_box, null);
         et_percentage = dialog_view.findViewById(R.id.et_percentage);
@@ -236,6 +239,15 @@ public class BillingFragment extends Fragment {
         et_balance = dialog_view.findViewById(R.id.et_balance);
         et_paid = dialog_view.findViewById(R.id.et_paid);
         et_payment_date = dialog_view.findViewById(R.id.et_payment_date);
+
+        til_payment_date = dialog_view.findViewById(R.id.til_payment_date);
+        til_paid = dialog_view.findViewById(R.id.til_paid);
+        til_balance = dialog_view.findViewById(R.id.til_balance);
+
+        til_payment_date.setVisibility(View.GONE);
+        til_paid.setVisibility(View.GONE);
+        til_balance.setVisibility(View.GONE);
+
         btnsubmit = dialog_view.findViewById(R.id.btn_submit);
 
         if (is_edit) {
@@ -347,7 +359,7 @@ public class BillingFragment extends Fragment {
             return false;
         }
 
-        if (et_balance.getText().toString().length() == 0) {
+      /*  if (et_balance.getText().toString().length() == 0) {
             et_balance.setError("All Fields are mendatory");
             et_balance.requestFocus();
             return false;
@@ -363,10 +375,10 @@ public class BillingFragment extends Fragment {
             et_payment_date.setError("All Fields are mendatory");
             et_payment_date.requestFocus();
             return false;
-        }
+        }*/
 
         if (et_billing_date.getText().toString().length() == 0) {
-            et_billing_date.setError("All Fields are mendatory");
+            et_billing_date.setError("All Fields are mandatory");
             et_billing_date.requestFocus();
             return false;
         }
