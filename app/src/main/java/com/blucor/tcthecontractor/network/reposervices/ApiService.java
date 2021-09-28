@@ -301,6 +301,18 @@ public interface ApiService {
                                                       @Field("payment_date") String payment_date,
                                                       @Field("billing_date") String billing_date,
                                                       @Field("project_id") int project_id);
+ @FormUrlEncoded
+    @POST(Contants.ADD_CLIENT_BILL_BY_PROJECT_ID)
+    Call<BillResponseModel> storeClientBillByProjectId(@Field("is_edit") boolean is_edit,
+                                                      @Field("bill_id") int bill_id,
+                                                      @Field("percentage") float percentage,
+                                                      @Field("amount") double amount,
+                                                      @Field("remark") String remark,
+                                                      @Field("balance") double balance,
+                                                      @Field("paid") double paid,
+                                                      @Field("payment_date") String payment_date,
+                                                      @Field("billing_date") String billing_date,
+                                                      @Field("project_id") int project_id);
 
     /*@POST(Contants.FETCH_HOLIDAYS)
     Call<ArrayList<HolidayModel>> getHolidays();*/

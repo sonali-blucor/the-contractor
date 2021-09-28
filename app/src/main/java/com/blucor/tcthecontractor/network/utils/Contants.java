@@ -58,6 +58,7 @@ public class Contants {
     public static final String SHOW_BILL_BY_PROJECT_ID = "show_biling_data_by_project_id";
     public static final String ADD_WORK_ORDER_BY_PROJECT_ID = "store_work_order_by_project_id";
     public static final String ADD_BILL_BY_PROJECT_ID = "store_biling_by_project_id";
+    public static final String ADD_CLIENT_BILL_BY_PROJECT_ID = "store_client_billing_by_project_id";
     public static final String FETCH_HOLIDAYS = "fetch_holidays";
     public static final String FETCH_HOLIDAYS_BY_PROJECT = "fetch_holidays_by_project";
 }

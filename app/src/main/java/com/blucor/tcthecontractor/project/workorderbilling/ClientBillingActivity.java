@@ -464,10 +464,11 @@ public class ClientBillingActivity extends BaseAppCompatActivity {
 
     private void editBill(BilliModel bill) {
         showLoader();
-        RetrofitClient.getApiService().storeBillByProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeClientBillByProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {
+                    Log.e("response",response.body().getMessage());
                     bills.set(edit_position, bill);
                     setUpRecyclerAdapter();
                     setGrandTotal();
@@ -560,7 +561,7 @@ public class ClientBillingActivity extends BaseAppCompatActivity {
         }
         pdPercentage = Float.parseFloat(""+pdAmount / pAmount) * pPercentage;
 
-        Log.e(pdAmount +"/"+ pAmount,pPercentage+"="+pdPercentage);
+//        Log.e(pdAmount +"/"+ pAmount,pPercentage+"="+pdPercentage);
         tv_bill_payable_percentage.setText(String.format("%.2f", pPercentage) + "%");
         tv_bill_payable_amount.setText(String.valueOf(pAmount) + " Rs.");
 
