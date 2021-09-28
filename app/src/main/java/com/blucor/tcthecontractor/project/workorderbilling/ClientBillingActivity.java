@@ -289,6 +289,9 @@ public class ClientBillingActivity extends BaseAppCompatActivity {
             et_amount.setText("" + edit_bill.getAmount());
             et_remark.setText("" + edit_bill.getRemark());
             et_billing_date.setText("" + edit_bill.getBilling_date());
+            et_balance.setText("" + edit_bill.getBalance());
+            et_paid.setText("" + edit_bill.getPaid());
+            et_payment_date.setText("" + edit_bill.getPayment_date());
         }
 
         et_percentage.addTextChangedListener(new TextWatcher() {
