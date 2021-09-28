@@ -367,7 +367,7 @@
                         <LinearLayout
                             android:id="@+id/llv_work_order"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_margin="@dimen/_5sdp"
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
@@ -490,7 +490,7 @@
                         <LinearLayout
                             android:id="@+id/llv_bill"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_margin="@dimen/_5sdp"
                             android:background="@drawable/selector_menu"
                             android:clickable="true"
