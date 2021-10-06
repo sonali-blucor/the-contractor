@@ -144,7 +144,7 @@ public class BillPaymentRecyclerAdapter extends BaseAdapter {
             // set value to view
             }*/
 
-            String no = String.valueOf(position);
+            String no = String.valueOf(position+1);
             tv_no.setText("" + no);
             tv_percentage.setText("" + item.getPercentage());
             tv_amount.setText("" + item.getAmount());
