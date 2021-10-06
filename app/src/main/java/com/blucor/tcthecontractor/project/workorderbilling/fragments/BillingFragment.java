@@ -204,7 +204,7 @@ public class BillingFragment extends Fragment {
             amounts += billiModel.getAmount();
             percents += billiModel.getPercentage();
         }
-        tv_bill_amount.setText(String.valueOf(total_work_order_amount - amounts));
+        tv_bill_amount.setText(String.valueOf(/*total_work_order_amount -*/ amounts));
 //        tv_bill_c_amount.setText(String.valueOf(amounts));
         tv_bill_percentage.setText(String.valueOf(percents) + "%");
 //        tv_bill_c_percentage.setText(String.valueOf(100 - percents) + "%");
