@@ -50,6 +50,7 @@ public class MenuActivity extends BaseAppCompatActivity {
     private TextView mUserMobile;
     private User user;
     private int is_client;
+
     private SharedPreferences sharedPreferences;
 
     @Override
