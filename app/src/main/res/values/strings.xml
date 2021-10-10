@@ -83,5 +83,7 @@
     <string name="brand_name">Brand Name</string>
     <string name="material_des">Material Description</string>
     <string name="suplr_nam">Supplier Name</string>
+    <string name="gst">GST </string>
+    <string name="gst_amount">GST Amount</string>
 
 </resources>
