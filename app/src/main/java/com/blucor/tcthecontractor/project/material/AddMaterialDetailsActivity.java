@@ -105,6 +105,7 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
                 }
             }
         });
+        getUnits();
         }
 
     private Boolean validateinfo(String name, String cno, String email, String adr, String bname, String des,String unit, String qty) {
