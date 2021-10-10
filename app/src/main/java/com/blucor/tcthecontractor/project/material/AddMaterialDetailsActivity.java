@@ -90,9 +90,12 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
                 String bname=edt_material_bname.getText().toString();
                 String des=edt_material_des.getText().toString();
 
+                String unit=et_material_unit.getText().toString();
+                String qty =et_material_qty.getText().toString();
+
                 //Make all Function for validation and email parameter
 
-                boolean check= validateinfo(name,cno,email,adr,bname,des);
+                boolean check= validateinfo(name,cno,email,adr,bname,des,unit,qty);
 
                 if(check==true){
                     Toast.makeText(getApplicationContext(),"Data is valid",Toast.LENGTH_SHORT).show();
@@ -104,7 +107,7 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
         });
         }
 
-    private Boolean validateinfo(String name, String cno, String email, String adr, String bname, String des) {
+    private Boolean validateinfo(String name, String cno, String email, String adr, String bname, String des,String unit, String qty) {
         if(name.length()==0){
             edt_material_supplier_name.requestFocus();
             edt_material_supplier_name.setError("FIELD CANNOT BE EMPTY");
@@ -163,6 +166,14 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
         else if (!des.matches("[a-zA-Z0-9._-]+")){
             edt_material_des.requestFocus();
             edt_material_des.setError("PLEASE ENTER YOUR DETAILS BELOW");
+        } else if (unit.length()==0){
+            et_material_unit.requestFocus();
+            et_material_unit.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        } else if (qty.length()==0){
+            et_material_qty.requestFocus();
+            et_material_qty.setError("FIELD CANNOT BE EMPTY");
+            return false;
         }
         else{
             return true;
