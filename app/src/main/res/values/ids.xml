@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="edt_supplier_address" type="id" />
+    <item name="edt_material_des" type="id" />
+</resources>

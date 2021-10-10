@@ -231,8 +231,6 @@ public interface ApiService {
                                              @Field("supplier_contact") String supplier_contact,
                                              @Field("unit") String unit,
                                              @Field("quantity") String quantity,
-                                             @Field("rate") String rate,
-                                             @Field("amount") String amount,
                                              @Field("project_id") int project_id,
                                              @Field("is_edit") boolean is_edit,
                                              @Field("material_id") int material_id);

@@ -76,5 +76,12 @@
     <string name="project_name">Project Name</string>
     <string name="client_work_order">Client Work Order</string>
     <string name="client_billing">Client Billing</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="address">Address</string>
+    <string name="add_material">Add Material</string>
+    <string name="add_suplr">Add Supplier</string>
+    <string name="brand_name">Brand Name</string>
+    <string name="material_des">Material Description</string>
+    <string name="suplr_nam">Supplier Name</string>
 
 </resources>
