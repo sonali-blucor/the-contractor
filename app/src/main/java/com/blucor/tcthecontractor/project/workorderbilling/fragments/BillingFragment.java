@@ -197,14 +197,19 @@ public class BillingFragment extends Fragment {
     }
 
     private void setGrandTotal() {
-        long amounts = 0;
+        double amounts = 0;
         long percents = 0;
         for (BilliModel billiModel :
                 bills) {
             amounts += billiModel.getAmount();
             percents += billiModel.getPercentage();
         }
-        tv_bill_amount.setText(String.format("%.2f", /*total_work_order_amount -*/ amounts));
+
+        try {
+            tv_bill_amount.setText(String.format("%.2f", /*total_work_order_amount -*/ amounts));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        tv_bill_c_amount.setText(String.valueOf(amounts));
         tv_bill_percentage.setText(String.valueOf(percents) + "%");
 //        tv_bill_c_percentage.setText(String.valueOf(100 - percents) + "%");

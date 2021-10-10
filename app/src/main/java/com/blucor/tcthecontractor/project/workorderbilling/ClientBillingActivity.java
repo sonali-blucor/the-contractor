@@ -562,7 +562,11 @@ public class ClientBillingActivity extends BaseAppCompatActivity {
         pdPercentage = Float.parseFloat(""+pdAmount / pAmount) * pPercentage;
 
 //        Log.e(pdAmount +"/"+ pAmount,pPercentage+"="+pdPercentage);
-        tv_bill_payable_percentage.setText(String.format("%.2f", pPercentage) + "%");
+        try {
+            tv_bill_payable_percentage.setText(String.format("%.2f", pPercentage) + "%");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tv_bill_payable_amount.setText(String.valueOf(pAmount) + " Rs.");
 
         tv_bill_paid_percentage.setText(String.format("%.2f", pdPercentage) + "%");
