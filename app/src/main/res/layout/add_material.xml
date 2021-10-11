@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".project.material.AddMaterialDetailsActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btn_submit"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@color/white"
+                    android:nextFocusDown="@color/amber_400"
+                    android:text="@string/add_material"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/_10sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/yellow" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_bname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_material_bname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/brand_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_material_des"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@id/edt_material_des"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/material_des"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_unit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/input_margin_5dp"
+                            android:background="@drawable/edit_background"
+                            app:errorIconDrawable="@drawable/edit_background">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_material_unit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_background"
+                                android:drawablePadding="@dimen/drawable_padding"
+                                android:enabled="false"
+                                android:hint="@string/Unit"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="150"
+                                android:nextFocusDown="@id/edt_contract_type"
+                                android:onClick="showPopupViewForUnits"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                tools:ignore="OnClick" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:id="@+id/img_project_type"
+                            style="@style/Theme.TheContractor.ImageViewTheme"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:onClick="showPopupViewForUnits"
+                            android:padding="@dimen/drawable_padding"
+                            android:src="@drawable/ic_down"
+                            tools:ignore="OnClick" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_qty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/input_margin_5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_background"
+                        app:errorIconDrawable="@drawable/edit_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_material_qty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_background"
+                            android:drawablePadding="@dimen/drawable_padding"
+                            android:hint="@string/Quantity"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="150"
+                            android:nextFocusDown="@id/et_material_gst"
+                            android:onClick="showPopupViewForUnits"
+                            android:singleLine="true"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_material_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/Rate"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:nextFocusDown="@id/et_material_gst"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_gst"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/input_margin_5dp"
+                            android:background="@drawable/edit_background"
+                            app:errorIconDrawable="@drawable/edit_background">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_material_gst"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_background"
+                                android:drawablePadding="@dimen/drawable_padding"
+                                android:enabled="false"
+                                android:hint="@string/gst"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:maxLength="100"
+                                android:singleLine="true"
+                                android:text="0"
+                                android:textColor="@color/black" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            style="@style/Theme.TheContractor.ImageViewTheme"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:padding="@dimen/drawable_padding"
+                            android:text="%" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_gst_amount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/input_margin_5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_background"
+                        app:errorIconDrawable="@drawable/edit_background">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_material_gst_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_background"
+                            android:drawablePadding="@dimen/drawable_padding"
+                            android:enabled="false"
+                            android:hint="@string/gst_amount"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_material_total_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|end"
+                    android:text="Total Amount: 00.00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@color/yellow"
+            android:onClick="onClickToSubmitMaterial"
+            android:text="Submit"
+            android:textColor="#455A64"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
