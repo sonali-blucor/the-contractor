@@ -146,6 +146,7 @@
             android:background="@color/yellow"
             android:onClick="onClickToSubmitMaterial"
             android:text="Submit"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:textColor="#455A64"
             android:textStyle="bold" />
 
