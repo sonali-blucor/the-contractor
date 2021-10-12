@@ -1,24 +1,14 @@
 package com.blucor.tcthecontractor.project.material;
 
-import androidx.appcompat.app.AppCompatActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.Material;
-import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
-import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
-import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class AddSupplierActivity extends BaseAppCompatActivity {
@@ -38,7 +28,7 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_suppiler);
+        setContentView(R.layout.activity_add_suppiler);
 
         edt_material_supplier_name = findViewById(R.id.edt_material_supplier_name);
         edt_supplier_contact_no = findViewById(R.id.edt_supplier_contact_no);
