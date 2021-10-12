@@ -20,20 +20,6 @@
 
 
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="22dp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@color/white"
-                    android:nextFocusDown="@color/amber_400"
-                    android:text="@string/add_material"
-                    android:textColor="@color/yellow"
-                    android:textSize="@dimen/_10sdp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/yellow" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -57,6 +43,27 @@
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_material_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etd_material_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/material_type"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_material_des"
@@ -80,26 +87,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_material_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/input_margin_5dp"
-                android:background="@drawable/edit_background"
-                app:errorIconDrawable="@drawable/edit_background">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etd_material_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_background"
-                    android:drawablePadding="@dimen/drawable_padding"
-                    android:hint="@string/material_type"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
 

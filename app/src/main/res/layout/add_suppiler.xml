@@ -26,21 +26,6 @@
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@color/white"
-                    android:nextFocusDown="@color/amber_400"
-                    android:text="@string/add_suplr"
-                    android:textColor="@color/yellow"
-                    android:textSize="@dimen/_20sdp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/yellow" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_material_supplier_name"
                     android:layout_width="match_parent"
