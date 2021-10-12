@@ -50,18 +50,25 @@
 
     </HorizontalScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_activity_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_alignParentBottom="true"
-        android:onClick="onSlideViewButtonClick"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:onClick="onSlideViewButtonClick"
+        android:src="@drawable/ic_add"
         app:srcCompat="@drawable/ic_add"
-        tools:ignore="VectorDrawableCompat"
-        android:src="@drawable/ic_add"/>
+        tools:ignore="VectorDrawableCompat" />-->
+
+    <include layout="@layout/layout_fab_submenu_material"/>
 
 </RelativeLayout>
