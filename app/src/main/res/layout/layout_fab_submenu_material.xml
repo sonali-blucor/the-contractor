@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:padding="@dimen/_5sdp">
 
     <LinearLayout
         android:id="@+id/layoutFabAddMaterial"
@@ -140,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/_40sdp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

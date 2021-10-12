@@ -94,7 +94,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         layoutFabAddSupplier.setVisibility(View.VISIBLE);
         layoutFabMaterial.setVisibility(View.VISIBLE);
         //Change settings icon to 'X' icon
-        fabAdd.setImageResource(R.drawable.ic_close);
+        fabAdd.setImageResource(R.drawable.ic_close_black);
         fabExpanded = true;
     }
 
