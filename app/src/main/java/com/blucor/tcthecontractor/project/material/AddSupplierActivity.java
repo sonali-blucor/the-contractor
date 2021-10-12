@@ -10,7 +10,7 @@ import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class AddSuppilerActivity extends BaseAppCompatActivity {
+public class AddSupplierActivity extends BaseAppCompatActivity {
 
 
     private TextInputEditText edt_material_supplier_name;
