@@ -30,12 +30,48 @@
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_add_sub_contractor.xml" value="0.20416666666666666" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_billing.xml" value="0.12771739130434784" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_billing_details_display_list.xml" value="0.12771739130434784" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_billing_order.xml" value="0.14479166666666668" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_client_add_and_search.xml" value="0.14479166666666668" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_client_billing.xml" value="0.12771739130434784" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_client_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_client_project_sub_act_details.xml" value="0.14479166666666668" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_client_projects.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_completed_projects.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_confirm_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_edit_material.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_edit_project_act.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_feedback.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_forgot_password.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_material_menu.xml" value="0.12635869565217392" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_menu.xml" value="0.12771739130434784" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_project_act.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_project_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_project_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_project_management_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_project_menu.xml" value="0.12771739130434784" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_register.xml" value="0.14479166666666668" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_schedule.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_select_sub_contractor_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_sub_contractor_download_report.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_sub_contractor_mgt_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_success_fullscreen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_todays_activities.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_user_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_user_type.xml" value="0.20416666666666666" />
         <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_work_order.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/activity_work_order_billing_project_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/add_bill_dialog_box.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/add_material.xml" value="0.33" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/add_sub_activity_dialog.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/add_suppiler.xml" value="0.25" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/billing_list_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/dialog_material_payament.xml" value="0.1" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/fragment_first.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/fragment_second.xml" value="0.20416666666666666" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/item_material_list.xml" value="0.25" />
+        <entry key="..\:/Pune Project/the-contractor/app/src/main/res/layout/item_project_list.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

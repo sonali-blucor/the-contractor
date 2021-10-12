@@ -85,5 +85,14 @@
     <string name="suplr_nam">Supplier Name</string>
     <string name="gst">GST </string>
     <string name="gst_amount">GST Amount</string>
+    <string name="title_activity_add_suppiler">add_suppiler</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="material_type">Material Type</string>
 
 </resources>

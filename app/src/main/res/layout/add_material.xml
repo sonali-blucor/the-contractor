@@ -80,7 +80,30 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_material_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/input_margin_5dp"
+                android:background="@drawable/edit_background"
+                app:errorIconDrawable="@drawable/edit_background">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etd_material_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_background"
+                    android:drawablePadding="@dimen/drawable_padding"
+                    android:hint="@string/material_type"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -89,6 +112,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
+
+
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/til_unit"
@@ -128,42 +153,8 @@
                             tools:ignore="OnClick" />
                     </RelativeLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_qty"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/input_margin_5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edit_background"
-                        app:errorIconDrawable="@drawable/edit_background">
-
-
-                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_rate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/input_margin_5dp"
-                    android:background="@drawable/edit_background"
-                    app:errorIconDrawable="@drawable/edit_background">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_material_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edit_background"
-                        android:drawablePadding="@dimen/drawable_padding"
-                        android:hint="@string/material_type"
-                        android:imeOptions="actionNext"
-                        android:inputType="number"
-                        android:nextFocusDown="@id/et_material_gst"
-                        android:singleLine="true"
-                        android:textColor="@color/black" />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
 
 
