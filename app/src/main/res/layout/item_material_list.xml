@@ -17,28 +17,26 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/editTextDate2"
+            android:id="@+id/tv_material_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="12/08/2021"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/_10sdp" />
+            android:textColor="@color/gray" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tv_material_supplier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rameshor Patil"
-            android:textSize="@dimen/_12sdp"
             android:textStyle="normal" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tv_material_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scrollbarSize="@dimen/_10sdp"
             android:text="Cement(Ambula)"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
 
 
@@ -52,16 +50,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Quantity"
-                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_material_quantity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0 Bag"
-                android:textSize="@dimen/_15sdp" />
+                android:text="0 Bag" />
 
         </LinearLayout>
 
@@ -75,16 +72,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Rate"
-                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_material_rate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0 Bag"
-                android:textSize="@dimen/_15sdp" />
+                android:text="0 Bag" />
 
         </LinearLayout>
 
@@ -103,16 +99,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Amount"
-                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_material_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0 Bag"
-                android:textSize="@dimen/_15sdp" />
+                android:text="0 Bag" />
 
         </LinearLayout>
 
@@ -122,33 +117,32 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_material_gst"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="GST Amount(18%)"
-                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_material_gst_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0 Bag"
-                android:textSize="@dimen/_15sdp" />
+                android:text="0 Bag" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/yellow" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -156,16 +150,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Total Amount"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_material_total_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="0 Bag"
-                android:textSize="@dimen/_15sdp" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 
@@ -224,13 +220,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:background="@color/yellow" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -256,12 +252,20 @@
 
         </LinearLayout>
 
-        <Button
+        <TextView
+            android:id="@+id/btn_material_add_payment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_25sdp"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="@string/add_payment" />
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_2sdp"
+            android:text="@string/add_payment"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

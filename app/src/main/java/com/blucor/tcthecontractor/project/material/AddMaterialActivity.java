@@ -16,6 +16,7 @@ import com.blucor.tcthecontractor.models.Material;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.project.ProjectMenuActivity;
+import com.blucor.tcthecontractor.rv_adapters.MaterialRecyclerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.tcthecontractor.rv_adapters.TableRecyclerAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
@@ -30,10 +31,10 @@ import retrofit2.Response;
 
 public class AddMaterialActivity extends BaseAppCompatActivity {
     private RecyclerView mRvView;
-    private TableRecyclerAdapter mAdapter;
-    private List<Material> mList;
+    private MaterialRecyclerAdapter mAdapter;
+    private List<Material> mList =new ArrayList<>();
     private ProjectsModel project;
-    private List<Material> adapterList;
+    private List<Material> adapterList=new ArrayList<>();
 
     private boolean fabExpanded = false;
     private FloatingActionButton fabAdd;
@@ -56,7 +57,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
             getMaterialList();
         }
-
+        setUpAdapter();
         fabAdd = (FloatingActionButton) this.findViewById(R.id.fabAdd);
 
         layoutFabAddSupplier = (LinearLayout) this.findViewById(R.id.layoutFabAddSupplier);
@@ -125,7 +126,13 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         adapterList = new ArrayList<>();
         adapterList.add(material);
         adapterList.addAll(mList);
-        mAdapter = new TableRecyclerAdapter(AddMaterialActivity.this, adapterList);
+
+        adapterList.add(new Material());
+        adapterList.add(new Material());
+        adapterList.add(new Material());
+
+
+        mAdapter = new MaterialRecyclerAdapter(AddMaterialActivity.this, adapterList);
         mRvView.setAdapter(mAdapter);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
