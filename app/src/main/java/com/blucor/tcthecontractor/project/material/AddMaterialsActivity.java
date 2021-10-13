@@ -1,7 +1,7 @@
 package com.blucor.tcthecontractor.project.material;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,18 +13,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.Material;
-import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
-import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -48,7 +45,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_material);
+        setContentView(R.layout.activity_add_materials);
 
         edt_material_bname = findViewById(R.id.edt_material_bname);
         edt_material_des = findViewById(R.id.edt_material_des);

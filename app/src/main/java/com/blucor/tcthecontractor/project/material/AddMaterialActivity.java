@@ -1,15 +1,13 @@
 package com.blucor.tcthecontractor.project.material;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
@@ -21,9 +19,14 @@ import com.blucor.tcthecontractor.project.ProjectMenuActivity;
 import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.tcthecontractor.rv_adapters.TableRecyclerAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddMaterialActivity extends BaseAppCompatActivity {
     private RecyclerView mRvView;
@@ -31,6 +34,12 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private List<Material> mList;
     private ProjectsModel project;
     private List<Material> adapterList;
+
+    private boolean fabExpanded = false;
+    private FloatingActionButton fabAdd;
+    private LinearLayout layoutFabAddSupplier;
+    private LinearLayout layoutFabAddMaterial;
+    private LinearLayout layoutFabMaterial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,45 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             getMaterialList();
         }
 
+        fabAdd = (FloatingActionButton) this.findViewById(R.id.fabAdd);
+
+        layoutFabAddSupplier = (LinearLayout) this.findViewById(R.id.layoutFabAddSupplier);
+        layoutFabAddMaterial = (LinearLayout) this.findViewById(R.id.layoutFabAddMaterial);
+        layoutFabMaterial = (LinearLayout) this.findViewById(R.id.layoutFAbMaterial);
+        //layoutFabSettings = (LinearLayout) this.findViewById(R.id.layoutFabSettings);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fabExpanded == true) {
+                    closeSubMenusFab();
+                } else {
+                    openSubMenusFab();
+                }
+            }
+        });
+
+        //Only main FAB is visible in the beginning
+        closeSubMenusFab();
+
+    }
+
+    //closes FAB submenus
+    private void closeSubMenusFab() {
+        layoutFabAddMaterial.setVisibility(View.INVISIBLE);
+        layoutFabAddSupplier.setVisibility(View.INVISIBLE);
+        layoutFabMaterial.setVisibility(View.INVISIBLE);
+        fabAdd.setImageResource(R.drawable.ic_add);
+        fabExpanded = false;
+    }
+
+    //Opens FAB submenus
+    private void openSubMenusFab() {
+        layoutFabAddMaterial.setVisibility(View.VISIBLE);
+        layoutFabAddSupplier.setVisibility(View.VISIBLE);
+        layoutFabMaterial.setVisibility(View.VISIBLE);
+        //Change settings icon to 'X' icon
+        fabAdd.setImageResource(R.drawable.ic_close_black);
+        fabExpanded = true;
     }
 
     private void getMaterialList() {
@@ -66,7 +114,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Material>> call, Throwable t) {
-                Toast.makeText(AddMaterialActivity.this, "Material Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddMaterialActivity.this, "Material Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });
@@ -77,7 +125,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         adapterList = new ArrayList<>();
         adapterList.add(material);
         adapterList.addAll(mList);
-        mAdapter = new TableRecyclerAdapter(AddMaterialActivity.this,adapterList);
+        mAdapter = new TableRecyclerAdapter(AddMaterialActivity.this, adapterList);
         mRvView.setAdapter(mAdapter);
         mAdapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
             @Override
@@ -93,26 +141,47 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             @Override
             public void editViewListClicked(View v, int position) {
                 Material current_material = adapterList.get(position);
-                Bundle bundle =new Bundle();
-                bundle.putParcelable(AppKeys.MATERIAL,current_material);
-                bundle.putParcelable(AppKeys.PROJECT,project);
-                ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class,bundle);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(AppKeys.MATERIAL, current_material);
+                bundle.putParcelable(AppKeys.PROJECT, project);
+                ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class, bundle);
             }
         });
         //mAdapter.addItems(mList);
     }
 
     public void onSlideViewButtonClick(View view) {
-        Bundle bundle =new Bundle();
-        bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE,false);
-        bundle.putParcelable(AppKeys.PROJECT,project);
-        ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class,bundle);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE, false);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class, bundle);
     }
 
     @Override
     public void onBackPressed() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppKeys.PROJECT,project);
-        ScreenHelper.redirectToClass(this, ProjectMenuActivity.class,bundle);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(this, ProjectMenuActivity.class, bundle);
+    }
+
+    public void onClickAddMaterial(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE, false);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialsActivity.class, bundle);
+    }
+
+    public void onClickAddSupplier(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE, false);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(AddMaterialActivity.this, AddSupplierActivity.class, bundle);
+    }
+
+    public void onClickMaterial(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(AppKeys.MATERIAL_DETAIL_TYPE, false);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(AddMaterialActivity.this, AddMaterialDetailsActivity.class, bundle);
     }
 }
