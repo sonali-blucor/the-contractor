@@ -29,7 +29,14 @@
     </LinearLayout>
 
     <!-- Table View-->
-    <HorizontalScrollView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_material_list" />
+  <!--  <HorizontalScrollView
         android:layout_below="@id/llh_project_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,15 +48,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_table_row" />
+
 
     </HorizontalScrollView>
-
+-->
    <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_activity_add"
         android:layout_width="wrap_content"
