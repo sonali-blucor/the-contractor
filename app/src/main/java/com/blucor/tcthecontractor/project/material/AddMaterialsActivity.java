@@ -212,7 +212,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             String bname = edt_material_bname.getText().toString();
             String mType = edt_material_type.getText().toString();
             String des = edt_material_des.getText().toString();
-            String unit = edt_material_unit.getText().toString();
+            int unit = unit_id;
 
             int material_id = 0;
             if (material != null) {
