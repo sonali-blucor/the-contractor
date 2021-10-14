@@ -1,15 +1,22 @@
 package com.blucor.tcthecontractor.project.material;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
-import com.blucor.tcthecontractor.models.Material;
 import com.blucor.tcthecontractor.models.ProjectsModel;
+import com.blucor.tcthecontractor.models.Supplier;
+import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddSupplierActivity extends BaseAppCompatActivity {
 
@@ -21,7 +28,7 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
     private Button btn_submit;
 
     private ProjectsModel project;
-    private Material material;
+    private Supplier supplier;
     private boolean isAddOrEdit = false;
 
 
@@ -45,8 +52,8 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
                 project = bundle.getParcelable(AppKeys.PROJECT);
             }
 
-            if (getIntent().hasExtra(AppKeys.MATERIAL)) {
-                material = bundle.getParcelable(AppKeys.MATERIAL);
+            if (getIntent().hasExtra(AppKeys.SUPPLIER)) {
+                supplier = bundle.getParcelable(AppKeys.SUPPLIER);
                 isAddOrEdit = true;
                 setUpData();
             }
@@ -57,20 +64,21 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name=edt_material_supplier_name.getText().toString();
-                String cnt=edt_supplier_contact_no.getText().toString();
-                String email=edt_supplier_email.getText().toString();
-                String adr=edt_supplier_address.getText().toString();
+                String name = edt_material_supplier_name.getText().toString();
+                String cnt = edt_supplier_contact_no.getText().toString();
+                String email = edt_supplier_email.getText().toString();
+                String adr = edt_supplier_address.getText().toString();
 
                 //make function for validation and pass all parameters
 
-                 validateinfo(name,cnt,email,adr);
+                if (validateinfo(name, cnt, email, adr)) {
+                    onClickToSubmitSupplier();
+                }
 
             }
 
 
         });
-
 
 
     }
@@ -80,7 +88,7 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             edt_material_supplier_name.requestFocus();
             edt_material_supplier_name.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!name.matches("[a-zA-z]+")) {
+        } else if (!name.matches("[a-zA-z ]+")) {
             edt_material_supplier_name.requestFocus();
             edt_material_supplier_name.setError("ENTER ONLY ALPHABETICAL CHARACTER");
             return false;
@@ -88,27 +96,26 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             edt_supplier_contact_no.requestFocus();
             edt_supplier_contact_no.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (!cnt.matches("^[+][0-9]{10,13}$")) {
+        } else if (!cnt.matches("^[0-9]{10,13}$")) {
             edt_supplier_contact_no.requestFocus();
-            edt_supplier_contact_no.setError("Correct format: +91xxxxxxxxxx");
+            edt_supplier_contact_no.setError("Correct format: xxxxxxxxxx");
             return false;
         } else if (email.length() == 0) {
             edt_supplier_email.requestFocus();
             edt_supplier_email.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
 
-
     private void setUpData() {
-        if (material != null) {
-            edt_material_supplier_name.setText(material.supplier_name);
-            edt_supplier_contact_no.setText(material.supplier_contact);
-//            edt_supplier_email.setText(material.supplier_contact);
-//            edt_supplier_address.setText(material.supplier_contact);
+        if (supplier != null) {
+            edt_material_supplier_name.setText(supplier.supplierName);
+            edt_supplier_contact_no.setText(supplier.supplierContact);
+            edt_supplier_email.setText(supplier.supplierEmail);
+            edt_supplier_address.setText(supplier.supplierAddress);
         }
     }
 
@@ -131,12 +138,12 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             edt_supplier_address.setError(error);
             edt_supplier_address.requestFocus();
             return false;
-        } else  {
-            return false;
+        } else {
+            return true;
         }
     }
 
-    public void onClickToSubmitMaterial(View view) {
+    private void onClickToSubmitSupplier() {
         if (is_valid_data()) {
             String name = edt_material_supplier_name.getText().toString();
             String cno = edt_supplier_contact_no.getText().toString();
@@ -144,33 +151,40 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             String adr = edt_supplier_address.getText().toString();
 
 
-            int material_id = 0;
-            if (material != null) {
+            String supplier_id = "";
+            if (supplier != null) {
                 isAddOrEdit = true;
-                material_id = material.material_id;
+                supplier_id = supplier.supplierId;
             }
 
-        /*    showLoader();
-            RetrofitClient.getApiService().storeMaterial(name, cno, email, adr, bname, des, unit, quantity, project.id, isAddOrEdit, material_id).enqueue(new Callback<ProjectMaterialModel>() {
+            showLoader();
+            RetrofitClient.getApiService().storeSupplier(name, cno, email, adr).enqueue(new Callback<Supplier>() {
                 @Override
-                public void onResponse(Call<ProjectMaterialModel> call, Response<ProjectMaterialModel> response) {
-                    if (response.code() == 200) {
-                        Material material = response.body().material;
-                        Toast.makeText(AddSupplierActivity.this, "Material added sucessfully", Toast.LENGTH_SHORT).show();
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable(AppKeys.PROJECT, project);
-                        ScreenHelper.redirectToClass(AddSupplierActivity.this, AddMaterialActivity.class, bundle);
-                        finish();
+                public void onResponse(Call<Supplier> call, Response<Supplier> response) {
+                    Log.e("response", response.toString());
+                    if (response != null && response.code() == 200) {
+                        if (response.body() != null) {
+                            Supplier supplier = response.body();
+                            Toast.makeText(AddSupplierActivity.this, "Supplier store successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AddSupplierActivity.this, "Unable to store supplier", Toast.LENGTH_SHORT).show();
+                        }
+                    } else if (response.code() == 500) {
+                        Toast.makeText(AddSupplierActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddSupplierActivity.this, "Supplier is already exists", Toast.LENGTH_SHORT).show();
                     }
                     stopLoader();
                 }
 
                 @Override
-                public void onFailure(Call<ProjectMaterialModel> call, Throwable t) {
+                public void onFailure(Call<Supplier> call, Throwable t) {
                     stopLoader();
                     Log.e("TAG", "Error : " + t.getMessage());
                 }
-            });*/
+            });
+        } else {
+            Toast.makeText(AddSupplierActivity.this, "Error validation", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -20,6 +20,7 @@ import com.blucor.tcthecontractor.models.ScheduleModel;
 import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.models.SubContractorAddSearchModel;
+import com.blucor.tcthecontractor.models.Supplier;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.models.WorkOrderResponseModel;
@@ -234,6 +235,15 @@ public interface ApiService {
                                              @Field("project_id") int project_id,
                                              @Field("is_edit") boolean is_edit,
                                              @Field("material_id") int material_id);
+
+    // akasha lawande
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_SUPPLIER)
+    Call<Supplier> storeSupplier(@Field("supplier_name") String supplier_name,
+                                 @Field("contact") String supplier_contact,
+                                 @Field("email") String supplier_email,
+                                 @Field("address") String supplier_address);
 
     @FormUrlEncoded
     @POST(Contants.GET_MATERIAL_BY_PROJECT_ID)
