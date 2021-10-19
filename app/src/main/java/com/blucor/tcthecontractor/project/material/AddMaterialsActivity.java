@@ -13,12 +13,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.Material;
+import com.blucor.tcthecontractor.models.Materials;
 import com.blucor.tcthecontractor.models.ProjectsModel;
+import com.blucor.tcthecontractor.models.Supplier;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
@@ -220,27 +223,32 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
                 material_id = material.material_id;
             }
 
-           /* showLoader();
-            RetrofitClient.getApiService().storeMaterial(name, cno, email, adr, bname, des, unit, quantity, project.id, isAddOrEdit, material_id).enqueue(new Callback<ProjectMaterialModel>() {
+            showLoader();
+            RetrofitClient.getApiService().storeMaterials( bname,mType, des, unit).enqueue(new Callback<Materials>() {
                 @Override
-                public void onResponse(Call<ProjectMaterialModel> call, Response<ProjectMaterialModel> response) {
-                    if (response.code() == 200) {
-                        Material material = response.body().material;
-                        Toast.makeText(AddMaterialsActivity.this, "Material added sucessfully", Toast.LENGTH_SHORT).show();
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable(AppKeys.PROJECT, project);
-                        ScreenHelper.redirectToClass(AddMaterialsActivity.this, AddMaterialActivity.class, bundle);
-                        finish();
+                public void onResponse(Call<Materials> call, Response<Materials> response) {
+                    Log.e("response", response.toString());
+                    if (response != null && response.code() == 200) {
+                        if (response.body() != null) {
+                            Materials materials = response.body();
+                            Toast.makeText(AddMaterialsActivity.this, "Material store successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AddMaterialsActivity.this, "Unable to store material", Toast.LENGTH_SHORT).show();
+                        }
+                    } else if (response.code() == 500) {
+                        Toast.makeText(AddMaterialsActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddMaterialsActivity.this, "Material is already exists", Toast.LENGTH_SHORT).show();
                     }
                     stopLoader();
                 }
 
                 @Override
-                public void onFailure(Call<ProjectMaterialModel> call, Throwable t) {
+                public void onFailure(Call<Materials> call, Throwable t) {
                     stopLoader();
                     Log.e("TAG", "Error : " + t.getMessage());
                 }
-            });*/
+            });
         }
     }
 }

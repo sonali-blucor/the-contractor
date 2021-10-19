@@ -39,6 +39,22 @@ public class SubContractor implements Parcelable {
     @Expose
     public String created_at;
 
+    @SerializedName("address")
+    @Expose
+    public String address;
+    @SerializedName("pan_cart_no")
+    @Expose
+    public String pan_cart_no;
+    @SerializedName("aadhar_cart_no")
+    @Expose
+    public String aadhar_cart_no;
+    @SerializedName("gst_no")
+    @Expose
+    public String gst_no;
+    @SerializedName("bank_details")
+    @Expose
+    public String bank_details;
+
     protected SubContractor(Parcel in) {
         id = in.readInt();
         fname = in.readString();

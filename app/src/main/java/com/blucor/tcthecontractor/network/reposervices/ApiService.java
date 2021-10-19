@@ -13,6 +13,7 @@ import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.models.InsertActivityResponseModel;
 import com.blucor.tcthecontractor.models.InsertSubActivityResponseModel;
 import com.blucor.tcthecontractor.models.Material;
+import com.blucor.tcthecontractor.models.Materials;
 import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.Project_Type;
 import com.blucor.tcthecontractor.models.ProjectsModel;
@@ -118,20 +119,20 @@ public interface ApiService {
 
     @Multipart
     @POST(Contants.SAVE_CONTRACTOR_PROFILE_PICTURE)
-    Call<ServerResponseModel> saveProfilePicture(@Part MultipartBody.Part file,@Part("id") RequestBody server_id);
+    Call<ServerResponseModel> saveProfilePicture(@Part MultipartBody.Part file, @Part("id") RequestBody server_id);
 
     @Multipart
     @POST(Contants.SAVE_CLIENT_PROFILE_PICTURE)
-    Call<ServerResponseModel> saveClientProfilePicture(@Part MultipartBody.Part file,@Part("id") RequestBody server_id);
+    Call<ServerResponseModel> saveClientProfilePicture(@Part MultipartBody.Part file, @Part("id") RequestBody server_id);
 
     @GET(Contants.GET_CONTRACT_TYPE)
-    Call<List<Contract_Type>>  getContractType();
+    Call<List<Contract_Type>> getContractType();
 
     @GET(Contants.GET_PROJECT_TYPE)
-    Call<List<Project_Type>>  getProjectType();
+    Call<List<Project_Type>> getProjectType();
 
     @GET(Contants.GET_UNIT)
-    Call<List<UnitModal>>  getUnits();
+    Call<List<UnitModal>> getUnits();
 
     @GET(Contants.SHOW_CLIENT)
     Call<ClientAddSearchModel> getAllClients();
@@ -198,21 +199,27 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.STORE_SUB_CONTRACTOR)
-    Call<SubContractor>  storeSubContractor(@Field("fname") String fname,
-                                            @Field("lname") String lname,
-                                            @Field("contractor_id") int contractor_id,
-                                            @Field("mobile") String mobile,
-                                            @Field("email") String email,
-                                            @Field("password") String password);
+    Call<SubContractor> storeSubContractor(@Field("fname") String fname,
+                                           @Field("lname") String lname,
+                                           @Field("contractor_id") int contractor_id,
+                                           @Field("mobile") String mobile,
+                                           @Field("email") String email,
+                                           @Field("password") String password,
+                                           @Field("address") String address,
+                                           @Field("pan_cart_no") String pan_cart_no,
+                                           @Field("aadhar_cart_no") String aadhar_cart_no,
+                                           @Field("gst_no") String gst_no,
+                                           @Field("bank_details") String bank_details
+    );
 
     @FormUrlEncoded
     @POST(Contants.STORE_OR_UPDATE_SUB_ACTIVITY)
-    Call<InsertSubActivityResponseModel>  saveOrUpdateSubActivity(@Field("activity_id") int activity_id,
-                                                                  @Field("sub_activity_name") String sub_activity_name,
-                                                                  @Field("start_date") String sub_activity_start_date,
-                                                                  @Field("end_date") String sub_activity_end_date,
-                                                                  @Field("sub_contractor_id") int sub_contractor_id,
-                                                                  @Field("duration") String duration);
+    Call<InsertSubActivityResponseModel> saveOrUpdateSubActivity(@Field("activity_id") int activity_id,
+                                                                 @Field("sub_activity_name") String sub_activity_name,
+                                                                 @Field("start_date") String sub_activity_start_date,
+                                                                 @Field("end_date") String sub_activity_end_date,
+                                                                 @Field("sub_contractor_id") int sub_contractor_id,
+                                                                 @Field("duration") String duration);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_SUB_CONTRACTOR_BY_CONTRACTOR_ID)
@@ -239,6 +246,13 @@ public interface ApiService {
     // akasha lawande
 
     @FormUrlEncoded
+    @POST(Contants.STORE_MATERIALS)
+    Call<Materials> storeMaterials(@Field("material_brand") String material_brand,
+                                   @Field("material_type") String material_type,
+                                   @Field("material_description") String material_description,
+                                   @Field("unit") int unit);
+
+    @FormUrlEncoded
     @POST(Contants.STORE_SUPPLIER)
     Call<Supplier> storeSupplier(@Field("supplier_name") String supplier_name,
                                  @Field("contact") String supplier_contact,
@@ -258,8 +272,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.STORE_PROJECT_SUB_CONTRACTORS)
-    Call<ServerResponseModel>  storeProjectSubContractor(@Field("project_id") int project_id,
-                                                         @Field("sub_contractors") String sub_contractors);
+    Call<ServerResponseModel> storeProjectSubContractor(@Field("project_id") int project_id,
+                                                        @Field("sub_contractors") String sub_contractors);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_PROJECT_SUB_CONTRACTORS)
@@ -300,27 +314,28 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.ADD_BILL_BY_PROJECT_ID)
     Call<BillResponseModel> storeBillByProjectId(@Field("is_edit") boolean is_edit,
-                                                      @Field("bill_id") int bill_id,
-                                                      @Field("percentage") float percentage,
-                                                      @Field("amount") double amount,
-                                                      @Field("remark") String remark,
-                                                      @Field("balance") double balance,
-                                                      @Field("paid") double paid,
-                                                      @Field("payment_date") String payment_date,
-                                                      @Field("billing_date") String billing_date,
-                                                      @Field("project_id") int project_id);
- @FormUrlEncoded
+                                                 @Field("bill_id") int bill_id,
+                                                 @Field("percentage") float percentage,
+                                                 @Field("amount") double amount,
+                                                 @Field("remark") String remark,
+                                                 @Field("balance") double balance,
+                                                 @Field("paid") double paid,
+                                                 @Field("payment_date") String payment_date,
+                                                 @Field("billing_date") String billing_date,
+                                                 @Field("project_id") int project_id);
+
+    @FormUrlEncoded
     @POST(Contants.ADD_CLIENT_BILL_BY_PROJECT_ID)
     Call<BillResponseModel> storeClientBillByProjectId(@Field("is_edit") boolean is_edit,
-                                                      @Field("bill_id") int bill_id,
-                                                      @Field("percentage") float percentage,
-                                                      @Field("amount") double amount,
-                                                      @Field("remark") String remark,
-                                                      @Field("balance") double balance,
-                                                      @Field("paid") double paid,
-                                                      @Field("payment_date") String payment_date,
-                                                      @Field("billing_date") String billing_date,
-                                                      @Field("project_id") int project_id);
+                                                       @Field("bill_id") int bill_id,
+                                                       @Field("percentage") float percentage,
+                                                       @Field("amount") double amount,
+                                                       @Field("remark") String remark,
+                                                       @Field("balance") double balance,
+                                                       @Field("paid") double paid,
+                                                       @Field("payment_date") String payment_date,
+                                                       @Field("billing_date") String billing_date,
+                                                       @Field("project_id") int project_id);
 
     /*@POST(Contants.FETCH_HOLIDAYS)
     Call<ArrayList<HolidayModel>> getHolidays();*/

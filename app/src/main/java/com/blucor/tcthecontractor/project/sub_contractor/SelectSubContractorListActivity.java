@@ -1,12 +1,5 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
@@ -32,11 +29,21 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SelectSubContractorListActivity extends BaseAppCompatActivity {
-    private TextInputEditText edt_first_name;
-    private TextInputEditText edt_last_name;
+    private TextInputEditText edt_firm_name;
+    private TextInputEditText edt_full_name;
+    private TextInputEditText edt_address;
     private TextInputEditText edt_mobile;
     private TextInputEditText edt_email;
+    private TextInputEditText edt_pan_cart_no;
+    private TextInputEditText edt_aadhar_cart_no;
+    private TextInputEditText edt_gst_no;
+    private TextInputEditText edt_bank_details;
+
     public RelativeLayout rl_add_sub_contractor;
     private Button btn_register;
 
@@ -53,12 +60,18 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sub_contractor_list);
-        String toolBarTitle ="Sub Contractor";
+        String toolBarTitle = "Sub Contractor";
 
-        edt_first_name = findViewById(R.id.edt_first_name);
-        edt_last_name = findViewById(R.id.edt_last_name);
+        edt_firm_name = findViewById(R.id.edt_firm_name);
+        edt_full_name = findViewById(R.id.edt_full_name);
+        edt_address = findViewById(R.id.edt_address);
         edt_mobile = findViewById(R.id.edt_mobile);
         edt_email = findViewById(R.id.edt_email);
+        edt_pan_cart_no = findViewById(R.id.edt_pan_cart_no);
+        edt_aadhar_cart_no = findViewById(R.id.edt_aadhar_cart_no);
+        edt_gst_no = findViewById(R.id.edt_gst_no);
+        edt_bank_details = findViewById(R.id.edt_bank_details);
+
         rl_add_sub_contractor = findViewById(R.id.rl_add_sub_contractor);
         edt_search_work_form = findViewById(R.id.edt_search_sub_contractor_work_form);
         recycler_view = findViewById(R.id.recycler_view_sub_contractor);
@@ -68,8 +81,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
         //Start of dynamic title code---------------------
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-        {
+        if (actionBar != null) {
             actionBar.setTitle(toolBarTitle);
         }
         //End of dynamic title code----------------------
@@ -89,7 +101,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recycler_view.setLayoutManager(mLayoutManager);
 
-        mAdapter = new SubContractorListAdapter(SelectSubContractorListActivity.this,subContractors);
+        mAdapter = new SubContractorListAdapter(SelectSubContractorListActivity.this, subContractors);
         recycler_view.setAdapter(mAdapter);
         edt_search_work_form.addTextChangedListener(new TextWatcher() {
             @Override
@@ -124,16 +136,23 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     }
 
     private void registerSubContractor() {
-        String fname = edt_first_name.getText().toString();
-        String lname = edt_last_name.getText().toString();
-        String email = edt_email.getText().toString();
+        String firm_name = edt_firm_name.getText().toString();
+        String full_name = edt_full_name.getText().toString();
+        String address = edt_address.getText().toString();
         String mobile = edt_mobile.getText().toString();
+        String email = edt_email.getText().toString();
+        String pan_cart_no = edt_pan_cart_no.getText().toString();
+        String aadhar_cart_no = edt_aadhar_cart_no.getText().toString();
+        String gst_no = edt_gst_no.getText().toString();
+        String bank_details = edt_bank_details.getText().toString();
         User user = DatabaseUtil.on().getAllUser().get(0);
         int id = user.server_id;
 
-        if(validateData()) {
+        if (validateData()) {
             showLoader();
-            RetrofitClient.getApiService().storeSubContractor(fname,lname,id,mobile,email,"NULL").enqueue(new Callback<SubContractor>() {
+            RetrofitClient.getApiService().storeSubContractor(firm_name, full_name, id, mobile, email, "NULL",address,pan_cart_no,
+                    aadhar_cart_no,gst_no,bank_details
+                    ).enqueue(new Callback<SubContractor>() {
                 @Override
                 public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
                     if (response.code() == 200 && response.body() != null) {
@@ -151,7 +170,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
                 @Override
                 public void onFailure(Call<SubContractor> call, Throwable t) {
-                    Toast.makeText(SelectSubContractorListActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SelectSubContractorListActivity.this, "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     stopLoader();
                 }
             });
@@ -160,44 +179,50 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
     private boolean validateData() {
         boolean isValid = false;
-        String fanme = edt_first_name.getText().toString();
-        String lname = edt_last_name.getText().toString();
-        String email = edt_email.getText().toString();
+        String firm_name = edt_firm_name.getText().toString();
+        String full_name = edt_full_name.getText().toString();
+        String address = edt_address.getText().toString();
         String mobile = edt_mobile.getText().toString();
+        String email = edt_email.getText().toString();
+        String pan_cart_no = edt_pan_cart_no.getText().toString();
+        String aadhar_cart_no = edt_aadhar_cart_no.getText().toString();
+        String gst_no = edt_gst_no.getText().toString();
+
         String error = "Empty Feild";
 
-        if(fanme.isEmpty() || fanme.equalsIgnoreCase("")) {
-            edt_first_name.setError(error);
-            edt_first_name.requestFocus();
+        if (firm_name.isEmpty() || firm_name.equalsIgnoreCase("")) {
+            edt_firm_name.setError(error);
+            edt_firm_name.requestFocus();
             isValid = false;
-        } else if(lname.isEmpty() || lname.equalsIgnoreCase("")) {
-            edt_last_name.setError(error);
-            edt_last_name.requestFocus();
+        } else if (full_name.isEmpty() || full_name.equalsIgnoreCase("")) {
+            edt_full_name.setError(error);
+            edt_full_name.requestFocus();
             isValid = false;
-        } else if(email.isEmpty() || email.equalsIgnoreCase("")) {
-            edt_email.setError(error);
-            edt_email.requestFocus();
+        } else if (address.isEmpty() || address.equalsIgnoreCase("")) {
+            edt_address.setError(error);
+            edt_address.requestFocus();
             isValid = false;
-        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             edt_email.setError("Invalid Email");
             edt_email.requestFocus();
             isValid = false;
-        }else if(!Patterns.PHONE.matcher(mobile).matches()) {
+        } else if (!Patterns.PHONE.matcher(mobile).matches()) {
             edt_mobile.setError("Invalid Mobile Number");
             edt_mobile.requestFocus();
             isValid = false;
-        } else if(mobile.length() < 10) {
+        } else if (mobile.length() < 10) {
             edt_mobile.setError("Invalid Mobile Number");
             edt_mobile.requestFocus();
             isValid = false;
-        } else if(mobile.isEmpty() || mobile.equalsIgnoreCase("")) {
+        } else if (mobile.isEmpty() || mobile.equalsIgnoreCase("")) {
             edt_mobile.setError(error);
             edt_mobile.requestFocus();
             isValid = false;
         } else {
-            edt_first_name.setError(null);
-            edt_last_name.setError(null);
+            edt_firm_name.setError(null);
+            edt_full_name.setError(null);
             edt_email.setError(null);
+            edt_address.setError(null);
             edt_mobile.setError(null);
             isValid = true;
         }
@@ -222,7 +247,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                 if (response.code() == 200 && response.body() != null) {
                     ArrayList<SubContractor> subContractorsFromUser = (ArrayList<SubContractor>) response.body();
                     for (SubContractor subContractor : subContractorsFromUser) {
-                        if (!contains(prevSubContractors,subContractor)) {
+                        if (!contains(prevSubContractors, subContractor)) {
                             subContractors.add(subContractor);
                         }
                     }
@@ -236,13 +261,13 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
             @Override
             public void onFailure(Call<List<SubContractor>> call, Throwable t) {
-                Toast.makeText(SelectSubContractorListActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectSubContractorListActivity.this, "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });
     }
 
-    private boolean contains(ArrayList<SubContractor> list,SubContractor listitem) {
+    private boolean contains(ArrayList<SubContractor> list, SubContractor listitem) {
         boolean is_contain = false;
         for (SubContractor subContractor : list) {
             if ((subContractor.id == listitem.id) && (subContractor.fname.equalsIgnoreCase(listitem.fname))

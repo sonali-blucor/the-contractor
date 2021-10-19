@@ -35,4 +35,6 @@
     <string name="register">Regitser</string>
     <string name="client_work_order">Client Work Order</string>
     <string name="client_billing">Client Billing</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="save">Save</string>
 </resources>
