@@ -43,6 +43,9 @@ public class BilliModel implements Parcelable {
     @SerializedName("project_id")
     @Expose
     public int project_id;
+    @SerializedName("sub_contractor_id")
+    @Expose
+    public int sub_contractor_id;
 
     public BilliModel() {
     }
@@ -57,6 +60,7 @@ public class BilliModel implements Parcelable {
         payment_date = in.readString();
         billing_date = in.readString();
         project_id = in.readInt();
+        sub_contractor_id = in.readInt();
     }
 
     public static final Creator<BilliModel> CREATOR = new Creator<BilliModel>() {
@@ -163,5 +167,6 @@ public class BilliModel implements Parcelable {
         dest.writeString(payment_date);
         dest.writeString(billing_date);
         dest.writeInt(project_id);
+        dest.writeInt(sub_contractor_id);
     }
 }

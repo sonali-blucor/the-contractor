@@ -300,6 +300,21 @@ public interface ApiService {
     @POST(Contants.SHOW_BILL_BY_PROJECT_ID)
     Call<List<BilliModel>> getAllBillByProjectId(@Field("project_id") int project_id);
 
+
+    // added 19.10.2021
+    @FormUrlEncoded
+    @POST(Contants.SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID)
+    Call<List<WorkOrderModel>> getAllWorkOrderBySubContractorId(@Field("project_id") int project_id, @Field("sub_contractor_id") int sub_contractor_id);
+
+    @FormUrlEncoded
+    @POST(Contants.SHOW_BILL_BY_SUB_CONTRACTOR_ID)
+    Call<List<BilliModel>> getAllBillBySubContractorId(@Field("project_id") int project_id, @Field("sub_contractor_id") int sub_contractor_id);
+
+    @FormUrlEncoded
+    @POST(Contants.VIEW_ALL_SUB_CONTRACTOR_BY_CONTRACTOR_ID)
+    Call<List<SubContractor>> getAllSubContractorType(@Field("contractor_id") int contractor_id, @Field("project_id") int project_id);
+
+
     @FormUrlEncoded
     @POST(Contants.ADD_WORK_ORDER_BY_PROJECT_ID)
     Call<WorkOrderResponseModel> storeWorkOrderByProjectId(@Field("is_edit") boolean is_edit,
@@ -343,6 +358,51 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.FETCH_HOLIDAYS_BY_PROJECT)
     Call<ArrayList<HolidayModel>> getHolidaysByProjectId(@Field("project_id") int project_id);
+
+
+    // added 19.10.20921
+    @FormUrlEncoded
+    @POST(Contants.ADD_BILL_BY_SUB_CONTRACTOR_PROJECT_ID)
+    Call<BillResponseModel> storeBillBySubContractorProjectId(@Field("is_edit") boolean is_edit,
+                                                              @Field("bill_id") int bill_id,
+                                                              @Field("percentage") float percentage,
+                                                              @Field("amount") double amount,
+                                                              @Field("remark") String remark,
+                                                              @Field("balance") double balance,
+                                                              @Field("paid") double paid,
+                                                              @Field("payment_date") String payment_date,
+                                                              @Field("billing_date") String billing_date,
+                                                              @Field("project_id") int project_id,
+                                                              @Field("sub_contractor_id") int sub_contractor_id
+    );
+
+    @FormUrlEncoded
+    @POST(Contants.ADD_WORK_ORDER_BY_SUB_CONTRACTOR_PROJECT_ID)
+    Call<WorkOrderResponseModel> storeWorkOrderBySubContractorProjectId(@Field("is_edit") boolean is_edit,
+                                                                        @Field("work_order_id") int work_order_id,
+                                                                        @Field("work_description") String work_description,
+                                                                        @Field("unit_id") int unit_id,
+                                                                        @Field("quantity") long quantity,
+                                                                        @Field("rate") long rate,
+                                                                        @Field("amount") long amount,
+                                                                        @Field("project_id") int project_id,
+                                                                        @Field("sub_contractor_id") int sub_contractor_id
+    );
+
+    @FormUrlEncoded
+    @POST(Contants.ADD_CLIENT_BILL_BY_SUB_CONTRACTOR_PROJECT_ID)
+    Call<BillResponseModel> storeClientBillBySubContractorProjectId(@Field("is_edit") boolean is_edit,
+                                                                    @Field("bill_id") int bill_id,
+                                                                    @Field("percentage") float percentage,
+                                                                    @Field("amount") double amount,
+                                                                    @Field("remark") String remark,
+                                                                    @Field("balance") double balance,
+                                                                    @Field("paid") double paid,
+                                                                    @Field("payment_date") String payment_date,
+                                                                    @Field("billing_date") String billing_date,
+                                                                    @Field("project_id") int project_id,
+                                                                    @Field("sub_contractor_id") int sub_contractor_id);
+
 
 }
 

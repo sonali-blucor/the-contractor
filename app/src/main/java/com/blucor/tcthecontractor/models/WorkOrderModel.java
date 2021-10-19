@@ -39,6 +39,11 @@ public class WorkOrderModel implements Parcelable {
     @Expose
     public int project_id;
 
+    @SerializedName("sub_contractor_id")
+    @Expose
+    public int sub_contractor_id;
+
+
     public WorkOrderModel() {
     }
 
@@ -52,6 +57,7 @@ public class WorkOrderModel implements Parcelable {
         rate = in.readLong();
         amount = in.readLong();
         project_id = in.readInt();
+        sub_contractor_id = in.readInt();
     }
 
     public static final Creator<WorkOrderModel> CREATOR = new Creator<WorkOrderModel>() {
@@ -149,5 +155,6 @@ public class WorkOrderModel implements Parcelable {
         dest.writeLong(rate);
         dest.writeLong(amount);
         dest.writeInt(project_id);
+        dest.writeInt(sub_contractor_id);
     }
 }

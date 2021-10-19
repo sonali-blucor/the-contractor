@@ -14,12 +14,12 @@
 
         <activity
             android:name=".project.material.AddMaterialsActivity"
-            android:label="Add Material"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Add Material" />
         <activity
             android:name=".project.material.AddSupplierActivity"
-            android:label="Add Supplier"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Add Supplier" />
 
         <activity
             android:name=".project.workorderbilling.ClientBillingActivity"
@@ -55,7 +55,7 @@
             android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity" />
-        <activity android:name=".project.sub_contractor.BillingActivity" />
+        <activity android:name=".project.sub_contractor.SubContractorBillingActivity" />
         <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity" />
         <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.activity.AddSubContractorActivity" />
@@ -155,6 +155,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
