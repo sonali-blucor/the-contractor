@@ -33,12 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddSubContractorActivity extends BaseAppCompatActivity {
-    private TextInputEditText edt_first_name;
-    private TextInputEditText edt_last_name;
+    private TextInputEditText edt_firm_name;
+    private TextInputEditText edt_full_name;
+    private TextInputEditText edt_address;
     private TextInputEditText edt_mobile;
     private TextInputEditText edt_email;
-    private TextInputEditText edt_password;
-    private TextInputEditText edt_cpassword;
+    private TextInputEditText edt_pan_cart_no;
+    private TextInputEditText edt_aadhar_cart_no;
+    private TextInputEditText edt_gst_no;
+    private TextInputEditText edt_bank_details;
     private SubContractor subContractor;
     private Button btn_register;
     public EditText edt_search;
@@ -55,12 +58,16 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sub_contractor);
 
-        edt_first_name = findViewById(R.id.edt_first_name);
-        edt_last_name = findViewById(R.id.edt_last_name);
+        edt_firm_name = findViewById(R.id.edt_firm_name);
+        edt_full_name = findViewById(R.id.edt_full_name);
+        edt_address = findViewById(R.id.edt_address);
         edt_mobile = findViewById(R.id.edt_mobile);
         edt_email = findViewById(R.id.edt_email);
-        edt_password = findViewById(R.id.edt_password);
-        edt_cpassword = findViewById(R.id.edt_cpassword);
+        edt_pan_cart_no = findViewById(R.id.edt_pan_cart_no);
+        edt_aadhar_cart_no = findViewById(R.id.edt_aadhar_cart_no);
+        edt_gst_no = findViewById(R.id.edt_gst_no);
+        edt_bank_details = findViewById(R.id.edt_bank_details);
+
         edt_search = findViewById(R.id.edt_search_sub_contractor);
         btn_register = findViewById(R.id.btn_register);
         rl_search = findViewById(R.id.rl_search_sub_contractor);
@@ -130,17 +137,22 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
     }
 
     private void registerSubContractor() {
-        String fname = edt_first_name.getText().toString();
-        String lname = edt_last_name.getText().toString();
-        String email = edt_email.getText().toString();
+        String firm_name = edt_firm_name.getText().toString();
+        String full_name = edt_full_name.getText().toString();
+        String address = edt_address.getText().toString();
         String mobile = edt_mobile.getText().toString();
-        String password = edt_password.getText().toString();
+        String email = edt_email.getText().toString();
+        String pan_cart_no = edt_pan_cart_no.getText().toString();
+        String aadhar_cart_no = edt_aadhar_cart_no.getText().toString();
+        String gst_no = edt_gst_no.getText().toString();
+        String bank_details = edt_bank_details.getText().toString();
         User user = DatabaseUtil.on().getAllUser().get(0);
         int id = user.server_id;
 
         if(validateData()) {
             showLoader();
-            RetrofitClient.getApiService().storeSubContractor(fname,lname,id,mobile,email,password).enqueue(new Callback<SubContractor>() {
+            RetrofitClient.getApiService().storeSubContractor(firm_name, full_name, id, mobile, email, "NULL",address,pan_cart_no,
+                    aadhar_cart_no,gst_no,bank_details).enqueue(new Callback<SubContractor>() {
                 @Override
                 public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
                     if (response.code() == 200 && response.body() != null) {
@@ -170,25 +182,27 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
 
     private boolean validateData() {
         boolean isValid = false;
-        String fanme = edt_first_name.getText().toString();
-        String lname = edt_last_name.getText().toString();
-        String email = edt_email.getText().toString();
+        String firm_name = edt_firm_name.getText().toString();
+        String full_name = edt_full_name.getText().toString();
+        String address = edt_address.getText().toString();
         String mobile = edt_mobile.getText().toString();
-        String password = edt_password.getText().toString();
-        String cpassword = edt_cpassword.getText().toString();
+        String email = edt_email.getText().toString();
+        String pan_cart_no = edt_pan_cart_no.getText().toString();
+        String aadhar_cart_no = edt_aadhar_cart_no.getText().toString();
+        String gst_no = edt_gst_no.getText().toString();
         String error = "Empty Feild";
 
-        if(fanme.isEmpty() || fanme.equalsIgnoreCase("")) {
-            edt_first_name.setError(error);
-            edt_first_name.requestFocus();
+        if (firm_name.isEmpty() || firm_name.equalsIgnoreCase("")) {
+            edt_firm_name.setError(error);
+            edt_firm_name.requestFocus();
             isValid = false;
-        } else if(lname.isEmpty() || lname.equalsIgnoreCase("")) {
-            edt_last_name.setError(error);
-            edt_last_name.requestFocus();
+        } else if (full_name.isEmpty() || full_name.equalsIgnoreCase("")) {
+            edt_full_name.setError(error);
+            edt_full_name.requestFocus();
             isValid = false;
-        } else if(email.isEmpty() || email.equalsIgnoreCase("")) {
-            edt_email.setError(error);
-            edt_email.requestFocus();
+        } else if (address.isEmpty() || address.equalsIgnoreCase("")) {
+            edt_address.setError(error);
+            edt_address.requestFocus();
             isValid = false;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             edt_email.setError("Invalid Email");
@@ -206,25 +220,12 @@ public class AddSubContractorActivity extends BaseAppCompatActivity {
             edt_mobile.setError(error);
             edt_mobile.requestFocus();
             isValid = false;
-        } else if(password.isEmpty() || password.equalsIgnoreCase("")) {
-            edt_password.setError(error);
-            edt_password.requestFocus();
-            isValid = false;
-        } else if(cpassword.isEmpty() || cpassword.equalsIgnoreCase("")) {
-            edt_cpassword.setError(error);
-            edt_cpassword.requestFocus();
-            isValid = false;
-        } else if(!password.equals(cpassword) || password.length() != cpassword.length()) {
-            edt_password.setError("Password not match");
-            edt_password.requestFocus();
-            isValid = false;
-        }  else {
-            edt_first_name.setError(null);
-            edt_last_name.setError(null);
+        } else {
+            edt_firm_name.setError(null);
+            edt_full_name.setError(null);
             edt_email.setError(null);
+            edt_address.setError(null);
             edt_mobile.setError(null);
-            edt_password.setError(null);
-            edt_cpassword.setError(null);
             isValid = true;
         }
 
