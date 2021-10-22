@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.models.ClientProjectActivityModel;
-import com.blucor.tcthecontractor.models.Material;
+import com.blucor.tcthecontractor.models.MaterialPurchase;
 import com.blucor.tcthecontractor.models.ProjectActivityModel;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (mList.get(position) instanceof ProjectActivityModel) {
             return VIEW_TYPE_NORMAL_ACTIVITY;
         }
-        if (mList.get(position) instanceof Material) {
+        if (mList.get(position) instanceof MaterialPurchase) {
             return VIEW_TYPE_NORMAL_MATERIAL;
         }
         if (mList.get(position) instanceof ClientProjectActivityModel) {
@@ -187,7 +187,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public class MaterialViewHolder extends BaseViewHolder {
 
         private final View viewHolder;
-        private Material item;
+        private MaterialPurchase item;
         private final LinearLayout item_table;
         private final ImageView item_img_edit;
         private final TextView item_1;
@@ -224,12 +224,12 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @SuppressLint("UseCompatLoadingForDrawables")
         public void onBind(int position) {
             super.onBind(position);
-            item = (Material) mList.get(position);
+            item = (MaterialPurchase) mList.get(position);
             item_6.setVisibility(View.VISIBLE);
             if (position == 0) {
                 item_table.setBackgroundColor(mContext.getResources().getColor(R.color.yellow));
                 setViewToHeader(item_1, "No.");
-                setViewToHeader(item_2, "Material Name");
+                setViewToHeader(item_2, "MaterialPurchase Name");
                 setViewToHeader(item_3, "Date");
                 setViewToHeader(item_4, "Type");
                 setViewToHeader(item_6, "Quantity");
@@ -237,7 +237,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     item_img_edit.setVisibility(View.VISIBLE);
                 //}
             } else {
-                item_1.setText(String.valueOf(position));
+              /*  item_1.setText(String.valueOf(position));
                 item_2.setText(""+item.material_name);
                 item_3.setText(""+item.material_date);
                 item_4.setText(""+item.material_type);
@@ -252,7 +252,7 @@ public class TableRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                             }
                         }
                     });
-                //}
+                //}*/
             }
         }
 

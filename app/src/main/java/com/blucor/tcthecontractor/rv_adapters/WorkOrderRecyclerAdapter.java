@@ -3,36 +3,23 @@ package com.blucor.tcthecontractor.rv_adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.abdulhakeem.seemoretextview.SeeMoreTextView;
 import com.blucor.tcthecontractor.R;
-import com.blucor.tcthecontractor.models.ClientProjectActivityModel;
-import com.blucor.tcthecontractor.models.Material;
-import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class WorkOrderRecyclerAdapter extends BaseAdapter {
     private List mList;

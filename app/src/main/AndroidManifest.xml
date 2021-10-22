@@ -13,11 +13,11 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".project.material.AddMaterialsActivity"
+            android:name=".project.materialPurchase.AddMaterialsActivity"
             android:exported="true"
             android:label="Add Material" />
         <activity
-            android:name=".project.material.AddSupplierActivity"
+            android:name=".project.materialPurchase.AddSupplierActivity"
             android:exported="true"
             android:label="Add Supplier" />
 
@@ -78,7 +78,7 @@
             android:name=".client.ClientProjectsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBar" />
         <activity
-            android:name=".project.material.AddMaterialDetailsActivity"
+            android:name=".project.materialPurchase.AddMaterialDetailsActivity"
             android:label="Material"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -116,13 +116,13 @@
             android:name=".project.activity.EditProjectActActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.MaterialMenuActivity"
+            android:name=".project.materialPurchase.MaterialMenuActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.AddMaterialActivity"
+            android:name=".project.materialPurchase.AddMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
-            android:name=".project.material.EditMaterialActivity"
+            android:name=".project.materialPurchase.EditMaterialActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity
             android:name=".account.UserProfileActivity"

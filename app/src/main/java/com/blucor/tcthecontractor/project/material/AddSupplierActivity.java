@@ -10,7 +10,7 @@ import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.ProjectsModel;
-import com.blucor.tcthecontractor.models.Supplier;
+import com.blucor.tcthecontractor.models.SupplierModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -28,7 +28,7 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
     private Button btn_submit;
 
     private ProjectsModel project;
-    private Supplier supplier;
+    private SupplierModal supplierModal;
     private boolean isAddOrEdit = false;
 
 
@@ -53,7 +53,7 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             }
 
             if (getIntent().hasExtra(AppKeys.SUPPLIER)) {
-                supplier = bundle.getParcelable(AppKeys.SUPPLIER);
+                supplierModal = bundle.getParcelable(AppKeys.SUPPLIER);
                 isAddOrEdit = true;
                 setUpData();
             }
@@ -111,11 +111,11 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
 
 
     private void setUpData() {
-        if (supplier != null) {
-            edt_material_supplier_name.setText(supplier.supplierName);
-            edt_supplier_contact_no.setText(supplier.supplierContact);
-            edt_supplier_email.setText(supplier.supplierEmail);
-            edt_supplier_address.setText(supplier.supplierAddress);
+        if (supplierModal != null) {
+            edt_material_supplier_name.setText(supplierModal.supplierName);
+            edt_supplier_contact_no.setText(supplierModal.supplierContact);
+            edt_supplier_email.setText(supplierModal.supplierEmail);
+            edt_supplier_address.setText(supplierModal.supplierAddress);
         }
     }
 
@@ -151,34 +151,34 @@ public class AddSupplierActivity extends BaseAppCompatActivity {
             String adr = edt_supplier_address.getText().toString();
 
 
-            String supplier_id = "";
-            if (supplier != null) {
+            int supplier_id = 0;
+            if (supplierModal != null) {
                 isAddOrEdit = true;
-                supplier_id = supplier.supplierId;
+                supplier_id = supplierModal.supplierId;
             }
 
             showLoader();
-            RetrofitClient.getApiService().storeSupplier(name, cno, email, adr).enqueue(new Callback<Supplier>() {
+            RetrofitClient.getApiService().storeSupplier(name, cno, email, adr).enqueue(new Callback<SupplierModal>() {
                 @Override
-                public void onResponse(Call<Supplier> call, Response<Supplier> response) {
+                public void onResponse(Call<SupplierModal> call, Response<SupplierModal> response) {
                     Log.e("response", response.toString());
                     if (response != null && response.code() == 200) {
                         if (response.body() != null) {
-                            Supplier supplier = response.body();
-                            Toast.makeText(AddSupplierActivity.this, "Supplier store successfully", Toast.LENGTH_SHORT).show();
+                            SupplierModal supplierModal = response.body();
+                            Toast.makeText(AddSupplierActivity.this, "SupplierModal store successfully", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(AddSupplierActivity.this, "Unable to store supplier", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddSupplierActivity.this, "Unable to store supplierModal", Toast.LENGTH_SHORT).show();
                         }
                     } else if (response.code() == 500) {
                         Toast.makeText(AddSupplierActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AddSupplierActivity.this, "Supplier is already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddSupplierActivity.this, "SupplierModal is already exists", Toast.LENGTH_SHORT).show();
                     }
                     stopLoader();
                 }
 
                 @Override
-                public void onFailure(Call<Supplier> call, Throwable t) {
+                public void onFailure(Call<SupplierModal> call, Throwable t) {
                     stopLoader();
                     Log.e("TAG", "Error : " + t.getMessage());
                 }

@@ -38,7 +38,7 @@
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddMaterial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddSupplier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

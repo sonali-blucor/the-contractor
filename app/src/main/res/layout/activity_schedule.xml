@@ -19,14 +19,14 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.materialPurchase.textfield.TextInputLayout
                 android:id="@+id/til_project_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.materialPurchase.textfield.TextInputEditText
                     android:id="@+id/edt_project_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,16 +40,16 @@
                     android:nextFocusDown="@id/edt_project_type"
                     android:singleLine="true" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.materialPurchase.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.materialPurchase.textfield.TextInputLayout
                 android:id="@+id/til_project_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.materialPurchase.textfield.TextInputEditText
                     android:id="@+id/edt_project_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,16 +66,16 @@
                     android:nextFocusDown="@id/edt_project_week"
                     android:singleLine="true" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.materialPurchase.textfield.TextInputLayout>
 
-            <!-- <com.google.android.material.textfield.TextInputLayout
+            <!-- <com.google.android.materialPurchase.textfield.TextInputLayout
                  android:id="@+id/til_project_no_of_holidays"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:layout_margin="@dimen/input_margin_5dp"
                  app:errorIconDrawable="@drawable/edit_background">
 
-                 <com.google.android.material.textfield.TextInputEditText
+                 <com.google.android.materialPurchase.textfield.TextInputEditText
                      android:id="@+id/edt_project_no_of_holidays"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                      android:nextFocusDown="@id/edt_project_type"
                      android:singleLine="true" />
 
-             </com.google.android.material.textfield.TextInputLayout>-->
+             </com.google.android.materialPurchase.textfield.TextInputLayout>-->
 
             <!-- <com.blucor.tcthecontractor.custom.WeekDaysCheckBox
                  android:id="@+id/wd_schedule"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.materialPurchase.textfield.TextInputLayout
                     android:id="@+id/til_no_of_days"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                     android:visibility="gone"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.materialPurchase.textfield.TextInputEditText
                         android:id="@+id/edt_no_of_days"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                         android:nextFocusDown="@id/edt_project_type"
                         android:singleLine="true" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.materialPurchase.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -157,14 +157,14 @@
                         android:transformPivotY="0dp" />
                 </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.materialPurchase.textfield.TextInputLayout
                     android:id="@+id/til_project_week"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/input_margin_5dp"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.materialPurchase.textfield.TextInputEditText
                         android:id="@+id/edt_project_week"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                         android:maxLength="140"
                         android:singleLine="true" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.materialPurchase.textfield.TextInputLayout>
 
             </LinearLayout>
 

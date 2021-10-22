@@ -12,8 +12,8 @@ import com.blucor.tcthecontractor.models.ForgotPasswordModel;
 import com.blucor.tcthecontractor.models.HolidayModel;
 import com.blucor.tcthecontractor.models.InsertActivityResponseModel;
 import com.blucor.tcthecontractor.models.InsertSubActivityResponseModel;
-import com.blucor.tcthecontractor.models.Material;
-import com.blucor.tcthecontractor.models.Materials;
+import com.blucor.tcthecontractor.models.MaterialPurchase;
+import com.blucor.tcthecontractor.models.MaterialsModal;
 import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.Project_Type;
 import com.blucor.tcthecontractor.models.ProjectsModel;
@@ -21,7 +21,7 @@ import com.blucor.tcthecontractor.models.ScheduleModel;
 import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.models.SubContractorAddSearchModel;
-import com.blucor.tcthecontractor.models.Supplier;
+import com.blucor.tcthecontractor.models.SupplierModal;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.models.WorkOrderResponseModel;
@@ -243,25 +243,43 @@ public interface ApiService {
                                              @Field("is_edit") boolean is_edit,
                                              @Field("material_id") int material_id);
 
+    @FormUrlEncoded
+    @POST(Contants.STORE_MATERIAL_PURCHASE)
+    Call<ProjectMaterialModel> storeMaterialPurchase(@Field("supplier_id") int suppler_id,
+                                             @Field("material_id") int materials_id,
+                                             @Field("quantity") String quantity,
+                                             @Field("rate") String rate,
+                                             @Field("amount") String amount,
+                                             @Field("gst") String gst,
+                                             @Field("gst_amt") String gstAmount,
+                                             @Field("total_amt") String totalAmount,
+                                             @Field("paid_amt") String paidAmount,
+                                             @Field("balance_amt") String balanceAmount,
+                                             @Field("contractor_id") int contractor_id,
+                                             @Field("project_id") int project_id,
+                                             @Field("is_edit") boolean is_edit,
+                                             @Field("material_purchase_id") int material_id
+    );
+
     // akasha lawande
 
     @FormUrlEncoded
     @POST(Contants.STORE_MATERIALS)
-    Call<Materials> storeMaterials(@Field("material_brand") String material_brand,
-                                   @Field("material_type") String material_type,
-                                   @Field("material_description") String material_description,
-                                   @Field("unit") int unit);
+    Call<MaterialsModal> storeMaterials(@Field("material_brand") String material_brand,
+                                        @Field("material_type") String material_type,
+                                        @Field("material_description") String material_description,
+                                        @Field("unit") int unit);
 
     @FormUrlEncoded
     @POST(Contants.STORE_SUPPLIER)
-    Call<Supplier> storeSupplier(@Field("supplier_name") String supplier_name,
-                                 @Field("contact") String supplier_contact,
-                                 @Field("email") String supplier_email,
-                                 @Field("address") String supplier_address);
+    Call<SupplierModal> storeSupplier(@Field("supplier_name") String supplier_name,
+                                      @Field("contact") String supplier_contact,
+                                      @Field("email") String supplier_email,
+                                      @Field("address") String supplier_address);
 
     @FormUrlEncoded
-    @POST(Contants.GET_MATERIAL_BY_PROJECT_ID)
-    Call<List<Material>> getMaterialsByProjectId(@Field("project_id") int project_id);
+    @POST(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID)
+    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Field("project_id") int project_id);
 
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CLIENT_ID)
@@ -403,6 +421,11 @@ public interface ApiService {
                                                                     @Field("project_id") int project_id,
                                                                     @Field("sub_contractor_id") int sub_contractor_id);
 
+
+    @GET(Contants.GET_SUPPLER)
+    Call<List<SupplierModal>> getSupplier();
+    @GET(Contants.GET_MATERIALS)
+    Call<List<MaterialsModal>> getMaterials();
 
 }
 

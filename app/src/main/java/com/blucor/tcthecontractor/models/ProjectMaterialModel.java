@@ -12,9 +12,16 @@ public class ProjectMaterialModel implements Parcelable {
     @Expose
     public boolean success;
 
-    @SerializedName("material")
+    @SerializedName("materialPurchase")
     @Expose
-    public Material material;
+    public MaterialPurchase materialPurchase;
+
+    @SerializedName("materials")
+    @Expose
+    public MaterialsModal materialsModal;
+    @SerializedName("supplier")
+    @Expose
+    public MaterialsModal supplier;
 
     @SerializedName("message")
     @Expose
@@ -27,7 +34,9 @@ public class ProjectMaterialModel implements Parcelable {
 
     protected ProjectMaterialModel(Parcel in) {
         success = in.readByte() != 0;
-        material = in.readParcelable(Material.class.getClassLoader());
+        materialPurchase = in.readParcelable(MaterialPurchase.class.getClassLoader());
+        materialsModal = in.readParcelable(MaterialsModal.class.getClassLoader());
+        supplier = in.readParcelable(SupplierModal.class.getClassLoader());
         message = in.readString();
     }
 
@@ -51,7 +60,9 @@ public class ProjectMaterialModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeByte((byte) (success ? 1 : 0));
-        dest.writeParcelable(material, flags);
+        dest.writeParcelable(materialPurchase, flags);
+        dest.writeParcelable(materialsModal, flags);
+        dest.writeParcelable(supplier, flags);
         dest.writeString(message);
     }
 }

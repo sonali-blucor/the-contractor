@@ -7,14 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.R;
-import com.blucor.tcthecontractor.models.Material;
+import com.blucor.tcthecontractor.models.MaterialPurchase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.get(position) instanceof Material) {
+        if (mList.get(position) instanceof MaterialPurchase) {
             return VIEW_TYPE_NORMAL_MATERIAL;
         }
         return 0;
@@ -91,7 +90,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
     public class MaterialViewHolder extends BaseViewHolder {
 
         private final View viewHolder;
-        private Material item;
+        private MaterialPurchase item;
         private TextView tv_material_date;
         private TextView tv_material_supplier;
         private TextView tv_material_type;
@@ -144,7 +143,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         @SuppressLint("UseCompatLoadingForDrawables")
         public void onBind(int position) {
             super.onBind(position);
-            item = (Material) mList.get(position);
+            item = (MaterialPurchase) mList.get(position);
 
         }
 

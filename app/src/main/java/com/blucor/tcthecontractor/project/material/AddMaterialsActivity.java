@@ -18,10 +18,9 @@ import android.widget.Toast;
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
-import com.blucor.tcthecontractor.models.Material;
-import com.blucor.tcthecontractor.models.Materials;
+import com.blucor.tcthecontractor.models.MaterialPurchase;
+import com.blucor.tcthecontractor.models.MaterialsModal;
 import com.blucor.tcthecontractor.models.ProjectsModel;
-import com.blucor.tcthecontractor.models.Supplier;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
@@ -39,7 +38,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
     private Button btn_submit;
 
 
-    private Material material;
+    private MaterialPurchase materialPurchase;
     private ProjectsModel project;
     private boolean isAddOrEdit = false;
     List<UnitModal> units;
@@ -66,7 +65,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             }
 
             if (getIntent().hasExtra(AppKeys.MATERIAL)) {
-                material = bundle.getParcelable(AppKeys.MATERIAL);
+                materialPurchase = bundle.getParcelable(AppKeys.MATERIAL);
                 isAddOrEdit = true;
                 setUpData();
             }
@@ -122,11 +121,11 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
 
 
     private void setUpData() {
-        if (material != null) {
-            edt_material_bname.setText(material.material_brand);
-            edt_material_type.setText(material.material_type);
-//            edt_material_des.setText(material.material_type);        
-            edt_material_unit.setText(material.unit);
+        if (materialPurchase != null) {
+            edt_material_bname.setText(materialPurchase.material_brand);
+            edt_material_type.setText(materialPurchase.material_type);
+//            edt_material_des.setText(materialPurchase.material_type);
+            edt_material_unit.setText(materialPurchase.unit);
         }
     }
 
@@ -218,33 +217,33 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             int unit = unit_id;
 
             int material_id = 0;
-            if (material != null) {
+            if (materialPurchase != null) {
                 isAddOrEdit = true;
-                material_id = material.material_id;
+                material_id = materialPurchase.material_id;
             }
 
             showLoader();
-            RetrofitClient.getApiService().storeMaterials( bname,mType, des, unit).enqueue(new Callback<Materials>() {
+            RetrofitClient.getApiService().storeMaterials( bname,mType, des, unit).enqueue(new Callback<MaterialsModal>() {
                 @Override
-                public void onResponse(Call<Materials> call, Response<Materials> response) {
+                public void onResponse(Call<MaterialsModal> call, Response<MaterialsModal> response) {
                     Log.e("response", response.toString());
                     if (response != null && response.code() == 200) {
                         if (response.body() != null) {
-                            Materials materials = response.body();
-                            Toast.makeText(AddMaterialsActivity.this, "Material store successfully", Toast.LENGTH_SHORT).show();
+                            MaterialsModal materialsModal = response.body();
+                            Toast.makeText(AddMaterialsActivity.this, "MaterialPurchase store successfully", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(AddMaterialsActivity.this, "Unable to store material", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMaterialsActivity.this, "Unable to store materialPurchase", Toast.LENGTH_SHORT).show();
                         }
                     } else if (response.code() == 500) {
                         Toast.makeText(AddMaterialsActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AddMaterialsActivity.this, "Material is already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddMaterialsActivity.this, "MaterialPurchase is already exists", Toast.LENGTH_SHORT).show();
                     }
                     stopLoader();
                 }
 
                 @Override
-                public void onFailure(Call<Materials> call, Throwable t) {
+                public void onFailure(Call<MaterialsModal> call, Throwable t) {
                     stopLoader();
                     Log.e("TAG", "Error : " + t.getMessage());
                 }

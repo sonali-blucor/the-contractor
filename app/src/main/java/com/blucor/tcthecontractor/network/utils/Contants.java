@@ -73,4 +73,9 @@ public class Contants {
     public static final String ADD_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "add_bill_by_sub_contractor_project_id";
     public static final String ADD_WORK_ORDER_BY_SUB_CONTRACTOR_PROJECT_ID = "add_work_order_by_sub_contractor_project_id";
     public static final String ADD_CLIENT_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "add_client_bill_by_sub_contractor_project_id";
+    public static final String STORE_MATERIAL_PURCHASE = "purchase_material";
+    public static final String GET_SUPPLER = "All_supplier";
+    public static final String GET_MATERIALS = "all_material";
+
+    public static final String GET_MATERIAL_PURCHASE_BY_PROJECT_ID = "select_material";
 }

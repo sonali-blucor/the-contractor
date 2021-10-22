@@ -27,7 +27,7 @@
         android:layout_below="@id/tv"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.materialPurchase.textfield.TextInputLayout
             android:id="@+id/til_workdesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:background="@drawable/edit_background"
             app:errorIconDrawable="@drawable/edit_background">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.materialPurchase.textfield.TextInputEditText
                 android:id="@+id/et_workdesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 android:onClick="showPopupViewForUnits"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.materialPurchase.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.materialPurchase.textfield.TextInputLayout
                     android:id="@+id/til_unit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                     android:background="@drawable/edit_background"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <com.google.android.materialPurchase.textfield.TextInputEditText
                         android:id="@+id/et_unit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                         android:onClick="showPopupViewForUnits"
                         android:singleLine="true" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.materialPurchase.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/img_project_type"
@@ -98,7 +98,7 @@
                     android:src="@drawable/ic_down" />
             </RelativeLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.materialPurchase.textfield.TextInputLayout
                 android:id="@+id/til_qty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.materialPurchase.textfield.TextInputEditText
                     android:id="@+id/et_qty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                     android:onClick="showPopupViewForUnits"
                     android:singleLine="true" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.materialPurchase.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.materialPurchase.textfield.TextInputLayout
                 android:id="@+id/til_rate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.materialPurchase.textfield.TextInputEditText
                     android:id="@+id/et_rate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -155,9 +155,9 @@
                     android:onClick="showPopupViewForUnits"
                     android:singleLine="true" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.materialPurchase.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.materialPurchase.textfield.TextInputLayout
                 android:id="@+id/til_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.materialPurchase.textfield.TextInputEditText
                     android:id="@+id/et_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
                     android:onClick="showPopupViewForUnits"
                     android:singleLine="true" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.materialPurchase.textfield.TextInputLayout>
 
         </LinearLayout>
 
