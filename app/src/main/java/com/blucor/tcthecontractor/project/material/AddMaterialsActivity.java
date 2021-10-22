@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
-import com.blucor.tcthecontractor.models.MaterialPurchase;
 import com.blucor.tcthecontractor.models.MaterialsModal;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.UnitModal;
@@ -38,7 +37,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
     private Button btn_submit;
 
 
-    private MaterialPurchase materialPurchase;
+    private MaterialsModal materialPurchase;
     private ProjectsModel project;
     private boolean isAddOrEdit = false;
     List<UnitModal> units;

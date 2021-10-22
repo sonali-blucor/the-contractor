@@ -20,7 +20,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/_5sdp">
 
-                <com.google.android.materialPurchase.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_material_supplier_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                     app:errorIconDrawable="@drawable/edit_background">
 
 
-                    <com.google.android.materialPurchase.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_material_supplier_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -41,14 +41,14 @@
                         android:maxLength="100"
                         android:nextFocusDown="@id/edt_supplier_contact_no"
                         android:singleLine="true" />
-                </com.google.android.materialPurchase.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_supplier_contact_no"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                         android:background="@drawable/edit_background"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_supplier_contact_no"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -72,9 +72,9 @@
                             android:nextFocusDown="@id/edt_supplier_email"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_supplier_email"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                         android:background="@drawable/edit_background"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_supplier_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -96,19 +96,19 @@
                             android:maxLength="30"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </LinearLayout>
 
-                <com.google.android.materialPurchase.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_supplier_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_background"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.materialPurchase.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@id/edt_supplier_address"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_100sdp"
@@ -119,7 +119,7 @@
                         android:maxLength="100"
                         android:singleLine="true" />
 
-                </com.google.android.materialPurchase.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
             </LinearLayout>

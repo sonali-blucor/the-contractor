@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".project.activity.BillingDetailsDisplayListActivity">
+    android:orientation="vertical">
 
   <!--  <LinearLayout
 
@@ -46,7 +45,7 @@
 
     </TextView>
 
-    <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add_billing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

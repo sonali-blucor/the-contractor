@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <com.google.android.materialPurchase.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_sub_activity_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:background="@drawable/edit_background"
         app:errorIconDrawable="@drawable/edit_background">
 
-        <com.google.android.materialPurchase.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_sub_activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,9 +26,9 @@
             android:nextFocusDown="@id/edt_sub_activity_start_date"
             android:textColor="@color/black"
             android:singleLine="true" />
-    </com.google.android.materialPurchase.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.materialPurchase.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_sub_activity_start_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:background="@drawable/edit_background"
         app:errorIconDrawable="@drawable/edit_background">
 
-        <com.google.android.materialPurchase.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_sub_activity_start_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,9 +54,9 @@
             android:nextFocusDown="@id/edt_sub_activity_end_date"
             android:textColor="@color/black"
             android:singleLine="true" />
-    </com.google.android.materialPurchase.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.materialPurchase.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_sub_activity_end_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
         android:background="@drawable/edit_background"
         app:errorIconDrawable="@drawable/edit_background">
 
-        <com.google.android.materialPurchase.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_sub_activity_end_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,9 +83,9 @@
             android:nextFocusDown="@id/btn_submit"
             android:singleLine="true" />
 
-    </com.google.android.materialPurchase.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.materialPurchase.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_add_sub_contractor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
         android:background="@drawable/edit_background"
         app:errorIconDrawable="@drawable/edit_background">
 
-        <com.google.android.materialPurchase.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_add_sub_contractor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             android:drawableRight="@drawable/ic_add_client"
             android:singleLine="true" />
 
-    </com.google.android.materialPurchase.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tv_total_sub_activity_days"

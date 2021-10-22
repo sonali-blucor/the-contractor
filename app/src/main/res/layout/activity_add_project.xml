@@ -18,14 +18,14 @@
             android:layout_margin="@dimen/margin_5dp"
             android:orientation="vertical">
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_project_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/input_margin_5dp"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_project_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,13 +38,13 @@
                     android:nextFocusDown="@id/edt_project_type"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.materialPurchase.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_project_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                     android:background="@drawable/edit_background"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.materialPurchase.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_project_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                         android:onClick="showPopupViewForPType"
                         android:singleLine="true" />
 
-                </com.google.android.materialPurchase.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/img_project_type"
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.materialPurchase.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_contract_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                     android:background="@drawable/edit_background"
                     app:errorIconDrawable="@drawable/edit_background">
 
-                    <com.google.android.materialPurchase.textfield.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_contract_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                         android:onClick="showPopupViewForCType"
                         android:singleLine="true" />
 
-                </com.google.android.materialPurchase.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/img_client_type"
@@ -121,7 +121,7 @@
             </RelativeLayout>
 
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_add_client"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_add_client"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                     android:nextFocusDown="@id/edt_project_location"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
           <!--  <LinearLayout
                 android:layout_width="match_parent"
@@ -249,7 +249,7 @@
 
             </LinearLayout>-->
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_work_order_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_work_order_form"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -275,9 +275,9 @@
                     android:nextFocusDown="@id/edt_project_location"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_billing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -286,7 +286,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_billing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -303,9 +303,9 @@
                     android:nextFocusDown="@id/edt_project_location"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_project_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -313,7 +313,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_project_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -332,9 +332,9 @@
                     android:nextFocusDown="@id/edt_project_start_date"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_project_start_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -343,7 +343,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_project_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -361,9 +361,9 @@
                     android:nextFocusDown="@id/edt_project_end_date"
                     android:textColor="@color/black"
                     android:singleLine="true" />
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_project_end_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -372,7 +372,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_project_end_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -391,9 +391,9 @@
                     android:nextFocusDown="@id/btn_submit"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_project_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -402,7 +402,7 @@
                 android:visibility="gone"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_project_duration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -415,7 +415,7 @@
                     android:nextFocusDown="@id/edt_project_start_date"
                     android:singleLine="true" />
 
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

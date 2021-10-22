@@ -16,7 +16,7 @@
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
-            <com.google.android.materialPurchase.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_activity_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:background="@drawable/edit_background"
                 app:errorIconDrawable="@drawable/edit_background">
 
-                <com.google.android.materialPurchase.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_activity_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                     android:inputType="text"
                     android:maxLength="40"
                     android:singleLine="true" />
-            </com.google.android.materialPurchase.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/main_activity_start_end_date"
@@ -60,7 +60,7 @@
 
         </LinearLayout>
 
-        <com.google.android.materialPurchase.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

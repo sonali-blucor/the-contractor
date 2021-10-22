@@ -69,7 +69,7 @@
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     android:orientation="vertical">
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                         android:layout_margin="@dimen/input_margin_5dp"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_first_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -94,9 +94,9 @@
                             android:singleLine="true" />
 
                         <requestFocus></requestFocus>
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_last_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                         android:layout_margin="@dimen/input_margin_5dp"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_last_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -120,9 +120,9 @@
                             android:nextFocusDown="@id/edt_mobile"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_client_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                         android:layout_margin="@dimen/input_margin_5dp"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_client_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -146,9 +146,9 @@
                             android:nextFocusDown="@id/edt_mobile"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_mobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                         android:layout_margin="@dimen/input_margin_5dp"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -171,9 +171,9 @@
                             android:nextFocusDown="@id/edt_email"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                         android:layout_margin="@dimen/input_margin_5dp"
                         app:errorIconDrawable="@drawable/edit_background">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -196,9 +196,9 @@
                             android:nextFocusDown="@id/edt_password"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
                         app:errorIconDrawable="@drawable/edit_background"
                         app:passwordToggleEnabled="true">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -223,9 +223,9 @@
                             android:nextFocusDown="@id/edt_cpassword"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.materialPurchase.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_cpassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
                         app:errorIconDrawable="@drawable/edit_background"
                         app:passwordToggleEnabled="true">
 
-                        <com.google.android.materialPurchase.textfield.TextInputEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_cpassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -250,7 +250,7 @@
                             android:nextFocusDown="@id/btn_register"
                             android:singleLine="true" />
 
-                    </com.google.android.materialPurchase.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
                         android:id="@+id/btn_register"
