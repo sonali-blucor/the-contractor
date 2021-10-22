@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/yellow"
-            android:onClick="onClickToSubmitMaterial"
+            android:onClick="onClickToSubmitMaterials"
             android:text="Submit"
             android:textColor="#455A64"
             android:textStyle="bold" />

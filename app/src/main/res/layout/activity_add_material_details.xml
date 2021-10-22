@@ -376,7 +376,7 @@
                         android:layout_gravity="end"
                         android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:background="@color/yellow"
-                        android:onClick="onClickToSubmitMaterial"
+                        android:onClick="onClickToPaymentAdd"
                         android:text="@string/add_payment"
                         android:textColor="@color/black"
                         android:textStyle="bold" />

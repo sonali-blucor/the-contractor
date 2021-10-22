@@ -39,6 +39,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -277,9 +278,11 @@ public interface ApiService {
                                       @Field("email") String supplier_email,
                                       @Field("address") String supplier_address);
 
-    @FormUrlEncoded
-    @POST(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID)
-    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Field("project_id") int project_id);
+//    @FormUrlEncoded
+    @GET(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID+"/{project_id}")/*/{material_id}*/
+    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Path("project_id") int project_id
+//                                                        , @Path("material_id") int material_id
+    );
 
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_PROJECTS_BY_CLIENT_ID)

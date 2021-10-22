@@ -14,10 +14,23 @@ public class MaterialPurchase implements Parcelable {
     @SerializedName("material_id")
     @Expose
     public int material_id;
+    //    @SerializedName("material_name")
+//    @Expose
+    public String material_brand ="";
+    //    @SerializedName("material_type")
+//    @Expose
+    public String material_type="";
+    //    @SerializedName("material_unit")
+//    @Expose
+    public String material_unit="";
 
     @SerializedName("supplier_id")
     @Expose
     public int supplier_id;
+
+    //    @SerializedName("supplier_name")
+//    @Expose
+    public String supplier_name="";
 
     @SerializedName("contractor_id")
     @Expose
@@ -64,6 +77,9 @@ public class MaterialPurchase implements Parcelable {
     @SerializedName("payment_type")
     @Expose
     public String payment_type;
+    @SerializedName("updated_at")
+    @Expose
+    public String updated_at;
 
 
     public MaterialPurchase() {
@@ -86,6 +102,11 @@ public class MaterialPurchase implements Parcelable {
         balance_amt = in.readString();
         paid_to = in.readString();
         payment_type = in.readString();
+        updated_at = in.readString();
+//        material_name = in.readString();
+//        material_type = in.readString();
+//        material_unit = in.readString();
+//        supplier_name = in.readString();
     }
 
     public static final Creator<MaterialPurchase> CREATOR = new Creator<MaterialPurchase>() {
@@ -122,5 +143,11 @@ public class MaterialPurchase implements Parcelable {
         dest.writeString(balance_amt);
         dest.writeString(paid_to);
         dest.writeString(payment_type);
+        dest.writeString(updated_at);
+
+//          dest.writeString(material_name );
+//          dest.writeString(material_type );
+//          dest.writeString(material_unit );
+//          dest.writeString(supplier_name );
     }
 }

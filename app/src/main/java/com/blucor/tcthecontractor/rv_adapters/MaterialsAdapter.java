@@ -44,7 +44,7 @@ public class MaterialsAdapter extends BaseAdapter {
         }
         MaterialsModal materials = getItem(position);
         TextView textView = convertView.findViewById(R.id.tv_unit_list_item);
-        textView.setText(materials.unit);
+        textView.setText(materials.material_brand);
         return convertView;
     }
 }

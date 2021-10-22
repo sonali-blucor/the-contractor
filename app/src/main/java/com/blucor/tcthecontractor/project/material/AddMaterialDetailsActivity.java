@@ -1,10 +1,13 @@
 package com.blucor.tcthecontractor.project.material;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,6 +27,7 @@ import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.SupplierModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.project.AddProjectActivity;
 import com.blucor.tcthecontractor.rv_adapters.MaterialsAdapter;
 import com.blucor.tcthecontractor.rv_adapters.SupplierAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
@@ -61,11 +65,14 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
     List<MaterialsModal> materialsModals;
     private int supplier_id;
     private int materials_id;
-
+    private Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_material_details);
+
+        getSupplier();
+
 
 
         edt_select_sup = findViewById(R.id.edt_select_sup);
@@ -83,8 +90,6 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
         btn_add_payment = findViewById(R.id.btn_add_payment);
         llv_material_edit = findViewById(R.id.llv_material_edit);
 
-        getSupplier();
-        getMaterials();
 
         try {
             Bundle bundle = getIntent().getExtras();
@@ -185,14 +190,20 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
             gstper = Integer.parseInt(et_material_gst.getText().toString());
         }
         double rate = Double.parseDouble(et_material_rate.getText().toString());
+        double qty = Double.parseDouble(et_material_qty.getText().toString());
+
 /*
 GST Amount = (Value of supply x GST%)/100
 Price to be charged = Value of supply + GST Amount
 */
-        double gstAmount = (rate * gstper) / 100;
+        double amount = (rate * qty) ;
+        double gstAmount = (amount * gstper) / 100;
         et_material_gst_amount.setText(String.valueOf(gstAmount));
+        edt_material_amount.setText(String.format("%.2f",amount));
 
-        tv_material_total_amount.setText("Total Amount:" + String.valueOf(gstAmount + rate));
+        tv_material_total_amount.setText(String.format("%.2f",gstAmount + amount));
+        tv_material_balance_amount.setText(String.format("%.2f",gstAmount + amount));
+        tv_material_paid_amount.setText("00.00");
     }
 
     private Boolean validateinfo(String suppler, String matrial, String qty, String rate, String gst) {
@@ -227,14 +238,16 @@ Price to be charged = Value of supply + GST Amount
             et_material_qty.setText(materialPurchase.quantity);
             //edt_material_rate.setText(materialPurchase.rate);
             //edt_material_amount.setText(materialPurchase.amount);
-            edt_select_sup.setText("");
-            edt_select_material.setText("");
-            et_material_gst.setText("");
-            et_material_gst_amount.setText("");
-            tv_material_total_amount.setText("");
-            tv_material_paid_amount.setText("");
-            tv_material_balance_amount.setText("");
-            tv_material_unit.setText("");
+            supplier_id =materialPurchase.supplier_id;
+            materials_id =materialPurchase.material_id;
+            edt_select_sup.setText(materialPurchase.supplier_name);
+            edt_select_material.setText(materialPurchase.material_brand);
+            et_material_gst.setText(materialPurchase.gst);
+            et_material_gst_amount.setText(materialPurchase.gst_amt);
+            tv_material_total_amount.setText(materialPurchase.total_amt);
+            tv_material_paid_amount.setText(materialPurchase.paid_amt);
+            tv_material_balance_amount.setText(materialPurchase.balance_amt);
+            tv_material_unit.setText(materialPurchase.material_unit);
         }
     }
 
@@ -301,7 +314,7 @@ Price to be charged = Value of supply + GST Amount
                 public void onResponse(Call<ProjectMaterialModel> call, Response<ProjectMaterialModel> response) {
                     if (response.code() == 200) {
 //                        MaterialPurchase materialPurchase = response.body().materialPurchase;
-                        Toast.makeText(AddMaterialDetailsActivity.this, "MaterialPurchase purchase added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddMaterialDetailsActivity.this, "Material purchase added successfully", Toast.LENGTH_SHORT).show();
                         Bundle bundle = new Bundle();
                         bundle.putParcelable(AppKeys.PROJECT, project);
                         ScreenHelper.redirectToClass(AddMaterialDetailsActivity.this, AddMaterialActivity.class, bundle);
@@ -397,6 +410,7 @@ Price to be charged = Value of supply + GST Amount
                     }
                 }
                 stopLoader();
+                getMaterials();
             }
 
             @Override
@@ -404,6 +418,7 @@ Price to be charged = Value of supply + GST Amount
                 Log.e("get units", "" + t.getMessage());
                 AddMaterialDetailsActivity.this.supplierModals = new ArrayList<>();
                 stopLoader();
+                getMaterials();
             }
         });
     }
@@ -431,6 +446,54 @@ Price to be charged = Value of supply + GST Amount
                 stopLoader();
             }
         });
+    }
+
+    public void onClickToPaymentAdd(View view) {
+    }
+
+    public void showPopupViewForPaymentAdd(View v) {
+        try {
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.dialog_material_payament, null);
+
+        /*    etAddress1 = view.findViewById(R.id.et_shipping_address_1);
+            etAddress2 = view.findViewById(R.id.et_shipping_address_2);
+            etCity = view.findViewById(R.id.et_shipping_city);
+            etZip = view.findViewById(R.id.et_shipping_zip);
+            etState = view.findViewById(R.id.et_shipping_state);
+            etCountry = view.findViewById(R.id.et_shipping_country);
+            btnCompleteAddress = view.findViewById(R.id.btn_complete_address_inner);
+
+            etAddress1.setText(address1);
+            etAddress2.setText(address2);
+            etZip.setText(zip);
+            etCity.setText(city);
+            etState.setText(state);
+            etCountry.setText(country);*/
+
+            alertDialogBuilder.setView(view);
+            dialog = alertDialogBuilder.create();
+            dialog.show();
+
+         /*   btnCompleteAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    validateAddress();
+                    if (!isFieldEmpty) {
+                        isAddressInput = true;
+                        hideKeyboardFrom(AddProjectActivity.this,view);
+                        String Address = address1+","+address2+","+city+","+zip+","+state+","+country;
+                        mEdtAddress.setText(Address);
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(AddProjectActivity.this, "Field Empty!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });*/
+        } catch (Exception e) {
+            Log.e("AddProjectActivity", "" + e.getMessage());
+        }
     }
 
 }

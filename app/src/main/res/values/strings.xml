@@ -104,5 +104,7 @@
     <string name="gst_no">GST No.</string>
     <string name="bank_details">Bank Details</string>
     <string name="save">Save</string>
+    <string name="paid_to">Paid To</string>
+    <string name="payment_type_cash_online">Payment Type(cash/online)</string>
 
 </resources>

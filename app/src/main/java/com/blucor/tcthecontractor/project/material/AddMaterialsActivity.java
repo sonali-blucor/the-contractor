@@ -81,7 +81,9 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
                 String unt = edt_material_unit.getText().toString();
 
                 //make function for validation and pass all parameters
-                validateinfo(name, des, mtype, unt);
+                if(validateinfo(name, des, mtype, unt)){
+                    onClickToSubmitMaterials(v);
+                }
             }
         });
 
@@ -100,10 +102,6 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
         } else if (des.length() == 0) {
             edt_material_des.requestFocus();
             edt_material_des.setError("FIELD CANNOT BE EMPTY");
-            return false;
-        } else if (!des.matches("^[+][0-9]{10,13}$")) {
-            edt_material_des.requestFocus();
-            edt_material_des.setError("Correct format: +91xxxxxxxxxx");
             return false;
         } else if (mtype.length() == 0) {
             edt_material_type.requestFocus();
@@ -204,12 +202,14 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             edt_material_unit.requestFocus();
             return false;
         } else {
-            return false;
+            return true;
         }
     }
 
-    public void onClickToSubmitMaterial(View view) {
+    public void onClickToSubmitMaterials(View view) {
+
         if (is_valid_data()) {
+
             String bname = edt_material_bname.getText().toString();
             String mType = edt_material_type.getText().toString();
             String des = edt_material_des.getText().toString();
@@ -229,14 +229,14 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
                     if (response != null && response.code() == 200) {
                         if (response.body() != null) {
                             MaterialsModal materialsModal = response.body();
-                            Toast.makeText(AddMaterialsActivity.this, "MaterialPurchase store successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMaterialsActivity.this, "Material store successfully", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(AddMaterialsActivity.this, "Unable to store materialPurchase", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddMaterialsActivity.this, "Unable to store material", Toast.LENGTH_SHORT).show();
                         }
                     } else if (response.code() == 500) {
                         Toast.makeText(AddMaterialsActivity.this, "Internal Server Error", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(AddMaterialsActivity.this, "MaterialPurchase is already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddMaterialsActivity.this, "Material is already exists", Toast.LENGTH_SHORT).show();
                     }
                     stopLoader();
                 }

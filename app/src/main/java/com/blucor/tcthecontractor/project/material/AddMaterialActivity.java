@@ -1,11 +1,20 @@
 package com.blucor.tcthecontractor.project.material;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,8 +62,18 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private LinearLayout layoutFabMaterial;
 
     List<MaterialsModal> materialsModals;
-    private int materials_id;
+    private int materials_id = 0;
     private String unit = "";
+
+    private Dialog dialog;
+
+    private TextView tv_payment_total_amt;
+    private TextView tv_payment_balance_amt;
+    private EditText edt_payment_paid_to;
+    private EditText edt_payment_amount;
+    private EditText edt_payment_type;
+    private Button btn_payment_dialog_close;
+    private Button btn_payment_dialog_save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +93,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         Intent intent = getIntent();
         if (intent.hasExtra(AppKeys.PROJECT)) {
             project = intent.getParcelableExtra(AppKeys.PROJECT);
-            getMaterialList();
+
         }
         setUpAdapter();
 
@@ -120,8 +139,10 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     }
 
     private void getMaterialList() {
+
         showLoader();
-        RetrofitClient.getApiService().getMaterialsByProjectId(project.id).enqueue(new Callback<List<MaterialPurchase>>() {
+
+        RetrofitClient.getApiService().getMaterialsByProjectId(project.id/*, materials_id*/).enqueue(new Callback<List<MaterialPurchase>>() {
             @Override
             public void onResponse(Call<List<MaterialPurchase>> call, Response<List<MaterialPurchase>> response) {
                 if (response.code() == 200) {
@@ -162,7 +183,8 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
             @Override
             public void addViewListClicked(View v, int position) {
-
+                MaterialPurchase current_materialPurchase = adapterList.get(position);
+                showPopupViewForPaymentAdd(v, current_materialPurchase);
             }
 
             @Override
@@ -182,7 +204,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             }
             tv_material_quantity.setVisibility(View.VISIBLE);
             tv_material_quantity.setText(qty + unit);
-        }else{
+        } else {
             tv_material_quantity.setVisibility(View.GONE);
         }
     }
@@ -224,6 +246,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
 
     private void getMaterials() {
+        showLoader();
         RetrofitClient.getApiService().getMaterials().enqueue(new Callback<List<MaterialsModal>>() {
             @Override
             public void onResponse(Call<List<MaterialsModal>> call, Response<List<MaterialsModal>> response) {
@@ -236,6 +259,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
                     }
                 }
                 stopLoader();
+                getMaterialList();
             }
 
             @Override
@@ -243,6 +267,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
                 Log.e("get matrials", "" + t.getMessage());
                 AddMaterialActivity.this.materialsModals = new ArrayList<>();
                 stopLoader();
+                getMaterialList();
             }
         });
     }
@@ -280,5 +305,122 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         }
     }
 
+    public void showPopupViewForPaymentAdd(View v, MaterialPurchase materialPurchase) {
+        try {
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.dialog_material_payament, null);
+
+            tv_payment_total_amt = view.findViewById(R.id.tv_payment_total_amt);
+            tv_payment_balance_amt = view.findViewById(R.id.tv_payment_balance_amt);
+            edt_payment_paid_to = view.findViewById(R.id.edt_payment_paid_to);
+            edt_payment_amount = view.findViewById(R.id.edt_payment_amount);
+            edt_payment_type = view.findViewById(R.id.edt_payment_type);
+            btn_payment_dialog_close = view.findViewById(R.id.btn_payment_dialog_close);
+            btn_payment_dialog_save = view.findViewById(R.id.btn_payment_dialog_save);
+
+            tv_payment_total_amt.setText(materialPurchase.total_amt);
+            tv_payment_balance_amt.setText(materialPurchase.balance_amt);
+
+            alertDialogBuilder.setView(view);
+            dialog = alertDialogBuilder.create();
+            dialog.show();
+
+            edt_payment_amount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
+            btn_payment_dialog_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                }
+            });
+            btn_payment_dialog_save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        } catch (Exception e) {
+            Log.e("AddProjectActivity", "" + e.getMessage());
+        }
+    }
+
+
+    private void validateAddress() {
+   /*     address1 = edt_payment_paid_to.getText().toString().trim();
+        address2 = edt_payment_amount.getText().toString().trim();
+        city = edt_payment_type.getText().toString().trim();
+
+        if (address1.equals("")) {
+            isFieldEmpty = true;
+            etAddress1.setBackgroundResource(R.drawable.edittext_error);
+            etAddress1.setError("Empty Field");
+            etAddress1.requestFocus();
+        } else {
+            isFieldEmpty = false;
+            etAddress1.setBackgroundResource(R.drawable.edittext_round);
+        }
+        if (city.equals("")) {
+            isFieldEmpty = true;
+            etCity.setBackgroundResource(R.drawable.edittext_error);
+            etCity.setError("Empty Field");
+            etCity.requestFocus();
+        } else {
+            isFieldEmpty = false;
+            etCity.setBackgroundResource(R.drawable.edittext_round);
+        }
+        if (zip.equals("")) {
+            isFieldEmpty = true;
+            etZip.setBackgroundResource(R.drawable.edittext_error);
+            etZip.setError("Empty Field");
+            etZip.requestFocus();
+        } else if(zip.length() != 6) {
+            isFieldEmpty = true;
+            etZip.setBackgroundResource(R.drawable.edittext_error);
+            etZip.setError("Zip Code cannot be less than 6");
+            etZip.requestFocus();
+        } else {
+            isFieldEmpty = false;
+            etZip.setBackgroundResource(R.drawable.edittext_round);
+        }
+        if (state.equals("")) {
+            isFieldEmpty = true;
+            etState.setError("Empty Field");
+            etState.requestFocus();
+            etState.setBackgroundResource(R.drawable.edittext_error);
+        } else {
+            isFieldEmpty = false;
+            etState.setBackgroundResource(R.drawable.edittext_round);
+        }
+        if (country.equals("")) {
+            isFieldEmpty = true;
+            etCountry.setError("Empty Field");
+            etCountry.requestFocus();
+            etCountry.setBackgroundResource(R.drawable.edittext_error);
+        } else {
+            isFieldEmpty = false;
+            etCountry.setBackgroundResource(R.drawable.edittext_round);
+        }*/
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
 }
