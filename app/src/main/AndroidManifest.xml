@@ -13,6 +13,14 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:name=".project.sub_contractor.SubContractorWorkOrderActivity"
+            android:exported="true"
+            android:label="@string/Work_order" />
+        <activity
+            android:name=".project.sub_contractor.SubContractorBillingActivity"
+            android:exported="true"
+            android:label="Billing" />
+        <activity
             android:name=".project.material.AddMaterialsActivity"
             android:exported="true"
             android:label="Add Material" />
@@ -55,7 +63,6 @@
             android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity" />
-        <activity android:name=".project.sub_contractor.SubContractorBillingActivity" />
         <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity" />
         <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.activity.AddSubContractorActivity" />
