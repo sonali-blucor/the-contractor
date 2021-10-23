@@ -29,6 +29,7 @@ import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.MaterialPurchase;
 import com.blucor.tcthecontractor.models.MaterialsModal;
+import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.project.ProjectMenuActivity;
@@ -63,8 +64,10 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
     List<MaterialsModal> materialsModals;
     private int materials_id = 0;
+    private int material_id = 0;
     private String unit = "";
 
+    private      MaterialPurchase current_materialPurchase;
     private Dialog dialog;
 
     private TextView tv_payment_total_amt;
@@ -183,8 +186,8 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
             @Override
             public void addViewListClicked(View v, int position) {
-                MaterialPurchase current_materialPurchase = adapterList.get(position);
-                showPopupViewForPaymentAdd(v, current_materialPurchase);
+                 current_materialPurchase = adapterList.get(position);
+                showPopupViewForPaymentAdd(v);
             }
 
             @Override
@@ -305,11 +308,12 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         }
     }
 
-    public void showPopupViewForPaymentAdd(View v, MaterialPurchase materialPurchase) {
+    public void showPopupViewForPaymentAdd(View v) {
         try {
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.dialog_material_payament, null);
+            material_id = current_materialPurchase.material_purchase_id;
 
             tv_payment_total_amt = view.findViewById(R.id.tv_payment_total_amt);
             tv_payment_balance_amt = view.findViewById(R.id.tv_payment_balance_amt);
@@ -319,8 +323,8 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             btn_payment_dialog_close = view.findViewById(R.id.btn_payment_dialog_close);
             btn_payment_dialog_save = view.findViewById(R.id.btn_payment_dialog_save);
 
-            tv_payment_total_amt.setText(materialPurchase.total_amt);
-            tv_payment_balance_amt.setText(materialPurchase.balance_amt);
+            tv_payment_total_amt.setText(current_materialPurchase.total_amt);
+            tv_payment_balance_amt.setText(current_materialPurchase.balance_amt);
 
             alertDialogBuilder.setView(view);
             dialog = alertDialogBuilder.create();
@@ -352,7 +356,9 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             btn_payment_dialog_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (validatePayment()) {
+                        storePayment();
+                    }
                 }
             });
         } catch (Exception e) {
@@ -360,62 +366,60 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         }
     }
 
+    private void storePayment() {
 
-    private void validateAddress() {
-   /*     address1 = edt_payment_paid_to.getText().toString().trim();
-        address2 = edt_payment_amount.getText().toString().trim();
-        city = edt_payment_type.getText().toString().trim();
+        String paid_to = edt_payment_paid_to.getText().toString().trim();
+        String amount = edt_payment_amount.getText().toString().trim();
+        String payment_type = edt_payment_type.getText().toString().trim();
 
-        if (address1.equals("")) {
-            isFieldEmpty = true;
-            etAddress1.setBackgroundResource(R.drawable.edittext_error);
-            etAddress1.setError("Empty Field");
-            etAddress1.requestFocus();
-        } else {
-            isFieldEmpty = false;
-            etAddress1.setBackgroundResource(R.drawable.edittext_round);
+        showLoader();
+        RetrofitClient.getApiService().storeMaterialPurchasePayment(material_id,
+                paid_to,
+                amount,
+                payment_type).enqueue(new Callback<ProjectMaterialModel>() {
+            @Override
+            public void onResponse(Call<ProjectMaterialModel> call, Response<ProjectMaterialModel> response) {
+                if (response.code() == 200) {
+//                        MaterialPurchase materialPurchase = response.body().materialPurchase;
+                    Toast.makeText(AddMaterialActivity.this, "Material purchase payment added successfully", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<ProjectMaterialModel> call, Throwable t) {
+                stopLoader();
+                Log.e("TAG", "Error : " + t.getMessage());
+            }
+        });
+    }
+
+
+    private boolean validatePayment() {
+        String paid_to = edt_payment_paid_to.getText().toString().trim();
+        String amount = edt_payment_amount.getText().toString().trim();
+        String payment_type = edt_payment_type.getText().toString().trim();
+
+
+        if (paid_to.length() == 0) {
+            edt_payment_paid_to.requestFocus();
+            edt_payment_paid_to.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        } else if (amount.length() == 0) {
+            edt_payment_amount.requestFocus();
+            edt_payment_amount.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        } else if (Double.parseDouble(amount) <= Double.parseDouble(current_materialPurchase.balance_amt) ) {
+            edt_payment_amount.requestFocus();
+            edt_payment_amount.setError("Amount not greater than balance.");
+            return false;
+        } else if (payment_type.length() == 0) {
+            edt_payment_type.requestFocus();
+            edt_payment_type.setError("FIELD CANNOT BE EMPTY");
+            return false;
+        }  else {
+            return true;
         }
-        if (city.equals("")) {
-            isFieldEmpty = true;
-            etCity.setBackgroundResource(R.drawable.edittext_error);
-            etCity.setError("Empty Field");
-            etCity.requestFocus();
-        } else {
-            isFieldEmpty = false;
-            etCity.setBackgroundResource(R.drawable.edittext_round);
-        }
-        if (zip.equals("")) {
-            isFieldEmpty = true;
-            etZip.setBackgroundResource(R.drawable.edittext_error);
-            etZip.setError("Empty Field");
-            etZip.requestFocus();
-        } else if(zip.length() != 6) {
-            isFieldEmpty = true;
-            etZip.setBackgroundResource(R.drawable.edittext_error);
-            etZip.setError("Zip Code cannot be less than 6");
-            etZip.requestFocus();
-        } else {
-            isFieldEmpty = false;
-            etZip.setBackgroundResource(R.drawable.edittext_round);
-        }
-        if (state.equals("")) {
-            isFieldEmpty = true;
-            etState.setError("Empty Field");
-            etState.requestFocus();
-            etState.setBackgroundResource(R.drawable.edittext_error);
-        } else {
-            isFieldEmpty = false;
-            etState.setBackgroundResource(R.drawable.edittext_round);
-        }
-        if (country.equals("")) {
-            isFieldEmpty = true;
-            etCountry.setError("Empty Field");
-            etCountry.requestFocus();
-            etCountry.setBackgroundResource(R.drawable.edittext_error);
-        } else {
-            isFieldEmpty = false;
-            etCountry.setBackgroundResource(R.drawable.edittext_round);
-        }*/
     }
 
     public static void hideKeyboardFrom(Context context, View view) {
