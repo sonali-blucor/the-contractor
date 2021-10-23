@@ -267,9 +267,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.STORE_MATERIAL_PURCHASE_PAYMENT)
     Call<ProjectMaterialModel> storeMaterialPurchasePayment(
-            @Field("material_purchase_id") int material_id,
+            @Field("id") int material_id,
             @Field("paid_to") String paid_to,
-            @Field("amount") String amount,
+            @Field("paid_amt") String amount,
             @Field("payment_type") String payment_type
     );
 
