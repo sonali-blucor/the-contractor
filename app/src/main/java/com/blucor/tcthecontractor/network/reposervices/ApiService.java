@@ -247,22 +247,31 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(Contants.STORE_MATERIAL_PURCHASE)
     Call<ProjectMaterialModel> storeMaterialPurchase(@Field("supplier_id") int suppler_id,
-                                             @Field("material_id") int materials_id,
-                                             @Field("quantity") String quantity,
-                                             @Field("rate") String rate,
-                                             @Field("amount") String amount,
-                                             @Field("gst") String gst,
-                                             @Field("gst_amt") String gstAmount,
-                                             @Field("total_amt") String totalAmount,
-                                             @Field("paid_amt") String paidAmount,
-                                             @Field("balance_amt") String balanceAmount,
-                                             @Field("contractor_id") int contractor_id,
-                                             @Field("project_id") int project_id,
-                                             @Field("is_edit") boolean is_edit,
-                                             @Field("material_purchase_id") int material_id
+                                                     @Field("material_id") int materials_id,
+                                                     @Field("quantity") String quantity,
+                                                     @Field("rate") String rate,
+                                                     @Field("amount") String amount,
+                                                     @Field("gst") String gst,
+                                                     @Field("gst_amt") String gstAmount,
+                                                     @Field("total_amt") String totalAmount,
+                                                     @Field("paid_amt") String paidAmount,
+                                                     @Field("balance_amt") String balanceAmount,
+                                                     @Field("contractor_id") int contractor_id,
+                                                     @Field("project_id") int project_id,
+                                                     @Field("is_edit") boolean is_edit,
+                                                     @Field("material_purchase_id") int material_id
     );
 
-    // akasha lawande
+    // akash lawande
+
+    @FormUrlEncoded
+    @POST(Contants.STORE_MATERIAL_PURCHASE_PAYMENT)
+    Call<ProjectMaterialModel> storeMaterialPurchasePayment(
+            @Field("material_purchase_id") int material_id,
+            @Field("paid_to") String paid_to,
+            @Field("amount") String amount,
+            @Field("payment_type") String payment_type
+    );
 
     @FormUrlEncoded
     @POST(Contants.STORE_MATERIALS)
@@ -278,8 +287,8 @@ public interface ApiService {
                                       @Field("email") String supplier_email,
                                       @Field("address") String supplier_address);
 
-//    @FormUrlEncoded
-    @GET(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID+"/{project_id}")/*/{material_id}*/
+    //    @FormUrlEncoded
+    @GET(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID + "/{project_id}")/*/{material_id}*/
     Call<List<MaterialPurchase>> getMaterialsByProjectId(@Path("project_id") int project_id
 //                                                        , @Path("material_id") int material_id
     );
@@ -427,6 +436,7 @@ public interface ApiService {
 
     @GET(Contants.GET_SUPPLER)
     Call<List<SupplierModal>> getSupplier();
+
     @GET(Contants.GET_MATERIALS)
     Call<List<MaterialsModal>> getMaterials();
 
