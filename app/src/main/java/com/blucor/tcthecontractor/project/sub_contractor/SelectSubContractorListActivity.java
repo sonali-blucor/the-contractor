@@ -253,8 +253,17 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                     }
 
                     mAdapter.notifyDataSetChanged();
+                    if(subContractorsFromUser.size() >0
+                    ) {
+                        recycler_view.setVisibility(View.GONE);
+                        btn_submit_list.setVisibility(View.GONE);
+                        rl_add_sub_contractor.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     Toast.makeText(SelectSubContractorListActivity.this, "There is no sub contractor", Toast.LENGTH_SHORT).show();
+                    recycler_view.setVisibility(View.GONE);
+                    btn_submit_list.setVisibility(View.GONE);
+                    rl_add_sub_contractor.setVisibility(View.VISIBLE);
                 }
                 stopLoader();
             }
@@ -263,6 +272,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
             public void onFailure(Call<List<SubContractor>> call, Throwable t) {
                 Toast.makeText(SelectSubContractorListActivity.this, "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
+                recycler_view.setVisibility(View.GONE);
+                btn_submit_list.setVisibility(View.GONE);
+                rl_add_sub_contractor.setVisibility(View.VISIBLE);
             }
         });
     }
