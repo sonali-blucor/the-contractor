@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import android.text.InputFilter;
+//akash
+
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,6 +81,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         btn_submit_list = findViewById(R.id.btn_submit_sub_contractor_list);
         btn_register = findViewById(R.id.btn_register);
 
+        edt_gst_no.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        edt_pan_cart_no.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        //capital text (AKASH)
 
         //Start of dynamic title code---------------------
         ActionBar actionBar = getSupportActionBar();

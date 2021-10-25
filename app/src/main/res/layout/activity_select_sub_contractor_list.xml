@@ -312,7 +312,7 @@
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/gst_no"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:maxLength="30"
                         android:nextFocusDown="@id/edt_bank_details"
                         android:singleLine="true" />
