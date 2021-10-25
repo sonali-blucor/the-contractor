@@ -260,6 +260,7 @@
                         android:drawableLeft="@drawable/ic_password"
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/pan_cart_no"
+                        android:textAllCaps="true"
                         android:imeOptions="actionNext"
                         android:inputType="textPassword"
                         android:maxLength="30"
@@ -286,7 +287,7 @@
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/aadhar_cart_no"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="30"
                         android:nextFocusDown="@id/edt_gst_no"
                         android:singleLine="true" />
