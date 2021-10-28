@@ -287,10 +287,10 @@ public interface ApiService {
                                       @Field("email") String supplier_email,
                                       @Field("address") String supplier_address);
 
-    //    @FormUrlEncoded
-    @GET(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID + "/{project_id}/{material_id}")
-    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Path("project_id") int project_id
-                                                        , @Path("material_id") int material_id
+        @FormUrlEncoded
+    @POST(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID /*+ "/{project_id}/{material_id}"*/)
+    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Field("project_id") int project_id
+                                                        , @Field("material_id") int material_id
     );
 
     @FormUrlEncoded

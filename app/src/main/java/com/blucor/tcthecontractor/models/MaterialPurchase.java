@@ -20,7 +20,7 @@ public class MaterialPurchase implements Parcelable {
     @SerializedName("material_type")
     @Expose
     public String material_type = "";
-    @SerializedName("material_unit")
+    @SerializedName("unit")
     @Expose
     public String material_unit = "";
 
@@ -31,6 +31,9 @@ public class MaterialPurchase implements Parcelable {
     @SerializedName("supplier_name")
     @Expose
     public String supplier_name = "";
+    @SerializedName("contact")
+    @Expose
+    public String supplier_contact = "";
 
     @SerializedName("contractor_id")
     @Expose
@@ -107,6 +110,7 @@ public class MaterialPurchase implements Parcelable {
         material_type = in.readString();
         material_unit = in.readString();
         supplier_name = in.readString();
+        supplier_contact = in.readString();
     }
 
     public static final Creator<MaterialPurchase> CREATOR = new Creator<MaterialPurchase>() {
@@ -149,5 +153,6 @@ public class MaterialPurchase implements Parcelable {
         dest.writeString(material_type);
         dest.writeString(material_unit);
         dest.writeString(supplier_name);
+        dest.writeString(supplier_contact);
     }
 }

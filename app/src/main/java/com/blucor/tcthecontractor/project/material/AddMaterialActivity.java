@@ -200,7 +200,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             }
         });
         //mAdapter.addItems(mList);
-        if (unit != "") {
+        if (unit != "" && mList.size() != 0) {
             double qty = 0;
             for (MaterialPurchase materialp : mList) {
                 qty = qty + Double.parseDouble(materialp.quantity);
@@ -291,6 +291,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
                     edt_select_material.setText(materialsModals.get(position).material_brand);
                     materials_id = materialsModals.get(position).material_id;
                     unit = materialsModals.get(position).unit;
+                    getMaterials();
                     alert.dismiss();
                 }
             });
@@ -382,7 +383,10 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
                 if (response.code() == 200) {
 //                        MaterialPurchase materialPurchase = response.body().materialPurchase;
                     Toast.makeText(AddMaterialActivity.this, "Material purchase payment added successfully", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    getMaterials();
                 }
+
                 stopLoader();
             }
 
@@ -409,7 +413,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             edt_payment_amount.requestFocus();
             edt_payment_amount.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (Double.parseDouble(amount) <= Double.parseDouble(current_materialPurchase.balance_amt) ) {
+        } else if (Double.parseDouble(amount) > Double.parseDouble(current_materialPurchase.balance_amt) ) {
             edt_payment_amount.requestFocus();
             edt_payment_amount.setError("Amount not greater than balance.");
             return false;

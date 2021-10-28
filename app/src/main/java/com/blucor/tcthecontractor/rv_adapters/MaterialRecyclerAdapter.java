@@ -151,7 +151,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
             tv_material_quantity.setText(item.quantity+" "+item.material_unit);
             tv_material_rate.setText(item.rate);
             tv_material_amount.setText(item.amount);
-            tv_material_gst.setText(item.gst);
+            tv_material_gst.setText("GST Rate ("+item.gst+"%)");
             tv_material_gst_amount.setText(item.gst_amt);
             tv_material_total_amount.setText(item.total_amt);
             tv_material_paid_to.setText(item.paid_to!=null?item.paid_to:"");
