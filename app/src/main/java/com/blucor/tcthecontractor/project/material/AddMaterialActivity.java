@@ -145,7 +145,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
         showLoader();
 
-        RetrofitClient.getApiService().getMaterialsByProjectId(project.id/*, materials_id*/).enqueue(new Callback<List<MaterialPurchase>>() {
+        RetrofitClient.getApiService().getMaterialsByProjectId(project.id, materials_id).enqueue(new Callback<List<MaterialPurchase>>() {
             @Override
             public void onResponse(Call<List<MaterialPurchase>> call, Response<List<MaterialPurchase>> response) {
                 if (response.code() == 200) {
