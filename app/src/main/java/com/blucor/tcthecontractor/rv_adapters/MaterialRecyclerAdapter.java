@@ -100,6 +100,8 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         private TextView tv_material_gst;
         private TextView tv_material_gst_amount;
         private TextView tv_material_total_amount;
+        private TextView tv_material_paid_amount;
+        private TextView tv_material_balance_amount;
         private TextView tv_material_paid_to;
         private TextView tv_material_payment_type;
         private TextView btn_material_add_payment;
@@ -116,6 +118,8 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
             tv_material_gst = (TextView) itemView.findViewById(R.id.tv_material_gst);
             tv_material_gst_amount = (TextView) itemView.findViewById(R.id.tv_material_gst_amount);
             tv_material_total_amount = (TextView) itemView.findViewById(R.id.tv_material_total_amount);
+            tv_material_paid_amount = (TextView) itemView.findViewById(R.id.tv_material_paid_amount);
+            tv_material_balance_amount = (TextView) itemView.findViewById(R.id.tv_material_balance_amount);
             tv_material_paid_to = (TextView) itemView.findViewById(R.id.tv_material_paid_to);
             tv_material_payment_type = (TextView) itemView.findViewById(R.id.tv_material_payment_type);
             btn_material_add_payment = (TextView) itemView.findViewById(R.id.btn_material_add_payment);
@@ -154,8 +158,20 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
             tv_material_gst.setText("GST Rate ("+item.gst+"%)");
             tv_material_gst_amount.setText(item.gst_amt);
             tv_material_total_amount.setText(item.total_amt);
+            tv_material_paid_amount.setText(item.paid_amt);
+            tv_material_balance_amount.setText(item.balance_amt);
             tv_material_paid_to.setText(item.paid_to!=null?item.paid_to:"");
             tv_material_payment_type.setText(item.payment_type!=null?item.payment_type:"");
+
+            if (Double.parseDouble(item.total_amt) <= Double.parseDouble(item.paid_amt)){
+                btn_material_add_payment.setText("Completed");
+                btn_material_add_payment.setBackgroundColor(mContext.getResources().getColor(R.color.green_400));
+                btn_material_add_payment.setEnabled(false);
+            }else{
+//                btn_material_add_payment.setText("Completed");
+//                btn_material_add_payment.setBackgroundColor(mContext.getResources().getColor(R.color.green_400));
+                btn_material_add_payment.setEnabled(true);
+            }
 
         }
 

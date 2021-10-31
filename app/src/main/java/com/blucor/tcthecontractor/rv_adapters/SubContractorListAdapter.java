@@ -90,7 +90,7 @@ public class SubContractorListAdapter extends RecyclerView.Adapter<BaseViewHolde
         public void onBind(int position) {
             super.onBind(position);
             item = allJournals.get(position);
-            cb_sub_contractor.setText(""+item.fname+" "+item.lname);
+            cb_sub_contractor.setText(""+item.fname/*+" "+item.mobile*/);
             cb_sub_contractor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

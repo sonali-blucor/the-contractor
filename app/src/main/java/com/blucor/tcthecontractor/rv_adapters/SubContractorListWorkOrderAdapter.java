@@ -77,7 +77,7 @@ public class SubContractorListWorkOrderAdapter extends RecyclerView.Adapter<Base
         public void onBind(int position) {
             super.onBind(position);
             item = allJournals.get(position);
-            tv_sub_contractor.setText(""+item.fname+" "+item.lname);
+            tv_sub_contractor.setText(""+item.fname/*+" "+item.lname*/);
             tv_sub_contractor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

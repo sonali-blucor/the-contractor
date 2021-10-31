@@ -200,15 +200,15 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.STORE_SUB_CONTRACTOR)
-    Call<SubContractor> storeSubContractor(@Field("fname") String fname,
-                                           @Field("lname") String lname,
+    Call<SubContractor> storeSubContractor(  @Field("firm_name") String firm_name,
+                                             @Field("fname") String full_name,
                                            @Field("contractor_id") int contractor_id,
                                            @Field("mobile") String mobile,
                                            @Field("email") String email,
                                            @Field("password") String password,
                                            @Field("address") String address,
-                                           @Field("pan_cart_no") String pan_cart_no,
-                                           @Field("aadhar_cart_no") String aadhar_cart_no,
+                                           @Field("pan_no") String pan_cart_no,
+                                           @Field("aadhar_no") String aadhar_cart_no,
                                            @Field("gst_no") String gst_no,
                                            @Field("bank_details") String bank_details
     );

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -155,6 +156,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                     ).enqueue(new Callback<SubContractor>() {
                 @Override
                 public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
+                    Log.e("sub-contractor",response.code()+"" );
                     if (response.code() == 200 && response.body() != null) {
                         SubContractor subContractor = response.body();
                         subContractors.add(subContractor);
@@ -255,9 +257,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                     mAdapter.notifyDataSetChanged();
                     if(subContractorsFromUser.size() >0
                     ) {
-                        recycler_view.setVisibility(View.GONE);
-                        btn_submit_list.setVisibility(View.GONE);
-                        rl_add_sub_contractor.setVisibility(View.VISIBLE);
+                        recycler_view.setVisibility(View.VISIBLE);
+                        btn_submit_list.setVisibility(View.VISIBLE);
+                        rl_add_sub_contractor.setVisibility(View.GONE);
                     }
                 } else {
                     Toast.makeText(SelectSubContractorListActivity.this, "There is no sub contractor", Toast.LENGTH_SHORT).show();

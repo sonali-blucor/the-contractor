@@ -159,16 +159,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="0 Bag"
+                android:text="0"
                 android:textStyle="bold"
                 android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 
-        <!--   <LinearLayout
+           <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_5sdp"
                android:orientation="horizontal">
 
                <TextView
@@ -177,7 +176,7 @@
                    android:layout_weight="1"
                    android:text="Paid Amount"
                    android:textColor="@color/green_600"
-                   android:textSize="@dimen/_15sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:textStyle="bold" />
 
                <TextView
@@ -185,16 +184,15 @@
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:gravity="right"
-                   android:text="0 Bag"
+                   android:text="0"
                    android:textColor="@color/green_600"
-                   android:textSize="@dimen/_15sdp" />
+                   android:textSize="@dimen/_12sdp" />
 
            </LinearLayout>
 
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_5sdp"
                android:orientation="horizontal">
 
                <TextView
@@ -203,7 +201,7 @@
                    android:layout_weight="1"
                    android:text="Balance Amount"
                    android:textColor="@color/design_default_color_error"
-                   android:textSize="@dimen/_15sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:textStyle="bold" />
 
                <TextView
@@ -211,11 +209,11 @@
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:gravity="right"
-                   android:text="0 Bag"
+                   android:text="0"
                    android:textColor="@color/design_default_color_error"
-                   android:textSize="@dimen/_15sdp" />
+                   android:textSize="@dimen/_12sdp" />
 
-           </LinearLayout>-->
+           </LinearLayout>
 
         <View
             android:layout_width="match_parent"
