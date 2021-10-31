@@ -475,7 +475,7 @@ public class SubCBillingFragment extends Fragment {
 
     private void addBill(BilliModel bill) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeBillBySubContractorProjectId(false, 0, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id,selected_sub_contractor.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeBillBySubContractorProjectId(false, 0, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id,selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {
@@ -502,7 +502,7 @@ public class SubCBillingFragment extends Fragment {
 
     private void editBill(BilliModel bill) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeBillBySubContractorProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id,selected_sub_contractor.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeBillBySubContractorProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id,selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {

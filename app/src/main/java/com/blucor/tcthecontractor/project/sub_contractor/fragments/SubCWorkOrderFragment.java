@@ -438,7 +438,7 @@ public class SubCWorkOrderFragment extends Fragment {
 
     private void addWorkOrder(WorkOrderModel workOrder) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeWorkOrderBySubContractorProjectId(false, 0, workOrder.work_description, workOrder.unit_id, workOrder.quantity, workOrder.rate, workOrder.amount, selected_project.id, selected_sub_contractor.id).enqueue(new Callback<WorkOrderResponseModel>() {
+        RetrofitClient.getApiService().storeWorkOrderBySubContractorProjectId(false, 0, workOrder.work_description, workOrder.unit_id, workOrder.quantity, workOrder.rate, workOrder.amount, selected_project.id, selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<WorkOrderResponseModel>() {
             @Override
             public void onResponse(Call<WorkOrderResponseModel> call, Response<WorkOrderResponseModel> response) {
                 if (response.code() == 200) {
@@ -463,7 +463,7 @@ public class SubCWorkOrderFragment extends Fragment {
 
     private void editWorkOrder(WorkOrderModel workOrder) {
         mActivity.showLoader();
-        RetrofitClient.getApiService().storeWorkOrderBySubContractorProjectId(true, workOrder.id, workOrder.work_description, workOrder.unit_id, workOrder.quantity, workOrder.rate, workOrder.amount, selected_project.id, selected_sub_contractor.id).enqueue(new Callback<WorkOrderResponseModel>() {
+        RetrofitClient.getApiService().storeWorkOrderBySubContractorProjectId(true, workOrder.id, workOrder.work_description, workOrder.unit_id, workOrder.quantity, workOrder.rate, workOrder.amount, selected_project.id, selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<WorkOrderResponseModel>() {
             @Override
             public void onResponse(Call<WorkOrderResponseModel> call, Response<WorkOrderResponseModel> response) {
                 if (response.code() == 200) {

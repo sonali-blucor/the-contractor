@@ -475,7 +475,7 @@ public class SubContractorBillingActivity extends BaseAppCompatActivity {
 
     private void editBill(BilliModel bill) {
         showLoader();
-        RetrofitClient.getApiService().storeClientBillBySubContractorProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id, selected_sub_contractor.id).enqueue(new Callback<BillResponseModel>() {
+        RetrofitClient.getApiService().storeClientBillBySubContractorProjectId(true, bill.id, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id, selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
                 if (response.code() == 200) {

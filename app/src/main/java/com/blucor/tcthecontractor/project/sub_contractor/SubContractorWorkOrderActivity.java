@@ -1,10 +1,5 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +7,10 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
@@ -25,10 +24,6 @@ import com.blucor.tcthecontractor.models.WorkOrderModel;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.project.sub_contractor.fragments.SubCBillingFragment;
 import com.blucor.tcthecontractor.project.sub_contractor.fragments.SubCWorkOrderFragment;
-import com.blucor.tcthecontractor.project.workorderbilling.WorkOrderBillingProjectListActivity;
-import com.blucor.tcthecontractor.project.workorderbilling.fragments.BillingFragment;
-import com.blucor.tcthecontractor.project.workorderbilling.fragments.WorkOrderFragment;
-import com.blucor.tcthecontractor.rv_adapters.ProjectSpinnerAdapter;
 import com.blucor.tcthecontractor.rv_adapters.SubContractorSpinnerAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.tabs.TabLayout;
@@ -71,7 +66,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
                 project = bundle.getParcelable(AppKeys.PROJECT);
                 //toolBarTitle = project.project_name+"-"+project.id;
                 setUpFragemnt();
-                getProjectList();
+                getSubContractors();
 
             }
         } catch (Exception e) {
@@ -80,14 +75,15 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
     }
 
 
-
-    private void getProjectList() {
+    private void getSubContractors() {
         User user = DatabaseUtil.on().getAllUser().get(0);
         int contractor_id = user.server_id;
 
         showLoader();
         try {
-            RetrofitClient.getApiService().getAllSubContractorType(contractor_id,project.id).enqueue(new Callback<List<SubContractor>>() {
+          /*  RetrofitClient.getApiService().getAllSubContractorType(contractor_id,project.id).enqueue(new Callback<List<SubContractor>>() {
+                @Override*/
+            RetrofitClient.getApiService().getAllProjectSubContractors(project.id).enqueue(new Callback<List<SubContractor>>() {
                 @Override
                 public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
                     if (response.code() == 200 && response.body() != null) {
@@ -103,8 +99,8 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
                     stopLoader();
                 }
             });
-        } catch(Exception e) {
-            Log.e("view project",e.getMessage());
+        } catch (Exception e) {
+            Log.e("view project", e.getMessage());
             stopLoader();
         }
     }
@@ -116,11 +112,11 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selected_sub_contractor = mList.get(position);
-                  if(tabLayout_fragment.getSelectedTabPosition() == 0) {
-                        setUpWorkOrder();
-                    } else {
-                        setUpBillOnProjectChange();
-                    }
+                if (tabLayout_fragment.getSelectedTabPosition() == 0) {
+                    setUpWorkOrder();
+                } else {
+                    setUpBillOnProjectChange();
+                }
             }
 
             @Override
@@ -133,7 +129,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
     private void setUpBillOnProjectChange() {
         if (selected_sub_contractor != null) {
             showLoader();
-            RetrofitClient.getApiService().getAllWorkOrderBySubContractorId(project.id,selected_sub_contractor.id).enqueue(new Callback<List<WorkOrderModel>>() {
+            RetrofitClient.getApiService().getAllWorkOrderBySubContractorId(project.id, project.contractor_id, selected_sub_contractor.id).enqueue(new Callback<List<WorkOrderModel>>() {
                 @Override
                 public void onResponse(Call<List<WorkOrderModel>> call, Response<List<WorkOrderModel>> response) {
                     if (response.code() == 200) {
@@ -163,7 +159,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
 
         if (selected_sub_contractor != null) {
             showLoader();
-            RetrofitClient.getApiService().getAllWorkOrderBySubContractorId(project.id,selected_sub_contractor.id).enqueue(new Callback<List<WorkOrderModel>>() {
+            RetrofitClient.getApiService().getAllWorkOrderBySubContractorId(project.id, project.contractor_id, selected_sub_contractor.id).enqueue(new Callback<List<WorkOrderModel>>() {
                 @Override
                 public void onResponse(Call<List<WorkOrderModel>> call, Response<List<WorkOrderModel>> response) {
                     if (response.code() == 200) {
@@ -173,7 +169,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
                         assert response.body() != null;
                         workOrders.addAll(response.body());
                         total_work_order = getTotalWorkOrder();
-                        fragment = new SubCWorkOrderFragment(workOrders,project,selected_sub_contractor);
+                        fragment = new SubCWorkOrderFragment(workOrders, project, selected_sub_contractor);
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.replace(R.id.frameLayout_fragemnt, fragment);
@@ -197,7 +193,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
         if (selected_sub_contractor != null) {
             total_work_order = getTotalWorkOrder();
             showLoader();
-            RetrofitClient.getApiService().getAllBillBySubContractorId(project.id,selected_sub_contractor.id).enqueue(new Callback<List<BilliModel>>() {
+            RetrofitClient.getApiService().getAllBillBySubContractorId(project.id, project.contractor_id, selected_sub_contractor.id).enqueue(new Callback<List<BilliModel>>() {
                 @Override
                 public void onResponse(Call<List<BilliModel>> call, Response<List<BilliModel>> response) {
                     if (response.code() == 200) {
@@ -206,7 +202,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
                         bills = new ArrayList<>();
                         assert response.body() != null;
                         bills.addAll(response.body());
-                        fragment = new SubCBillingFragment(total_work_order,bills,project,selected_sub_contractor);
+                        fragment = new SubCBillingFragment(total_work_order, bills, project, selected_sub_contractor);
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.replace(R.id.frameLayout_fragemnt, fragment);
@@ -227,12 +223,16 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
     }
 
     private long getTotalWorkOrder() {
-        long tot_amount = 0;
-        for (int i = 0; i < workOrders.size(); i++) {
-            WorkOrderModel model = (WorkOrderModel) workOrders.get(i);
-            tot_amount = tot_amount + model.amount;
+        if (workOrders != null) {
+            long tot_amount = 0;
+            for (int i = 0; i < workOrders.size(); i++) {
+                WorkOrderModel model = (WorkOrderModel) workOrders.get(i);
+                tot_amount = tot_amount + model.amount;
+            }
+            return tot_amount;
+        } else {
+            return 0;
         }
-        return tot_amount;
     }
 
     private void setUpFragemnt() {
@@ -267,7 +267,7 @@ public class SubContractorWorkOrderActivity extends BaseAppCompatActivity {
     @Override
     public void onBackPressed() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppKeys.PROJECT,project);
-        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class,bundle);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class, bundle);
     }
 }

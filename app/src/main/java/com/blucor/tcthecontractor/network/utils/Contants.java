@@ -67,12 +67,12 @@ public class Contants {
     public static final String FETCH_HOLIDAYS_BY_PROJECT = "fetch_holidays_by_project";
 
     // added 19.10.2021
-    public static final String SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID = "show_work_orders_by_sub_contractor_id";
-    public static final String SHOW_BILL_BY_SUB_CONTRACTOR_ID = "show_bill_by_sub_contractor_id";
+    public static final String SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID = "work_order_sub_contractor";
+    public static final String SHOW_BILL_BY_SUB_CONTRACTOR_ID = "select_billing_sub_contratcor";
     public static final String VIEW_ALL_SUB_CONTRACTOR_BY_CONTRACTOR_ID = "view_all_sub_contractor_by_contractor_id";
-    public static final String ADD_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "add_bill_by_sub_contractor_project_id";
-    public static final String ADD_WORK_ORDER_BY_SUB_CONTRACTOR_PROJECT_ID = "add_work_order_by_sub_contractor_project_id";
-    public static final String ADD_CLIENT_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "add_client_bill_by_sub_contractor_project_id";
+    public static final String ADD_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "store_billing_sub_contratcor";
+    public static final String ADD_WORK_ORDER_BY_SUB_CONTRACTOR_PROJECT_ID = "store_work_order_sub_contractor";
+    public static final String ADD_CLIENT_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "store_bill_pay_sub_contratcor";
     public static final String STORE_MATERIAL_PURCHASE = "purchase_material";
     public static final String GET_SUPPLER = "All_supplier";
     public static final String GET_MATERIALS = "all_material";

@@ -334,11 +334,11 @@ public interface ApiService {
     // added 19.10.2021
     @FormUrlEncoded
     @POST(Contants.SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID)
-    Call<List<WorkOrderModel>> getAllWorkOrderBySubContractorId(@Field("project_id") int project_id, @Field("sub_contractor_id") int sub_contractor_id);
+    Call<List<WorkOrderModel>> getAllWorkOrderBySubContractorId(@Field("project_id") int project_id, @Field("contractor_id") int contractor_id,@Field("sub_contractor_id") int sub_contractor_id);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_BILL_BY_SUB_CONTRACTOR_ID)
-    Call<List<BilliModel>> getAllBillBySubContractorId(@Field("project_id") int project_id, @Field("sub_contractor_id") int sub_contractor_id);
+    Call<List<BilliModel>> getAllBillBySubContractorId(@Field("project_id") int project_id,@Field("contractor_id") int contractor_id, @Field("sub_contractor_id") int sub_contractor_id);
 
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_SUB_CONTRACTOR_BY_CONTRACTOR_ID)
@@ -403,7 +403,8 @@ public interface ApiService {
                                                               @Field("payment_date") String payment_date,
                                                               @Field("billing_date") String billing_date,
                                                               @Field("project_id") int project_id,
-                                                              @Field("sub_contractor_id") int sub_contractor_id
+                                                              @Field("sub_contractor_id") int sub_contractor_id,
+                                                              @Field("contractor_id") int contractor_id
     );
 
     @FormUrlEncoded
@@ -416,7 +417,8 @@ public interface ApiService {
                                                                         @Field("rate") long rate,
                                                                         @Field("amount") long amount,
                                                                         @Field("project_id") int project_id,
-                                                                        @Field("sub_contractor_id") int sub_contractor_id
+                                                                        @Field("sub_contractor_id") int sub_contractor_id,
+                                                                        @Field("contractor_id") int contractor_id
     );
 
     @FormUrlEncoded
@@ -431,7 +433,9 @@ public interface ApiService {
                                                                     @Field("payment_date") String payment_date,
                                                                     @Field("billing_date") String billing_date,
                                                                     @Field("project_id") int project_id,
-                                                                    @Field("sub_contractor_id") int sub_contractor_id);
+                                                                    @Field("sub_contractor_id") int sub_contractor_id,
+                                                                    @Field("contractor_id") int contractor_id
+    );
 
 
     @GET(Contants.GET_SUPPLER)
