@@ -475,6 +475,7 @@ public class SubCBillingFragment extends Fragment {
 
     private void addBill(BilliModel bill) {
         mActivity.showLoader();
+        Log.e("pasms", bill.percentage+","+ bill.amount+","+ bill.remark+","+ bill.balance+","+ bill.paid+","+ bill.payment_date+","+ bill.billing_date+","+ selected_project.id+","+selected_sub_contractor.id+","+selected_project.contractor_id);
         RetrofitClient.getApiService().storeBillBySubContractorProjectId(false, 0, bill.percentage, bill.amount, bill.remark, bill.balance, bill.paid, bill.payment_date, bill.billing_date, selected_project.id,selected_sub_contractor.id,selected_project.contractor_id).enqueue(new Callback<BillResponseModel>() {
             @Override
             public void onResponse(Call<BillResponseModel> call, Response<BillResponseModel> response) {
