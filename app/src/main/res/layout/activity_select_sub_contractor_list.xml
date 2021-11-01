@@ -258,6 +258,7 @@
                         android:background="@drawable/edit_background"
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/pan_cart_no"
+                        android:textAllCaps="true"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLength="30"
@@ -282,7 +283,7 @@
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/aadhar_cart_no"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="30"
                         android:nextFocusDown="@id/edt_gst_no"
                         android:singleLine="true" />
@@ -305,7 +306,7 @@
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/gst_no"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:maxLength="30"
                         android:nextFocusDown="@id/edt_bank_details"
                         android:singleLine="true" />
