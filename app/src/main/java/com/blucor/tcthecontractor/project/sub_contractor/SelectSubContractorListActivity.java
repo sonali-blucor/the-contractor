@@ -291,7 +291,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         boolean is_contain = false;
         for (SubContractor subContractor : list) {
             if ((subContractor.id == listitem.id) && (subContractor.fname.equalsIgnoreCase(listitem.fname))
-                    && (subContractor.lname.equalsIgnoreCase(listitem.lname))
+                    /*&& (subContractor.lname.equalsIgnoreCase(listitem.lname))*/
                     && subContractor.mobile.equalsIgnoreCase(listitem.mobile)
                     && subContractor.email.equalsIgnoreCase(listitem.email)) {
                 is_contain = true;
