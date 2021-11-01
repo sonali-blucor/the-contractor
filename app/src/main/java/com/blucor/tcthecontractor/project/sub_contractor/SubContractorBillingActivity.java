@@ -103,17 +103,19 @@ public class SubContractorBillingActivity extends BaseAppCompatActivity {
         tv_bill_balance_amount = findViewById(R.id.tv_bill_balance_amount);
 
         bills = new ArrayList<>();
-        getProjectList();
+        getSubContractors();
     }
 
 
-    private void getProjectList() {
+    private void getSubContractors() {
         User user = DatabaseUtil.on().getAllUser().get(0);
         int contractor_id = user.server_id;
 
         showLoader();
         try {
-            RetrofitClient.getApiService().getAllSubContractorType(contractor_id, selected_project.id).enqueue(new Callback<List<SubContractor>>() {
+           /* RetrofitClient.getApiService().getAllSubContractorType(contractor_id, selected_project.id).enqueue(new Callback<List<SubContractor>>() {
+                @Override*/
+            RetrofitClient.getApiService().getAllProjectSubContractors(selected_project.id).enqueue(new Callback<List<SubContractor>>() {
                 @Override
                 public void onResponse(Call<List<SubContractor>> call, Response<List<SubContractor>> response) {
                     if (response.code() == 200 && response.body() != null) {
@@ -142,6 +144,7 @@ public class SubContractorBillingActivity extends BaseAppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selected_sub_contractor = mList.get(position);
+                setUpBillOnProjectChange();
             }
 
             @Override
@@ -153,9 +156,9 @@ public class SubContractorBillingActivity extends BaseAppCompatActivity {
 
 
     private void setUpBillOnProjectChange() {
-        if (selected_project != null) {
+        if (selected_sub_contractor != null) {
             showLoader();
-            RetrofitClient.getApiService().getAllWorkOrderByProjectId(selected_project.id).enqueue(new Callback<List<WorkOrderModel>>() {
+            RetrofitClient.getApiService().getAllWorkOrderBySubContractorId(selected_project.id, selected_project.contractor_id, selected_sub_contractor.id).enqueue(new Callback<List<WorkOrderModel>>() {
                 @Override
                 public void onResponse(Call<List<WorkOrderModel>> call, Response<List<WorkOrderModel>> response) {
                     if (response.code() == 200) {
@@ -182,9 +185,9 @@ public class SubContractorBillingActivity extends BaseAppCompatActivity {
     }
 
     private void setUpBill() {
-        if (selected_project != null) {
+        if (selected_sub_contractor != null) {
             showLoader();
-            RetrofitClient.getApiService().getAllBillByProjectId(selected_project.id).enqueue(new Callback<List<BilliModel>>() {
+            RetrofitClient.getApiService().getAllBillBySubContractorId(selected_project.id, selected_project.contractor_id, selected_sub_contractor.id).enqueue(new Callback<List<BilliModel>>() {
                 @Override
                 public void onResponse(Call<List<BilliModel>> call, Response<List<BilliModel>> response) {
                     if (response.code() == 200) {

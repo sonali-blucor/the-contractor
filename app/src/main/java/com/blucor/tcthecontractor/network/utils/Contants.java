@@ -69,6 +69,7 @@ public class Contants {
     // added 19.10.2021
     public static final String SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID = "work_order_sub_contractor";
     public static final String SHOW_BILL_BY_SUB_CONTRACTOR_ID = "select_billing_sub_contratcor";
+    public static final String SHOW_CLIENT_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "select_bill_pay_sub_contratcor";
     public static final String VIEW_ALL_SUB_CONTRACTOR_BY_CONTRACTOR_ID = "view_all_sub_contractor_by_contractor_id";
     public static final String ADD_BILL_BY_SUB_CONTRACTOR_PROJECT_ID = "store_billing_sub_contractcor";
     public static final String ADD_WORK_ORDER_BY_SUB_CONTRACTOR_PROJECT_ID = "store_work_order_sub_contractor";
