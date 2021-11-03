@@ -39,7 +39,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -200,8 +199,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(Contants.STORE_SUB_CONTRACTOR)
-    Call<SubContractor> storeSubContractor(  @Field("firm_name") String firm_name,
-                                             @Field("fname") String full_name,
+    Call<SubContractor> storeSubContractor(@Field("firm_name") String firm_name,
+                                           @Field("fname") String full_name,
                                            @Field("contractor_id") int contractor_id,
                                            @Field("mobile") String mobile,
                                            @Field("email") String email,
@@ -287,10 +286,11 @@ public interface ApiService {
                                       @Field("email") String supplier_email,
                                       @Field("address") String supplier_address);
 
-        @FormUrlEncoded
+    @FormUrlEncoded
     @POST(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID /*+ "/{project_id}/{material_id}"*/)
-    Call<List<MaterialPurchase>> getMaterialsByProjectId(@Field("project_id") int project_id
-                                                        , @Field("material_id") int material_id
+    Call<List<MaterialPurchase>> getMaterialsByProjectId(
+            @Field("project_id") int project_id
+            , @Field("material_id") int material_id
     );
 
     @FormUrlEncoded
@@ -334,11 +334,11 @@ public interface ApiService {
     // added 19.10.2021
     @FormUrlEncoded
     @POST(Contants.SHOW_WORK_ORDERS_BY_SUB_CONTRACTOR_ID)
-    Call<List<WorkOrderModel>> getAllWorkOrderBySubContractorId(@Field("project_id") int project_id, @Field("contractor_id") int contractor_id,@Field("sub_contractor_id") int sub_contractor_id);
+    Call<List<WorkOrderModel>> getAllWorkOrderBySubContractorId(@Field("project_id") int project_id, @Field("contractor_id") int contractor_id, @Field("sub_contractor_id") int sub_contractor_id);
 
     @FormUrlEncoded
     @POST(Contants.SHOW_BILL_BY_SUB_CONTRACTOR_ID)
-    Call<List<BilliModel>> getAllBillBySubContractorId(@Field("project_id") int project_id,@Field("contractor_id") int contractor_id, @Field("sub_contractor_id") int sub_contractor_id);
+    Call<List<BilliModel>> getAllBillBySubContractorId(@Field("project_id") int project_id, @Field("contractor_id") int contractor_id, @Field("sub_contractor_id") int sub_contractor_id);
 
     @FormUrlEncoded
     @POST(Contants.VIEW_ALL_SUB_CONTRACTOR_BY_CONTRACTOR_ID)

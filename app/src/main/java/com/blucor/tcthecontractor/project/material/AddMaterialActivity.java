@@ -67,7 +67,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private int material_id = 0;
     private String unit = "";
 
-    private      MaterialPurchase current_materialPurchase;
+    private MaterialPurchase current_materialPurchase;
     private Dialog dialog;
 
     private TextView tv_payment_total_amt;
@@ -144,7 +144,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private void getMaterialList() {
 
         showLoader();
-
+        Log.e("params", project.id + "," + materials_id);
         RetrofitClient.getApiService().getMaterialsByProjectId(project.id, materials_id).enqueue(new Callback<List<MaterialPurchase>>() {
             @Override
             public void onResponse(Call<List<MaterialPurchase>> call, Response<List<MaterialPurchase>> response) {
@@ -166,7 +166,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     }
 
     private void setUpAdapter() {
-        MaterialPurchase materialPurchase = new MaterialPurchase();
+//        MaterialPurchase materialPurchase = new MaterialPurchase();
         adapterList = new ArrayList<>();
 //        adapterList.add(materialPurchase);
         adapterList.addAll(mList);
@@ -186,7 +186,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
             @Override
             public void addViewListClicked(View v, int position) {
-                 current_materialPurchase = adapterList.get(position);
+                current_materialPurchase = adapterList.get(position);
                 showPopupViewForPaymentAdd(v);
             }
 
@@ -413,7 +413,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             edt_payment_amount.requestFocus();
             edt_payment_amount.setError("FIELD CANNOT BE EMPTY");
             return false;
-        } else if (Double.parseDouble(amount) > Double.parseDouble(current_materialPurchase.balance_amt) ) {
+        } else if (Double.parseDouble(amount) > Double.parseDouble(current_materialPurchase.balance_amt)) {
             edt_payment_amount.requestFocus();
             edt_payment_amount.setError("Amount not greater than balance.");
             return false;
@@ -421,7 +421,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             edt_payment_type.requestFocus();
             edt_payment_type.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }  else {
+        } else {
             return true;
         }
     }

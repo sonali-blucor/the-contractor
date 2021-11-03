@@ -27,7 +27,6 @@ import com.blucor.tcthecontractor.models.ProjectMaterialModel;
 import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.SupplierModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
-import com.blucor.tcthecontractor.project.AddProjectActivity;
 import com.blucor.tcthecontractor.rv_adapters.MaterialsAdapter;
 import com.blucor.tcthecontractor.rv_adapters.SupplierAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
@@ -66,13 +65,13 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
     private int supplier_id;
     private int materials_id;
     private Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_material_details);
 
         getSupplier();
-
 
 
         edt_select_sup = findViewById(R.id.edt_select_sup);
@@ -174,7 +173,8 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
                 boolean check = validateinfo(suppler, material, qty, rate, gst);
 
                 if (check == true) {
-                    Toast.makeText(getApplicationContext(), "Data is valid", Toast.LENGTH_SHORT).show();
+                    onClickToSubmitMaterial(v);
+//                    Toast.makeText(getApplicationContext(), "Data is valid", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Check valid information", Toast.LENGTH_SHORT).show();
                 }
@@ -196,13 +196,13 @@ public class AddMaterialDetailsActivity extends BaseAppCompatActivity {
 GST Amount = (Value of supply x GST%)/100
 Price to be charged = Value of supply + GST Amount
 */
-        double amount = (rate * qty) ;
+        double amount = (rate * qty);
         double gstAmount = (amount * gstper) / 100;
         et_material_gst_amount.setText(String.valueOf(gstAmount));
-        edt_material_amount.setText(String.format("%.2f",amount));
+        edt_material_amount.setText(String.format("%.2f", amount));
 
-        tv_material_total_amount.setText(String.format("%.2f",gstAmount + amount));
-        tv_material_balance_amount.setText(String.format("%.2f",gstAmount + amount));
+        tv_material_total_amount.setText(String.format("%.2f", gstAmount + amount));
+        tv_material_balance_amount.setText(String.format("%.2f", gstAmount + amount));
         tv_material_paid_amount.setText("00.00");
     }
 
@@ -236,10 +236,10 @@ Price to be charged = Value of supply + GST Amount
     private void setUpData() {
         if (materialPurchase != null) {
             et_material_qty.setText(materialPurchase.quantity);
-            //edt_material_rate.setText(materialPurchase.rate);
-            //edt_material_amount.setText(materialPurchase.amount);
-            supplier_id =materialPurchase.supplier_id;
-            materials_id =materialPurchase.material_id;
+            et_material_rate.setText(materialPurchase.rate);
+            edt_material_amount.setText(materialPurchase.amount);
+            supplier_id = materialPurchase.supplier_id;
+            materials_id = materialPurchase.material_id;
             edt_select_sup.setText(materialPurchase.supplier_name);
             edt_select_material.setText(materialPurchase.material_brand);
             et_material_gst.setText(materialPurchase.gst);
@@ -298,6 +298,22 @@ Price to be charged = Value of supply + GST Amount
             String paidAmount = tv_material_paid_amount.getText().toString();
             String balanceAmount = tv_material_balance_amount.getText().toString();
 
+            Log.e("param",
+                    "supplier_id="+supplier_id+"&"+
+                            "material_id="+materials_id+"&"+
+                            "quantity="+quantity+"&"+
+                            "rate="+rate+"&"+
+                            "amount="+amount+"&"+
+                            "gst="+gst+"&"+
+                            "gst_amt="+gstAmount+"&"+
+                            "total_amt="+totalAmount+"&"+
+                            "paid_amt="+paidAmount+"&"+
+                            "balance_amt="+balanceAmount+"&"+
+                            "contractor_id="+project.contractor_id+"&"+
+                            "project_id="+project.id+"&"+
+                            "is_edit="+isAddOrEdit+"&"+
+                            "material_purchase_id="+material_id
+            );
 
             showLoader();
             RetrofitClient.getApiService().storeMaterialPurchase(supplier_id,
@@ -345,7 +361,7 @@ Price to be charged = Value of supply + GST Amount
             lst_project_type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    edt_select_sup.setText(supplierModals.get(position).supplierName+","+
+                    edt_select_sup.setText(supplierModals.get(position).supplierName + "," +
                             supplierModals.get(position).supplierContact);
                     supplier_id = supplierModals.get(position).supplierId;
                     alert.dismiss();
@@ -454,7 +470,7 @@ Price to be charged = Value of supply + GST Amount
     public void showPopupViewForPaymentAdd(View v) {
         try {
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.dialog_material_payament, null);
 
         /*    etAddress1 = view.findViewById(R.id.et_shipping_address_1);

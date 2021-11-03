@@ -148,30 +148,33 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         public void onBind(int position) {
             super.onBind(position);
             item = (MaterialPurchase) mList.get(position);
+//            try {
+                tv_material_date.setText(item.updated_at);
+                tv_material_supplier.setText(item.supplier_name);
+                tv_material_type.setText(item.material_brand + " (" + item.material_type + ")");
+                tv_material_quantity.setText(item.quantity + " " + item.material_unit);
+                tv_material_rate.setText(item.rate);
+                tv_material_amount.setText(item.amount);
+                tv_material_gst.setText("GST Rate (" + item.gst + "%)");
+                tv_material_gst_amount.setText(item.gst_amt);
+                tv_material_total_amount.setText(item.total_amt);
+                tv_material_paid_amount.setText(item.paid_amt);
+                tv_material_balance_amount.setText(item.balance_amt);
+                tv_material_paid_to.setText(item.paid_to != null ? item.paid_to : "");
+                tv_material_payment_type.setText(item.payment_type != null ? item.payment_type : "");
 
-            tv_material_date.setText(item.updated_at);
-            tv_material_supplier.setText(item.supplier_name);
-            tv_material_type.setText(item.material_brand +" ("+item.material_type+")");
-            tv_material_quantity.setText(item.quantity+" "+item.material_unit);
-            tv_material_rate.setText(item.rate);
-            tv_material_amount.setText(item.amount);
-            tv_material_gst.setText("GST Rate ("+item.gst+"%)");
-            tv_material_gst_amount.setText(item.gst_amt);
-            tv_material_total_amount.setText(item.total_amt);
-            tv_material_paid_amount.setText(item.paid_amt);
-            tv_material_balance_amount.setText(item.balance_amt);
-            tv_material_paid_to.setText(item.paid_to!=null?item.paid_to:"");
-            tv_material_payment_type.setText(item.payment_type!=null?item.payment_type:"");
-
-            if (Double.parseDouble(item.total_amt) <= Double.parseDouble(item.paid_amt)){
-                btn_material_add_payment.setText("Completed");
-                btn_material_add_payment.setBackgroundColor(mContext.getResources().getColor(R.color.green_400));
-                btn_material_add_payment.setEnabled(false);
-            }else{
+                if (Double.parseDouble(item.total_amt) <= Double.parseDouble(item.paid_amt)) {
+                    btn_material_add_payment.setText("Completed");
+                    btn_material_add_payment.setBackgroundColor(mContext.getResources().getColor(R.color.green_400));
+                    btn_material_add_payment.setEnabled(false);
+                } else {
 //                btn_material_add_payment.setText("Completed");
 //                btn_material_add_payment.setBackgroundColor(mContext.getResources().getColor(R.color.green_400));
-                btn_material_add_payment.setEnabled(true);
-            }
+                    btn_material_add_payment.setEnabled(true);
+                }
+//            } catch (Exception e) {
+//                Log.e("Exception", e.getMessage().toString());
+//            }
 
         }
 

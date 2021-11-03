@@ -89,6 +89,30 @@ public class MaterialPurchase implements Parcelable {
 
     }
 
+    public MaterialPurchase(int material_purchase_id, int material_id, String material_brand, String material_type, String material_unit, int supplier_id, String supplier_name, String supplier_contact, int contractor_id, int project_id, String quantity, String rate, String amount, String gst, String gst_amt, String total_amt, String paid_amt, String balance_amt, String paid_to, String payment_type, String updated_at) {
+        this.material_purchase_id = material_purchase_id;
+        this.material_id = material_id;
+        this.material_brand = material_brand;
+        this.material_type = material_type;
+        this.material_unit = material_unit;
+        this.supplier_id = supplier_id;
+        this.supplier_name = supplier_name;
+        this.supplier_contact = supplier_contact;
+        this.contractor_id = contractor_id;
+        this.project_id = project_id;
+        this.quantity = quantity;
+        this.rate = rate;
+        this.amount = amount;
+        this.gst = gst;
+        this.gst_amt = gst_amt;
+        this.total_amt = total_amt;
+        this.paid_amt = paid_amt;
+        this.balance_amt = balance_amt;
+        this.paid_to = paid_to;
+        this.payment_type = payment_type;
+        this.updated_at = updated_at;
+    }
+
     protected MaterialPurchase(Parcel in) {
         material_purchase_id = in.readInt();
         material_id = in.readInt();

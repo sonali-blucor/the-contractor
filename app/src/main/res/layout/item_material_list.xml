@@ -180,6 +180,7 @@
                    android:textStyle="bold" />
 
                <TextView
+                   android:id="@+id/tv_material_paid_amount"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
@@ -205,6 +206,7 @@
                    android:textStyle="bold" />
 
                <TextView
+                   android:id="@+id/tv_material_balance_amount"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
@@ -239,14 +241,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="Rameshavr patil" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_material_payment_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="CASH" />
+                android:text="" />
 
         </LinearLayout>
 
