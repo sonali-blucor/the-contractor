@@ -284,7 +284,7 @@ Price to be charged = Value of supply + GST Amount
             int material_id = 0;
             if (materialPurchase != null) {
                 isAddOrEdit = true;
-                material_id = materialPurchase.material_id;
+                material_id = materialPurchase.material_purchase_id;
             }
 
 //            String suppler = edt_select_sup.getText().toString();
