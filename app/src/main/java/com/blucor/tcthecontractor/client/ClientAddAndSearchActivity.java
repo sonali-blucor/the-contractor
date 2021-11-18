@@ -270,6 +270,10 @@ public class ClientAddAndSearchActivity extends BaseAppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        /*int counter=0;
+        counter++;
+        if(counter == 2)
+            super.onBackPressed();*/
 
     }
 }
