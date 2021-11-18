@@ -81,7 +81,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox" />
 
     <RelativeLayout
@@ -90,7 +90,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/btn_submit_sub_contractor_list"
         android:layout_below="@id/al_search"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <ScrollView
@@ -134,7 +134,7 @@
                         android:hint="@string/firm_name"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
-                        android:maxLength="20"
+                        android:maxLength="60"
                         android:nextFocusDown="@id/edt_firm_name"
                         android:singleLine="true" />
 
@@ -208,6 +208,8 @@
                         android:background="@drawable/edit_background"
                         android:drawableStart="@drawable/ic_mobile"
                         android:drawableLeft="@drawable/ic_mobile"
+                        android:drawableEnd="@drawable/ic_about_us"
+                        android:drawableRight="@drawable/ic_about_us"
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/mobile_number"
                         android:imeOptions="actionNext"
