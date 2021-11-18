@@ -17,6 +17,7 @@
         <activity
             android:name=".project.sub_contractor.SubContractorWorkOrderActivity"
             android:exported="true"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"
             android:label="@string/Work_order" />
         <activity
             android:name=".project.sub_contractor.SubContractorBillingActivity"
@@ -34,7 +35,8 @@
         <activity
             android:name=".project.workorderbilling.ClientBillingActivity"
             android:exported="true"
-            android:label="Client Billing" />
+            android:label="Client Billing"
+            android:theme="@style/Theme.TheContractor.NoActionBarYellow"/>
         <activity
             android:name=".project.activity.AboutUsActivity"
             android:exported="true" />

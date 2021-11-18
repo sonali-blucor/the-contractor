@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Project Name"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:padding="10dp"/>
+        android:textSize="@dimen/_15sdp"
+        android:padding="@dimen/_5sdp"/>
 
 </LinearLayout>

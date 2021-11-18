@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:background="@color/white"
     tools:context=".project.workorderbilling.ClientBillingActivity">
 
@@ -22,13 +21,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select Project"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spr_project_list"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_outline_filter_alt_24" />
+
+            <Spinner
+                android:id="@+id/spr_project_list"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_title_head"
