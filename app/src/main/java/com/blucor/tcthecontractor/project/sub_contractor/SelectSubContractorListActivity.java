@@ -196,7 +196,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         String aadhar_cart_no = edt_aadhar_cart_no.getText().toString();
         String gst_no = edt_gst_no.getText().toString();
 
-        String error = "Empty Feild";
+        String error = "Empty Field";
 
         if (firm_name.isEmpty() || firm_name.equalsIgnoreCase("")) {
             edt_firm_name.setError(error);
@@ -213,6 +213,10 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             edt_email.setError("Invalid Email");
             edt_email.requestFocus();
+            isValid = false;
+        } else if (mobile.isEmpty() || mobile.equalsIgnoreCase("")) {
+            edt_mobile.setError(error);
+            edt_mobile.requestFocus();
             isValid = false;
         } else if (!Patterns.PHONE.matcher(mobile).matches()) {
             edt_mobile.setError("Invalid Mobile Number");

@@ -81,7 +81,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:listitem="@layout/work_order_sub_contractor_list_item_with_checkbox" />
 
     <RelativeLayout
@@ -90,7 +90,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/btn_submit_sub_contractor_list"
         android:layout_below="@id/al_search"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <ScrollView
@@ -103,14 +103,15 @@
                 android:layout_below="@+id/tv_txt_reg"
                 android:layout_margin="@dimen/_5sdp"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_txt_reg"
-                   android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/create_sub_contractor" />
+                    android:text="@string/create_sub_contractor"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -134,7 +135,7 @@
                         android:hint="@string/firm_name"
                         android:imeOptions="actionNext"
                         android:inputType="textPersonName"
-                        android:maxLength="20"
+                        android:maxLength="100"
                         android:nextFocusDown="@id/edt_firm_name"
                         android:singleLine="true" />
 
@@ -199,7 +200,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/input_margin_5dp"
-                    app:errorIconDrawable="@drawable/edit_background">
+                    app:errorIconDrawable="@drawable/edit_background"
+                    app:passwordToggleDrawable="@drawable/ic_outline_contact_page_24"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_mobile"
@@ -258,12 +261,12 @@
                         android:background="@drawable/edit_background"
                         android:drawablePadding="@dimen/drawable_padding"
                         android:hint="@string/pan_cart_no"
-                        android:textAllCaps="true"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLength="30"
                         android:nextFocusDown="@id/edt_aadhar_cart_no"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textAllCaps="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
