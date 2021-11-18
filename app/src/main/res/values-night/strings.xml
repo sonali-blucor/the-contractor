@@ -39,4 +39,5 @@
     <string name="save">Save</string>
     <string name="paid_to">Paid To</string>
     <string name="payment_type_cash_online">Payment Type(cash/online)</string>
+    <string name="filter_material">Filter Material</string>
 </resources>

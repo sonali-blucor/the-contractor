@@ -39,6 +39,7 @@ import com.blucor.tcthecontractor.rv_adapters.RecyclerViewClickListener;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddMaterialActivity extends BaseAppCompatActivity {
-    private TextView tv_material_quantity;
+
     private TextInputEditText edt_select_material;
+    private TextInputLayout til_select_sup;
     private RecyclerView mRvView;
     private MaterialRecyclerAdapter mAdapter;
     private List<MaterialPurchase> mList = new ArrayList<>();
@@ -78,19 +80,36 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private Button btn_payment_dialog_close;
     private Button btn_payment_dialog_save;
 
+
+    private LinearLayout llh_filter_data;
+    private TextView tv_material_name;
+    private TextView tv_material_quantity;
+    private TextView tv_material_unit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_material);
 
+        llh_filter_data = findViewById(R.id.llh_filter_data);
+        tv_material_name = findViewById(R.id.tv_material_name);
         tv_material_quantity = findViewById(R.id.tv_material_quantity);
+        tv_material_unit = findViewById(R.id.tv_material_unit);
+
+
         edt_select_material = findViewById(R.id.edt_select_material);
+        til_select_sup = findViewById(R.id.til_select_sup);
 
         mRvView = findViewById(R.id.recycler_view_list);
         mRvView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRvView.setLayoutManager(layoutManager);
-
+        til_select_sup.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupViewForMaterial(v);
+            }
+        });
         getMaterials();
 
         Intent intent = getIntent();
@@ -205,10 +224,15 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             for (MaterialPurchase materialp : mList) {
                 qty = qty + Double.parseDouble(materialp.quantity);
             }
-            tv_material_quantity.setVisibility(View.VISIBLE);
-            tv_material_quantity.setText(qty + unit);
+            llh_filter_data.setVisibility(View.VISIBLE);
+            tv_material_name.setText(edt_select_material.getText().toString());
+            tv_material_quantity.setText(String.valueOf(qty));
+            tv_material_unit.setText(unit);
         } else {
-            tv_material_quantity.setVisibility(View.GONE);
+            llh_filter_data.setVisibility(View.GONE);
+            tv_material_name.setText("");
+            tv_material_quantity.setText("");
+            tv_material_unit.setText("");
         }
     }
 
