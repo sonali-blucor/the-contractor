@@ -448,5 +448,10 @@ public interface ApiService {
     @GET(Contants.GET_MATERIALS)
     Call<List<MaterialsModal>> getMaterials();
 
+    @FormUrlEncoded
+    @POST(Contants.STORE_UNIT)
+    Call<ServerResponseModel> storeUnit(@Field("unit") String unit  );
+
+
 }
 

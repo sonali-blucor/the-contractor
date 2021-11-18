@@ -80,4 +80,6 @@ public class Contants {
 
     public static final String GET_MATERIAL_PURCHASE_BY_PROJECT_ID = "select_material";
     public static final String STORE_MATERIAL_PURCHASE_PAYMENT = "payment_update";
+
+    public static final String STORE_UNIT = "store_unit";
 }

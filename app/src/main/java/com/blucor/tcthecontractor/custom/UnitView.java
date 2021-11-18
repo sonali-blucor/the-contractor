@@ -1,6 +1,8 @@
 package com.blucor.tcthecontractor.custom;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,13 +12,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
+import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.UnitModal;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
+import com.blucor.tcthecontractor.network.utils.NetworkHelper;
 import com.blucor.tcthecontractor.rv_adapters.UnitAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
@@ -57,6 +65,8 @@ public class UnitView extends LinearLayout {
 
     List<UnitModal> units;
 
+    private AlertDialog dialog;
+
     public UnitView(Context context) {
         super(context);
         initControl(context);
@@ -77,6 +87,7 @@ public class UnitView extends LinearLayout {
 
         //LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.control_unit, this);
+
 
         til_unit = findViewById(R.id.til_unit);
         edt_unit = findViewById(R.id.edt_unit);
@@ -106,12 +117,8 @@ public class UnitView extends LinearLayout {
                     break;
                 case R.id.img_search_unit:
                     break;
-                case R.id.til_unit:
-//                    bottomSheetDialog.dismiss();
-                    showBottomSheetUnit();
-                    break;
                 case R.id.btn_submit:
-                    bottomSheetDialog.dismiss();
+                    addUnits();
                     break;
             }
         }
@@ -162,6 +169,13 @@ public class UnitView extends LinearLayout {
                 tv_unit_item.setText(selectedUnit);
                 setSelectedUnitId(units.get(position).id);
 //                bottomSheetDialog.dismiss();
+
+                if (getSelectedUnit().equals("")) {
+                    llv_unit_item.setVisibility(GONE);
+                } else {
+                    llv_unit_item.setVisibility(VISIBLE);
+                    tv_unit_item.setText(getSelectedUnit());
+                }
             }
         });
 
@@ -186,6 +200,7 @@ public class UnitView extends LinearLayout {
     }
 
     private void getUnits() {
+        showLoader();
         RetrofitClient.getApiService().getUnits().enqueue(new Callback<List<UnitModal>>() {
             @Override
             public void onResponse(Call<List<UnitModal>> call, Response<List<UnitModal>> response) {
@@ -197,14 +212,66 @@ public class UnitView extends LinearLayout {
                         units = new ArrayList<>();
                     }
                 }
+                stopLoader();
             }
 
             @Override
             public void onFailure(Call<List<UnitModal>> call, Throwable t) {
                 Log.e("get units", "" + t.getMessage());
                 units = new ArrayList<>();
+                stopLoader();
             }
         });
+    }
+
+    private void addUnits() {
+        showLoader();
+        String unit = edt_add_unit.getText().toString();
+        RetrofitClient.getApiService().storeUnit(unit).enqueue(new Callback<ServerResponseModel>() {
+            @Override
+            public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
+                if (response != null && response.code() == 200) {
+                    if (response.body() != null) {
+                        UnitModal unitModal = response.body().unitModal;
+                        units.add(unitModal);
+                        bottomSheetDialog.dismiss();
+                        Toast.makeText(context, "Unit store successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Unable to store supplierModal", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (response.code() == 500) {
+                    Toast.makeText(context, "Internal Server Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Unit is already exists", Toast.LENGTH_SHORT).show();
+                }
+                stopLoader();
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponseModel> call, Throwable t) {
+                Log.e("get units", "" + t.getMessage());
+                stopLoader();
+            }
+        });
+    }
+
+
+    public void stopLoader() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    public void showLoader() {
+//        if (NetworkHelper.hasNetworkAccess(context)) {
+            dialog = new AlertDialog.Builder(context).create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            ProgressBar pb = new ProgressBar(context);
+            dialog.setView(pb);
+            dialog.show();
+//        } else {
+//            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 }

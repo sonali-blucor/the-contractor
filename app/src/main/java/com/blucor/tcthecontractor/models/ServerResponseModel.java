@@ -9,6 +9,10 @@ public class ServerResponseModel {
     @SerializedName("message")
     public String message;
 
+
+    @SerializedName("unit")
+    public UnitModal unitModal;
+
     String getMessage() {
         return message;
     }
