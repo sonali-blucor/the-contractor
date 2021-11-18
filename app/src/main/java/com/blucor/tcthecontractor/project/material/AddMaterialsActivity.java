@@ -1,11 +1,5 @@
 package com.blucor.tcthecontractor.project.material;
 
-import androidx.appcompat.app.AlertDialog;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +9,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.custom.UnitView;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.MaterialsModal;
 import com.blucor.tcthecontractor.models.ProjectsModel;
@@ -27,6 +24,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddMaterialsActivity extends BaseAppCompatActivity {
 
@@ -43,6 +44,8 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
     List<UnitModal> units;
     private int unit_id;
 
+    private UnitView edt_unit_v;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,9 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
         edt_material_des = findViewById(R.id.edt_material_des);
         edt_material_type = findViewById(R.id.etd_material_type);
         edt_material_unit = findViewById(R.id.edt_material_unit);
+
+        edt_unit_v = findViewById(R.id.edt_unit_v);
+
         btn_submit = findViewById(R.id.btn_submit);
 
         try {
@@ -81,7 +87,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
                 String unt = edt_material_unit.getText().toString();
 
                 //make function for validation and pass all parameters
-                if(validateinfo(name, des, mtype, unt)){
+                if (validateinfo(name, des, mtype, unt)) {
                     onClickToSubmitMaterials(v);
                 }
             }
@@ -122,7 +128,8 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             edt_material_bname.setText(materialPurchase.material_brand);
             edt_material_type.setText(materialPurchase.material_type);
 //            edt_material_des.setText(materialPurchase.material_type);
-            edt_material_unit.setText(materialPurchase.unit);
+//            edt_material_unit.setText(materialPurchase.unit);
+            edt_unit_v.setSelectedUnit(materialPurchase.unit);
         }
     }
 
@@ -151,6 +158,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
     }
 
     public void showPopupViewForUnits(View view) {
+
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(AddMaterialsActivity.this);
             builder.setTitle("Choose Units: ");
@@ -162,7 +170,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             lst_project_type.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    edt_material_unit.setText(units.get(position).unit);
+                    edt_material_unit.setText( units.get(position).unit);
                     unit_id = units.get(position).id;
                     alert.dismiss();
                 }
@@ -213,6 +221,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             String bname = edt_material_bname.getText().toString();
             String mType = edt_material_type.getText().toString();
             String des = edt_material_des.getText().toString();
+            unit_id = edt_unit_v.getSelectedUnitId();
             int unit = unit_id;
 
             int material_id = 0;
@@ -222,7 +231,7 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             }
 
             showLoader();
-            RetrofitClient.getApiService().storeMaterials( bname,mType, des, unit).enqueue(new Callback<MaterialsModal>() {
+            RetrofitClient.getApiService().storeMaterials(bname, mType, des, unit).enqueue(new Callback<MaterialsModal>() {
                 @Override
                 public void onResponse(Call<MaterialsModal> call, Response<MaterialsModal> response) {
                     Log.e("response", response.toString());
@@ -249,4 +258,5 @@ public class AddMaterialsActivity extends BaseAppCompatActivity {
             });
         }
     }
+
 }

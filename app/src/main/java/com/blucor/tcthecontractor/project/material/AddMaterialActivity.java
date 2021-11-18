@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
+import com.blucor.tcthecontractor.custom.UnitView;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.MaterialPurchase;
 import com.blucor.tcthecontractor.models.MaterialsModal;
@@ -86,6 +87,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private TextView tv_material_quantity;
     private TextView tv_material_unit;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +97,6 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
         tv_material_name = findViewById(R.id.tv_material_name);
         tv_material_quantity = findViewById(R.id.tv_material_quantity);
         tv_material_unit = findViewById(R.id.tv_material_unit);
-
 
         edt_select_material = findViewById(R.id.edt_select_material);
         til_select_sup = findViewById(R.id.til_select_sup);
