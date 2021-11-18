@@ -1,8 +1,12 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
@@ -11,9 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import android.text.InputFilter;
-//akash
 
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ import com.blucor.tcthecontractor.models.User;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
 import com.blucor.tcthecontractor.rv_adapters.SubContractorListAdapter;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     private TextInputEditText edt_aadhar_cart_no;
     private TextInputEditText edt_gst_no;
     private TextInputEditText edt_bank_details;
+    private TextInputLayout til_mobile;
 
     public RelativeLayout rl_add_sub_contractor;
     private Button btn_register;
@@ -59,6 +62,9 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
     public ArrayList<SubContractor> prevSubContractors;
     private SubContractorListAdapter mAdapter;
     private ProjectsModel project;
+
+
+    private final static int PICK_CONTACT = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         edt_aadhar_cart_no = findViewById(R.id.edt_aadhar_cart_no);
         edt_gst_no = findViewById(R.id.edt_gst_no);
         edt_bank_details = findViewById(R.id.edt_bank_details);
+        til_mobile = findViewById(R.id.til_mobile);
 
         rl_add_sub_contractor = findViewById(R.id.rl_add_sub_contractor);
         edt_search_work_form = findViewById(R.id.edt_search_sub_contractor_work_form);
@@ -94,6 +101,15 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         //End of dynamic title code----------------------
 
 
+        til_mobile.setEndIconOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(i, PICK_CONTACT);
+            }
+        });
         btn_register.setOnClickListener(new View.OnClickListener() {
 
 
@@ -142,6 +158,23 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_CONTACT && resultCode == RESULT_OK) {
+            try {
+                Uri contactUri = data.getData();
+                Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+                cursor.moveToFirst();
+                int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                edt_mobile.setText(cursor.getString(column).replace(" ", "").replace("+91", ""));
+                Log.e("phone number", cursor.getString(column));
+            } catch (Exception e) {
+                Log.e("phone number", e.getMessage());
+            }
+        }
+    }
+
     private void registerSubContractor() {
         String firm_name = edt_firm_name.getText().toString();
         String full_name = edt_full_name.getText().toString();
@@ -157,12 +190,12 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
 
         if (validateData()) {
             showLoader();
-            RetrofitClient.getApiService().storeSubContractor(firm_name, full_name, id, mobile, email, "NULL",address,pan_cart_no,
-                    aadhar_cart_no,gst_no,bank_details
-                    ).enqueue(new Callback<SubContractor>() {
+            RetrofitClient.getApiService().storeSubContractor(firm_name, full_name, id, mobile, email, "NULL", address, pan_cart_no,
+                    aadhar_cart_no, gst_no, bank_details
+            ).enqueue(new Callback<SubContractor>() {
                 @Override
                 public void onResponse(Call<SubContractor> call, Response<SubContractor> response) {
-                    Log.e("sub-contractor",response.code()+"" );
+                    Log.e("sub-contractor", response.code() + "");
                     if (response.code() == 200 && response.body() != null) {
                         SubContractor subContractor = response.body();
                         subContractors.add(subContractor);
@@ -265,7 +298,7 @@ public class SelectSubContractorListActivity extends BaseAppCompatActivity {
                     }
 
                     mAdapter.notifyDataSetChanged();
-                    if(subContractorsFromUser.size() >0
+                    if (subContractorsFromUser.size() > 0
                     ) {
                         recycler_view.setVisibility(View.VISIBLE);
                         btn_submit_list.setVisibility(View.VISIBLE);
