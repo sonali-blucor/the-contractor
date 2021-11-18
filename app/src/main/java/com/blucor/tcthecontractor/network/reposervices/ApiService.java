@@ -284,7 +284,11 @@ public interface ApiService {
     Call<SupplierModal> storeSupplier(@Field("supplier_name") String supplier_name,
                                       @Field("contact") String supplier_contact,
                                       @Field("email") String supplier_email,
-                                      @Field("address") String supplier_address);
+                                      @Field("address") String supplier_address,
+                                      @Field("pan_no") String pan_cart_no,
+                                      @Field("aadhar_no") String aadhar_cart_no,
+                                      @Field("bank_details") String bank_details
+    );
 
     @FormUrlEncoded
     @POST(Contants.GET_MATERIAL_PURCHASE_BY_PROJECT_ID /*+ "/{project_id}/{material_id}"*/)

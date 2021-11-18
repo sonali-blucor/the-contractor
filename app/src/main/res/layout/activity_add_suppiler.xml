@@ -54,7 +54,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/edit_background"
-                        app:errorIconDrawable="@drawable/edit_background">
+                        app:errorIconDrawable="@drawable/edit_background"
+                        app:passwordToggleDrawable="@drawable/ic_outline_contact_page_24"
+                        app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_supplier_contact_no"
@@ -121,6 +123,73 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_pan_cart_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_pan_cart_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/pan_cart_no"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:nextFocusDown="@id/edt_aadhar_cart_no"
+                        android:singleLine="true"
+                        android:textAllCaps="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_aadhar_cart_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background"
+                    app:errorIconDrawable="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_aadhar_cart_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/aadhar_cart_no"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="30"
+                        android:nextFocusDown="@id/edt_bank_details"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_bank_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/input_margin_5dp"
+                    android:background="@drawable/edit_background">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_bank_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_background"
+                        android:drawablePadding="@dimen/drawable_padding"
+                        android:hint="@string/bank_details"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:nextFocusDown="@id/btn_register"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
