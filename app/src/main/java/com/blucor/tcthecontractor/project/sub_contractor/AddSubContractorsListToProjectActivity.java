@@ -1,13 +1,5 @@
 package com.blucor.tcthecontractor.project.sub_contractor;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.helper.AppKeys;
@@ -23,7 +20,6 @@ import com.blucor.tcthecontractor.models.ProjectsModel;
 import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.SubContractor;
 import com.blucor.tcthecontractor.network.retrofit.RetrofitClient;
-import com.blucor.tcthecontractor.project.ProjectListActivity;
 import com.blucor.tcthecontractor.rv_adapters.SubContractorListWorkOrderAdapter;
 import com.blucor.tcthecontractor.utility.ScreenHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +27,10 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivity {
     private ArrayList<SubContractor> subContractors;
@@ -64,15 +64,15 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
         });
 
         subContractors = new ArrayList<>();
-        mAdapter = new SubContractorListWorkOrderAdapter(AddSubContractorsListToProjectActivity.this,subContractors);
+        mAdapter = new SubContractorListWorkOrderAdapter(AddSubContractorsListToProjectActivity.this, subContractors);
         rv_sub_contractors_to_project.setAdapter(mAdapter);
         getSubContractors();
     }
 
-    private void startIntent(){
+    private void startIntent() {
         Intent intent = new Intent(AddSubContractorsListToProjectActivity.this, SelectSubContractorListActivity.class);
-        intent.putExtra(AppKeys.PREV_SUBCONTRACTORS,prevSubContractors);
-        intent.putExtra(AppKeys.PROJECT,project);
+        intent.putExtra(AppKeys.PREV_SUBCONTRACTORS, prevSubContractors);
+        intent.putExtra(AppKeys.PROJECT, project);
         startActivityForResult(intent, AppKeys.SUB_CONTRACTOR_LIST_REQUEST_CODE);
     }
 
@@ -85,8 +85,8 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
                     //subContractors.clear();
                     ArrayList<SubContractor> subContractorsFromUser = data.getParcelableArrayListExtra(AppKeys.SUB_CONTRACTOR_LIST);
                     for (SubContractor subContractor : subContractorsFromUser) {
-                        if (!contains(prevSubContractors,subContractor)) {
-                            if(!contains(subContractors,subContractor)) {
+                        if (!contains(prevSubContractors, subContractor)) {
+                            if (!contains(subContractors, subContractor)) {
                                 subContractors.add(subContractor);
                             }
                         }
@@ -133,7 +133,7 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
 
             @Override
             public void onFailure(Call<List<SubContractor>> call, Throwable t) {
-                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });
@@ -144,12 +144,13 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
         int id = project.id;
         Gson gson = new Gson();
         String sub_contractor = gson.toJson(subContractors);
-        RetrofitClient.getApiService().storeProjectSubContractor(id,sub_contractor).enqueue(new Callback<ServerResponseModel>() {
+        RetrofitClient.getApiService().storeProjectSubContractor(id, sub_contractor).enqueue(new Callback<ServerResponseModel>() {
             @Override
             public void onResponse(Call<ServerResponseModel> call, Response<ServerResponseModel> response) {
                 if (response.code() == 200) {
-                    Toast.makeText(AddSubContractorsListToProjectActivity.this, "Sucessfully Saved", Toast.LENGTH_SHORT).show();
-                    ScreenHelper.redirectToClass(AddSubContractorsListToProjectActivity.this,ProjectListActivity.class);
+                    Toast.makeText(AddSubContractorsListToProjectActivity.this, "Successfully Saved", Toast.LENGTH_SHORT).show();
+//                    ScreenHelper.redirectToClass(AddSubContractorsListToProjectActivity.this,ProjectListActivity.class);
+                    onBackPressed();
                 } else {
                     Toast.makeText(AddSubContractorsListToProjectActivity.this, "Not Saved", Toast.LENGTH_SHORT).show();
                 }
@@ -159,13 +160,13 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
 
             @Override
             public void onFailure(Call<ServerResponseModel> call, Throwable t) {
-                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddSubContractorsListToProjectActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 stopLoader();
             }
         });
     }
 
-    private boolean contains(ArrayList<SubContractor> list,SubContractor listitem) {
+    private boolean contains(ArrayList<SubContractor> list, SubContractor listitem) {
         boolean is_contain = false;
         for (SubContractor subContractor : list) {
             if ((subContractor.id == listitem.id) && (subContractor.fname.equalsIgnoreCase(listitem.fname))
@@ -182,7 +183,7 @@ public class AddSubContractorsListToProjectActivity extends BaseAppCompatActivit
     @Override
     public void onBackPressed() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppKeys.PROJECT,project);
-        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class,bundle);
+        bundle.putParcelable(AppKeys.PROJECT, project);
+        ScreenHelper.redirectToClass(this, SubContractorMgtMenuActivity.class, bundle);
     }
 }

@@ -65,7 +65,8 @@
             android:name=".client.ClientProjectSubActDetailsActivity"
             android:theme="@style/Theme.TheContractor.NoActionBarApp" />
         <activity android:name=".project.sub_contractor.SubContractorDownloadReportActivity" />
-        <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity" />
+        <activity android:name=".project.sub_contractor.AddSubContractorsListToProjectActivity"
+            android:label="Add Sub Contactor"/>
         <activity android:name=".project.activity.TodaysActivitiesActivity" />
         <activity android:name=".project.activity.AddSubContractorActivity" />
         <activity android:name=".project.sub_contractor.SubContractorMgtMenuActivity" />

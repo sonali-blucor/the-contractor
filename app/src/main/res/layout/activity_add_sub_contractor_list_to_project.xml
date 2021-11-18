@@ -30,6 +30,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_sub_contractors_to_project"
                 android:layout_width="match_parent"
+                android:scrollIndicators="start"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/project_sub_contractor_list_item"/>
 

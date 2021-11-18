@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_2sdp"
+        android:background="@drawable/round_corner_light_background"
+        android:src="@drawable/ic_sub_contractor"/>
     <TextView
         android:id="@+id/tv_work_order_sub_contractor_list_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:textColor="@color/black"
         android:text="Sub Contractor"
         android:textSize="@dimen/_15sdp"
         android:layout_margin="@dimen/_2sdp"/>
+
+    <ImageView
+        android:id="@+id/img_call_sub_contactor"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/ic_call_yellow"/>
 
 </LinearLayout>
