@@ -6,7 +6,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-     <string name="sign_in">Sign In</string>
+    <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
@@ -40,4 +40,5 @@
     <string name="paid_to">Paid To</string>
     <string name="payment_type_cash_online">Payment Type(cash/online)</string>
     <string name="filter_material">Filter Material</string>
+    <string name="font_name">nunito_regular.ttf</string>
 </resources>

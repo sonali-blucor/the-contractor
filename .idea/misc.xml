@@ -4,22 +4,35 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.20185185185185187" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/font/allerta_stencil.xml" value="0.22239583333333332" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_add_material.xml" value="0.22" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_add_material_details.xml" value="0.1" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_add_materials.xml" value="0.25" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_add_sub_contractor_list_to_project.xml" value="0.1" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_add_suppiler.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_client_billing.xml" value="0.1" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_menu.xml" value="0.10235507246376811" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_schedule.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_select_sub_contractor_list.xml" value="0.25" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_sub_contractor_work_order.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_user_type.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_work_order.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/activity_work_order_billing_project_list.xml" value="0.1" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/add_bill_dialog_box.xml" value="0.10235507246376811" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/add_work_order_dialog_box.xml" value="0.33" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/billing_payment_list_item.xml" value="0.18" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/bottom_add_unit.xml" value="0.1921875" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/bottom_unit.xml" value="0.1921875" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/client_billing_payment_list_item.xml" value="0.10235507246376811" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/content_menu.xml" value="0.10235507246376811" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/control_unit.xml" value="0.1921875" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/dialog_material_payament.xml" value="0.10235507246376811" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/fragment_work_order.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/item_material_list.xml" value="0.33" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/item_project_list.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/project_sub_contractor_list_item.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/spinner_list_item.xml" value="0.1" />
+        <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/unit_list_item.xml" value="0.1921875" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/work_order_adapter_item_new.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/layout/work_order_list_total_item.xml" value="0.1" />
         <entry key="..\:/Android Projects Blucor/Project/GIT HUB/the-contractor/app/src/main/res/menu/work_order_menu.xml" value="0.1921875" />

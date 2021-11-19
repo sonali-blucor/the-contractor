@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Tc The Contractor</string>
 
     <string name="exit_app_string">Do you wan\'t to exit?</string>
@@ -107,5 +107,6 @@
     <string name="paid_to">Paid To</string>
     <string name="payment_type_cash_online">Payment Type(cash/online)</string>
     <string name="filter_material">Filter Material</string>
+    <string name="font_name">font/nunito_regular.ttf</string>
 
 </resources>
