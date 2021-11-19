@@ -2,6 +2,7 @@ package com.blucor.tcthecontractor.rv_adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,7 @@ public class ClientBillPaymentRecyclerAdapter extends BaseAdapter {
         private TextView tv_paid;
         private TextView tv_payment_date;
         private ImageView img_edit;
+        private ImageView img_share;
         private ImageView img_delete;
 
         ViewHolder(final View itemView) {
@@ -91,6 +93,7 @@ public class ClientBillPaymentRecyclerAdapter extends BaseAdapter {
             tv_paid = itemView.findViewById(R.id.tv_pd_amount_billing_list_item);
             tv_pd_percentage = itemView.findViewById(R.id.tv_pd_percentage_billing_list_item);
             img_edit = itemView.findViewById(R.id.img_edit_billing_list_item);
+            img_share = itemView.findViewById(R.id.img_share_billing_list_item);
             img_delete = itemView.findViewById(R.id.img_delete_billing_list_item);
 
             DisplayMetrics displayMetrics = mContext.getResources().getDisplayMetrics();
@@ -143,15 +146,15 @@ public class ClientBillPaymentRecyclerAdapter extends BaseAdapter {
             // set value to view
             }*/
 
-            String no = String.valueOf(position+1);
+            String no = String.valueOf(position + 1);
             tv_no.setText("" + no);
-            tv_percentage.setText("" + item.getPercentage()+"%");
+            tv_percentage.setText("" + item.getPercentage() + "%");
             tv_amount.setText("" + item.getAmount());
             tv_remark.setText("" + item.getRemark());
             tv_billing_date.setText("" + item.getBilling_date());
             tv_amount.setText("" + item.amount);
             tv_paid.setText("" + item.paid);
-            tv_pd_percentage.setText(String.format("%.2f", (item.paid/item.amount ) * item.percentage)  +"%");
+            tv_pd_percentage.setText(String.format("%.2f", (item.paid / item.amount) * item.percentage) + "%");
             tv_payment_date.setText("" + item.payment_date);
             img_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -168,6 +171,19 @@ public class ClientBillPaymentRecyclerAdapter extends BaseAdapter {
                     if (mListener != null) {
                         mListener.addViewListClicked(viewHolder, position);
                     }
+                }
+            });
+            img_share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sendIntent = new Intent(Intent.ACTION_SEND);
+                    sendIntent.setType("text/plain");//.setType("text/html")
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "https://developer.android.com/training/sharing/");
+                    sendIntent.putExtra(Intent.EXTRA_TITLE, "Introducing content previews");
+//                    sendIntent.setData("contentUri");
+//                    sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    mContext.startActivity(Intent.createChooser(sendIntent, "Share"));
+
                 }
             });
         }

@@ -394,6 +394,7 @@ Price to be charged = Value of supply + GST Amount
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     edt_select_material.setText(materialsModals.get(position).material_brand);
+                    tv_material_unit.setText(materialsModals.get(position).unit);
                     materials_id = materialsModals.get(position).material_id;
                     alert.dismiss();
                 }
