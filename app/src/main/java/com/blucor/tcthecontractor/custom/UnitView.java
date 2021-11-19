@@ -69,14 +69,15 @@ public class UnitView extends LinearLayout {
 
     public UnitView(Context context) {
         super(context);
-        initControl(context);
         this.context = context;
+        initControl(context);
     }
 
     public UnitView(Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
         super(context, attrs);
-        initControl(context);
         this.context = context;
+        initControl(context);
+
     }
 
     /**
@@ -263,15 +264,15 @@ public class UnitView extends LinearLayout {
     }
 
     public void showLoader() {
-//        if (NetworkHelper.hasNetworkAccess(context)) {
+        if (NetworkHelper.hasNetworkAccess(context)) {
             dialog = new AlertDialog.Builder(context).create();
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             ProgressBar pb = new ProgressBar(context);
             dialog.setView(pb);
             dialog.show();
-//        } else {
-//            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
-//        }
+        } else {
+            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
