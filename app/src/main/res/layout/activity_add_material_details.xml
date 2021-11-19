@@ -144,7 +144,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
-                        android:text="Kg"
+                        android:text=""
                         android:textSize="@dimen/_12sdp" />
                 </RelativeLayout>
 
