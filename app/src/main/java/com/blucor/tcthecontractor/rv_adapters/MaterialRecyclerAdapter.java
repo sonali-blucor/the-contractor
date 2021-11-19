@@ -2,11 +2,13 @@ package com.blucor.tcthecontractor.rv_adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -105,6 +107,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
         private TextView tv_material_paid_to;
         private TextView tv_material_payment_type;
         private TextView btn_material_add_payment;
+        private ImageView img_share;
 
         MaterialViewHolder(final View itemView) {
             super(itemView);
@@ -123,6 +126,7 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
             tv_material_paid_to = (TextView) itemView.findViewById(R.id.tv_material_paid_to);
             tv_material_payment_type = (TextView) itemView.findViewById(R.id.tv_material_payment_type);
             btn_material_add_payment = (TextView) itemView.findViewById(R.id.btn_material_add_payment);
+            img_share = (ImageView) itemView.findViewById(R.id.img_share_material_payment);
             btn_material_add_payment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -137,6 +141,20 @@ public class MaterialRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder
                     if (mListener != null) {
                         mListener.editViewListClicked(viewHolder, getAdapterPosition());
                     }
+                }
+            });
+
+            img_share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sendIntent = new Intent(Intent.ACTION_SEND);
+                    sendIntent.setType("text/plain");//.setType("text/html")
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "https://developer.android.com/training/sharing/");
+                    sendIntent.putExtra(Intent.EXTRA_TITLE, "Introducing content previews");
+//                    sendIntent.setData("contentUri");
+//                    sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    mContext.startActivity(Intent.createChooser(sendIntent, "Share"));
+
                 }
             });
         }
