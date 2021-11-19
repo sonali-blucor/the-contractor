@@ -19,7 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
 import com.blucor.tcthecontractor.models.ServerResponseModel;
 import com.blucor.tcthecontractor.models.UnitModal;
@@ -46,6 +45,8 @@ public class UnitView extends LinearLayout {
 
     private TextInputLayout til_unit;
     private TextInputEditText edt_unit;
+    private View inc_unit;
+    private View inc_add_unit;
 
     private ImageView img_add_unit;
     private ImageView img_search_unit;
@@ -62,6 +63,8 @@ public class UnitView extends LinearLayout {
 
     private String selectedUnit = "";
     private int selectedUnitId = 0;
+    private boolean enable = true;
+    private String unitError = "";
 
     List<UnitModal> units;
 
@@ -92,12 +95,17 @@ public class UnitView extends LinearLayout {
 
         til_unit = findViewById(R.id.til_unit);
         edt_unit = findViewById(R.id.edt_unit);
-        til_unit.setEndIconOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBottomSheetUnit();
-            }
-        });
+        inc_unit = findViewById(R.id.inc_unit);
+        inc_add_unit = findViewById(R.id.inc_add_unit);
+
+        if (isEnable()) {
+            til_unit.setEndIconOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showBottomSheetUnit();
+                }
+            });
+        }
 
         getUnits();
     }
@@ -126,6 +134,7 @@ public class UnitView extends LinearLayout {
     };
 
     private void showBottomSheetAddUnit() {
+        inc_unit.setVisibility(VISIBLE);
         bottomSheetDialog = new BottomSheetDialog(context);
         bottomSheetDialog.setContentView(R.layout.bottom_add_unit);
         img_close = bottomSheetDialog.findViewById(R.id.img_add_close);
@@ -140,6 +149,7 @@ public class UnitView extends LinearLayout {
     }
 
     private void showBottomSheetUnit() {
+        inc_add_unit.setVisibility(VISIBLE);
         bottomSheetDialog = new BottomSheetDialog(context);
         bottomSheetDialog.setContentView(R.layout.bottom_unit);
         img_add_unit = bottomSheetDialog.findViewById(R.id.img_add_unit);
@@ -192,12 +202,31 @@ public class UnitView extends LinearLayout {
         this.selectedUnit = selectedUnit;
     }
 
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnableL(boolean enable) {
+        this.enable = enable;
+        til_unit.setEnabled(enable);
+    }
+
     public int getSelectedUnitId() {
         return selectedUnitId;
     }
 
     public void setSelectedUnitId(int selectedUnitId) {
         this.selectedUnitId = selectedUnitId;
+    }
+
+    public String getUnitError() {
+
+        return unitError;
+    }
+
+    public void setUnitError(String unitError) {
+        this.unitError = unitError;
+        edt_unit.setError( this.unitError );
     }
 
     private void getUnits() {

@@ -7,7 +7,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:padding="@dimen/_5sdp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -50,8 +50,12 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <include layout="@layout/bottom_unit" />
+    <include layout="@layout/bottom_unit"
+        android:id="@+id/inc_unit"
+        android:visibility="gone"/>
 
-    <include layout="@layout/bottom_add_unit" />
+    <include layout="@layout/bottom_add_unit"
+        android:id="@+id/inc_add_unit"
+        android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
