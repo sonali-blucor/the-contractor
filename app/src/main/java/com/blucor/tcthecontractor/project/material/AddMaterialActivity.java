@@ -1,7 +1,6 @@
 package com.blucor.tcthecontractor.project.material;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blucor.tcthecontractor.BaseAppCompatActivity;
 import com.blucor.tcthecontractor.R;
-import com.blucor.tcthecontractor.custom.UnitView;
 import com.blucor.tcthecontractor.helper.AppKeys;
 import com.blucor.tcthecontractor.models.MaterialPurchase;
 import com.blucor.tcthecontractor.models.MaterialsModal;
@@ -71,7 +69,7 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
     private String unit = "";
 
     private MaterialPurchase current_materialPurchase;
-    private Dialog dialog;
+    private AlertDialog dialog;
 
     private TextView tv_payment_total_amt;
     private TextView tv_payment_balance_amt;
@@ -336,7 +334,9 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
 
     public void showPopupViewForPaymentAdd(View v) {
         try {
-            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            dialog = new AlertDialog.Builder(this).create();
+            dialog.setTitle("Add Payment ");
+
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.dialog_material_payament, null);
             material_id = current_materialPurchase.material_purchase_id;
@@ -346,14 +346,22 @@ public class AddMaterialActivity extends BaseAppCompatActivity {
             edt_payment_paid_to = view.findViewById(R.id.edt_payment_paid_to);
             edt_payment_amount = view.findViewById(R.id.edt_payment_amount);
             edt_payment_type = view.findViewById(R.id.edt_payment_type);
-            btn_payment_dialog_close = view.findViewById(R.id.btn_payment_dialog_close);
+//            btn_payment_dialog_close = view.findViewById(R.id.btn_payment_dialog_close);
             btn_payment_dialog_save = view.findViewById(R.id.btn_payment_dialog_save);
 
             tv_payment_total_amt.setText(current_materialPurchase.total_amt);
             tv_payment_balance_amt.setText(current_materialPurchase.balance_amt);
 
-            alertDialogBuilder.setView(view);
-            dialog = alertDialogBuilder.create();
+            dialog.setView(view);
+
+            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+
             dialog.show();
 
             edt_payment_amount.addTextChangedListener(new TextWatcher() {
